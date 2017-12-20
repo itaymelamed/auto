@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -27,6 +24,7 @@ namespace Automation.BrowserFolder
                 wait.Until(d => {
                     try
                     {
+                        MoveToEl(el);
                         return el.Displayed;
                     }
                     catch
@@ -34,6 +32,8 @@ namespace Automation.BrowserFolder
                         return false;
                     }
                 });
+
+                MoveToEl(el);
             }
             catch
             {
@@ -63,6 +63,7 @@ namespace Automation.BrowserFolder
 
         public void SetText(IWebElement el, string text)
         {
+            MoveToEl(el);
             el.SendKeys(text);
         }
 
@@ -98,6 +99,7 @@ namespace Automation.BrowserFolder
             wait.Until(d => {
                 try
                 {
+                    MoveToEl(el);
                     return func(el);
                 }
                 catch
@@ -172,6 +174,7 @@ namespace Automation.BrowserFolder
                     try
                     {
                         el.Click();
+                        MoveToEl(el);
                         return true;
                     }
                     catch(Exception e)
@@ -201,6 +204,7 @@ namespace Automation.BrowserFolder
             wait.Until(d => {
                 try
                 {
+                    MoveToEl(el);
                     return func(el) == true;
                 }
                 catch
@@ -236,6 +240,7 @@ namespace Automation.BrowserFolder
                     try
                     {
                         el = _driver.FindElement(by);
+                        MoveToEl(el);
                         return el.Displayed;
                     }
                     catch
@@ -257,6 +262,12 @@ namespace Automation.BrowserFolder
             Actions actions = new Actions(_driver);
             actions.MoveToElement(el);
             el.Click();
+        }
+
+        public void MoveToEl(IWebElement el)
+        {
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(el);
         }
 
         public bool IsClickble(IWebElement el, string elName, bool throwex = true)
