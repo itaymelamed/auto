@@ -13,7 +13,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "1")]
             [Category("Sanity")][Category("Admin")]
-            public void LoginAsAdmin()
+            public void Admin_LoginAsAdmin()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -32,7 +32,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "2")]
             [Category("Sanity")][Category("Admin")]
-            public void ValidateAdminTemplates()
+            public void Admin_TemplatesValidateAdminTemplates()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
