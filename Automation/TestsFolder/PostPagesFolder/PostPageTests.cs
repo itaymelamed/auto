@@ -14,7 +14,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId","3")]
             [Category("Sanity")][Category("Admin")][Category("editPage")]
-            public void ArticleValidateInputFields()
+            public void Article_EditorValidateInputFields()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -35,7 +35,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "4")]
             [Category("Sanity")][Category("Admin")][Category("editPage")]
-            public void ValidateTitleTextfieled()
+            public void Article_EditorValidateTitleTextfieled()
             {
                 var titleExValue = _params["titleExValue"].ToString();
 
@@ -59,7 +59,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "5")]
             [Category("Sanity")][Category("Admin")][Category("editPage")]
-            public void ValidateBodyTextfieled()
+            public void Article_EditorValidateBodyTextfieled()
             {
                 var bodyExValue = _params["bodyExValue"].ToString();
 
@@ -83,7 +83,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "6")]
             [Category("Sanity")][Category("Admin")][Category("editPage")][Category("Tags")]
-            public void ValidateTagsTextBoxInsertSingleTag()
+            public void Article_EditorValidateTagsTextBoxInsertSingleTag()
             {
                 BsonArray tagExValue = _params["Tag"].AsBsonArray;
 
@@ -111,7 +111,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "7")]
             [Category("Sanity")][Category("Admin")][Category("editPage")][Category("Tags")]
-            public void ValidateTagsTextBoxInsertMultipleTags()
+            public void Article_EditorValidateTagsTextBoxInsertMultipleTags()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
 
@@ -139,7 +139,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "8")]
             [Category("Sanity")][Category("Admin")][Category("editPage")][Category("Tags")]
-            public void ValidateTagsTextBoxSugestionsTags()
+            public void Article_EditorValidateTagsTextBoxSugestionsTags()
             {
                 string shortTag = _params["ShortTag"].ToString();
                 string tag = _params["Tag"].ToString();
@@ -163,7 +163,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "9")]
             [Category("Sanity")][Category("Admin")][Category("editPage")]
-            public void DragAndDropAcoverImage()
+            public void Article_EditorDragAndDropAcoverImage()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -187,7 +187,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "10")]
             [Category("Sanity")][Category("Admin")][Category("editPage")]
-            public void ImageSearchValidateMaxSearchResultsAndContent()
+            public void Article_EditorImageSearch_ValidateMaxSearchResultsAndContent()
             {
                 int maxResults = _params["MaxResults"].ToInt32();
                 string search = _params["Search"].ToString();
@@ -212,7 +212,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "11")]
             [Category("Sanity")][Category("Admin")][Category("PreviewPage")]
-            public void PreviewButtonCheckEditButton()
+            public void Article_EditorPreviewButtonCheckEditButton()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -236,7 +236,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "12")]
             [Category("Sanity")][Category("Admin")][Category("PreviewPage")]
-            public void PublishButton()
+            public void PostPage_PublishButton()
             {
                 var postTitle = "VIDEO:Test post article";
                 HomePage homePage = new HomePage(_browser);
@@ -261,7 +261,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "13")]
             [Category("Sanity")][Category("Admin")][Category("PostPage")]
-            public void ValidateUiComponentsExistOnPage()
+            public void PostPage_ValidateUiComponentsExistOnPage()
             {
                 var postTitle = "VIDEO:Test post article";
                 BsonArray components = _params["Components"].AsBsonArray;
