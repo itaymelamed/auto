@@ -306,7 +306,7 @@ namespace Automation.PagesObjects
         public int ValidateImageSearchResults(int maxRes)
         {
             Base.MongoDb.UpdateSteps($"Validate Image Search Results.");
-            _browserHelper.ExecutUntillTrue(() => imagesResults.ToList().Count == 30, $"There were less than {maxRes} results.", 30, false);
+            _browserHelper.ExecutUntillTrue(() => imagesResults.ToList().Count == 30, $"There were less than {maxRes} results.", 60, false);
 
             return imagesResults.ToList().Count();
         }
@@ -317,7 +317,7 @@ namespace Automation.PagesObjects
                                                  
             _browserHelper.ExecutUntillTrue(() => {
                 return imagesResults.ToList().Any(r => r.FindElement(By.XPath(".//span")).GetAttribute("data-url").Contains(search));
-            }, $"No match found between search query and actual results.", 0);
+            }, $"No match found between search query and actual results.", 30);
 
             return true;
         }
