@@ -1,1 +1,1 @@
-﻿34.210.172.180
+﻿ec2-34-210-172-180.us-west-2.compute.amazonaws.com
