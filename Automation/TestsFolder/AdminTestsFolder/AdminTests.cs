@@ -15,6 +15,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")][Category("Admin")]
             public void LoginAsAdmin()
             {
+                //test pah ashpa
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
