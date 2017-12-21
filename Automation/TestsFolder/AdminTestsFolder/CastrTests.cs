@@ -1,7 +1,7 @@
 ﻿using Automation.PagesObjects;
 using NUnit.Framework;
 
-namespace Automation.TestsFolder.PostPagesFolder
+namespace Automation.TestsFolder.AdminTestsFolder
 {
     [TestFixture]
     public class CastrTests

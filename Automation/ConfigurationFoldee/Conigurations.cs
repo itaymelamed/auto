@@ -16,6 +16,7 @@ namespace Automation.ConfigurationFolder
         public string SiteName { get; }
         public string Url { get; }
         public string Ip { get; }
+        public bool Local { get; }
         public static string MongoDbConnectionString { get; set; }
         MongoDb _mongoDb;
 
@@ -40,6 +41,7 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
+            Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
             Ip = GetIp();
             MongoDbConnectionString = $"mongodb://{Ip}:27017";
             _mongoDb = new MongoDb("Configurations");
@@ -47,7 +49,7 @@ namespace Automation.ConfigurationFolder
             SiteName = GetSiteName();
             BrowserT = BrowserType.Desktop;
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
-            Url = $"http://{Env}.{ConfigObject.Url}/";
+            Url = $"http://{Env}.{ConfigObject.Url}";
         }
 
         static Enviroment GetEnvType()

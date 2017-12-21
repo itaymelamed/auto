@@ -42,7 +42,7 @@ namespace Automation.TestsFolder
         [TearDown]
         public void CleanTest()
         {
-            _test.Result.ScreenShot = _browser.GetScreenShot(_test);
+            _test.Result.ScreenShot = !_config.Local ?_browser.GetScreenShot(_test) : "";
             _test.Result.Url =  _browser.GetUrl();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result);
             _browser.Quit();

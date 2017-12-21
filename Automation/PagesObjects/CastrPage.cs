@@ -25,7 +25,7 @@ namespace Automation.PagesObjects
         public bool ValidateCasterPage()
         {
             Base.MongoDb.UpdateSteps("Validate user is on Castr page.");
-            return _browserHelper.WaitForUrlToChange($"{Base._config.Env}.{Base._config.Url}/castr");
+            return _browserHelper.WaitForUrlToChange($"{Base._config.Url}/castr");
         }
     }
 }

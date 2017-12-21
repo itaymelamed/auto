@@ -17,7 +17,7 @@ namespace Automation.TestsObjects
         public TestRun(Configurations config)
         {
             Results = new Results();
-            TestRunId = (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString();
+            TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
             Date = DateTime.Now.AddHours(2).ToString("MM/dd/yy HH:mm:ss");
             SiteName = config.SiteName;

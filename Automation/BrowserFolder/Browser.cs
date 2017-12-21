@@ -18,9 +18,8 @@ namespace Automation.BrowserFolder
 
         public Browser(Configurations config)
         {
-            string env = Environment.MachineName.Replace("-", " ").Replace(".", " ");
             ChromeOptions chromeOptions = new ChromeOptions();
-            Driver = !env.Contains("local") ? new RemoteWebDriver(new Uri($"http://{config.Ip}:4444/wd/hub"), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
+            Driver = !config.Local ? new RemoteWebDriver(new Uri($"http://{config.Ip}:4444/wd/hub"), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
                                  new ChromeDriver();
             BrowserHelper = new BrowserHelper(Driver);
         }

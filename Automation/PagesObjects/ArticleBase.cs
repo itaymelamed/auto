@@ -7,6 +7,7 @@ using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using MongoDB.Bson;
+using NUnit.Framework;
 
 namespace Automation.PagesObjects
 {
@@ -230,11 +231,11 @@ namespace Automation.PagesObjects
 
         public void WriteTags(BsonArray tagsArray)
         {
-            List<string> tags = tagsArray.ToList().Select(t => t.ToString()).ToList();
+            List<string> tagsList = tagsArray.ToList().Select(t => t.ToString()).ToList();
             Base.MongoDb.UpdateSteps("Write Tags in tags text fieled.");
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
-            tags.ForEach(t => {
+            tagsList.ForEach(t => {
                 editorTags.SendKeys(t);
                 Thread.Sleep(1000);
                 editorTags.SendKeys(Keys.Enter);
@@ -273,7 +274,7 @@ namespace Automation.PagesObjects
                 _browserHelper.Click(magicStick, nameof(magicStick));
             }
 
-            WriteTags(new BsonArray().Add("ATest, BTest, CTest") );
+            WriteTags(new BsonArray(new List<string>(){"Atest", "BTest", "CTest"}));
         }
 
         public bool ValidateContainerImage()
