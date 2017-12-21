@@ -24,6 +24,18 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".urls__input")]
         IWebElement postUrl { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[value='article']")]
+        IWebElement articleCbx { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[name='types_all']")]
+        IWebElement allCbx { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".types-list input")]
+        IList<IWebElement> types { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".post-type span")]
+        IList<IWebElement> typesIcons { get; set; }
+
         enum Languages
         {
             en,
@@ -36,6 +48,18 @@ namespace Automation.PagesObjects
             th,
             vn,
             tr
+        }
+
+        public enum Types
+        {
+            all,
+            article,
+            slideShow,
+            topX,
+            lineUp,
+            pundit,
+            tv,
+            timeout,
         }
 
         Browser _browser;
@@ -78,6 +102,37 @@ namespace Automation.PagesObjects
             });
 
             return errors;
+        }
+
+        public void DeselectAllCheckBoxes()
+        {
+            SelectAllCheckBoxes();
+            _browserHelper.WaitForElementDiss(fetching);
+            Base.MongoDb.UpdateSteps($"Deselect all checkboxes.");
+            SelectAllCheckBoxes();
+        }
+
+        public void SelectAllCheckBoxes()
+        {
+            Base.MongoDb.UpdateSteps($"Select all checkboxes.");
+            _browserHelper.WaitForElement(allCbx, nameof(allCbx));
+            _browserHelper.Click(allCbx, nameof(allCbx));
+        }
+
+        public void SelectType(Types type)
+        {
+            _browserHelper.WaitForElementDiss(fetching);
+            Base.MongoDb.UpdateSteps($"Select {type}.");
+            var typesCount = types.ToList().Count();
+            _browserHelper.ExecutUntillTrue(() => typesCount == 10);
+            _browserHelper.Click(types.ToList().Where(t => t.GetAttribute("value") == type.ToString()).FirstOrDefault(), type.ToString());
+        }
+
+        public bool ValidateFilterByType(Types type)
+        {
+            Base.MongoDb.UpdateSteps($"Validate {type} icon is next to each post.");
+            _browserHelper.WaitForElementDiss(fetching);
+            return typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString());
         }
     }
 }

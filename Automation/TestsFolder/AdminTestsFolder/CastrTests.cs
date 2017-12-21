@@ -1,5 +1,6 @@
 ﻿using Automation.PagesObjects;
 using NUnit.Framework;
+using static Automation.PagesObjects.CastrPage;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -47,6 +48,29 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var errors = castrPage.ValidateFilterByLanguageEn();
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "16")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_FilterByType_Article()
+            {
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                homePageConnected.HoverOverUserProfilePic();
+                AdminPage adminPage = homePageConnected.ClickOnAdmin();
+                CastrPage castrPage = adminPage.ClickOnCasterLink();
+                castrPage.DeselectAllCheckBoxes();
+                castrPage.SelectType(Types.article);
+
+                Assert.True(castrPage.ValidateFilterByType(Types.article), "Not all posts was Article type");
             }
         }
     }
