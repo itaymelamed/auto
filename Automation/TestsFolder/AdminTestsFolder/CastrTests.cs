@@ -18,6 +18,7 @@ namespace Automation.TestsFolder.PostPagesFolder
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
                 homePageConnected.HoverOverUserProfilePic();
                 AdminPage adminPage = homePageConnected.ClickOnAdmin();
                 CastrPage castrPage = adminPage.ClickOnCasterLink();
