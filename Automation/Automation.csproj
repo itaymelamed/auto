@@ -122,6 +122,9 @@
     <Compile Include="TestsFolder\Base.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\AdminTests.cs" />
     <Compile Include="TestsFolder\PostPagesFolder\PostPageTests.cs" />
+    <Compile Include="TestsFolder\AdminTestsFolder\CastrTests.cs" />
+    <Compile Include="PagesObjects\AdminPage.cs" />
+    <Compile Include="PagesObjects\CastrPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

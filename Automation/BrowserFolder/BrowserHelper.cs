@@ -289,5 +289,21 @@ namespace Automation.BrowserFolder
                 return false;
             }
         }
+
+        public bool WaitForUrlToChange(string reqUrl,int timeOut = 60, bool throwEx = true)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => d.Url == reqUrl);
+                return true;
+            }
+            catch
+            {
+                if (throwEx)
+                    throw new Exception($"Expected Url was: {reqUrl} but actual:{_driver.Url}");
+                return false;
+            }
+        }
     }
 }

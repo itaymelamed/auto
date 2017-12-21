@@ -83,11 +83,13 @@ namespace Automation.PagesObjects
             _browserHelper.Hover(userProfilePic);
         }
 
-        public void ClickOnAdmin()
+        public AdminPage ClickOnAdmin()
         {
             Base.MongoDb.UpdateSteps($"Click on Admin.");
             _browserHelper.WaitForElement(admin, nameof(admin), 60, true);
             _browserHelper.Click(admin, nameof(admin));
+
+            return new AdminPage(_browser);
         }
 
         public bool ValidateAdminAppears()

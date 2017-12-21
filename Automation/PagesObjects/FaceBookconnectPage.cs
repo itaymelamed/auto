@@ -2,7 +2,6 @@
 using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.TestsFolder;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
