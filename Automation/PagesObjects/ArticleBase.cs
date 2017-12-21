@@ -272,6 +272,8 @@ namespace Automation.PagesObjects
             {
                 _browserHelper.Click(magicStick, nameof(magicStick));
             }
+
+            WriteTags(new BsonArray().Add("Test1, Test2, Test3") );
         }
 
         public bool ValidateContainerImage()
