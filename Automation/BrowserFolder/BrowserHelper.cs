@@ -295,7 +295,7 @@ namespace Automation.BrowserFolder
             try
             {
                 WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-                wait.Until(d => d.Url == reqUrl);
+                wait.Until(d => d.Url.ToLower() == reqUrl.ToLower());
                 return true;
             }
             catch
