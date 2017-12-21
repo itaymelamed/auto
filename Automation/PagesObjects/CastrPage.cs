@@ -69,7 +69,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Validate filter posts by en");
             _browserHelper.WaitForElementDiss(fetching);
             var errors = string.Empty;
-            results.ToList().ForEach(r =>
+            results.Where((x,i) => i < 5).ToList().ForEach(r =>
             {
                 _browserHelper.Click(r, r.Text);
                 _browserHelper.ExecutUntillTrue(() => postUrl.GetAttribute("value") != "");
