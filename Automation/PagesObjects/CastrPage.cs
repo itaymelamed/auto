@@ -123,16 +123,25 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElementDiss(fetching);
             Base.MongoDb.UpdateSteps($"Select {type}.");
-            var typesCount = types.ToList().Count();
-            _browserHelper.ExecutUntillTrue(() => typesCount == 10);
-            _browserHelper.Click(types.ToList().Where(t => t.GetAttribute("value") == type.ToString()).FirstOrDefault(), type.ToString());
+
+            _browserHelper.ExecutUntillTrue(() => {
+                var typesCount = types.ToList().Count();
+                return typesCount == 10;
+            });
+
+            _browserHelper.ExecutUntillTrue(() =>
+            {
+                var elToClick = types.ToList().Where(t => t.GetAttribute("value") == type.ToString()).FirstOrDefault();
+                elToClick.Click();
+                return true;
+            });
         }
 
         public bool ValidateFilterByType(Types type)
         {
             Base.MongoDb.UpdateSteps($"Validate {type} icon is next to each post.");
             _browserHelper.WaitForElementDiss(fetching);
-            return typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString());
+            return _browserHelper.ExecutUntillTrue(() => typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString()));
         }
     }
 }

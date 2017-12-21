@@ -109,7 +109,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public void ExecutUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
+        public bool ExecutUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
         {
             try
             {
@@ -124,11 +124,14 @@ namespace Automation.BrowserFolder
                         return false;
                     }
                 });
+
+                return true;
             }
             catch
             {
                 if (throwEx)
                     throw new Exception(ex);
+                return false;
             }
         }
 
