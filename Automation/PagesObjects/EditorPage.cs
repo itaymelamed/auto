@@ -60,7 +60,7 @@ namespace Automation.PagesObjects
             {
                 templatesList = _driver.FindElements(By.CssSelector(".templates li[class*='template-']")).Select(e => e.GetAttribute("class")).ToList();
                 return templatesList.Count() == templateNames.Count();
-            }, $"Expected {templateNames.Count()} templates but actul {templatesList} templates.");
+            }, $"Expected {templateNames.Count()} templates but actul {templatesList.Count()} templates.");
 
             var errors = string.Empty;
 
