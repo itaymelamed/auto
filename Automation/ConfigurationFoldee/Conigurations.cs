@@ -23,9 +23,20 @@ namespace Automation.ConfigurationFolder
         public enum Enviroment
         {
             UTest,
+            Testo,
+            Demo,
+            QA1,
+            QA2,
+            QA3,
+            QA4,
+            QA5,
+            QA6,
             QA7,
             QA8,
-            Testo
+            QA9,
+            QA10,
+            QA11,
+            QA12
         }
 
         public enum BrowserType
