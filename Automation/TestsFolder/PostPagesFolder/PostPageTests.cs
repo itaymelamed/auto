@@ -16,6 +16,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Category("Sanity")][Category("Admin")][Category("editPage")]
             public void Article_Editor_ValidateInputFields()
             {
+                //itay test
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
