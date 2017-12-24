@@ -7,7 +7,6 @@ using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using MongoDB.Bson;
-using NUnit.Framework;
 
 namespace Automation.PagesObjects
 {

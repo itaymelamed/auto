@@ -54,13 +54,14 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Validate templates.");
             List<string> templatesList = null;
+            List<string> templatesNamesList = null;
 
-            List<string> templatesNamesList = templateNames.ToList().Select(x => x.ToString()).ToList();
             _browserHelper.ExecutUntillTrue(() =>
             {
+                templatesNamesList = templateNames.ToList().Select(x => x.ToString()).ToList();
                 templatesList = _driver.FindElements(By.CssSelector(".templates li[class*='template-']")).Select(e => e.GetAttribute("class")).ToList();
                 return templatesList.Count() == templateNames.Count();
-            }, $"Expected {templateNames.Count()} templates but actul {templatesList.Count()} templates.");
+            }, $"Expected {templateNames.Count()} templates but actul templates.");
 
             var errors = string.Empty;
 
