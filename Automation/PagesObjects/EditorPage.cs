@@ -29,6 +29,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-tv']")]
         IWebElement tv { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".templates li a")]
+        IList<IWebElement> templates { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -56,7 +59,7 @@ namespace Automation.PagesObjects
             List<string> templatesList = null;
             List<string> templatesNamesList = null;
 
-            _browserHelper.ExecutUntillTrue(() =>
+            _browserHelper.WaitUntillTrue(() =>
             {
                 templatesNamesList = templateNames.ToList().Select(x => x.ToString()).ToList();
                 templatesList = _driver.FindElements(By.CssSelector(".templates li[class*='template-']")).Select(e => e.GetAttribute("class")).ToList();
@@ -70,6 +73,16 @@ namespace Automation.PagesObjects
             });
 
             return errors;
+        }
+
+        public ArticleBase ClickOnTemplate(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Click on template number {i}.");
+            _browserHelper.WaitUntillTrue(() => templates.ToList().Count() > 2);
+            IWebElement temp = templates.Where((t, j) => j == i).FirstOrDefault();
+            _browserHelper.Click(temp, $"template {i}");
+
+            return new ArticleBase(_browser);
         }
     }
 }

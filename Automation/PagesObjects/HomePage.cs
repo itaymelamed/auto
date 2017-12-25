@@ -1,5 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Automation.BrowserFolder;
+using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
+using Automation.Helpersobjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -96,6 +99,23 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Validate Admin Appears.");
             return _browserHelper.WaitForElement(admin, nameof(admin), 2, false);
+        }
+
+        public HomePage Login(IUser user)
+        {
+            FaceBookconnectPage faceBookconnectPage = ClickOnConnectBtn();
+            HomePage homePageConnected = faceBookconnectPage.Login(user);
+            homePageConnected.ValidateUserProfilePic();
+
+            return new HomePage(_browser); 
+        }
+
+        public CastrPage GoToCastr()
+        {
+            HoverOverUserProfilePic();
+            AdminPage adminPage = ClickOnAdmin();
+
+            return adminPage.ClickOnCasterLink();
         }
     }
 }

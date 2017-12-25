@@ -125,6 +125,7 @@
     <Compile Include="TestsFolder\AdminTestsFolder\CastrTests.cs" />
     <Compile Include="PagesObjects\AdminPage.cs" />
     <Compile Include="PagesObjects\CastrPage.cs" />
+    <Compile Include="Helpersobjects\PostCreator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -139,6 +140,7 @@
     <Folder Include="MongoDbObject\" />
     <Folder Include="TestsFolder\AdminTestsFolder\" />
     <Folder Include="TestsFolder\PostPagesFolder\" />
+    <Folder Include="Helpersobjects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationFoldee\ConfigurationsJsonObject\Ip.txt">

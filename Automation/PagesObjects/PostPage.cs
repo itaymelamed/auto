@@ -11,6 +11,12 @@ namespace Automation.PagesObjects
 {
     public class PostPage
     {
+        [FindsBy(How = How.CssSelector, Using = ".post-admin-options__label")]
+        IWebElement options { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[href*='/castr']")]
+        IWebElement openInCaster { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -53,9 +59,26 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostCreated(string postTitle)
         {
-            _browserHelper.ExecutUntillTrue(() => _browser.GetUrl().Contains("posts"), "Post title is not shown on url.");
-            _browserHelper.ExecutUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "User has not redirected to posts page.");
+            Base.MongoDb.UpdateSteps("Validate Post creation.");
+            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "Post title is not shown on url.");
+            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "User has not redirected to posts page.");
             return true;
+        }
+
+        public void HoverOverOptions()
+        {
+            Base.MongoDb.UpdateSteps("Hover over 'Options'.");
+            _browserHelper.WaitForElement(options, nameof(options));
+            _browserHelper.Hover(options);
+        }
+
+        public CastrPage ClickOnOpenInCaster()
+        {
+            Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
+            _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
+            _browserHelper.Click(openInCaster, nameof(openInCaster));
+
+            return new CastrPage(_browser);
         }
     }
 }

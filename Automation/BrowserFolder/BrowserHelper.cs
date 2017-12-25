@@ -27,7 +27,7 @@ namespace Automation.BrowserFolder
                         MoveToEl(el);
                         return el.Displayed;
                     }
-                    catch
+                    catch(Exception e)
                     {
                         return false;
                     }
@@ -69,7 +69,7 @@ namespace Automation.BrowserFolder
 
         public void DragElement(IWebElement drag, IWebElement drop)
         {
-            ExecutUntillTrue(() => {
+            WaitUntillTrue(() => {
                 try
                 {
                     Thread.Sleep(1000);
@@ -109,7 +109,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public bool ExecutUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
+        public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
         {
             try
             {
@@ -307,6 +307,12 @@ namespace Automation.BrowserFolder
                     throw new Exception($"Expected Url was: {reqUrl} but actual:{_driver.Url}");
                 return false;
             }
+        }
+
+        public void SelectFromDropDown(IWebElement el, string value)
+        {
+            SelectElement select = new SelectElement(el);
+            select.SelectByValue(value);
         }
     }
 }

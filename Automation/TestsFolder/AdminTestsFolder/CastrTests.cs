@@ -1,6 +1,7 @@
 ﻿using Automation.PagesObjects;
 using NUnit.Framework;
 using static Automation.PagesObjects.CastrPage;
+using Automation.Helpersobjects;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -71,6 +72,53 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 castrPage.SelectType(Types.article);
 
                 Assert.True(castrPage.ValidateFilterByType(Types.article), "Not all posts was Article type");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test4Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "17")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_ValidatePostUrl()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                string ecUrl = _browser.GetUrl();
+                postPage.HoverOverOptions();
+                CastrPage Casterpage = postPage.ClickOnOpenInCaster();
+                _browser.SwitchToLastTab();
+                string acUrl = Casterpage.GetUrl();
+
+                Assert.AreEqual(ecUrl, acUrl);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test5Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "19")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_CheckArchiveStatus()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.ClickOnPost(0);
+                var postUrl = castrPage.GetUrl();
+                castrPage.CheckPost(0);
+                castrPage.ArchivePost();
+
+                Assert.True(castrPage.ValidatePostArchive(), "Post archive suc message hasn't shown");
+
+                castrPage.SelectStatus(Statuses.archived);
+                Assert.True(castrPage.ValidateArchivePost(postUrl), "Post was not shown under 'Archive' after archived.");
             }
         }
     }

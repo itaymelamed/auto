@@ -308,7 +308,7 @@ namespace Automation.PagesObjects
         public int ValidateImageSearchResults(int maxRes)
         {
             Base.MongoDb.UpdateSteps($"Validate Image Search Results.");
-            _browserHelper.ExecutUntillTrue(() => imagesResults.ToList().Count == 30, $"There were less than {maxRes} results.", 60, false);
+            _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count == 30, $"There were less than {maxRes} results.", 60, false);
 
             return imagesResults.ToList().Count();
         }
@@ -317,7 +317,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Validate Image Search content.");
                                                  
-            _browserHelper.ExecutUntillTrue(() => {
+            _browserHelper.WaitUntillTrue(() => {
                 return imagesResults.ToList().Any(r => r.FindElement(By.XPath(".//span")).GetAttribute("data-url").Contains(search));
             }, $"No match found between search query and actual results.", 30);
 
@@ -326,7 +326,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateEditMode()
         {
-            _browserHelper.ExecutUntillTrue(() => _browser.GetUrl().Contains("editor"), "User is not on edit page.");
+            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("editor"), "User is not on edit page.");
             return true;
         }
     }
