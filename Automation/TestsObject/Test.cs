@@ -28,7 +28,8 @@ namespace Automation.TestsObjects
             Result = new Result(TestContext.CurrentContext.Result, TestStatus.SentToHub);
             TestNumber = TestContext.CurrentContext.Test.Properties.Get("TestCaseId").ToString();
             TestRunId = Base._testRun.TestRunId;
-            TestName = string.Concat(TestContext.CurrentContext.Test.Name.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+            TestName = string.Concat(TestContext.CurrentContext.Test.Name.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ').
+                             Replace('-', '|');
             Steps = new List<string>();
             EnvironmentType = config.Env.ToString();
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
