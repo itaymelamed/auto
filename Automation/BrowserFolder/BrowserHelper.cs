@@ -69,23 +69,25 @@ namespace Automation.BrowserFolder
 
         public void DragElement(IWebElement drag, IWebElement drop)
         {
+            var error = string.Empty;
+
             WaitUntillTrue(() => {
                 try
                 {
-                    Thread.Sleep(1000);
-                    WaitForElement(drag, nameof(drag), 30, false);
-                    WaitForElement(drag, nameof(drop), 30, false);
+                    Thread.Sleep(2000);
+                    WaitForElement(drag, nameof(drag), 60, false);
+                    WaitForElement(drag, nameof(drop), 60, false);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();
                     return true;
                 }
-                catch
+                catch(Exception e)
                 {
-                    _driver.Navigate().Refresh();
+                    error = e.Message;
                     return false;
                 }
-            });
+            }, error);
         }
 
         public void ScrollToEl(IWebElement el)
