@@ -17,6 +17,10 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[href*='/castr']")]
         IWebElement openInCaster { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".post-article__post-title__title")]
+        IWebElement title { get; set; }
+
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -74,8 +78,15 @@ namespace Automation.PagesObjects
 
         public CastrPage ClickOnOpenInCaster()
         {
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                _browserHelper.WaitForElement(title, nameof(title));
+                _browserHelper.MoveToEl(title);
+                HoverOverOptions();
+                return _browserHelper.WaitForElement(options, nameof(options));
+            }, "Failed to hover over options.");
+
             Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
-            _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
             _browserHelper.Click(openInCaster, nameof(openInCaster));
 
             return new CastrPage(_browser);
