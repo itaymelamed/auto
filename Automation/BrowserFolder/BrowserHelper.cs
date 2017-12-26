@@ -129,10 +129,10 @@ namespace Automation.BrowserFolder
 
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 if (throwEx)
-                    throw new Exception(ex);
+                    throw new Exception($"{ex}, Ex:{e}");
                 return false;
             }
         }

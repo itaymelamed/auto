@@ -228,10 +228,14 @@ namespace Automation.PagesObjects
             {
                 results = results.ToList();
                 return results.Count() > 1;
-            });
+            }, "No posts found.");
 
-            IWebElement post = results.Where((r, i) => i == index).FirstOrDefault();
-            _browserHelper.Click(post, $"post #{index}");
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                IWebElement post = results.Where((r, i) => i == index).FirstOrDefault();
+                _browserHelper.Click(post, $"post #{index}");
+                return true;
+            }, "Failed to click on post.");
         }
 
         public void CheckPost(int index)
@@ -244,8 +248,12 @@ namespace Automation.PagesObjects
                 return results.Count() > 1;
             }, "No posts found.");
 
-            IWebElement postCheckBox = results.Where((r, i) => i == index).FirstOrDefault().FindElement(By.XPath(".//input"));
-            _browserHelper.Click(postCheckBox, $"post #{index}");
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                IWebElement postCheckBox = results.Where((r, i) => i == index).FirstOrDefault().FindElement(By.XPath(".//input"));
+                _browserHelper.Click(postCheckBox, $"post #{index}");
+                return true;
+            });
         }
 
         public void CheckLeague(int i)
