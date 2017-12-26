@@ -83,7 +83,7 @@ namespace Automation.PagesObjects
                 _browserHelper.WaitForElement(title, nameof(title));
                 _browserHelper.MoveToEl(title);
                 HoverOverOptions();
-                return _browserHelper.WaitForElement(options, nameof(options));
+                return _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
             }, "Failed to hover over options.");
 
             Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
