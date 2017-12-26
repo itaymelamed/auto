@@ -259,7 +259,7 @@ namespace Automation.PagesObjects
                 _browserHelper.MoveToEl(league);
                 _browserHelper.Click(league, "League #{i}");
                 return true;
-            }, $"Failed to check league #{i}.");
+            }, $"Failed to check league #{i}.", 180);
         }
 
         public void CheckPublishTo(int i)

@@ -109,8 +109,8 @@ namespace Automation.PagesObjects
         public virtual CropImagePopUp DragImage(int imageIndex)
         {
             Base.MongoDb.UpdateSteps($"Drag image number {imageIndex}.");
-            _browserHelper.WaitForElement(editorMedia, nameof(editorMedia));
-            _browserHelper.WaitForElement(images, nameof(images));
+            _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 120);
+            _browserHelper.WaitForElement(images, nameof(images), 120);
             _browserHelper.WaitForElement(images.FindElement(By.XPath(".//li")), "Image");
             Thread.Sleep(1000);
             var image = images.FindElements(By.XPath(".//img")).ToList()[imageIndex];
