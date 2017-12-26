@@ -90,9 +90,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 string ecUrl = _browser.GetUrl();
                 postPage.HoverOverOptions();
-                CastrPage Casterpage = postPage.ClickOnOpenInCaster();
+                CastrPage CasterPage = postPage.ClickOnOpenInCaster();
                 _browser.SwitchToLastTab();
-                string acUrl = Casterpage.GetUrl();
+                string acUrl = CasterPage.GetUrl();
 
                 Assert.AreEqual(ecUrl, acUrl);
             }
