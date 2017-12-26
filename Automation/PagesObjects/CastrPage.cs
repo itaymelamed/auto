@@ -285,7 +285,7 @@ namespace Automation.PagesObjects
             _browserHelper.WaitUntillTrue(() => {
                 foreach (var p in archivedPost)
                 {
-                    Base.MongoDb.UpdateSteps($"Click on post #{archivedPost.ToList().FindIndex(x => x == p)}");
+                    Base.MongoDb.UpdateSteps($"Click on post #{archivedPost.ToList().IndexOf(p)}");
                     p.Click();
                     _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
                     var sss = postUrl.GetAttribute("value");
@@ -297,7 +297,7 @@ namespace Automation.PagesObjects
                 }
 
                 return true;
-            }, "Failed to find post under new status");
+            }, "Failed to find post under new status", 30, false);
 
 
             return result;
