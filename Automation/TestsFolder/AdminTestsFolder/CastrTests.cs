@@ -103,7 +103,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test5Class : Base
         {
             [Test]
-            [Property("TestCaseId", "19")]
+            [Property("TestCaseId", "20")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
             public void Castr_CheckArchiveStatus()
             {
@@ -115,10 +115,80 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 castrPage.CheckPost(0);
                 castrPage.ArchivePost();
 
-                Assert.True(castrPage.ValidatePostArchive(), "Post archive suc message hasn't shown");
+                Assert.True(castrPage.ValidateSucMsg(), "Post archive suc message hasn't shown");
 
                 castrPage.SelectStatus(Statuses.archived);
-                Assert.True(castrPage.ValidateArchivePost(postUrl), "Post was not shown under 'Archive' after archived.");
+                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'Archive' after archived.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test6Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "22")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_CheckRest()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.SelectStatus(Statuses.published);
+                castrPage.ClickOnPost(0);
+                var postUrl = castrPage.GetUrl();
+                castrPage.CheckPost(0);
+                castrPage.ResetPost();
+                Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
+
+                castrPage.SelectStatus(Statuses.New);
+                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'New' after rested.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test7Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "23")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_CheckNewStatus()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                var postUrl = _browser.GetUrl();
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.SelectStatus(Statuses.New);
+                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'New' after created.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test8Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "25")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_CheckPublishStatus()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.SelectStatus(Statuses.New);
+                castrPage.ClickOnPost(0);
+                var postUrl = castrPage.GetUrl();
+                castrPage.CheckLeague(0);
+                castrPage.CheckPublishTo(1);
+                castrPage.PublishPost();
+
+                Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
+
+                castrPage.SelectStatus(Statuses.published);
+                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'published' after publish.");
             }
         }
     }

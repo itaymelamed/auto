@@ -314,5 +314,15 @@ namespace Automation.BrowserFolder
             SelectElement select = new SelectElement(el);
             select.SelectByValue(value);
         }
+
+        public void ConfirmAlarem()
+        {
+            WaitUntillTrue(() => 
+            {
+                IAlert alert = _driver.SwitchTo().Alert();
+                alert.Accept();
+                return true;
+            });
+        }
     }
 }

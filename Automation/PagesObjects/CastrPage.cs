@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Automation.BrowserFolder;
@@ -24,6 +23,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "tbody tr")]
         IList<IWebElement> results { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
+        IList<IWebElement> archivedPost { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = ".urls__input")]
         IWebElement postUrl { get; set; }
 
@@ -42,8 +44,20 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "button.multiple-archive")]
         IWebElement archiveBtn { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".multiple-reset")]
+        IWebElement resetBtn { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".publish")]
+        IWebElement publishBtn { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = ".alert-success p")]
-        IWebElement archiveSucMsg { get; set; }
+        IWebElement sucMsg { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".league_selected [type='checkbox']")]
+        IList<IWebElement> leagueCheckBox { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".publish-list__item input")]
+        IList<IWebElement> pubishToCheckBox { get; set; }
 
         enum Languages
         {
@@ -179,17 +193,31 @@ namespace Automation.PagesObjects
             _browserHelper.Click(archiveBtn, nameof(archiveBtn));
         }
 
-        public bool ValidatePostArchive()
+        public void ResetPost()
+        {
+            Base.MongoDb.UpdateSteps($"Click on reset button.");
+            _browserHelper.WaitForElement(resetBtn, nameof(resetBtn));
+            _browserHelper.Click(resetBtn, nameof(resetBtn));
+        }
+
+        public void PublishPost()
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+        }
+
+        public bool ValidateSucMsg()
         {
             Base.MongoDb.UpdateSteps($"Validate Post Archive.");
-            return _browserHelper.WaitForElement(archiveSucMsg, nameof(archiveBtn), 60, false);
+            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60, false);
         }
 
         public void SelectStatus(Statuses status)
         {
             Base.MongoDb.UpdateSteps($"Select status {status}.");
             _browserHelper.WaitForElement(statusDd, nameof(statusDd));
-            _browserHelper.SelectFromDropDown(statusDd, status.ToString());
+            _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
         }
 
         public void ClickOnPost(int index)
@@ -220,20 +248,57 @@ namespace Automation.PagesObjects
             _browserHelper.Click(postCheckBox, $"post #{index}");
         }
 
-        public bool ValidateArchivePost(string post)
+        public void CheckLeague(int i)
         {
-            Base.MongoDb.UpdateSteps($"Validate post is archived.");
-            _browserHelper.WaitForElementDiss(fetching);
-            bool result = true;
+            Base.MongoDb.UpdateSteps($"Check League #{i}.");
+            _browserHelper.WaitUntillTrue(() => leagueCheckBox.ToList().Count() > 2);
 
-            results.ToList().ForEach(p =>
+            _browserHelper.WaitUntillTrue(() => 
             {
-                p.Click();
-                _browserHelper.WaitUntillTrue( () => postUrl.GetAttribute("value") != "");
-                if (postUrl.GetAttribute("value") == post)
-                    return;
-                result = false;
-            });
+                var league = leagueCheckBox.Where((l, j) => i == j).FirstOrDefault();
+                _browserHelper.MoveToEl(league);
+                _browserHelper.Click(league, "League #{i}");
+                return true;
+            }, $"Failed to check league #{i}.");
+        }
+
+        public void CheckPublishTo(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Check Publish to check box #{i}.");
+            _browserHelper.WaitUntillTrue(() => pubishToCheckBox.ToList().Count() > 2);
+
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                var publish = pubishToCheckBox.Where((l, j) => i == j).FirstOrDefault();
+                _browserHelper.MoveToEl(publish);
+                _browserHelper.Click(publish, "Publish to #{i}");
+                return true;
+            }, $"Failed to check Publish to #{i}.");
+        }
+
+        public bool ValidatePost(string post)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post has moved after status changed");
+            _browserHelper.WaitForElementDiss(fetching);
+            bool result = false;
+
+            _browserHelper.WaitUntillTrue(() => {
+                foreach (var p in archivedPost)
+                {
+                    Base.MongoDb.UpdateSteps($"Click on post #{archivedPost.ToList().FindIndex(x => x == p)}");
+                    p.Click();
+                    _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+                    var sss = postUrl.GetAttribute("value");
+                    if (postUrl.GetAttribute("value") == post)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+
+                return true;
+            }, "Failed to find post under new status");
+
 
             return result;
         }
