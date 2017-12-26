@@ -76,7 +76,7 @@ namespace Automation.PagesObjects
         public void ValidateUserProfilePic()
         {
             Base.MongoDb.UpdateSteps($"Validate user's profile pic.");
-            _browserHelper.WaitForElement(userProfilePic, nameof(userProfilePic), 90, true);
+            _browserHelper.WaitForElement(userProfilePic, nameof(userProfilePic), 180, true);
             Thread.Sleep(1000);
         }
 
