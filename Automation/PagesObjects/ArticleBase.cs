@@ -234,6 +234,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Write Tags in tags text fieled.");
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
+            _browserHelper.MoveToEl(editorTags);
             tagsList.ForEach(t => {
                 editorTags.SendKeys(t);
                 Thread.Sleep(1000);
@@ -272,8 +273,11 @@ namespace Automation.PagesObjects
             {
                 _browserHelper.Click(magicStick, nameof(magicStick));
             }
-
-            WriteTags(new BsonArray(new List<string>(){"Atest", "BTest", "CTest"}));
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
+                return GetTagsValue().Count() > 0;
+            }, "Failed to add tags");
         }
 
         public bool ValidateContainerImage()
