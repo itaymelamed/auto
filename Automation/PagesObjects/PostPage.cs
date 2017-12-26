@@ -60,8 +60,8 @@ namespace Automation.PagesObjects
         public bool ValidatePostCreated(string postTitle)
         {
             Base.MongoDb.UpdateSteps("Validate Post creation.");
-            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "Post title is not shown on url.");
-            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "User has not redirected to posts page.");
+            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "User has not redirected to posts page.");
+            _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "Post title is not shown on url.");
             return true;
         }
 
