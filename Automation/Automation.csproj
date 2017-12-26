@@ -126,6 +126,7 @@
     <Compile Include="PagesObjects\AdminPage.cs" />
     <Compile Include="PagesObjects\CastrPage.cs" />
     <Compile Include="Helpersobjects\PostCreator.cs" />
+    <Compile Include="TestsFolder\EditortestsFolder\EditorTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -141,6 +142,7 @@
     <Folder Include="TestsFolder\AdminTestsFolder\" />
     <Folder Include="TestsFolder\PostPagesFolder\" />
     <Folder Include="Helpersobjects\" />
+    <Folder Include="TestsFolder\EditortestsFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationFoldee\ConfigurationsJsonObject\Ip.txt">
