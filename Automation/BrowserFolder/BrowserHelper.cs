@@ -35,10 +35,10 @@ namespace Automation.BrowserFolder
 
                 MoveToEl(el);
             }
-            catch
+            catch(Exception e)
             {
                 if (throwEx)
-                    throw new Exception($"Could not find element: {elName}.");
+                    throw new Exception($"Could not find element: {elName}.  {e}");
                 return false;
             }
 
