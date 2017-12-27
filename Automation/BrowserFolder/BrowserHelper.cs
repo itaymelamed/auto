@@ -38,7 +38,7 @@ namespace Automation.BrowserFolder
             catch(Exception e)
             {
                 if (throwEx)
-                    throw new Exception($"Could not find element: {elName}.  {e}");
+                    throw new Exception($"Could not find element: {elName}.");
                 return false;
             }
 
@@ -131,7 +131,7 @@ namespace Automation.BrowserFolder
             catch(Exception e)
             {
                 if (throwEx)
-                    throw new Exception($"{ex}, Ex:{e}");
+                    throw new Exception($"{ex}");
                 return false;
             }
         }
