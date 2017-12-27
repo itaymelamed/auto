@@ -55,7 +55,7 @@ namespace Automation.PagesObjects
 
         public ListsTemplate ClickOnList()
         {
-            Base.MongoDb.UpdateSteps($"Click on lIST template.");
+            Base.MongoDb.UpdateSteps($"Click on list template.");
             _browserHelper.WaitForElement(list, nameof(list));
             _browserHelper.Click(list, nameof(list));
 
