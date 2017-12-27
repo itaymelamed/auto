@@ -209,7 +209,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateSucMsg()
         {
-            Base.MongoDb.UpdateSteps($"Validate Post Archive.");
+            Base.MongoDb.UpdateSteps($"Validate action suc message.");
             return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60, false);
         }
 
@@ -286,7 +286,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePost(string post)
         {
-            Base.MongoDb.UpdateSteps($"Validate post has moved after status changed");
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved after status changed");
             _browserHelper.WaitForElementDiss(fetching);
             bool result = false;
 
@@ -305,7 +305,7 @@ namespace Automation.PagesObjects
                 }
 
                 return true;
-            }, "Failed to find post under new status", 30, false);
+            }, "Failed to find post under new status", 120, false);
 
 
             return result;

@@ -112,9 +112,9 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 120);
             _browserHelper.WaitForElement(images, nameof(images), 120);
             _browserHelper.WaitForElement(images.FindElement(By.XPath(".//li")), "Image");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             var image = images.FindElements(By.XPath(".//img")).ToList()[imageIndex];
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _browserHelper.DragElement(image, editorMedia);
 
             return new CropImagePopUp(_browser);

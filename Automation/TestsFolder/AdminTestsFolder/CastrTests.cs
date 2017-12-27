@@ -126,6 +126,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         [Parallelizable]
         public class Test6Class : Base
         {
+            
             [Test]
             [Property("TestCaseId", "22")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
