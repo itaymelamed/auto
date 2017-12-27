@@ -53,7 +53,7 @@ namespace Automation.PagesObjects
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(editOkBtn);
             _browserHelper.ClickJavaScript(editOkBtn);
-            _browserHelper.WaitForElementDiss(editOkBtn);
+            _browserHelper.WaitForElementDiss(editOkBtn, 120);
         }
     }
 }
