@@ -209,16 +209,37 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.New);
-                castrPage.ClickOnPost(0);
+                castrPage.ClickOnPost(1);
                 var postUrl = castrPage.GetUrl();
                 castrPage.CheckLeague(0);
-                castrPage.CheckPublishTo(1);
+                castrPage.CheckPublishTo(0);
                 castrPage.PublishPost();
 
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
                 castrPage.SelectStatus(Statuses.published);
                 Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'published' after publish.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test10Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "28")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            public void Castr_CheckControlsAreDissabledOnPublishPost()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.SelectStatus(Statuses.published);
+                castrPage.ClickOnPost(3);
+
+                Assert.True(castrPage.ValidateTextAreasDissabled() && castrPage.ValidateInputDissabled() && castrPage.ValidateControlsDissabled(), "Controls were not dissabled.");
             }
         }
     }

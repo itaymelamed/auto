@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -27,7 +28,7 @@ namespace Automation.BrowserFolder
                         MoveToEl(el);
                         return el.Displayed;
                     }
-                    catch(Exception e)
+                    catch
                     {
                         return false;
                     }
@@ -35,7 +36,7 @@ namespace Automation.BrowserFolder
 
                 MoveToEl(el);
             }
-            catch(Exception e)
+            catch
             {
                 if (throwEx)
                     throw new Exception($"Could not find element: {elName}.");
@@ -128,7 +129,7 @@ namespace Automation.BrowserFolder
 
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 if (throwEx)
                     throw new Exception($"{ex}");
@@ -336,6 +337,11 @@ namespace Automation.BrowserFolder
             {
                 return false;
             }
+        }
+
+        public bool ValidateElsDissabled(List<IWebElement> els)
+        {
+            return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 60, false);
         }
     }
 }

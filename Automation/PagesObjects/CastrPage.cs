@@ -62,6 +62,21 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[name='publish_to_another_site']")]
         IWebElement ftb90CheckBox { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".save")]
+        IWebElement savrForLaterBtn { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".caption textarea")]
+        IWebElement captionTxtBox { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".form-inline textarea")]
+        IList<IWebElement> textAreas { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".form-inline input")]
+        IList<IWebElement> inputs { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".controls button")]
+        IList<IWebElement> contorls { get; set; }
+
         enum Languages
         {
             en,
@@ -321,6 +336,30 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(ftb90CheckBox, nameof(ftb90CheckBox));
             if (_browserHelper.CheckAttribute(ftb90CheckBox))
                 _browserHelper.Click(ftb90CheckBox, nameof(ftb90CheckBox));
+        }
+
+        public bool ValidateTextAreasDissabled()
+        {
+            Base.MongoDb.UpdateSteps($"Validate text areas are dissabled.");
+            _browserHelper.WaitUntillTrue(() => textAreas.ToList().Count() >= 3, "Not all text areas were loaded.");
+
+            return _browserHelper.ValidateElsDissabled(textAreas.ToList());
+        }
+
+        public bool ValidateInputDissabled()
+        {
+            Base.MongoDb.UpdateSteps($"Validate inputs are dissabled.");
+            _browserHelper.WaitUntillTrue(() => inputs.ToList().Count() >= 12, "Not all inputs were loaded.");
+
+            return _browserHelper.ValidateElsDissabled(inputs.ToList());
+        }
+
+        public bool ValidateControlsDissabled()
+        {
+            Base.MongoDb.UpdateSteps($"Validate buttons are dissabled.");
+            _browserHelper.WaitUntillTrue(() => contorls.ToList().Count() >= 5, "Not all buttons were loaded.");
+
+            return _browserHelper.ValidateElsDissabled(contorls.ToList().Where(c => c.GetAttribute("class").Contains("archive") || c.GetAttribute("class").Contains("save") || c.GetAttribute("class").Contains("archive")).ToList());
         }
     }
 }
