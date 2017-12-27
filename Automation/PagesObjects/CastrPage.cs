@@ -132,7 +132,7 @@ namespace Automation.PagesObjects
                 _browserHelper.Click(r, r.Text);
                 _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
                 var parsedUrl = postUrl.GetAttribute("value").Replace("http://", "").Split('/')[1];
-                errors += parsedUrl == "posts" ? "" : $"Post {r.Text} is not in english {Environment.NewLine}";
+                errors += parsedUrl == "posts" ? "" : $"Post {r.Text} is not in english {Environment.NewLine}. {parsedUrl}";
             });
 
             return errors;

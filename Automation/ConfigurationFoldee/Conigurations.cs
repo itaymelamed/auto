@@ -64,18 +64,18 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.UTest.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.QA6.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "12Up");
+            return TestContext.Parameters.Get("siteName", "90Min");
         }
 
         static string GetParams(string param)
         {
-            return TestContext.Parameters.Get(param, "UTest");
+            return TestContext.Parameters.Get(param, "QA6");
         }
 
         BsonValue GetConfigJson(string siteName)
