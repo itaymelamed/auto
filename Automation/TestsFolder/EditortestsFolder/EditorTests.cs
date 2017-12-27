@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Automation.PagesObjects;
 using MongoDB.Bson;
 using NUnit.Framework;
@@ -278,6 +279,83 @@ namespace Automation.TestsFolder.EditortestsFolder
 
                 Assert.IsTrue(postPage.ValidatePostCreated(postTitle));
             }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test13Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "29")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("PostPage")]
+            public void ValidateTtitle()
+            {
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                listsTemplate.WriteTitle("Test Title Lists Template");
+
+                Assert.True(listsTemplate.ValidateTitle(), "Title in text box was not as inserted.");
+            }
+
+        }
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test14Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "30")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateTextBoxsBodys()
+            {
+                string text = _params["text"].ToString();
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                listsTemplate.SetBodyTextBoxs(text);
+                List<string> acValues = listsTemplate.GetBodyTextBoxesValue();
+                var errors = listsTemplate.ValidateBodyTextBoxes(acValues, text);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test15Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "31")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateSubTitelsFields()
+            {
+                string text = "Title test test title";
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                listsTemplate.SetSubTitles(text);
+                List<string> acValues = listsTemplate.GetSubTitelsValues();
+
+                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
+            }
+
         }
     }
 }
