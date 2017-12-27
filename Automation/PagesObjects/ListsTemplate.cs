@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
@@ -19,16 +20,11 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".public-DraftEditor-content")]
         IList<IWebElement> bodyTextBoxs { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = ".title-wrapper input")]
         IList<IWebElement> subTitleFields { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
         IList<IWebElement> mediaDropBoxs { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = ".search-results.search-image__search-results-list")]
-        IList<IWebElement> imagesResultsBox { get; set; }
-
 
 
         public ListsTemplate(Browser browser) :
@@ -112,15 +108,16 @@ namespace Automation.PagesObjects
 
         public void DragImages()
         {
-            Base.MongoDb.UpdateSteps("Drag images to media drop boxes.");
+            //Base.MongoDb.UpdateSteps("Drag images to media drop boxes.");
+            Thread.Sleep(2000);
             _browserHelper.WaitUntillTrue(() => mediaDropBoxs.ToList().Count() == 4);
-            _browserHelper.WaitUntillTrue(() => imagesResultsBox.ToList().Count() == 30);
+            _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
 
             _browserHelper.WaitUntillTrue(() =>
             {
                 mediaDropBoxs.ToList().ForEach(m =>
                 {
-                    _browserHelper.DragElement(images.FirstOrDefault(), m);
+                    _browserHelper.DragElement(imagesResults.FirstOrDefault(), m);
                     CropImagePopUp cropImagePopUp = new CropImagePopUp(_browser);
                     cropImagePopUp.ClickOnCropImageBtn();
                     cropImagePopUp.ClickOnEditokBtn();

@@ -82,7 +82,7 @@ namespace Automation.PagesObjects
         IWebElement searchImageBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".search-results li")]
-        IList<IWebElement> imagesResults { get; set; }
+        protected IList<IWebElement> imagesResults { get; set; }
 
         protected Browser _browser;
         protected IWebDriver _driver;

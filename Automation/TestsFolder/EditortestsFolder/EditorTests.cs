@@ -290,7 +290,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("PostPage")]
-            public void ValidateTtitle()
+            public void Editor_List_ValidateTtitle()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -323,7 +323,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.SetBodyTextBoxs(text);
                 List<string> acValues = listsTemplate.GetBodyTextBoxesValue();
                 var errors = listsTemplate.ValidateBodyTextBoxes(acValues, text);
@@ -349,7 +349,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.SetSubTitles(text);
                 List<string> acValues = listsTemplate.GetSubTitelsValues();
 
@@ -369,17 +369,13 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("EditPage")]
             public void Editor_List_ValidateDragImages()
             {
-                string text = "Title test test title";
                 HomePage homePage = new HomePage(_browser);
-                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
-                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
-                homePageConnected.ValidateUserProfilePic();
-                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
-                listsTemplate.SetSubTitles(text);
-                List<string> acValues = listsTemplate.GetSubTitelsValues();
-
-                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                listsTemplate.DragImages();
+                var listEditorImages = listsTemplate.GetImagesUrl();
+                Assert.True(listEditorImages.Count == 4, $"Expected 4 images, but actual {listEditorImages.Count}");
             }
 
         }

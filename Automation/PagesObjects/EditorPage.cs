@@ -53,6 +53,15 @@ namespace Automation.PagesObjects
             return new ArticleBase(_browser);
         }
 
+        public ListsTemplate ClickOnList()
+        {
+            Base.MongoDb.UpdateSteps($"Click on lIST template.");
+            _browserHelper.WaitForElement(list, nameof(list));
+            _browserHelper.Click(list, nameof(list));
+
+            return new ListsTemplate(_browser);
+        }
+
         public string Validatetemplates(BsonArray templateNames)
         {
             Base.MongoDb.UpdateSteps($"Validate templates.");
