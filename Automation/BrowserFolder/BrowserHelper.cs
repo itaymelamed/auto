@@ -74,7 +74,6 @@ namespace Automation.BrowserFolder
             WaitUntillTrue(() => {
                 try
                 {
-                    Thread.Sleep(2000);
                     WaitForElement(drag, nameof(drag), 60, false);
                     WaitForElement(drag, nameof(drop), 60, false);
                     Actions ac = new Actions(_driver);
@@ -87,7 +86,7 @@ namespace Automation.BrowserFolder
                     error = e.Message;
                     return false;
                 }
-            }, error);
+            }, error, 120);
         }
 
         public void ScrollToEl(IWebElement el)
