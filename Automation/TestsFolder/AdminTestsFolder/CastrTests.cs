@@ -237,7 +237,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(3);
+                castrPage.ClickOnPost(2);
 
                 Assert.True(castrPage.ValidateTextAreasDissabled() && castrPage.ValidateInputDissabled() && castrPage.ValidateControlsDissabled(), "Controls were not dissabled.");
             }
