@@ -250,6 +250,7 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitUntillTrue(() => 
             {
+                results = results.ToList();
                 IWebElement postCheckBox = results.Where((r, i) => i == index).FirstOrDefault().FindElement(By.XPath(".//input"));
                 _browserHelper.Click(postCheckBox, $"post #{index}");
                 return true;
