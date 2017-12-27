@@ -246,14 +246,14 @@ namespace Automation.PagesObjects
             {
                 results = results.ToList();
                 return results.Count() > 1;
-            }, "No posts found.");
+            }, "No posts found.", 120);
 
             _browserHelper.WaitUntillTrue(() => 
             {
                 IWebElement postCheckBox = results.Where((r, i) => i == index).FirstOrDefault().FindElement(By.XPath(".//input"));
                 _browserHelper.Click(postCheckBox, $"post #{index}");
                 return true;
-            });
+            }, "Failed to check post.", 120);
         }
 
         public void CheckLeague(int i)
