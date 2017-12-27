@@ -325,5 +325,17 @@ namespace Automation.BrowserFolder
                 return true;
             });
         }
+
+        public bool CheckAttribute(IWebElement el)
+        {
+            try
+            {
+                return el.GetAttribute("checked") == "true";
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

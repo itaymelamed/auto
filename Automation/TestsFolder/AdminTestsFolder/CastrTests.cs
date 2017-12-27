@@ -184,6 +184,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var postUrl = castrPage.GetUrl();
                 castrPage.CheckLeague(0);
                 castrPage.CheckPublishTo(1);
+                castrPage.UncheckPublishToFtb();
                 castrPage.PublishPost();
 
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");

@@ -59,6 +59,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".publish-list__item input")]
         IList<IWebElement> pubishToCheckBox { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[name='publish_to_another_site']")]
+        IWebElement ftb90CheckBox { get; set; }
+
         enum Languages
         {
             en,
@@ -310,6 +313,14 @@ namespace Automation.PagesObjects
 
 
             return result;
+        }
+
+        public void UncheckPublishToFtb()
+        {
+            Base.MongoDb.UpdateSteps($"Uncheck publish to ftb90.");
+            _browserHelper.WaitForElement(ftb90CheckBox, nameof(ftb90CheckBox));
+            if (_browserHelper.CheckAttribute(ftb90CheckBox))
+                _browserHelper.Click(ftb90CheckBox, nameof(ftb90CheckBox));
         }
     }
 }
