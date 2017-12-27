@@ -297,7 +297,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
                 listsTemplate.WriteTitle("Test Title Lists Template");
 
                 Assert.True(listsTemplate.ValidateTitle(), "Title in text box was not as inserted.");
@@ -323,7 +323,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
                 listsTemplate.SetBodyTextBoxs(text);
                 List<string> acValues = listsTemplate.GetBodyTextBoxesValue();
                 var errors = listsTemplate.ValidateBodyTextBoxes(acValues, text);
@@ -349,7 +349,33 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(2) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
+                listsTemplate.SetSubTitles(text);
+                List<string> acValues = listsTemplate.GetSubTitelsValues();
+
+                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
+            }
+
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test16Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "32")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateDragImages()
+            {
+                string text = "Title test test title";
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
                 listsTemplate.SetSubTitles(text);
                 List<string> acValues = listsTemplate.GetSubTitelsValues();
 
