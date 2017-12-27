@@ -110,9 +110,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.ClickOnPost(0);
+                castrPage.ClickOnPost(6);
                 var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(0);
+                castrPage.CheckPost(6);
                 castrPage.ArchivePost();
 
                 Assert.True(castrPage.ValidateSucMsg(), "Post archive suc message hasn't shown");
@@ -136,9 +136,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(0);
+                castrPage.ClickOnPost(5);
                 var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(0);
+                castrPage.CheckPost(5);
                 castrPage.ResetPost();
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
