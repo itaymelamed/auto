@@ -182,7 +182,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Validate post url");
             _browserHelper.WaitForElement(postUrl, nameof(postUrl));
-            _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+            _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "", "Post url hasn't shown", 120);
             return postUrl.GetAttribute("value");
         }
 
