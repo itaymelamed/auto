@@ -285,7 +285,7 @@ namespace Automation.PagesObjects
                 var league = leagueCheckBox.Where((l, j) => i == j).FirstOrDefault();
                 _browserHelper.MoveToEl(league);
                 _browserHelper.Click(league, "League #{i}");
-                return true;
+                return leagueCheckBox.ToList().Any(x => x.Selected);
             }, $"Failed to check league #{i}.", 180);
         }
 

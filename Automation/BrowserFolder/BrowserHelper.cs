@@ -333,7 +333,7 @@ namespace Automation.BrowserFolder
             {
                 return el.GetAttribute("checked") == "true";
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
