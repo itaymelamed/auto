@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
@@ -226,6 +227,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ConfirmAlarem();
         }
 
         public bool ValidateSucMsg()
@@ -239,6 +241,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Select status {status}.");
             _browserHelper.WaitForElement(statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
+            Thread.Sleep(3000);
         }
 
         public void ClickOnPost(int index)

@@ -324,7 +324,7 @@ namespace Automation.BrowserFolder
                 IAlert alert = _driver.SwitchTo().Alert();
                 alert.Accept();
                 return true;
-            });
+            }, "", 10, false);
         }
 
         public bool CheckAttribute(IWebElement el)
