@@ -23,6 +23,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "tbody tr")]
         IList<IWebElement> results { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "tbody tr input")]
+        IList<IWebElement> resultsInputs { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "tbody tr")]
         IList<IWebElement> archivedPost { get; set; }
 
@@ -263,16 +266,16 @@ namespace Automation.PagesObjects
             _browserHelper.WaitUntillTrue(() =>
             {
                 results = results.ToList();
-                return results.Count() > 1;
-            }, "No posts found.", 120);
+                return results.Count() >= index;
+            }, "No posts found.", 30);
 
             _browserHelper.WaitUntillTrue(() => 
             {
-                results = results.ToList();
-                IWebElement postCheckBox = results.Where((r, i) => i == index).FirstOrDefault().FindElement(By.XPath(".//input"));
+                resultsInputs = resultsInputs.ToList();
+                IWebElement postCheckBox = resultsInputs.Where((r, i) => i == index).FirstOrDefault();
                 _browserHelper.Click(postCheckBox, $"post #{index}");
-                return true;
-            }, "Failed to check post.", 120);
+                return resultsInputs.ToList().Any(r => r.Selected);
+            }, "Failed to check post.", 30);
         }
 
         public void CheckLeague(int i)
