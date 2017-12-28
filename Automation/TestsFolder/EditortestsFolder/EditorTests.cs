@@ -297,7 +297,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnTemplate(1) as ListsTemplate;
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.WriteTitle("Test Title Lists Template");
 
                 Assert.True(listsTemplate.ValidateTitle(), "Title in text box was not as inserted.");
