@@ -30,6 +30,15 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "tbody tr")]
         IList<IWebElement> archivedPost { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
+        IList<IWebElement> resetPosts { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
+        IList<IWebElement> publishedPosts { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
+        IList<IWebElement> newPosts { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = ".urls__input")]
         IWebElement postUrl { get; set; }
 
@@ -309,16 +318,97 @@ namespace Automation.PagesObjects
             }, $"Failed to check Publish to #{i}.");
         }
 
-        public bool ValidatePost(string post)
+        public bool ValidatePostArchive(string post)
         {
-            Base.MongoDb.UpdateSteps($"Validate post {post} has moved after status changed");
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to archive after status changed");
             _browserHelper.WaitForElementDiss(fetching);
             bool result = false;
 
             _browserHelper.WaitUntillTrue(() => {
-                foreach (var p in archivedPost)
+                foreach (var p in archivedPost.ToList().Where((x,i) => i < 20))
                 {
                     Base.MongoDb.UpdateSteps($"Click on post #{archivedPost.ToList().IndexOf(p)}");
+                    p.Click();
+                    _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+                    var sss = postUrl.GetAttribute("value");
+                    if (postUrl.GetAttribute("value") == post)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+
+                return true;
+            }, "Failed to find post under archive status", 120, false);
+
+
+            return result;
+        }
+
+        public bool ValidatePostReset(string post)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to publish after status changed");
+            _browserHelper.WaitForElementDiss(fetching);
+            bool result = false;
+
+            _browserHelper.WaitUntillTrue(() => {
+                foreach (var p in resetPosts.ToList().Where((x, i) => i < 20))
+                {
+                    Base.MongoDb.UpdateSteps($"Click on post #{resetPosts.ToList().IndexOf(p)}");
+                    p.Click();
+                    _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+                    var sss = postUrl.GetAttribute("value");
+                    if (postUrl.GetAttribute("value") == post)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+
+                return true;
+            }, "Failed to find post under new status", 120, false);
+
+
+            return result;
+        }
+
+        public bool ValidatePostPublish(string post)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to publish after status changed");
+            _browserHelper.WaitForElementDiss(fetching);
+            bool result = false;
+
+            _browserHelper.WaitUntillTrue(() => {
+                foreach (var p in publishedPosts.ToList().Where((x, i) => i < 20))
+                {
+                    Base.MongoDb.UpdateSteps($"Click on post #{publishedPosts.ToList().IndexOf(p)}");
+                    p.Click();
+                    _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+                    var sss = postUrl.GetAttribute("value");
+                    if (postUrl.GetAttribute("value") == post)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+
+                return true;
+            }, "Failed to find post under publish status", 120, false);
+
+
+            return result;
+        }
+
+        public bool ValidatePostNew(string post)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to publish after status changed");
+            _browserHelper.WaitForElementDiss(fetching);
+            bool result = false;
+
+            _browserHelper.WaitUntillTrue(() => {
+                foreach (var p in newPosts.ToList().Where((x, i) => i < 20))
+                {
+                    Base.MongoDb.UpdateSteps($"Click on post #{newPosts.ToList().IndexOf(p)}");
                     p.Click();
                     _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
                     var sss = postUrl.GetAttribute("value");

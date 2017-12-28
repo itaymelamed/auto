@@ -117,7 +117,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(castrPage.ValidateSucMsg(), "Post archive suc message hasn't shown");
 
                 castrPage.SelectStatus(Statuses.archived);
-                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'Archive' after archived.");
+                Assert.True(castrPage.ValidatePostArchive(postUrl), "Post was not shown under 'Archive' after archived.");
             }
         }
 
@@ -141,7 +141,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
                 castrPage.SelectStatus(Statuses.New);
-                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'New' after rested.");
+                Assert.True(castrPage.ValidatePostReset(postUrl), "Post was not shown under 'New' after rested.");
             }
         }
 
@@ -160,7 +160,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var postUrl = _browser.GetUrl();
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.New);
-                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'New' after created.");
+                Assert.True(castrPage.ValidatePostNew(postUrl), "Post was not shown under 'New' after created.");
             }
         }
 
@@ -186,7 +186,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
                 castrPage.SelectStatus(Statuses.published);
-                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'published' after publish.");
+                Assert.True(castrPage.ValidatePostPublish(postUrl), "Post was not shown under 'published' after publish.");
             }
         }
 
