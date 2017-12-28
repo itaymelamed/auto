@@ -42,6 +42,7 @@ namespace Automation.PagesObjects
 
         public List<string> GetImagesUrl()
         {
+            Thread.Sleep(2000);
             Base.MongoDb.UpdateSteps("Get images URL.");
             List<string> imagesSrcs = new List<string>();
             images.ToList().ForEach(p =>
