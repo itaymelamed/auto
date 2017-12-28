@@ -90,6 +90,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".controls button")]
         IList<IWebElement> contorls { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".ok")]
+        IWebElement resetConfirmPopUpOkBtn { get; set; }
+
         enum Languages
         {
             en,
@@ -229,6 +232,8 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Click on reset button.");
             _browserHelper.WaitForElement(resetBtn, nameof(resetBtn));
             _browserHelper.Click(resetBtn, nameof(resetBtn));
+            if (_browserHelper.WaitForElement(resetConfirmPopUpOkBtn, nameof(resetConfirmPopUpOkBtn), 10, false))
+                _browserHelper.Click(resetConfirmPopUpOkBtn, nameof(resetConfirmPopUpOkBtn));
         }
 
         public void PublishPost()
@@ -347,7 +352,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostReset(string post)
         {
-            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to publish after status changed");
+            Base.MongoDb.UpdateSteps($"Validate post {post} has moved to new after status changed");
             _browserHelper.WaitForElementDiss(fetching);
             bool result = false;
 
