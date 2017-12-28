@@ -99,7 +99,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
-        [Parallelizable]
         public class Test5Class : Base
         {
             [Test]
@@ -123,7 +122,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
-        [Parallelizable]
         public class Test6Class : Base
         {
             
@@ -148,7 +146,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
-        [Parallelizable]
         public class Test7Class : Base
         {
             [Test]
@@ -168,7 +165,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
-        [Parallelizable]
         public class Test8Class : Base
         {
             [Test]
@@ -195,35 +191,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
-        [Parallelizable]
-        public class Test9Class : Base
-        {
-            [Test]
-            [Property("TestCaseId", "26")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("Castr")]
-            public void Castr_CheckPublishStatus()
-            {
-                HomePage homePage = new HomePage(_browser);
-                homePage.Login(_config.ConfigObject.Users.AdminUser);
-                CastrPage castrPage = homePage.GoToCastr();
-                castrPage.SelectStatus(Statuses.New);
-                castrPage.ClickOnPost(1);
-                var postUrl = castrPage.GetUrl();
-                castrPage.CheckLeague(0);
-                castrPage.CheckPublishTo(0);
-                castrPage.PublishPost();
-
-                Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
-
-                castrPage.SelectStatus(Statuses.published);
-                Assert.True(castrPage.ValidatePost(postUrl), "Post was not shown under 'published' after publish.");
-            }
-        }
-
-        [TestFixture]
-        [Parallelizable]
         public class Test10Class : Base
         {
             [Test]
