@@ -110,9 +110,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.ClickOnPost(6);
+                castrPage.ClickOnPost(0);
                 var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(6);
+                castrPage.CheckPost(0);
                 castrPage.ArchivePost();
 
                 Assert.True(castrPage.ValidateSucMsg(), "Post archive suc message hasn't shown");
@@ -135,9 +135,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(5);
+                castrPage.ClickOnPost(0);
                 var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(5);
+                castrPage.CheckPost(0);
                 castrPage.ResetPost();
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
@@ -205,7 +205,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 CastrPage castrPage = homePage.GoToCastr();
                 castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(2);
+                castrPage.ClickOnPost(0);
 
                 Assert.True(castrPage.ValidateTextAreasDissabled() && castrPage.ValidateInputDissabled() && castrPage.ValidateControlsDissabled(), "Controls were not dissabled.");
             }
