@@ -297,6 +297,7 @@ namespace Automation.PagesObjects
 
         public void CheckLeague(int i)
         {
+            Thread.Sleep(2000);
             Base.MongoDb.UpdateSteps($"Check League #{i}.");
             _browserHelper.WaitUntillTrue(() => leagueCheckBox.ToList().Count() > 2);
 
