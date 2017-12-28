@@ -357,7 +357,7 @@ namespace Automation.PagesObjects
                     Base.MongoDb.UpdateSteps($"Click on post #{resetPosts.ToList().IndexOf(p)}");
                     p.Click();
                     _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
-                    var sss = postUrl.GetAttribute("value");
+                    Base.MongoDb.UpdateSteps($"Post {postUrl.GetAttribute("value")}");
                     if (postUrl.GetAttribute("value") == post)
                     {
                         result = true;

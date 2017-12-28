@@ -99,6 +99,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         }
 
         [TestFixture]
+        [Parallelizable]
         public class Test5Class : Base
         {
             [Test]
