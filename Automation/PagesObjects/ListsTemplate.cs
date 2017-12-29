@@ -26,6 +26,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
         IList<IWebElement> mediaDropBoxs { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".icon-ascending")]
+        IWebElement ascendingIcon { get; set; }
+
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -126,6 +129,23 @@ namespace Automation.PagesObjects
 
                 return true;
             });
+       }
+
+        public void AscendingOrder()
+        {
+            Base.MongoDb.UpdateSteps("ascendingIcon.");
+            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
+
         }
+
+        public void AscendingOrder()
+        {
+            Base.MongoDb.UpdateSteps("ascendingIcon.");
+            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
+
+        }
+
+
+
     }
 }
