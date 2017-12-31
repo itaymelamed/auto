@@ -108,15 +108,19 @@ namespace Automation.PagesObjects
 
         public virtual CropImagePopUp DragImage(int imageIndex)
         {
-            Base.MongoDb.UpdateSteps($"Drag image number {imageIndex}.");
-            _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 60);
-            _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
-            Thread.Sleep(2000);
-            var image = imagesResults.ToList().Where((x, i) => i == imageIndex).FirstOrDefault();
-            Thread.Sleep(2000);
-            _browserHelper.DragElement(image, editorMedia);
-
-            return new CropImagePopUp(_browser);
+            if(_browserHelper.WaitUntillTrue(() => 
+            {
+                Base.MongoDb.UpdateSteps($"Drag image number {imageIndex}.");
+                _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 60);
+                _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
+                Thread.Sleep(2000);
+                var image = imagesResults.ToList().Where((x, i) => i == imageIndex).FirstOrDefault();
+                Thread.Sleep(2000);
+                _browserHelper.DragElement(image, editorMedia);
+                return true;
+            }))
+                return new CropImagePopUp(_browser);
+            throw new NUnit.Framework.AssertionException("Failed to drag images.");
         }
 
         public void WriteDec(string desc)

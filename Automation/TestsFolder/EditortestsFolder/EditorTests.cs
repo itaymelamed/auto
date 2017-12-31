@@ -182,6 +182,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("editPage")]
+            [Retry(2)]
             public void Article_Editor_DragAndDropAcoverImage()
             {
                 HomePage homePage = new HomePage(_browser);

@@ -42,8 +42,11 @@ namespace Automation.MongoDbObject
             lock(_syncObject1)
             {
                 BsonDocument document = BsonDocument.Parse(JsonConvert.SerializeObject(test));
+                UpdateOptions options = new UpdateOptions();
+                options.IsUpsert = true;
+                var filter = Builders<BsonDocument>.Filter.Where(x => x["TestNumber"] == test.TestNumber);
                 var collection = _database.GetCollection<BsonDocument>($"testRun{test.TestRunId}");
-                collection.InsertOne(document);
+                collection.ReplaceOne(filter, document, options);
             }
         }
 
