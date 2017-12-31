@@ -41,6 +41,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                homePage.HoverOverUserProfilePic();
                 AdminPage adminPage = homePage.ClickOnAdmin();
                 CastrPage castrPage = adminPage.ClickOnCasterLink();
                 castrPage.FilterByLanguage("en");
