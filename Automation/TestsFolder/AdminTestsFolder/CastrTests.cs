@@ -226,5 +226,32 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(post.ValidateTextAreasDissabled() && post.ValidateInputDissabled() && post.ValidateControlsDissabled(), "Controls were not dissabled.");
             }
         }
+
+        //[TestFixture]
+        //[Parallelizable]
+        //public class Test11Class : Base
+        //{
+        //    [Test]
+        //    [Property("TestCaseId", "33")]
+        //    [Category("Sanity")]
+        //    [Category("Admin")]
+        //    [Category("Castr")]
+        //    [Retry(2)]
+        //    public void Castr_ResetAndFeatureAPost()
+        //    {
+        //        HomePage homePage = new HomePage(_browser);
+        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
+        //        PostCreator postCreator = new PostCreator(_browser);
+        //        PostPage postPage = postCreator.Create(typeof(ArticleBase));
+        //        CastrPage castrPage = homePage.GoToCastr();
+        //        CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+        //        CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+        //        post.PublishPost();
+        //        CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
+        //        post = publishedPosts.ClickOnPost(postCreator.Title);
+
+        //        Assert.True(post.ValidateTextAreasDissabled() && post.ValidateInputDissabled() && post.ValidateControlsDissabled(), "Controls were not dissabled.");
+        //    }
+        //}
     }
 }
