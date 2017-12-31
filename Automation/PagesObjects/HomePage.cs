@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
@@ -25,6 +27,9 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".user-menu__link img")]
         IWebElement userProfilePic { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".items-list")]
+        protected IList<IWebElement> leagues { get; set; }
 
         Browser _browser;
         IWebDriver _driver;
@@ -116,6 +121,22 @@ namespace Automation.PagesObjects
             AdminPage adminPage = ClickOnAdmin();
 
             return adminPage.ClickOnCasterLink();
+        }
+
+        public void ClickOnMenu()
+        {
+            Base.MongoDb.UpdateSteps($"Click on menu.");
+            _browserHelper.WaitForElement(menu, nameof(menu));
+            _browserHelper.Click(menu, nameof(menu));
+        }
+
+        public LeagueFeed ClickLeague(int league)
+        {
+            _browserHelper.WaitUntillTrue(() => leagues.ToList().Count() >= 6, "Not all leagues were loaded.");
+            var leagueEl = _browserHelper.ExecutUntillTrue(() => leagues.ToList().Where((l, i) => i == league).FirstOrDefault());
+            _browserHelper.Click(leagueEl, nameof(leagueEl));
+
+            return new LeagueFeed(_browser);
         }
     }
 }

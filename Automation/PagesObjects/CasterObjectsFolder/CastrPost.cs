@@ -158,5 +158,12 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 return pubishToCheckBox.Any(x => x.GetAttribute("checked") == "true");
             }, $"Failed to check Publish to #{i}.");
         }
+
+        public void ClickOnPublishBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Click on Publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+        }
     }
 }

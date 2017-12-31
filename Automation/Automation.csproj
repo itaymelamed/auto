@@ -128,6 +128,8 @@
     <Compile Include="TestsFolder\EditortestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPost.cs" />
+    <Compile Include="PagesObjects\FeedPage.cs" />
+    <Compile Include="PagesObjects\LeagueFeed.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

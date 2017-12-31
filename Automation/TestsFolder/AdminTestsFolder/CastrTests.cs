@@ -227,31 +227,42 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-        //[TestFixture]
-        //[Parallelizable]
-        //public class Test11Class : Base
-        //{
-        //    [Test]
-        //    [Property("TestCaseId", "33")]
-        //    [Category("Sanity")]
-        //    [Category("Admin")]
-        //    [Category("Castr")]
-        //    [Retry(2)]
-        //    public void Castr_ResetAndFeatureAPost()
-        //    {
-        //        HomePage homePage = new HomePage(_browser);
-        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
-        //        PostCreator postCreator = new PostCreator(_browser);
-        //        PostPage postPage = postCreator.Create(typeof(ArticleBase));
-        //        CastrPage castrPage = homePage.GoToCastr();
-        //        CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
-        //        CastrPost post = newPosts.ClickOnPost(postCreator.Title);
-        //        post.PublishPost();
-        //        CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
-        //        post = publishedPosts.ClickOnPost(postCreator.Title);
+        [TestFixture]
+        [Parallelizable]
+        public class Test11Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "33")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Retry(2)]
+            public void Castr_ResetAndFeatureAPost()
+            {
+                var feedUrl = _params["FeedUrl"].ToString();
 
-        //        Assert.True(post.ValidateTextAreasDissabled() && post.ValidateInputDissabled() && post.ValidateControlsDissabled(), "Controls were not dissabled.");
-        //    }
-        //}
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishPost();
+                CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
+                post = publishedPosts.ClickOnPost(postCreator.Title);
+                post.ResetPost();
+                newPosts = newPosts.SelectStatus(Statuses.New);
+                post = newPosts.ClickOnPost(postCreator.Title);
+                post.UncheckPublishToFtb();
+                post.CheckPublishTo(1);
+                post.CheckLeague(1);
+                post.ClickOnPublishBtn();
+                _browser.Navigate($"{_config.Url}/{feedUrl}");
+                FeedPage feedPage = new FeedPage(_browser);
+
+                Assert.True(feedPage.ValidateArticleByTitle(postCreator.Title), $"Post {postCreator.Title} was not shown on {feedUrl} after it was reseted.");
+            }
+        }
     }
 }
