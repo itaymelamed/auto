@@ -81,7 +81,8 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         public void UncheckPublishToFtb()
         {
             Base.MongoDb.UpdateSteps($"Uncheck publish to ftb90.");
-            _browserHelper.WaitForElement(ftb90CheckBox, nameof(ftb90CheckBox));
+            if (!_browserHelper.WaitForElement(ftb90CheckBox, nameof(ftb90CheckBox)))
+                return;
             _browserHelper.WaitUntillTrue(() => 
             {
                 if (_browserHelper.CheckAttribute(ftb90CheckBox) && ftb90CheckBox.Displayed)
