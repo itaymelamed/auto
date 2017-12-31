@@ -114,7 +114,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 _browserHelper.MoveToEl(league);
                 _browserHelper.Click(league, "League #{i}");
                 return leagueCheckBox.ToList().Any(x => x.Selected);
-            }, $"Failed to check league #{i}.", 180);
+            }, $"Failed to check league #{i}.", 60);
         }
 
         public void PublishPost()
