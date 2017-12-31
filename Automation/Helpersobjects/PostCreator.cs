@@ -11,7 +11,9 @@ namespace Automation.Helpersobjects
         public Type Lists { get; }
         public Type LineUp { get; }
         public List<Type> Templates { get; }
+        public string Title { get; }
         Browser _browser;
+
 
         public PostCreator(Browser browser)
             :base(browser)
@@ -20,6 +22,7 @@ namespace Automation.Helpersobjects
             Lists = typeof(ListsTemplate);
             Templates = new List<Type>() { Article, Lists };
             _browser = browser;
+            Title = "VIDEO:Title Title Title" + new Random().Next(1, 1000);
         }
 
         public PostPage Create(Type template) 
@@ -27,10 +30,10 @@ namespace Automation.Helpersobjects
             EditorPage editorPage = ClickOnAddArticle();
             ArticleBase articleBase = editorPage.ClickOnTemplate(Templates.FindIndex(x => x == template));
             articleBase.ClickOnMagicStick(2);
-            articleBase.WriteTitle("VIDEO:Title Title Title");
+            articleBase.WriteTitle(Title);
             PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
             PostPage postPage = previewPage.ClickOnPublishBtn();
-            postPage.ValidatePostCreated("VIDEO:Title Title Title");
+            postPage.ValidatePostCreated(Title);
 
             return new PostPage(_browser);
         }

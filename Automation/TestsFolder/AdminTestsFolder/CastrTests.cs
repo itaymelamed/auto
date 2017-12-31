@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using static Automation.PagesObjects.CastrPage;
 using Automation.Helpersobjects;
+using Automation.PagesObjects.CasterObjectsFolder;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -39,14 +40,12 @@ namespace Automation.TestsFolder.AdminTestsFolder
             public void Castr_FilterByLanguageEn()
             {
                 HomePage homePage = new HomePage(_browser);
-                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
-                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
-                homePageConnected.ValidateUserProfilePic();
-                homePageConnected.HoverOverUserProfilePic();
-                AdminPage adminPage = homePageConnected.ClickOnAdmin();
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                AdminPage adminPage = homePage.ClickOnAdmin();
                 CastrPage castrPage = adminPage.ClickOnCasterLink();
                 castrPage.FilterByLanguage("en");
-                var errors = castrPage.ValidateFilterByLanguageEn();
+                CastrPage englishPosts = new CastrPage(_browser); 
+                var errors = englishPosts.CheckAllPostsInEnglish();
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
@@ -69,9 +68,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 AdminPage adminPage = homePageConnected.ClickOnAdmin();
                 CastrPage castrPage = adminPage.ClickOnCasterLink();
                 castrPage.DeselectAllCheckBoxes();
-                castrPage.SelectType(Types.article);
+                CastrPage ariclesPosts = castrPage.SelectType(Types.article);
 
-                Assert.True(castrPage.ValidateFilterByType(Types.article), "Not all posts was Article type");
+                Assert.True(ariclesPosts.ValidateFilterByType(Types.article), "Not all posts was Article type");
             }
         }
 
@@ -92,7 +91,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 postPage.HoverOverOptions();
                 CastrPage CasterPage = postPage.ClickOnOpenInCaster();
                 _browser.SwitchToLastTab();
-                string acUrl = CasterPage.GetUrl();
+                CastrPost post = new CastrPost(_browser);
+                string acUrl = post.GetPostUrl();
 
                 Assert.AreEqual(ecUrl, acUrl);
             }
@@ -109,20 +109,20 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser); 
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.ClickOnPost(0);
-                var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(0);
-                castrPage.ArchivePost();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.ArchivePost();
+                CastrPage archivedPosts = newPosts.SelectStatus(Statuses.archived);
 
-                Assert.True(castrPage.ValidateSucMsg(), "Post archive suc message hasn't shown");
-
-                castrPage.SelectStatus(Statuses.archived);
-                Assert.True(castrPage.ValidatePostArchive(postUrl), "Post was not shown under 'Archive' after archived.");
+                Assert.True(archivedPosts.SearchPostByTitle(postCreator.Title), "Post was not shown under 'Archive' after archived.");
             }
         }
 
         [TestFixture]
+        [Parallelizable]
         public class Test6Class : Base
         {
             
@@ -133,20 +133,24 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(0);
-                var postUrl = castrPage.GetUrl();
-                castrPage.CheckPost(0);
-                castrPage.ResetPost();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishPost();
+                CastrPage publishedPosts = castrPage.SelectStatus(Statuses.published);
+                post = publishedPosts.ClickOnPost(postCreator.Title);
+                post.ResetPost();
                 Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
 
-                castrPage.SelectStatus(Statuses.New);
-                Assert.True(castrPage.ValidatePostReset(postUrl), "Post was not shown under 'New' after rested.");
+                CastrPage archivedPosts = publishedPosts.SelectStatus(Statuses.New);
+                Assert.True(archivedPosts.SearchPostByTitle(postCreator.Title), "Post was not shown under 'New' after reseted.");
             }
         }
 
         [TestFixture]
+        [Parallelizable]
         public class Test7Class : Base
         {
             [Test]
@@ -158,14 +162,15 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
-                var postUrl = _browser.GetUrl();
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.SelectStatus(Statuses.New);
-                Assert.True(castrPage.ValidatePostNew(postUrl), "Post was not shown under 'New' after created.");
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+
+                Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not shown under 'New' after posted.");
             }
         }
 
         [TestFixture]
+        [Parallelizable]
         public class Test8Class : Base
         {
             [Test]
@@ -175,23 +180,20 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.SelectStatus(Statuses.New);
-                castrPage.ClickOnPost(0);
-                var postUrl = castrPage.GetUrl();
-                castrPage.CheckLeague(0);
-                castrPage.CheckPublishTo(1);
-                castrPage.UncheckPublishToFtb();
-                castrPage.PublishPost();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishPost();
+                CastrPage publishedPosts = castrPage.SelectStatus(Statuses.published);
 
-                Assert.True(castrPage.ValidateSucMsg(), "Post reset suc message hasn't shown");
-
-                castrPage.SelectStatus(Statuses.published);
-                Assert.True(castrPage.ValidatePostPublish(postUrl), "Post was not shown under 'published' after publish.");
+                Assert.True(publishedPosts.SearchPostByTitle(postCreator.Title), "Was was not shown under 'Published' after published.");
             }
         }
 
         [TestFixture]
+        [Parallelizable]
         public class Test10Class : Base
         {
             [Test]
@@ -203,11 +205,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 CastrPage castrPage = homePage.GoToCastr();
-                castrPage.SelectStatus(Statuses.published);
-                castrPage.ClickOnPost(0);
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishPost();
+                CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
+                post = publishedPosts.ClickOnPost(postCreator.Title);
 
-                Assert.True(castrPage.ValidateTextAreasDissabled() && castrPage.ValidateInputDissabled() && castrPage.ValidateControlsDissabled(), "Controls were not dissabled.");
+                Assert.True(post.ValidateTextAreasDissabled() && post.ValidateInputDissabled() && post.ValidateControlsDissabled(), "Controls were not dissabled.");
             }
         }
     }

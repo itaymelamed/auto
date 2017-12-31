@@ -1,0 +1,259 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Automation.BrowserFolder;
+using Automation.PagesObjects.CasterObjectsFolder;
+using Automation.TestsFolder;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+
+namespace Automation.PagesObjects
+{
+    public class CastrPage
+    {
+        [FindsBy(How = How.CssSelector, Using = "[name='language']")]
+        protected IWebElement languageDd { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "select[name='status']")]
+        protected IWebElement statusDd { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".fetching")]
+        protected IWebElement fetching { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tbody tr input")]
+        protected IList<IWebElement> resultsInputs { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
+        protected IList<IWebElement> posts { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[value='article']")]
+        protected IWebElement articleCbx { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[name='types_all']")]
+        protected IWebElement allCbx { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".types-list input")]
+        protected IList<IWebElement> types { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".post-type span")]
+        protected IList<IWebElement> typesIcons { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".alert-success p")]
+        protected IWebElement  sucMsg { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".caption textarea")]
+        protected IWebElement captionTxtBox { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tbody span[title]")]
+        protected IList<IWebElement> postsTitles { get; set; }
+
+        public enum Languages
+        {
+            en,
+            es,
+            latam,
+            de,
+            it,
+            fr,
+            tr,
+            br,
+            vn,
+            id,
+            th
+        }
+
+        public enum Types
+        {
+            all,
+            article,
+            slideShow,
+            topX,
+            lineUp,
+            pundit,
+            tv,
+            timeout,
+        }
+
+        public enum Statuses
+        {
+            New,
+            saved,
+            archived,
+            published,
+            failed,
+            publishing,
+            lowQuality
+        }
+
+        protected Browser _browser;
+        protected IWebDriver _driver;
+        protected BrowserHelper _browserHelper;
+
+        public CastrPage(Browser browser)
+        {
+            _browser = browser;
+            _driver = browser.Driver;
+            _browserHelper = browser.BrowserHelper;
+            PageFactory.InitElements(_driver, this);
+            _browserHelper.WaitForElementDiss(fetching);
+        }
+
+        public bool ValidateCasterPage()
+        {
+            Base.MongoDb.UpdateSteps("Validate user is on Castr page.");
+            return _browserHelper.WaitForUrlToChange($"{Base._config.Url}/castr");
+        }
+
+        public void FilterByLanguage(string language)
+        {
+            Base.MongoDb.UpdateSteps($"Filter posts by language: {language}");
+            _browserHelper.WaitForElement(languageDd, nameof(languageDd));
+            SelectElement select = new SelectElement(languageDd);
+            select.SelectByValue(language);
+        }
+
+        public string ValidatePostLanguage(CastrPost castrPost, Languages lang)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post language");
+            var postUrl = castrPost.GetPostUrl();
+            return castrPost.GetPostUrl().ToLower().Contains(lang.ToString()) ? "" : $"{postUrl} is not in {lang}";
+        }
+
+        public string ValidatePostInEnglish(CastrPost castrPost, Languages lang)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post language");
+            var langs = Enum.GetValues(typeof(Languages))
+                .Cast<Languages>()
+                .Select(v => v.ToString())
+                .ToList();
+            return !castrPost.GetPostUrl().Contains(lang.ToString())? "" : "Post was not in english.";
+        }
+
+        public string ValidateEnglishPosts(string postsUrl)
+        {
+            var errors = string.Empty;
+            var langs = Enum.GetValues(typeof(Languages))
+                .Cast<Languages>()
+                .Select(v => v.ToString())
+                .ToList();
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                errors = string.Empty;
+                langs.ForEach(l => errors += !postsUrl.Contains("/" + l)? "" : $"Post {postsUrl} is not in english.");
+                return true;
+            });
+
+            return errors;
+        }
+
+        public void DeselectAllCheckBoxes()
+        {
+            SelectAllCheckBoxes();
+            _browserHelper.WaitForElementDiss(fetching);
+            Base.MongoDb.UpdateSteps($"Deselect all checkboxes.");
+            SelectAllCheckBoxes();
+        }
+
+        public void SelectAllCheckBoxes()
+        {
+            Base.MongoDb.UpdateSteps($"Select all checkboxes.");
+            _browserHelper.WaitForElement(allCbx, nameof(allCbx));
+            _browserHelper.Click(allCbx, nameof(allCbx));
+        }
+
+        public CastrPage SelectType(Types type)
+        {
+            _browserHelper.WaitForElementDiss(fetching);
+            Base.MongoDb.UpdateSteps($"Select {type}.");
+
+            _browserHelper.WaitUntillTrue(() => {
+                var typesCount = types.ToList().Count();
+                return typesCount == 10;
+            });
+
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                var elToClick = types.ToList().Where(t => t.GetAttribute("value") == type.ToString()).FirstOrDefault();
+                elToClick.Click();
+                return true;
+            });
+
+            return new CastrPage(_browser);
+        }
+
+        public bool ValidateFilterByType(Types type)
+        {
+            Base.MongoDb.UpdateSteps($"Validate {type} icon is next to each post.");
+            _browserHelper.WaitForElementDiss(fetching);
+            return _browserHelper.WaitUntillTrue(() => typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString()));
+        }
+
+
+        public bool ValidateSucMsg()
+        {
+            Base.MongoDb.UpdateSteps($"Validate action suc message.");
+            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60, false);
+        }
+
+        public CastrPage SelectStatus(Statuses status)
+        {
+            Base.MongoDb.UpdateSteps($"Select status {status}.");
+            _browserHelper.WaitForElement(statusDd, nameof(statusDd));
+            _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
+            Thread.Sleep(3000);
+
+            return new CastrPage(_browser);
+        }
+
+        public IWebElement SerachPost(string title)
+        {
+            Base.MongoDb.UpdateSteps($"Search post: {title}.");
+            _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
+            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => t.Text == title).FirstOrDefault(), $"Could not find post {title}.");
+        }
+
+        public CastrPost ClickOnPost(string title)
+        {
+            Base.MongoDb.UpdateSteps($"Click on post: {title}.");
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                _browserHelper.Click(SerachPost(title), $"Post title {title}");
+                return posts.ToList().Any(p => p.Text.Contains(title) && p.GetAttribute("class") == "selected");
+            });
+
+            return new CastrPost(_browser);
+        }
+
+        public void CheckPost(string title)
+        {
+            Base.MongoDb.UpdateSteps($"Click on post: {title}.");
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                var checkBx = postsTitles.IndexOf(SerachPost(title));
+                resultsInputs[checkBx].Click();
+                return posts.Where(x => x.Text.Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
+            });
+        }
+
+        public string CheckAllPostsInEnglish()
+        {
+            var errors = string.Empty;
+            foreach (var post in posts.ToList().Where((x, i) => i < 10))
+            {
+                _browserHelper.Click(post, nameof(post));
+                CastrPost castrPost = new CastrPost(_browser);
+                errors += ValidateEnglishPosts(castrPost.GetPostUrl());
+            }
+
+            return errors;
+        }
+
+        public bool SearchPostByTitle(string title)
+        {
+            Base.MongoDb.UpdateSteps($"Search post {title}.");
+            return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => p.Text == title));
+        }
+    }
+}

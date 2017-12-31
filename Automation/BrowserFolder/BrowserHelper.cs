@@ -39,7 +39,7 @@ namespace Automation.BrowserFolder
             catch
             {
                 if (throwEx)
-                    throw new Exception($"Could not find element: {elName}.");
+                    throw new NUnit.Framework.AssertionException($"Could not find element: {elName}.");
                 return false;
             }
 
@@ -95,22 +95,6 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", el);
         }
 
-        public void ExecutUntill(IWebElement el,Func<IWebElement, bool> func, int timeOut = 30)
-        {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    MoveToEl(el);
-                    return func(el);
-                }
-                catch
-                {
-                    return false;
-                }
-            });
-        }
-
         public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
         {
             try
@@ -121,7 +105,7 @@ namespace Automation.BrowserFolder
                     {
                         return func();
                     }
-                    catch
+                    catch(Exception e)
                     {
                         return false;
                     }
@@ -132,12 +116,12 @@ namespace Automation.BrowserFolder
             catch
             {
                 if (throwEx)
-                    throw new Exception($"{ex}");
+                    throw new NUnit.Framework.AssertionException($"{ex}");
                 return false;
             }
         }
 
-        public bool ExecutUntillTrue(Func<IWebElement> func, string ex = "", int timeOut = 30, bool throwEx = true)
+        public IWebElement ExecutUntillTrue(Func<IWebElement> func, string ex = "", int timeOut = 30, bool throwEx = true)
         {
             try
             {
@@ -154,13 +138,13 @@ namespace Automation.BrowserFolder
                     }
                 });
 
-                return true;
+                return func();
             }
             catch
             {
-                if (throwEx)
-                    throw new Exception(ex);
-                return false;
+                if(throwEx)
+                    throw new NUnit.Framework.AssertionException(ex);
+                return null;
             }
         }
 
@@ -193,7 +177,7 @@ namespace Automation.BrowserFolder
             catch
             {
                 if(throwex)
-                    throw new Exception($"Failed to click on element {elName}. Error:{error}");
+                    throw new NUnit.Framework.AssertionException($"Failed to click on element {elName}. Error:{error}");
             }
         }
 
@@ -256,7 +240,7 @@ namespace Automation.BrowserFolder
             }
             catch
             {
-                throw new Exception($"Element {elName} wasn't exsist.");
+                throw new NUnit.Framework.AssertionException($"Element {elName} wasn't exsist.");
             }
 
             return el;
@@ -290,7 +274,7 @@ namespace Automation.BrowserFolder
             catch
             {
                 if (throwex)
-                    throw new Exception($"Element {elName} was not clickble.");
+                    throw new NUnit.Framework.AssertionException($"Element {elName} was not clickble.");
                 return false;
             }
         }
@@ -306,7 +290,7 @@ namespace Automation.BrowserFolder
             catch
             {
                 if (throwEx)
-                    throw new Exception($"Expected Url was: {reqUrl} but actual:{_driver.Url}");
+                    throw new NUnit.Framework.AssertionException($"Expected Url was: {reqUrl} but actual:{_driver.Url}");
                 return false;
             }
         }
@@ -324,7 +308,7 @@ namespace Automation.BrowserFolder
                 IAlert alert = _driver.SwitchTo().Alert();
                 alert.Accept();
                 return true;
-            }, "", 10, false);
+            }, "", 10, false);                                  
         }
 
         public bool CheckAttribute(IWebElement el)
@@ -333,7 +317,7 @@ namespace Automation.BrowserFolder
             {
                 return el.GetAttribute("checked") == "true";
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }

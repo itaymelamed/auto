@@ -41,7 +41,7 @@ namespace Automation.PagesObjects
             {
                 IWebElement el = null;
                 Base.MongoDb.UpdateSteps($"Validate Component {c}.");
-                if (!_browserHelper.ExecutUntillTrue(() => el = _driver.FindElement(By.CssSelector(c)), "", 0, false))
+                if (_browserHelper.ExecutUntillTrue(() => el = _driver.FindElement(By.CssSelector(c)), "", 0, false) == null)
                     errors += $"Component {c} does not exsist {Environment.NewLine}";
             });
 

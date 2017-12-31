@@ -64,7 +64,7 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.QA6.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.UTest.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
