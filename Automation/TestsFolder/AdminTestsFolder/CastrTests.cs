@@ -106,6 +106,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "20")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -126,7 +127,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
         [Parallelizable]
         public class Test6Class : Base
         {
-            
             [Test]
             [Property("TestCaseId", "22")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]

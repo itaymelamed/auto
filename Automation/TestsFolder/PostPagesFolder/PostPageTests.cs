@@ -14,6 +14,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Test]
             [Property("TestCaseId", "13")]
             [Category("Sanity")][Category("Admin")][Category("PostPage")]
+            [Retry(2)]
             public void PostPage_ValidateUiComponentsExistOnPage()
             {
                 var postTitle = "VIDEO:Test post article";

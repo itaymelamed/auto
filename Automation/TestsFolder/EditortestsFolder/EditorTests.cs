@@ -156,6 +156,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Category("Tags")]
+            [Retry(2)]
             public void Article_Editor_ValidateTagsTextBoxSugestionsTags()
             {
                 string shortTag = _params["ShortTag"].ToString();
@@ -209,6 +210,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Article_Editor_ImageSearch_ValidateMaxSearchResultsAndContent()
             {
                 int maxResults = _params["MaxResults"].ToInt32();
