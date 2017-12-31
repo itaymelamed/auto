@@ -130,6 +130,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "22")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_CheckReset()
             {
                 HomePage homePage = new HomePage(_browser);
