@@ -13,6 +13,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "1")]
             [Category("Sanity")][Category("Admin")]
+            [Retry(2)]
             public void Admin_LoginAsAdmin()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -32,6 +33,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "2")]
             [Category("Sanity")][Category("Admin")]
+            [Retry(2)]
             public void Admin_TemplatesValidateAdminTemplates()
             {
                 HomePage homePage = new HomePage(_browser);
