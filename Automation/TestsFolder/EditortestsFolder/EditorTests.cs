@@ -18,6 +18,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("editPage")]
+            [Retry(2)]
             public void Article_Editor_ValidateInputFields()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -41,6 +42,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("editPage")]
+            [Retry(2)]
             public void Article_Editor_ValidateTitleTextfieled()
             {
                 var titleExValue = _params["titleExValue"].ToString();
@@ -67,6 +69,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("editPage")]
+            [Retry(2)]
             public void Article_Editor_ValidateBodyTextfieled()
             {
                 var bodyExValue = _params["bodyExValue"].ToString();
@@ -94,6 +97,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Category("Tags")]
+            [Retry(2)]
             public void Article_Editor_ValidateTagsTextBoxInsertSingleTag()
             {
                 BsonArray tagExValue = _params["Tag"].AsBsonArray;
@@ -125,6 +129,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Category("Tags")]
+            [Retry(2)]
             public void Article_Editor_ValidateTagsTextBoxInsertMultipleTags()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -239,6 +244,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("PreviewPage")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Article_Editor_PreviewButtonCheckEditButton()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -266,6 +272,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("PreviewPage")]
             [Category("EditPage")]
+            [Retry(2)]
             public void PostPage_PublishButton()
             {
                 var postTitle = "VIDEO:Test post article";
@@ -293,6 +300,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("PostPage")]
+            [Retry(2)]
             public void Editor_List_ValidateTtitle()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -318,6 +326,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_ValidateTextBoxsBodys()
             {
                 string text = _params["text"].ToString();
@@ -344,6 +353,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_ValidateSubTitelsFields()
             {
                 string text = "Title test test title";
@@ -370,6 +380,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_ValidateDragImages()
             {
                 HomePage homePage = new HomePage(_browser);

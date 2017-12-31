@@ -16,6 +16,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "14")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_NavigateToCastrFromAdminPage()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -37,6 +38,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "15")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_FilterByLanguageEn()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -59,6 +61,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "16")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_FilterByType_Article()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -82,6 +85,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "17")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -158,6 +162,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "23")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_CheckNewStatus()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -178,6 +183,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "25")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_CheckPublishStatus()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -203,6 +209,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
+            [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
                 HomePage homePage = new HomePage(_browser);
