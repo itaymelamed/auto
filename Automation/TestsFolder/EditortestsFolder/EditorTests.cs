@@ -391,7 +391,33 @@ namespace Automation.TestsFolder.EditortestsFolder
                 var listEditorImages = listsTemplate.GetImagesUrl();
                 Assert.True(listEditorImages.Count == 4, $"Expected 4 images, but actual {listEditorImages.Count}");
             }
-
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "33")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateAscendingOrder()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+
+                Assert.True(listsTemplate.ValidateAscendingOrder(), "The counter is not in ascending order.");
+
+            }
+        }
+
+
+
+
+
+
     }
 }
