@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/ConfigurationFoldee/Conigurations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="23" />
       <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="141" Column="40" />
