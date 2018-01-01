@@ -2,9 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="256" Column="26" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="169" Column="44" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="323" Column="14" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="257" Column="50" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="164" Column="9" />
       <File FileName="Auto Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
