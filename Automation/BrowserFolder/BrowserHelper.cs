@@ -17,7 +17,7 @@ namespace Automation.BrowserFolder
             _driver = driver;
         }
 
-        public bool WaitForElement(IWebElement el, string elName, int timeOut = 60, bool throwEx = true)
+        public bool WaitForElement(IWebElement el, string elName, int timeOut = 30, bool throwEx = true)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace Automation.BrowserFolder
                     error = e.Message;
                     return false;
                 }
-            }, error, 120);
+            }, error, 30);
         }
 
         public void ScrollToEl(IWebElement el)
@@ -218,7 +218,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public IWebElement FindElement(By by, string elName, int timeOut = 60)
+        public IWebElement FindElement(By by, string elName, int timeOut = 30)
         {
             IWebElement el = null;
 
@@ -279,7 +279,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public bool WaitForUrlToChange(string reqUrl,int timeOut = 60, bool throwEx = true)
+        public bool WaitForUrlToChange(string reqUrl,int timeOut = 30, bool throwEx = true)
         {
             try
             {
@@ -325,7 +325,7 @@ namespace Automation.BrowserFolder
 
         public bool ValidateElsDissabled(List<IWebElement> els)
         {
-            return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 60, false);
+            return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 30, false);
         }
     }
 }

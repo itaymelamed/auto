@@ -99,7 +99,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Validate post url");
             _browserHelper.WaitForElement(postUrl, nameof(postUrl));
-            _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "", "Post url hasn't shown", 120);
+            _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "", "Post url hasn't shown", 60);
             return postUrl.GetAttribute("value");
         }
 
@@ -114,7 +114,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 _browserHelper.MoveToEl(league);
                 _browserHelper.Click(league, "League #{i}");
                 return leagueCheckBox.ToList().Any(x => x.Selected);
-            }, $"Failed to check league #{i}.", 60);
+            }, $"Failed to check league #{i}.", 30);
         }
 
         public void PublishPost()
