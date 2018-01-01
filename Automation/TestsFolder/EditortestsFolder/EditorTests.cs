@@ -19,7 +19,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Retry(2)]
-            public void Article_Editor_ValidateInputFields()
+            public void Editor_Article_ValidateInputFields()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -43,7 +43,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Retry(2)]
-            public void Article_Editor_ValidateTitleTextfieled()
+            public void Editor_Article_ValidateTitleTextfieled()
             {
                 var titleExValue = _params["titleExValue"].ToString();
 
@@ -70,7 +70,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Retry(2)]
-            public void Article_Editor_ValidateBodyTextfieled()
+            public void Editor_Article_ValidateBodyTextfieled()
             {
                 var bodyExValue = _params["bodyExValue"].ToString();
 
@@ -98,7 +98,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("editPage")]
             [Category("Tags")]
             [Retry(2)]
-            public void Article_Editor_ValidateTagsTextBoxInsertSingleTag()
+            public void Editor_Article_ValidateTagsTextBoxInsertSingleTag()
             {
                 BsonArray tagExValue = _params["Tag"].AsBsonArray;
 
@@ -130,7 +130,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("editPage")]
             [Category("Tags")]
             [Retry(2)]
-            public void Article_Editor_ValidateTagsTextBoxInsertMultipleTags()
+            public void Editor_Article_ValidateTagsTextBoxInsertMultipleTags()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
 
@@ -162,7 +162,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("editPage")]
             [Category("Tags")]
             [Retry(2)]
-            public void Article_Editor_ValidateTagsTextBoxSugestionsTags()
+            public void Editor_Article_ValidateTagsTextBoxSugestionsTags()
             {
                 string shortTag = _params["ShortTag"].ToString();
                 string tag = _params["Tag"].ToString();
@@ -189,7 +189,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("editPage")]
             [Retry(2)]
-            public void Article_Editor_DragAndDropAcoverImage()
+            public void Editor_Article_DragAndDropAcoverImage()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -216,7 +216,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("EditPage")]
             [Retry(2)]
-            public void Article_Editor_ImageSearch_ValidateMaxSearchResultsAndContent()
+            public void Editor_Article_ImageSearch_ValidateMaxSearchResultsAndContent()
             {
                 int maxResults = _params["MaxResults"].ToInt32();
                 string search = _params["Search"].ToString();
@@ -245,7 +245,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("PreviewPage")]
             [Category("EditPage")]
             [Retry(2)]
-            public void Article_Editor_PreviewButtonCheckEditButton()
+            public void Editor_Article_PreviewButtonCheckEditButton()
             {
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
@@ -273,7 +273,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("PreviewPage")]
             [Category("EditPage")]
             [Retry(2)]
-            public void PostPage_PublishButton()
+            public void PostPage_Article_PublishButton()
             {
                 var postTitle = "VIDEO:Test post article";
                 HomePage homePage = new HomePage(_browser);

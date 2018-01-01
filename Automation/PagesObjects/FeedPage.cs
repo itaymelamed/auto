@@ -31,7 +31,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateArticleByTitle(string title)
         {
-            return articles.Any(a => a.Text == title);
+            return _browserHelper.RefreshUntill(() => articles.Any(a => a.Text == title), 30);
         }
     }
 }
