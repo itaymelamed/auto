@@ -53,6 +53,12 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".league-branch-container input")]
         IList<IWebElement> leaguePageInputs { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".subject .collapse")]
+        IList<IWebElement> publisToTeams { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//li[@class='branch'][.//span[@title='AFC Bournemouth']]//div[@class='social-networks-branch']//li[@class='leaf']")]
+        IList<IWebElement> arsenalSocialNetworks { get; set; }
+
         public enum LeaguePages
         {
             ftbpro,
@@ -204,6 +210,31 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 Thread.Sleep(1000);
                 return leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == leaguePageVa.ToString()).FirstOrDefault().GetAttribute("checked") == "true";
             }, $"Failed to click on league page {leaguePageVa}.");
+        }
+
+        public void SelectPublishToTeam(int team)
+        {
+            Base.MongoDb.UpdateSteps($"Select publish to team #{team}.");
+            _browserHelper.WaitUntillTrue(() => publisToTeams.ToList().Count() >= 21, "Not all teams were loaded");
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                var teamEl = publisToTeams.ToList().Where((t, i) => i == team).FirstOrDefault();
+                _browserHelper.ClickJavaScript(teamEl);
+                return !teamEl.GetAttribute("class").Contains("close");
+            });
+        }
+
+        public void SelectPublishSocialNetwork(int socialNet)
+        {
+            Base.MongoDb.UpdateSteps($"Select social network.");
+            _browserHelper.WaitUntillTrue(() => arsenalSocialNetworks.ToList().Count() == 2, "Social media check boxes were not loaded.");
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                var socialNetworkChbx = arsenalSocialNetworks.ToList()[socialNet];
+                _browserHelper.ClickJavaScript(socialNetworkChbx);
+                var xxx = socialNetworkChbx.GetAttribute("checked");
+                return socialNetworkChbx.GetAttribute("checked") == "true";
+            });
         }
     }
 }
