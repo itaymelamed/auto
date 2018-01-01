@@ -81,6 +81,15 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[style='display: block;'] .search .ficon")]
         IWebElement searchImageBtn { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[for='playbuzz_enabled']")]
+        IWebElement playBuzzCheckBox { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[.playbuzz-url]")]
+        IWebElement playBuzzUrlField { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".game_image_wrapper img")]
+        IWebElement playBuzzImage { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = ".search-results li")]
         protected IList<IWebElement> imagesResults { get; set; }
 
@@ -336,5 +345,33 @@ namespace Automation.PagesObjects
             _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("editor"), "User is not on edit page.");
             return true;
         }
+
+        public void ClickOnPlayBuzzCBX()
+        {
+            Base.MongoDb.UpdateSteps("Click on PlayBuzz CheckBox");
+            _browserHelper.WaitForElement(playBuzzCheckBox,nameof(playBuzzCheckBox));
+            _browserHelper.Click(playBuzzCheckBox,nameof(playBuzzCheckBox));
+        }
+
+        public bool ValidatePlayBuzzTBXEnabled()
+        {
+            Base.MongoDb.UpdateSteps("Validate PlayBuzz TBX Enabled");
+            _browserHelper.WaitForElement(playBuzzUrlField, nameof(playBuzzUrlField));
+            return playBuzzUrlField.Enabled;
+        }
+
+        public void SetPlayBuzzURL(string url)
+        {
+            Base.MongoDb.UpdateSteps("Set Play Buzz URL");
+            _browserHelper.WaitForElement(playBuzzUrlField, nameof(playBuzzUrlField));
+            _browserHelper.SetText(playBuzzUrlField,url);
+        }
+
+        public bool ValidatePlayBuzzImageAppears()
+        {
+            Base.MongoDb.UpdateSteps("Validate PlayBuzz Image Appears");
+            return _browserHelper.WaitForElement(playBuzzImage, nameof(playBuzzImage));
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
         IList<IWebElement> mediaDropBoxs { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".icon-ascending")]
+        [FindsBy(How = How.CssSelector, Using = ".ascending")]
         IWebElement ascendingIcon { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".descending")]
@@ -145,7 +145,7 @@ namespace Automation.PagesObjects
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
         }
 
-        public void DescendingOrder()
+        public void ClickOnDscBtn()
         {
             Base.MongoDb.UpdateSteps("Click on Descending btn");
             _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));

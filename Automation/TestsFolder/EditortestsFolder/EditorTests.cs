@@ -398,7 +398,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test17Class : Base
         {
             [Test]
-            [Property("TestCaseId", "33")]
+            [Property("TestCaseId", "1")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -413,7 +413,103 @@ namespace Automation.TestsFolder.EditortestsFolder
                 List<string> after = listsTemplate.GetItemsIndex();
 
                 Assert.True(listsTemplate.ValidateAscDesc(before, after), "The counter is not in ascending order.");
+            }
+        }
 
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "1")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateDescendingOrder()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                List<string> before = listsTemplate.GetItemsIndex();
+                listsTemplate.ClickOnDscBtn();
+                List<string> after = listsTemplate.GetItemsIndex();
+
+                Assert.True(listsTemplate.ValidateAscDesc(before, after), "The counter is not in descending order.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "1")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_FullFlow()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                listsTemplate.WriteTitle("VIDEO:test list template");
+                listsTemplate.DragImages();
+                listsTemplate.SetSubTitles("Test subtitles 12345");
+                listsTemplate.SetBodyTextBoxs("test");
+                listsTemplate.WriteTags(new BsonArray());
+                listsTemplate.ClickOnAscendingBtn();
+                listsTemplate.ClickOnDscBtn();
+                PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("VIDEO:test list template"), "Post was not created");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "1")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_Article_FullFlow()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ArticleBase articleBase = editorPage.ClickOnArticle();
+                articleBase.WriteTitle("VIDEO:test article template");
+                articleBase.DragImage(0);
+                articleBase.WriteDec("test");
+                articleBase.WriteTags(new BsonArray());
+                PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "1")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_Article_ValidatePlayBuzzComponenet()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ArticleBase articleBase = editorPage.ClickOnArticle();
+                articleBase.ClickOnPlayBuzzCBX();
+                articleBase.SetPlayBuzzURL("http://www.playbuzz.com/meliak10/when-and-where-in-time-should-you-live");
+                Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "layBuzz not appears");
             }
         }
     }
