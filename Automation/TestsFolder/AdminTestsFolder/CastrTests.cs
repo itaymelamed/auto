@@ -237,7 +237,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Retry(3)]
+            [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
             {
                 var feedUrl = _params["PremierLeague"].ToString();
@@ -250,16 +250,15 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
-                post.PublishPostToFeed(LeaguePages.ftbpro);
+                post.PublishPostToFeed(LeaguePages.ftbpro, 1);
                 CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
                 post = publishedPosts.ClickOnPost(postCreator.Title);
                 post.ResetPost();
                 newPosts = newPosts.SelectStatus(Statuses.New);
                 post = newPosts.ClickOnPost(postCreator.Title);
-                post.PublishPostToFeed(LeaguePages.ftbpro);
+                post.PublishPostToFeed(LeaguePages.ftbpro, 0);
                 _browser.Navigate($"{_config.Url}/{feedUrl}");
                 FeedPage feedPage = new FeedPage(_browser);
-
                 Assert.True(feedPage.ValidateArticleByTitle(postCreator.Title), $"Post {postCreator.Title} was not shown on {feedUrl} after it was reseted.");
 
                 feedPage = new FeedPage(_browser);

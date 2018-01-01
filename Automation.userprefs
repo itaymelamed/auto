@@ -2,15 +2,37 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="257" Column="50" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="164" Column="9" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="248" Column="24" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="144" Column="9" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="304" Column="21" />
+      <File FileName="Automation/Helpersobjects/PostCreator.cs" Line="26" Column="29" />
       <File FileName="Auto Status" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="AdminTestsFolder" expanded="True">
+                    <Node name="CastrTests+Test10Class" expanded="True" />
+                    <Node name="CastrTests+Test11Class" expanded="True">
+                      <Node name="Castr_ResetAndFeatureAPost" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" relfile="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" line="204" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" relfile="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" line="203" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -23,7 +23,7 @@ namespace Automation.Helpersobjects
             Lists = typeof(ListsTemplate);
             Templates = new List<Type>() { Article, Lists };
             _browser = browser;
-            Title = $"VIDEO:Title Title Title {TestContext.CurrentContext.Test.Name}" + new Random().Next(1, 1000);
+            Title = $"VIDEO:{TestContext.CurrentContext.Test.Name}" + new Random().Next(1, 1000);
         }
 
         public PostPage Create(Type template) 

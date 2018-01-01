@@ -142,12 +142,11 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
         }
 
-        public void PublishPostToFeed(LeaguePages leaguePage)
+        public void PublishPostToFeed(LeaguePages leaguePage, int league)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            CheckLeague(0);
-            CheckPublishTo(1);
+            CheckLeague(league);
             UncheckPublishToFtb();
             ChooseLeaguePage(leaguePage); 
             _browserHelper.Click(publishBtn, nameof(publishBtn));
