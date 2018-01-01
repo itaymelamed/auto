@@ -29,7 +29,12 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".icon-ascending")]
         IWebElement ascendingIcon { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".descending")]
+        IWebElement descendingIcon { get; set; }
 
+
+        [FindsBy(How = How.CssSelector, Using = ".count")]
+        IList<IWebElement> counters { get; set; }
 
 
         public ListsTemplate(Browser browser) :
@@ -133,21 +138,32 @@ namespace Automation.PagesObjects
             });
        }
 
-        public void AscendingOrder()
+        public void ClickOnAscendingBtn()
         {
-            Base.MongoDb.UpdateSteps("ascendingIcon.");
+            Base.MongoDb.UpdateSteps("Click on Ascending btn");
+            _browserHelper.WaitForElement(ascendingIcon, nameof(ascendingIcon));
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
-
         }
 
-        public void AscendingOrder()
+        public void DescendingOrder()
         {
-            Base.MongoDb.UpdateSteps("ascendingIcon.");
-            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
-
+            Base.MongoDb.UpdateSteps("Click on Descending btn");
+            _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));
+            _browserHelper.Click(descendingIcon, nameof(descendingIcon));
         }
 
+        public List<string> GetItemsIndex()
+        {
+            Base.MongoDb.UpdateSteps("Get items index");
+            _browserHelper.WaitUntillTrue(() => counters.ToList().Count() == 3);
+            return counters.ToList().Select(c => c.Text).ToList();
+        }
 
-
+        public bool ValidateAscDesc(List<string> before, List<string> after)
+        {
+            Base.MongoDb.UpdateSteps("Validate AscDesc");
+            before.Reverse();
+            return before.SequenceEqual(after);
+        }
     }
 }

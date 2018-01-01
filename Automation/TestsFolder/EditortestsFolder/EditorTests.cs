@@ -408,16 +408,13 @@ namespace Automation.TestsFolder.EditortestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
+                List<string> before = listsTemplate.GetItemsIndex();
+                listsTemplate.ClickOnAscendingBtn();
+                List<string> after = listsTemplate.GetItemsIndex();
 
-                Assert.True(listsTemplate.ValidateAscendingOrder(), "The counter is not in ascending order.");
+                Assert.True(listsTemplate.ValidateAscDesc(before, after), "The counter is not in ascending order.");
 
             }
         }
-
-
-
-
-
-
     }
 }
