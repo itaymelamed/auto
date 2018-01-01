@@ -1,12 +1,32 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="23" />
-      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="141" Column="40" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="81" Column="39" />
+      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="32" Column="61" />
       <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="1" Column="1" />
       <File FileName="auto Status" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="506" Column="19" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="EditortestsFolder" expanded="True">
+                    <Node name="EditorTests+Test18Class" expanded="True">
+                      <Node name="Editor_List_ValidateDescendingOrder" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
