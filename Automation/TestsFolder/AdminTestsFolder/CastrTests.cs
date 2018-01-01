@@ -3,6 +3,7 @@ using NUnit.Framework;
 using static Automation.PagesObjects.CastrPage;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.CasterObjectsFolder;
+using static Automation.PagesObjects.CasterObjectsFolder.CastrPost;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -239,7 +240,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
             {
-                var feedUrl = _params["FeedUrl"].ToString();
+                var feedUrl = _params["PremierLeague"].ToString();
+                var feedUrl2 = _params["ChampionLeague"].ToString();
 
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
@@ -248,20 +250,21 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
-                post.PublishPost();
+                post.PublishPostToFeed(LeaguePages.ftbpro);
                 CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
                 post = publishedPosts.ClickOnPost(postCreator.Title);
                 post.ResetPost();
                 newPosts = newPosts.SelectStatus(Statuses.New);
                 post = newPosts.ClickOnPost(postCreator.Title);
-                post.UncheckPublishToFtb();
-                post.CheckPublishTo(1);
-                post.CheckLeague(1);
-                post.ClickOnPublishBtn();
+                post.PublishPostToFeed(LeaguePages.ftbpro);
                 _browser.Navigate($"{_config.Url}/{feedUrl}");
                 FeedPage feedPage = new FeedPage(_browser);
 
                 Assert.True(feedPage.ValidateArticleByTitle(postCreator.Title), $"Post {postCreator.Title} was not shown on {feedUrl} after it was reseted.");
+
+                feedPage = new FeedPage(_browser);
+                _browser.Navigate($"{_config.Url}/{feedUrl2}");
+                Assert.True(feedPage.ValidateArticleByTitle(postCreator.Title), $"Post {postCreator.Title} was not shown on {feedUrl2} after it was reseted.");
             }
         }
     }

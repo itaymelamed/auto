@@ -17,7 +17,7 @@ namespace Automation.BrowserFolder
             _driver = driver;
         }
 
-        public bool WaitForElement(IWebElement el, string elName, int timeOut = 30, bool throwEx = true)
+        public bool WaitForElement(IWebElement el, string elName, int timeOut = 20, bool throwEx = true)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Automation.BrowserFolder
         }
 
 
-        public void WaitForElementDiss(IWebElement el, int timeOut = 30)
+        public void WaitForElementDiss(IWebElement el, int timeOut = 20)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
             wait.Until(d => {
@@ -75,8 +75,8 @@ namespace Automation.BrowserFolder
             WaitUntillTrue(() => {
                 try
                 {
-                    WaitForElement(drag, nameof(drag), 60, false);
-                    WaitForElement(drag, nameof(drop), 60, false);
+                    WaitForElement(drag, nameof(drag), 20, false);
+                    WaitForElement(drag, nameof(drop), 20, false);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();
@@ -87,7 +87,7 @@ namespace Automation.BrowserFolder
                     error = e.Message;
                     return false;
                 }
-            }, error, 30);
+            }, error, 20);
         }
 
         public void ScrollToEl(IWebElement el)
@@ -95,7 +95,7 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", el);
         }
 
-        public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 30, bool throwEx = true)
+        public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 20, bool throwEx = true)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public IWebElement ExecutUntillTrue(Func<IWebElement> func, string ex = "", int timeOut = 30, bool throwEx = true)
+        public IWebElement ExecutUntillTrue(Func<IWebElement> func, string ex = "", int timeOut = 20, bool throwEx = true)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", el);
         }
 
-        public void Click(IWebElement el, string elName, int timeOut = 30, bool throwex = true)
+        public void Click(IWebElement el, string elName, int timeOut = 20, bool throwex = true)
         {
             var error = "";
             try
@@ -187,7 +187,7 @@ namespace Automation.BrowserFolder
             action.MoveToElement(el).Perform();
         }
 
-        public void WaitUntill(IWebElement el, Func<IWebElement, bool> func, int timeOut = 30)
+        public void WaitUntill(IWebElement el, Func<IWebElement, bool> func, int timeOut = 20)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
             wait.Until(d => {
@@ -203,7 +203,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public void WaitUntill(List<IWebElement> els, Func<List<IWebElement>, bool> func, int timeOut = 30)
+        public void WaitUntill(List<IWebElement> els, Func<List<IWebElement>, bool> func, int timeOut = 20)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
             wait.Until(d => {
@@ -218,7 +218,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public IWebElement FindElement(By by, string elName, int timeOut = 30)
+        public IWebElement FindElement(By by, string elName, int timeOut = 20)
         {
             IWebElement el = null;
 
@@ -279,7 +279,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public bool WaitForUrlToChange(string reqUrl,int timeOut = 30, bool throwEx = true)
+        public bool WaitForUrlToChange(string reqUrl,int timeOut = 20, bool throwEx = true)
         {
             try
             {
@@ -325,7 +325,7 @@ namespace Automation.BrowserFolder
 
         public bool ValidateElsDissabled(List<IWebElement> els)
         {
-            return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 30, false);
+            return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 20, false);
         }
     }
 }

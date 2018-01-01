@@ -47,6 +47,19 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".alert-warning .ok")]
         IWebElement resetConfirmPopUpOkBtn { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".league-branch-container .collapse")]
+        IWebElement leaguePage { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".league-branch-container input")]
+        IList<IWebElement> leaguePageInputs { get; set; }
+
+        public enum LeaguePages
+        {
+            ftbpro,
+            category,
+            mobile
+        }  
+
         public CastrPost(Browser browser)
             :base(browser)
         {
@@ -129,6 +142,19 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
         }
 
+        public void PublishPostToFeed(LeaguePages leaguePage)
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            CheckLeague(0);
+            CheckPublishTo(1);
+            UncheckPublishToFtb();
+            ChooseLeaguePage(leaguePage); 
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
+        }
+
         public void ArchivePost()
         {
             Base.MongoDb.UpdateSteps($"Click on archive button.");
@@ -164,6 +190,20 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             Base.MongoDb.UpdateSteps($"Click on Publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             _browserHelper.Click(publishBtn, nameof(publishBtn));
+        }
+
+        public void ChooseLeaguePage(LeaguePages leaguePageVa)
+        {
+            Base.MongoDb.UpdateSteps($"Check League page check box #{leaguePageVa}.");
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                _browserHelper.WaitForElement(leaguePage, nameof(leaguePage));
+                leaguePage.Click();
+                var leagueCb = leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == leaguePageVa.ToString()).FirstOrDefault();
+                _browserHelper.ClickJavaScript(leagueCb);
+                Thread.Sleep(1000);
+                return leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == leaguePageVa.ToString()).FirstOrDefault().GetAttribute("checked") == "true";
+            }, $"Failed to click on league page {leaguePageVa}.");
         }
     }
 }
