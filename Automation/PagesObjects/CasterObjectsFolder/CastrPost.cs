@@ -169,6 +169,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.Click(resetBtn, nameof(resetBtn));
             if (_browserHelper.WaitForElement(resetConfirmPopUpOkBtn, nameof(resetConfirmPopUpOkBtn), 10, false))
                 _browserHelper.Click(resetConfirmPopUpOkBtn, nameof(resetConfirmPopUpOkBtn));
+            Thread.Sleep(5000);
         }
 
         public void CheckPublishTo(int i)
