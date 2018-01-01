@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
+  <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
+    <Files>
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="259" Column="33" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="155" Column="35" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="323" Column="14" />
+      <File FileName="Auto Status" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="AdminTestsFolder" expanded="True">
+                    <Node name="CastrTests+Test11Class" expanded="True">
+                      <Node name="Castr_ResetAndFeatureAPost" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" relfile="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" line="203" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

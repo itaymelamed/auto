@@ -237,7 +237,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Retry(2)]
+            [Retry(3)]
             public void Castr_ResetAndFeatureAPost()
             {
                 var feedUrl = _params["PremierLeague"].ToString();

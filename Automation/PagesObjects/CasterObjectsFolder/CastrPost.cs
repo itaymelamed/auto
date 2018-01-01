@@ -100,7 +100,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             {
                 if (_browserHelper.CheckAttribute(ftb90CheckBox) && ftb90CheckBox.Displayed)
                 {
-                    ftb90CheckBox.Click();
+                    _browserHelper.ClickJavaScript(ftb90CheckBox);
                     return ftb90CheckBox.Selected;
                 }
 
@@ -125,7 +125,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             {
                 var league = leagueCheckBox.Where((l, j) => i == j).FirstOrDefault();
                 _browserHelper.MoveToEl(league);
-                _browserHelper.Click(league, "League #{i}");
+                _browserHelper.ClickJavaScript(league);
                 return leagueCheckBox.ToList().Any(x => x.Selected);
             }, $"Failed to check league #{i}.", 30);
         }
@@ -180,7 +180,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             {
                 var publish = pubishToCheckBox.Where((l, j) => i == j).FirstOrDefault();
                 _browserHelper.MoveToEl(publish);
-                publish.Click();
+                _browserHelper.ClickJavaScript(publish);
                 return pubishToCheckBox.Any(x => x.GetAttribute("checked") == "true");
             }, $"Failed to check Publish to #{i}.");
         }
