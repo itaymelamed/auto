@@ -503,6 +503,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("EditPage")]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
+                //
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
