@@ -312,6 +312,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
                 post.PublishToSocialNetwork(0, 2, 1);
                 _browser.Navigate(_config.ConfigObject.TwitterUrl);
+                TwitterAppPage twitterAppPage = new TwitterAppPage(_browser);
+                PostPage postPage2 = twitterAppPage.ClickOnTweetLink(postCreator.Title);
+                Assert.True(postPage2.ValidatePostCreated(postCreator.Title), "User has not redircted to post after click on twitter link.");
             }
         }
     }
