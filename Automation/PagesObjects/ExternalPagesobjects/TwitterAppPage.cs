@@ -43,7 +43,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
         {
             var index = tweets.ToList().LastIndexOf(SearchTweet(title));
             var link = _browserHelper.ExecutUntillTrue(() => tweetsLinks.ToList().Where((t,i) => i == index).FirstOrDefault());
-            _browserHelper.ClickJavaScript(link);
+            _browserHelper.Click(link, "Twiter Link");
 
             return new PostPage(_browser); 
         }
