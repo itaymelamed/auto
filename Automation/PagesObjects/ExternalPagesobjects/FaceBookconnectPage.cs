@@ -5,7 +5,7 @@ using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Automation.PagesObjects
+namespace Automation.PagesObjects.ExternalPagesobjects
 {
     public class FaceBookconnectPage
     {

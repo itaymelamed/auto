@@ -107,7 +107,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\ConfigObject.cs" />
     <Compile Include="PagesObjects\HomePage.cs" />
-    <Compile Include="PagesObjects\FaceBookconnectPage.cs" />
     <Compile Include="BrowserFolder\BrowserHelper.cs" />
     <Compile Include="PagesObjects\EditorPage.cs" />
     <Compile Include="PagesObjects\ArticleBase.cs" />
@@ -135,6 +134,7 @@
     <Compile Include="PagesObjects\FeedPage.cs" />
     <Compile Include="PagesObjects\LeagueFeed.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
+    <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

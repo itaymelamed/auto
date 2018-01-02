@@ -1,30 +1,18 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="288" Column="52" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="23" Column="14" />
+      <File FileName="Automation/PagesObjects/ExternalPagesobjects/FacebookAppPage.cs" Line="36" Column="144" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="13" Column="24" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="18" Column="41" />
       <File FileName="Auto Status" />
+      <File FileName="Automation/PagesObjects/ExternalPagesobjects/FaceBookconnectPage.cs" Line="22" Column="28" />
+      <File FileName="Automation/PagesObjects/HomePage.cs" Line="7" Column="52" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="363" Column="46" />
+      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="4" Column="52" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="4" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Automation" expanded="True">
-            <Node name="Automation" expanded="True">
-              <Node name="Automation" expanded="True">
-                <Node name="TestsFolder" expanded="True">
-                  <Node name="AdminTestsFolder" expanded="True">
-                    <Node name="AdminTests+Test2Class" expanded="True" />
-                    <Node name="CastrTests+Test12Class" expanded="True">
-                      <Node name="Castr_Social_Networks_Facebook" selected="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

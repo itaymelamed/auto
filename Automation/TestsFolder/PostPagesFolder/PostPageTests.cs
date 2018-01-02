@@ -1,6 +1,7 @@
 ﻿using Automation.PagesObjects;
 using MongoDB.Bson;
 using NUnit.Framework;
+using Automation.PagesObjects.ExternalPagesobjects;
 
 namespace Automation.TestsFolder.PostPagesFolder
 {
