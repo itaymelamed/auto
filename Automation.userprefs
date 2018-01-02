@@ -1,18 +1,11 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs">
     <Files>
       <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="303" Column="61" />
       <File FileName="Automation/PagesObjects/ExternalPagesobjects/TwitterAppPage.cs" Line="38" Column="10" />
       <File FileName="Automation/PagesObjects/ExternalPagesobjects/FaceBookconnectPage.cs" Line="45" Column="28" />
       <File FileName="Automation/PagesObjects/CropImagePopUp.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/HomePage.cs" Line="7" Column="52" />
-      <File FileName="Automation/PagesObjects/PostPage.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/WritersPage.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/PreviewPage.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/FeedPage.cs" Line="11" Column="1" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="129" Column="28" />
-      <File FileName="Auto Status" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
