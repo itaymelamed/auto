@@ -95,6 +95,11 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", el);
         }
 
+        public void ScrollToBottom()
+        {
+            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+
         public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 20, bool throwEx = true)
         {
             try
@@ -345,6 +350,11 @@ namespace Automation.BrowserFolder
             }, "Failed after refresh.", timeOut);
 
             return true;
+        }
+
+        public void ClickEsc()
+        {
+            _driver.FindElement(By.XPath("body")).SendKeys(Keys.Escape);
         }
     }
 }

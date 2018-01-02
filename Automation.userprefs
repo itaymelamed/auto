@@ -2,15 +2,10 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="270" Column="12" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="232" Column="1" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="318" Column="51" />
-      <File FileName="Automation/PagesObjects/ExternalPagesobjects/FacebookAppPage.cs" Line="36" Column="41" />
-      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="93" Column="1" />
-      <File FileName="Automation/PagesObjects/EditorPage.cs" Line="35" Column="1" />
-      <File FileName="Automation/PagesObjects/PostPage.cs" Line="64" Column="21" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="1" Column="1" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="23" Column="41" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="289" Column="135" />
+      <File FileName="Automation/PagesObjects/ExternalPagesobjects/FacebookAppPage.cs" Line="58" Column="1" />
+      <File FileName="Automation/BrowserFolder/Browser.cs" Line="23" Column="56" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="192" Column="1" />
       <File FileName="Auto Status" />
     </Files>
     <Pads>
@@ -20,7 +15,12 @@
             <Node name="Automation" expanded="True">
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
-                  <Node name="AdminTestsFolder" expanded="True" />
+                  <Node name="AdminTestsFolder" expanded="True">
+                    <Node name="AdminTests+Test2Class" expanded="True" />
+                    <Node name="CastrTests+Test12Class" expanded="True">
+                      <Node name="Castr_Social_Networks_Facebook" selected="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
             </Node>
@@ -32,7 +32,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="342" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

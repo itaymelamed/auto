@@ -31,29 +31,36 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             return post;
         }
 
-        public string GetPostTitle(string title)
+        public bool ValidatePostTitle(string title)
         {
-            return SearchPost(title).Text;
+            return _browserHelper.WaitUntillTrue(() => SearchPost(title).FindElement(By.XPath(".//p")).Text == title);
         }
 
         public IWebElement GetPostBody(string title)
         {
-            Base.MongoDb.UpdateSteps($"Serach post in body.");
-            return SearchPost(title).FindElement(By.XPath($".//a[contains(text(),'{title}')]"));
-        }
+             Base.MongoDb.UpdateSteps($"Serach post in body.");
+             return _driver.FindElement(By.XPath($"//a[contains(text(),'{title}')]"));
+         }
 
         public bool VlidatePostDetails(string title)
         {
             Base.MongoDb.UpdateSteps($"Validate post context.");
-            return GetPostBody(title).GetAttribute("value").Contains(title);
+            var el = SearchPost(title);
+            return GetPostBody(title).Text.Contains(title);
         }
 
         public PostPage ClickOnPost(string title)
         {
             Base.MongoDb.UpdateSteps($"Click On facebook Post.");
-            _browserHelper.Click(GetPostBody(title), "FacebookPost");
+            _browserHelper.ClickJavaScript(GetPostBody(title));
             _browser.SwitchToLastTab();
             return new PostPage(_browser); 
+        }
+
+        public void ScrollToPost()
+        {
+            Base.MongoDb.UpdateSteps($"Scroll to post..");
+            _browserHelper.ScrollToBottom();
         }
     }
 }
