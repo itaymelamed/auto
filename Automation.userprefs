@@ -1,12 +1,8 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="289" Column="135" />
-      <File FileName="Automation/PagesObjects/ExternalPagesobjects/FacebookAppPage.cs" Line="58" Column="1" />
-      <File FileName="Automation/BrowserFolder/Browser.cs" Line="23" Column="56" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="192" Column="1" />
-      <File FileName="Auto Status" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="286" Column="48" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
