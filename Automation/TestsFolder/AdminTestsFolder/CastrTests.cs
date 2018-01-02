@@ -263,26 +263,24 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-        //[TestFixture]
-        //[Parallelizable]
-        //public class Test12Class : Base
-        //{
-        //    [Test]
-        //    [Property("TestCaseId", "34")]
-        //    [Category("Sanity")][Category("Admin")][Category("Castr")]
-        //    [Retry(2)]
-        //    public void Castr_Social_Networks_Facebook()
-        //    {
-        //        HomePage homePage = new HomePage(_browser);
-        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
-        //        PostCreator postCreator = new PostCreator(_browser);
-        //        PostPage postPage = postCreator.Create(typeof(ArticleBase));
-        //        CastrPage castrPage = homePage.GoToCastr();
-        //        CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
-        //        CastrPost post = newPosts.ClickOnPost(postCreator.Title);
-        //        post.SelectPublishToTeam(2);
-
-        //    }
-        //}
+        [TestFixture]
+        [Parallelizable]
+        public class Test12Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "34")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            public void Castr_Social_Networks_Facebook()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishToSocialNetwork(0, 2, 0);
+            }
+        }
     }
 }

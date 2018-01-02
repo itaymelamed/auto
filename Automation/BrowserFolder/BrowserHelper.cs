@@ -150,7 +150,14 @@ namespace Automation.BrowserFolder
 
         public void ClickJavaScript(IWebElement el)
         {
-            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", el);
+            try
+            {
+                ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", el);
+            }
+            catch(Exception e)
+            {
+                throw new NUnit.Framework.AssertionException(e.Message);
+            }
         }
 
         public void Click(IWebElement el, string elName, int timeOut = 20, bool throwex = true)

@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="248" Column="24" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="144" Column="9" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="304" Column="21" />
-      <File FileName="Automation/Helpersobjects/PostCreator.cs" Line="26" Column="29" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="274" Column="14" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="232" Column="1" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="318" Column="51" />
       <File FileName="Auto Status" />
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="22" Column="31" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -17,9 +15,8 @@
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
                   <Node name="AdminTestsFolder" expanded="True">
-                    <Node name="CastrTests+Test10Class" expanded="True" />
-                    <Node name="CastrTests+Test11Class" expanded="True">
-                      <Node name="Castr_ResetAndFeatureAPost" selected="True" />
+                    <Node name="CastrTests+Test12Class" expanded="True">
+                      <Node name="Castr_Social_Networks_Facebook" selected="True" />
                     </Node>
                   </Node>
                 </Node>
@@ -33,7 +30,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" relfile="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" line="203" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="342" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" relfile="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" line="283" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
