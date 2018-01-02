@@ -1,16 +1,13 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
-  <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs">
     <Files>
-      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="265" Column="10" />
+      <File FileName="auto Status" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="306" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/liorshagan/Desktop/repo/auto/Automation/TestsFolder/EditortestsFolder/EditorTests.cs" relfile="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" line="366" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

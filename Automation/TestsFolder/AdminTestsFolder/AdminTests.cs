@@ -1,5 +1,6 @@
 ﻿using Automation.PagesObjects;
 using NUnit.Framework;
+using Automation.PagesObjects.ExternalPagesobjects;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {

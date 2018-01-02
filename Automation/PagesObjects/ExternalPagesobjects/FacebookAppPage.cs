@@ -26,14 +26,14 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public IWebElement SearchPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Serach post in Facebook.");
+            Base.MongoDb.UpdateSteps($"Serach post in Facebook. Post:{title}.");
             var post = _browserHelper.ExecutUntillTrue(() => posts.ToList().Where(p => p.FindElement(By.XPath(".//p")).Text == title).FirstOrDefault(), "Facebook post was not created.");
             return post;
         }
 
         public bool ValidatePostTitle(string title)
         {
-            return _browserHelper.WaitUntillTrue(() => SearchPost(title).FindElement(By.XPath(".//p")).Text == title);
+            return _browserHelper.WaitUntillTrue(() => SearchPost(title).FindElement(By.XPath(".//p")).Text == title, "Could not find post", 60);
         }
 
         public IWebElement GetPostBody(string title)

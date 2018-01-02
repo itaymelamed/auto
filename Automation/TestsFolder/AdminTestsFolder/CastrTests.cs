@@ -232,7 +232,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test11Class : Base
         {
             [Test]
-            [Property("TestCaseId", "33")]
+            [Property("TestCaseId", "40")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
@@ -269,8 +269,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test12Class : Base
         {
             [Test]
-            [Property("TestCaseId", "34")]
+            [Property("TestCaseId", "41")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
             public void Castr_Social_Networks_Facebook()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -290,6 +291,31 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
                 PostPage postPage2 = facebookAppPage.ClickOnPost(postCreator.Title);
                 Assert.True(postPage2.ValidatePostCreated(postCreator.Title), "User has not redirected to post.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test13Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "42")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Retry(2)]
+            public void Castr_Social_Networks_Twitter()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishToSocialNetwork(0, 2, 1);
+                _browser.Navigate(_config.ConfigObject.TwitterUrl);
+                TwitterAppPage twitterAppPage = new TwitterAppPage(_browser);
+                PostPage postPage2 = twitterAppPage.ClickOnTweetLink(postCreator.Title);
+                Assert.True(postPage2.ValidatePostCreated(postCreator.Title), "User has not redircted to post after click on twitter link.");
             }
         }
     }
