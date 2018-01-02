@@ -2,15 +2,16 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="81" Column="39" />
-      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="155" Column="10" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="13" Column="24" />
+      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="119" Column="27" />
       <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="466" Column="44" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="369" Column="55" />
       <File FileName="Automation/MongoDbObject/MongoDb.cs" Line="114" Column="1" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="26" Column="33" />
       <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="23" Column="14" />
-      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="245" Column="1" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="102" Column="9" />
+      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="372" Column="39" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="11" Column="18" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="28" Column="40" />
       <File FileName="auto Status" />
     </Files>
     <Pads>
@@ -21,9 +22,7 @@
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
                   <Node name="EditortestsFolder" expanded="True">
-                    <Node name="EditorTests+Test19Class" expanded="True">
-                      <Node name="Editor_List_FullFlow" selected="True" />
-                    </Node>
+                    <Node name="EditorTests+Test15Class" selected="True" />
                   </Node>
                 </Node>
               </Node>
@@ -35,7 +34,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/liorshagan/Desktop/repo/auto/Automation/TestsFolder/EditortestsFolder/EditorTests.cs" relfile="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" line="366" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

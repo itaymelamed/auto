@@ -119,10 +119,11 @@ namespace Automation.PagesObjects
             return values;
         }
 
-        public bool ValidateSubTitlesFields(List<string> acValues, string text)
+        public bool ValidateSubTitlesFields(List<string> acValues, BsonArray exValues)
         {
             Base.MongoDb.UpdateSteps("Validate subtitles fields.");
-            return acValues.All(v => v == text);
+            List<string> titlesList = exValues.ToList().Select(t => t.ToString()).ToList();
+            return acValues.SequenceEqual(titlesList);
         }
 
         public void DragImages()

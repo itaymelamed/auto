@@ -344,32 +344,32 @@ namespace Automation.TestsFolder.EditortestsFolder
             }
         }
 
-        //[TestFixture]
-        //[Parallelizable]
-        //public class Test15Class : Base
-        //{
-        //    [Test]
-        //    [Property("TestCaseId", "31")]
-        //    [Category("Sanity")]
-        //    [Category("Admin")]
-        //    [Category("EditPage")]
-        //    [Retry(2)]
-        //    public void Editor_List_ValidateSubTitelsFields()
-        //    {
-        //        string text = "Title test test title";
-        //        HomePage homePage = new HomePage(_browser);
-        //        FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
-        //        HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
-        //        homePageConnected.ValidateUserProfilePic();
-        //        EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-        //        ListsTemplate listsTemplate = editorPage.ClickOnList();
-        //        listsTemplate.SetSubTitles(text);
-        //        List<string> acValues = listsTemplate.GetSubTitelsValues();
+        [TestFixture]
+        [Parallelizable]
+        public class Test15Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "31")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            [Retry(2)]
+            public void Editor_List_ValidateSubTitelsFields()
+            {
+                BsonArray titles = _params["Titles"].AsBsonArray;
+                HomePage homePage = new HomePage(_browser);
+                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+                homePageConnected.ValidateUserProfilePic();
+                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                listsTemplate.SetSubTitles(titles);
+                List<string> acValues = listsTemplate.GetSubTitelsValues();
 
-        //        Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
-        //    }
+                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, titles), "Actual values are not as expected values");
+            }
 
-        //}
+        }
 
         [TestFixture]
         [Parallelizable]
