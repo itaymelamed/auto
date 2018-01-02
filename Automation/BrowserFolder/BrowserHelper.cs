@@ -100,6 +100,11 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
         }
 
+        public void ScrollToTop()
+        {
+            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, 0)");
+        }
+
         public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 20, bool throwEx = true)
         {
             try
@@ -355,6 +360,11 @@ namespace Automation.BrowserFolder
         public void ClickEsc()
         {
             _driver.FindElement(By.XPath("body")).SendKeys(Keys.Escape);
+        }
+
+        public void MoveToIframe(string frameName)
+        {
+            _driver.SwitchTo().Frame(frameName);
         }
     }
 }

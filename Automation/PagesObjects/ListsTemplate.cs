@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
+using MongoDB.Bson;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -26,9 +27,23 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
         IList<IWebElement> mediaDropBoxs { get; set; }
 
+<<<<<<< HEAD
         [FindsBy(How = How.CssSelector, Using = ".icon-ascending")]
         IWebElement ascendingIcon { get; set; }
 
+=======
+        [FindsBy(How = How.CssSelector, Using = ".ascending")]
+        IWebElement ascendingIcon { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".descending")]
+        IWebElement descendingIcon { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".count")]
+        IList<IWebElement> counters { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".ascending")]
+        IWebElement AscendingIcon { get; set; }
+>>>>>>> 9e54b83652cfdd15d5cf55f6007b82dae22a2df6
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -86,12 +101,18 @@ namespace Automation.PagesObjects
             return errors;
         }
 
-        public void SetSubTitles(string text)
+        public void SetSubTitles(BsonArray titles)
         {
-            Base.MongoDb.UpdateSteps("Set subtitle values.");
-            var xxx = subTitleFields.ToList().Count();
-            _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
-            subTitleFields.ToList().ForEach(s => _browserHelper.SetText(s, text));
+           Base.MongoDb.UpdateSteps("Set subtitle values.");
+           List<string> titlesList = titles.ToList().Select(t => t.ToString()).ToList();
+           var xxx = subTitleFields.ToList().Count();
+           _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
+           int i = 0;
+           subTitleFields.ToList().ForEach(s =>
+           {
+               _browserHelper.SetText(s, titlesList[i]);
+               i++;
+           });
         }
 
         public List<string> GetSubTitelsValues()
@@ -104,10 +125,11 @@ namespace Automation.PagesObjects
             return values;
         }
 
-        public bool ValidateSubTitlesFields(List<string> acValues, string text)
+        public bool ValidateSubTitlesFields(List<string> acValues, BsonArray exValues)
         {
             Base.MongoDb.UpdateSteps("Validate subtitles fields.");
-            return acValues.All(v => v == text);
+            List<string> titlesList = exValues.ToList().Select(t => t.ToString()).ToList();
+            return acValues.SequenceEqual(titlesList);
         }
 
         public void DragImages()
@@ -131,6 +153,39 @@ namespace Automation.PagesObjects
             });
        }
 
+<<<<<<< HEAD
+=======
+        public void ClickOnAscendingBtn()
+        {
+            Base.MongoDb.UpdateSteps("Click on Ascending btn");
+            _browserHelper.ScrollToTop();
+            _browserHelper.WaitForElement(ascendingIcon, nameof(ascendingIcon));
+            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
+        }
+
+        public void ClickOnDscBtn()
+        {
+            Base.MongoDb.UpdateSteps("Click on Descending btn");
+            _browserHelper.ScrollToTop();
+            _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));
+            _browserHelper.Click(descendingIcon, nameof(descendingIcon));
+        }
+
+        public List<string> GetItemsIndex()
+        {
+            Base.MongoDb.UpdateSteps("Get items index");
+            _browserHelper.WaitUntillTrue(() => counters.ToList().Count() == 3);
+            return counters.ToList().Select(c => c.Text).ToList();
+        }
+
+        public bool ValidateAscDesc(List<string> before, List<string> after)
+        {
+            Base.MongoDb.UpdateSteps("Validate AscDesc");
+            before.Reverse();
+            return before.SequenceEqual(after);
+        }
+
+>>>>>>> 9e54b83652cfdd15d5cf55f6007b82dae22a2df6
         public void AscendingOrder()
         {
             Base.MongoDb.UpdateSteps("ascendingIcon.");

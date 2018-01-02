@@ -356,17 +356,17 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_List_ValidateSubTitelsFields()
             {
-                string text = "Title test test title";
+                BsonArray titles = _params["Titles"].AsBsonArray;
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();
                 EditorPage editorPage = homePageConnected.ClickOnAddArticle();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
-                listsTemplate.SetSubTitles(text);
+                listsTemplate.SetSubTitles(titles);
                 List<string> acValues = listsTemplate.GetSubTitelsValues();
 
-                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
+                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, titles), "Actual values are not as expected values");
             }
 
         }
@@ -376,7 +376,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test16Class : Base
         {
             [Test]
-            [Property("TestCaseId", "32")]
+            [Property("TestCaseId", "33")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -391,7 +391,134 @@ namespace Automation.TestsFolder.EditortestsFolder
                 var listEditorImages = listsTemplate.GetImagesUrl();
                 Assert.True(listEditorImages.Count == 4, $"Expected 4 images, but actual {listEditorImages.Count}");
             }
+        }
 
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "35")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateAscendingOrder()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                List<string> before = listsTemplate.GetItemsIndex();
+                listsTemplate.ClickOnAscendingBtn();
+                List<string> after = listsTemplate.GetItemsIndex();
+
+                Assert.True(listsTemplate.ValidateAscDesc(before, after), "The counter is not in ascending order.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "36")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_ValidateDescendingOrder()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                List<string> before = listsTemplate.GetItemsIndex();
+                listsTemplate.ClickOnDscBtn();
+                List<string> after = listsTemplate.GetItemsIndex();
+
+                Assert.True(listsTemplate.ValidateAscDesc(before, after), "The counter is not in descending order.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "37")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_List_FullFlow()
+            {
+                BsonArray tagExValue = _params["Tags"].AsBsonArray;
+                BsonArray titles = _params["Titles"].AsBsonArray;
+                string body = _params["Body"].ToString();
+
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ListsTemplate listsTemplate = editorPage.ClickOnList();
+                listsTemplate.WriteTitle("VIDEO:test list template");
+                listsTemplate.DragImages();
+                listsTemplate.SetSubTitles(titles);
+                listsTemplate.SetBodyTextBoxs(body);
+                listsTemplate.WriteTags(tagExValue);
+                listsTemplate.ClickOnAscendingBtn();
+                listsTemplate.ClickOnDscBtn();
+                PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("VIDEO:test list template"), "Post was not created");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "38")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_Article_FullFlow()
+            {
+                BsonArray tagExValue = _params["Tags"].AsBsonArray;
+                string body = _params["Body"].ToString();
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ArticleBase articleBase = editorPage.ClickOnArticle();
+                articleBase.WriteTitle("VIDEO:test article template");
+                CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
+                cropImagePopUp.ClickOnCropImageBtn();
+                cropImagePopUp.ClickOnEditokBtn();
+                articleBase.WriteDec(body);
+                articleBase.WriteTags(tagExValue);
+                PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "39")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_Article_ValidatePlayBuzzComponenet()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                ArticleBase articleBase = editorPage.ClickOnArticle();
+                articleBase.ClickOnPlayBuzzCBX();
+                articleBase.SetPlayBuzzURL("http://www.playbuzz.com/meliak10/when-and-where-in-time-should-you-live");
+                Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "layBuzz not appears");
+            }
         }
     }
 }
