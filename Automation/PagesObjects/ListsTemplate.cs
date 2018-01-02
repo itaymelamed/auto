@@ -27,11 +27,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
         IList<IWebElement> mediaDropBoxs { get; set; }
 
-<<<<<<< HEAD
-        [FindsBy(How = How.CssSelector, Using = ".icon-ascending")]
-        IWebElement ascendingIcon { get; set; }
-
-=======
         [FindsBy(How = How.CssSelector, Using = ".ascending")]
         IWebElement ascendingIcon { get; set; }
 
@@ -43,7 +38,6 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".ascending")]
         IWebElement AscendingIcon { get; set; }
->>>>>>> 9e54b83652cfdd15d5cf55f6007b82dae22a2df6
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -153,8 +147,6 @@ namespace Automation.PagesObjects
             });
        }
 
-<<<<<<< HEAD
-=======
         public void ClickOnAscendingBtn()
         {
             Base.MongoDb.UpdateSteps("Click on Ascending btn");
@@ -185,22 +177,12 @@ namespace Automation.PagesObjects
             return before.SequenceEqual(after);
         }
 
->>>>>>> 9e54b83652cfdd15d5cf55f6007b82dae22a2df6
         public void AscendingOrder()
         {
             Base.MongoDb.UpdateSteps("ascendingIcon.");
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
 
         }
-
-        public void AscendingOrder()
-        {
-            Base.MongoDb.UpdateSteps("ascendingIcon.");
-            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
-
-        }
-
-
 
     }
 }
