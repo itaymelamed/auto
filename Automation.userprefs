@@ -1,12 +1,8 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
     <Files>
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="520" Column="50" />
-      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="175" Column="58" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="303" Column="71" />
-      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="375" Column="10" />
-      <File FileName="auto Status" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="525" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
