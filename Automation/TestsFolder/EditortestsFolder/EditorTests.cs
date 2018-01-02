@@ -344,39 +344,39 @@ namespace Automation.TestsFolder.EditortestsFolder
             }
         }
 
-        [TestFixture]
-        [Parallelizable]
-        public class Test15Class : Base
-        {
-            [Test]
-            [Property("TestCaseId", "31")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Retry(2)]
-            public void Editor_List_ValidateSubTitelsFields()
-            {
-                string text = "Title test test title";
-                HomePage homePage = new HomePage(_browser);
-                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
-                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
-                homePageConnected.ValidateUserProfilePic();
-                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ListsTemplate listsTemplate = editorPage.ClickOnList();
-                listsTemplate.SetSubTitles(text);
-                List<string> acValues = listsTemplate.GetSubTitelsValues();
+        //[TestFixture]
+        //[Parallelizable]
+        //public class Test15Class : Base
+        //{
+        //    [Test]
+        //    [Property("TestCaseId", "31")]
+        //    [Category("Sanity")]
+        //    [Category("Admin")]
+        //    [Category("EditPage")]
+        //    [Retry(2)]
+        //    public void Editor_List_ValidateSubTitelsFields()
+        //    {
+        //        string text = "Title test test title";
+        //        HomePage homePage = new HomePage(_browser);
+        //        FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
+        //        HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
+        //        homePageConnected.ValidateUserProfilePic();
+        //        EditorPage editorPage = homePageConnected.ClickOnAddArticle();
+        //        ListsTemplate listsTemplate = editorPage.ClickOnList();
+        //        listsTemplate.SetSubTitles(text);
+        //        List<string> acValues = listsTemplate.GetSubTitelsValues();
 
-                Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
-            }
+        //        Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, text), "Actual values are not as expected values");
+        //    }
 
-        }
+        //}
 
         [TestFixture]
         [Parallelizable]
         public class Test16Class : Base
         {
             [Test]
-            [Property("TestCaseId", "32")]
+            [Property("TestCaseId", "33")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -398,7 +398,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test17Class : Base
         {
             [Test]
-            [Property("TestCaseId", "1")]
+            [Property("TestCaseId", "35")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -421,7 +421,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test18Class : Base
         {
             [Test]
-            [Property("TestCaseId", "1")]
+            [Property("TestCaseId", "36")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -444,21 +444,25 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test19Class : Base
         {
             [Test]
-            [Property("TestCaseId", "1")]
+            [Property("TestCaseId", "37")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
             public void Editor_List_FullFlow()
             {
+                BsonArray tagExValue = _params["Tags"].AsBsonArray;
+                BsonArray titles = _params["Titles"].AsBsonArray;
+                string body = _params["Body"].ToString();
+
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.WriteTitle("VIDEO:test list template");
                 listsTemplate.DragImages();
-                listsTemplate.SetSubTitles("Test subtitles 12345");
-                listsTemplate.SetBodyTextBoxs("test");
-                listsTemplate.WriteTags(new BsonArray());
+                listsTemplate.SetSubTitles(titles);
+                listsTemplate.SetBodyTextBoxs(body);
+                listsTemplate.WriteTags(tagExValue);
                 listsTemplate.ClickOnAscendingBtn();
                 listsTemplate.ClickOnDscBtn();
                 PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
@@ -472,7 +476,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test20Class : Base
         {
             [Test]
-            [Property("TestCaseId", "1")]
+            [Property("TestCaseId", "38")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
@@ -497,13 +501,12 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test21Class : Base
         {
             [Test]
-            [Property("TestCaseId", "1")]
+            [Property("TestCaseId", "39")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
-                //
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();

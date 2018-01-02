@@ -134,6 +134,7 @@
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPost.cs" />
     <Compile Include="PagesObjects\FeedPage.cs" />
     <Compile Include="PagesObjects\LeagueFeed.cs" />
+    <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -151,6 +152,7 @@
     <Folder Include="Helpersobjects\" />
     <Folder Include="TestsFolder\EditortestsFolder\" />
     <Folder Include="PagesObjects\CasterObjectsFolder\" />
+    <Folder Include="PagesObjects\ExternalPagesobjects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationFoldee\ConfigurationsJsonObject\Ip.txt">

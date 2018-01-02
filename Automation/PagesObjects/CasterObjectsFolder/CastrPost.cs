@@ -56,8 +56,11 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".subject .collapse")]
         IList<IWebElement> publisToTeams { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//li[@class='branch'][.//span[@title='AFC Bournemouth']]//div[@class='social-networks-branch']//li[@class='leaf']")]
-        IList<IWebElement> arsenalSocialNetworks { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".social-networks-leafs li input")]
+        IList<IWebElement> socialMediaCbx { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".social-networks .collapse")]
+        IList<IWebElement> socialNetworksArrows { get; set; }
 
         public enum LeaguePages
         {
@@ -136,30 +139,6 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             }, $"Failed to check league #{i}.", 30);
         }
 
-        public void PublishPost()
-        {
-            Base.MongoDb.UpdateSteps($"Click on publish button.");
-            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            CheckLeague(0);
-            CheckPublishTo(1);
-            UncheckPublishToFtb();
-            _browserHelper.Click(publishBtn, nameof(publishBtn));
-            _browserHelper.ConfirmAlarem();
-            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
-        }
-
-        public void PublishPostToFeed(LeaguePages leaguePage, int league)
-        {
-            Base.MongoDb.UpdateSteps($"Click on publish button.");
-            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            CheckLeague(league);
-            UncheckPublishToFtb();
-            ChooseLeaguePage(leaguePage); 
-            _browserHelper.Click(publishBtn, nameof(publishBtn));
-            _browserHelper.ConfirmAlarem();
-            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
-        }
-
         public void ArchivePost()
         {
             Base.MongoDb.UpdateSteps($"Click on archive button.");
@@ -224,17 +203,56 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             });
         }
 
-        public void SelectPublishSocialNetwork(int socialNet)
+        public void CheckSmCbx(int socialNet)
         {
-            Base.MongoDb.UpdateSteps($"Select social network.");
-            _browserHelper.WaitUntillTrue(() => arsenalSocialNetworks.ToList().Count() == 2, "Social media check boxes were not loaded.");
-            _browserHelper.WaitUntillTrue(() =>
-            {
-                var socialNetworkChbx = arsenalSocialNetworks.ToList()[socialNet];
-                _browserHelper.ClickJavaScript(socialNetworkChbx);
-                var xxx = socialNetworkChbx.GetAttribute("checked");
-                return socialNetworkChbx.GetAttribute("checked") == "true";
-            });
+            Base.MongoDb.UpdateSteps($"Check Social Media CheckBox.");
+            _browserHelper.WaitUntillTrue(() => socialMediaCbx.ToList().Count() >= 2, "Social media check boxes were not loaded.");
+            var cbx = _browserHelper.ExecutUntillTrue(() => socialMediaCbx.ToList().Where(c => c.Displayed).ToList()[socialNet]);
+            _browserHelper.ClickJavaScript(cbx);
+        }
+
+        public void ClickOnSmArrow()
+        {
+            Base.MongoDb.UpdateSteps($"Select arsenal social network arrow.");
+            _browserHelper.WaitUntillTrue(() => socialNetworksArrows.ToList().Count() >= 20);
+            var cb =_browserHelper.ExecutUntillTrue(() => socialNetworksArrows.ToList().Where(c => c.Displayed).FirstOrDefault());
+            _browserHelper.ClickJavaScript(cb);
+        }
+
+        public void PublishToSocialNetwork(int league, int team, int socialNetwork)
+        {
+            CheckLeague(league);
+            SelectPublishToTeam(team);
+            ClickOnSmArrow();
+            CheckSmCbx(socialNetwork);
+            UncheckPublishToFtb();
+            ClickOnPublishBtn();
+            _browserHelper.ConfirmAlarem();
+            ValidateSucMsg();
+        }
+
+        public void PublishPost()
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            CheckLeague(0);
+            CheckPublishTo(1);
+            UncheckPublishToFtb();
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
+        }
+
+        public void PublishPostToFeed(LeaguePages leaguePage, int league)
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            CheckLeague(league);
+            UncheckPublishToFtb();
+            ChooseLeaguePage(leaguePage);
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
     }
 }

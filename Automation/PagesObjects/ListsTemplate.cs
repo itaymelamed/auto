@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
+using MongoDB.Bson;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -32,10 +33,11 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".descending")]
         IWebElement descendingIcon { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = ".count")]
         IList<IWebElement> counters { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".ascending")]
+        IWebElement AscendingIcon { get; set; }
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -93,12 +95,18 @@ namespace Automation.PagesObjects
             return errors;
         }
 
-        public void SetSubTitles(string text)
+        public void SetSubTitles(BsonArray titles)
         {
-            Base.MongoDb.UpdateSteps("Set subtitle values.");
-            var xxx = subTitleFields.ToList().Count();
-            _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
-            subTitleFields.ToList().ForEach(s => _browserHelper.SetText(s, text));
+           Base.MongoDb.UpdateSteps("Set subtitle values.");
+           List<string> titlesList = titles.ToList().Select(t => t.ToString()).ToList();
+           var xxx = subTitleFields.ToList().Count();
+           _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
+           int i = 0;
+           subTitleFields.ToList().ForEach(s =>
+           {
+               _browserHelper.SetText(s, titlesList[i]);
+               i++;
+           });
         }
 
         public List<string> GetSubTitelsValues()
@@ -141,6 +149,7 @@ namespace Automation.PagesObjects
         public void ClickOnAscendingBtn()
         {
             Base.MongoDb.UpdateSteps("Click on Ascending btn");
+            _browserHelper.ScrollToTop();
             _browserHelper.WaitForElement(ascendingIcon, nameof(ascendingIcon));
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
         }
@@ -148,6 +157,7 @@ namespace Automation.PagesObjects
         public void ClickOnDscBtn()
         {
             Base.MongoDb.UpdateSteps("Click on Descending btn");
+            _browserHelper.ScrollToTop();
             _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));
             _browserHelper.Click(descendingIcon, nameof(descendingIcon));
         }
@@ -164,6 +174,13 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Validate AscDesc");
             before.Reverse();
             return before.SequenceEqual(after);
+        }
+
+        public void AscendingOrder()
+        {
+            Base.MongoDb.UpdateSteps("ascendingIcon.");
+            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
+
         }
     }
 }

@@ -1,12 +1,17 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="81" Column="39" />
-      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="32" Column="61" />
+      <File FileName="Automation/PagesObjects/ListsTemplate.cs" Line="155" Column="10" />
       <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="466" Column="44" />
+      <File FileName="Automation/MongoDbObject/MongoDb.cs" Line="114" Column="1" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="23" Column="14" />
+      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="245" Column="1" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="102" Column="9" />
       <File FileName="auto Status" />
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="506" Column="19" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -16,8 +21,8 @@
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
                   <Node name="EditortestsFolder" expanded="True">
-                    <Node name="EditorTests+Test18Class" expanded="True">
-                      <Node name="Editor_List_ValidateDescendingOrder" selected="True" />
+                    <Node name="EditorTests+Test19Class" expanded="True">
+                      <Node name="Editor_List_FullFlow" selected="True" />
                     </Node>
                   </Node>
                 </Node>

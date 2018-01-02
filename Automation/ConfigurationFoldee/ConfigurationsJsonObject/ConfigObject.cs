@@ -22,5 +22,6 @@
 	{
         public Users Users { get; set; }
 		public string Url { get; set; }
+        public string FacebookUrl { get; set; }
 	}
 }

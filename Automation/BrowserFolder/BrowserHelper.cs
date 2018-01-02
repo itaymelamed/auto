@@ -95,6 +95,16 @@ namespace Automation.BrowserFolder
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", el);
         }
 
+        public void ScrollToBottom()
+        {
+            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+
+        public void ScrollToTop()
+        {
+            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, 0)");
+        }
+
         public bool WaitUntillTrue(Func<bool> func, string ex = "", int timeOut = 20, bool throwEx = true)
         {
             try
@@ -150,7 +160,14 @@ namespace Automation.BrowserFolder
 
         public void ClickJavaScript(IWebElement el)
         {
-            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", el);
+            try
+            {
+                ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", el);
+            }
+            catch(Exception e)
+            {
+                throw new NUnit.Framework.AssertionException(e.Message);
+            }
         }
 
         public void Click(IWebElement el, string elName, int timeOut = 20, bool throwex = true)
@@ -338,6 +355,11 @@ namespace Automation.BrowserFolder
             }, "Failed after refresh.", timeOut);
 
             return true;
+        }
+
+        public void ClickEsc()
+        {
+            _driver.FindElement(By.XPath("body")).SendKeys(Keys.Escape);
         }
     }
 }
