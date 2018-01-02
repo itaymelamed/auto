@@ -361,5 +361,10 @@ namespace Automation.BrowserFolder
         {
             _driver.FindElement(By.XPath("body")).SendKeys(Keys.Escape);
         }
+
+        public void MoveToIframe(string frameName)
+        {
+            _driver.SwitchTo().Frame(frameName);
+        }
     }
 }

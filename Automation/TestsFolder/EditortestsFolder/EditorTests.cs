@@ -482,14 +482,18 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("EditPage")]
             public void Editor_Article_FullFlow()
             {
+                BsonArray tagExValue = _params["Tags"].AsBsonArray;
+                string body = _params["Body"].ToString();
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
                 ArticleBase articleBase = editorPage.ClickOnArticle();
                 articleBase.WriteTitle("VIDEO:test article template");
-                articleBase.DragImage(0);
-                articleBase.WriteDec("test");
-                articleBase.WriteTags(new BsonArray());
+                CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
+                cropImagePopUp.ClickOnCropImageBtn();
+                cropImagePopUp.ClickOnEditokBtn();
+                articleBase.WriteDec(body);
+                articleBase.WriteTags(tagExValue);
                 PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));

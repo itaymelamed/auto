@@ -84,7 +84,7 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[for='playbuzz_enabled']")]
         IWebElement playBuzzCheckBox { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[.playbuzz-url]")]
+        [FindsBy(How = How.CssSelector, Using = ".playbuzz-url")]
         IWebElement playBuzzUrlField { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".game_image_wrapper img")]
@@ -370,6 +370,7 @@ namespace Automation.PagesObjects
         public bool ValidatePlayBuzzImageAppears()
         {
             Base.MongoDb.UpdateSteps("Validate PlayBuzz Image Appears");
+            _browserHelper.MoveToIframe("pb_feed_iframe");
             return _browserHelper.WaitForElement(playBuzzImage, nameof(playBuzzImage));
         }
 
