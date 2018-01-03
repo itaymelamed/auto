@@ -136,7 +136,6 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
-    <Compile Include="TestsFolder\AdminTestsFolder\SchedulrTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
