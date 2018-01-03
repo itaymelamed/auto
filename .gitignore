@@ -3,4 +3,5 @@ packages/
 Automation/bin/
 Automation/obj/
 Logger/obj/
+*.userprefs
 Automation.userprefs

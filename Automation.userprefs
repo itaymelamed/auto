@@ -1,14 +1,17 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
     <Files>
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="513" Column="14" />
-      <File FileName="auto Status" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="426" Column="32" />
+      <File FileName="Auto Status" />
+      <File FileName=".gitignore" Line="7" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
