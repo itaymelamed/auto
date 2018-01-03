@@ -431,6 +431,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
+                listsTemplate.ClickOnAscendingBtn();
                 List<string> before = listsTemplate.GetItemsIndex();
                 listsTemplate.ClickOnDscBtn();
                 List<string> after = listsTemplate.GetItemsIndex();

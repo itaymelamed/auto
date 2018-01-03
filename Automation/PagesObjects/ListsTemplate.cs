@@ -36,9 +36,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".count")]
         IList<IWebElement> counters { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".ascending")]
-        IWebElement AscendingIcon { get; set; }
-
         public ListsTemplate(Browser browser) :
             base(browser)
         {
@@ -176,13 +173,5 @@ namespace Automation.PagesObjects
             before.Reverse();
             return before.SequenceEqual(after);
         }
-
-        public void AscendingOrder()
-        {
-            Base.MongoDb.UpdateSteps("ascendingIcon.");
-            _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
-
-        }
-
     }
 }
