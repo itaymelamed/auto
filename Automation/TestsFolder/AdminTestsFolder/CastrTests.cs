@@ -301,6 +301,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "42")]
             [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Ignore("Bug")]
             public void Castr_Social_Networks_Twitter()
             {
                 HomePage homePage = new HomePage(_browser);

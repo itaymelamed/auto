@@ -402,6 +402,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_ValidateAscendingOrder()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -425,6 +426,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_ValidateDescendingOrder()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -449,6 +451,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_List_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -481,6 +484,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_Article_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -510,6 +514,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
                 HomePage homePage = new HomePage(_browser);
