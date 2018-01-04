@@ -202,7 +202,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Select status {status}.");
             _browserHelper.WaitForElement(statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
-            Thread.Sleep(3000);
+            Thread.Sleep(TimeSpan.FromSeconds(8));
 
             return new CastrPage(_browser);
         }
