@@ -9,11 +9,8 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 {
     public class TwitterAppPage
     {
-        [FindsBy(How = How.CssSelector, Using = "li.stream-item")]
+        [FindsBy(How = How.CssSelector, Using = ".content")]
         IList<IWebElement> tweets { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "li.stream-item a.twitter-timeline-link")]
-        IList<IWebElement> tweetsLinks { get; set; }
 
         Browser _browser;
         IWebDriver _driver;
@@ -31,7 +28,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
         {
             Base.MongoDb.UpdateSteps($"Search Tweet: {title}.");
             return _browserHelper
-                    .ExecutUntillTrue(() => tweets.ToList().Where(t => t.FindElement(By.XPath(".//p")).Text == title).FirstOrDefault());
+                .ExecutUntillTrue(() => tweets.ToList().Where(t => t.FindElement(By.XPath(".//p")).Text.Contains(title)).FirstOrDefault());
         }
 
         public bool ValidateTweetByTitle(string title)
@@ -41,8 +38,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public PostPage ClickOnTweetLink(string title)
         {
-            var index = tweets.ToList().LastIndexOf(SearchTweet(title));
-            var link = _browserHelper.ExecutUntillTrue(() => tweetsLinks.ToList().Where((t,i) => i == index).FirstOrDefault());
+            var link = _browserHelper.ExecutUntillTrue(() => SearchTweet(title).FindElement(By.XPath($".//a[title*='{Base._config.Env.ToString().ToLower()}']")));
             _browserHelper.Click(link, "Twiter Link");
 
             return new PostPage(_browser); 
