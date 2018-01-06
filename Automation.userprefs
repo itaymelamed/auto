@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs">
+  <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
       <File FileName="auto Status" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="306" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
