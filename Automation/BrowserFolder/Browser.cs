@@ -15,14 +15,13 @@ namespace Automation.BrowserFolder
     {
         public IWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
+        Capbilties _cap;
 
         public Browser(Configurations config)
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            chromeOptions.AddArgument("disable-infobars");
-            Driver = !config.Local ? new RemoteWebDriver(new Uri($"http://{config.Ip}:4444/wd/hub"), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
-                            new ChromeDriver(chromeOptions);
+            _cap = new Capbilties();
+            Driver = !config.Local ? new RemoteWebDriver(new Uri($"http://{config.Ip}:4444/wd/hub"), _cap.DesiredCap, TimeSpan.FromMinutes(30)) :
+                            new ChromeDriver(_cap.Options);
             BrowserHelper = new BrowserHelper(Driver);
         }
 
@@ -34,7 +33,7 @@ namespace Automation.BrowserFolder
         
         public void Maximize()
         {
-            Driver.Manage().Window.Maximize();
+            Driver.Manage().Window.Size = new System.Drawing.Size(1920, 1080);
         }
 
         public void Quit()
