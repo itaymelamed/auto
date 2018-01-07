@@ -16,7 +16,7 @@ namespace Automation.PagesObjects
         IWebElement titleTextBox { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        IWebElement editorMedia { get; set; }
+        protected IWebElement editorMedia { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
         IWebElement editorSeo { get; set; }
@@ -49,7 +49,7 @@ namespace Automation.PagesObjects
         IWebElement youtubeSearchResult { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".redactor_editor p")]
-        IList<IWebElement> dropMedia { get; set; }
+        protected IList<IWebElement> dropMedia { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.save")]
         IWebElement youtubeVideoSaveBtn { get; set; }

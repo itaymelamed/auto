@@ -93,5 +93,15 @@ namespace Automation.PagesObjects
 
             return new ArticleBase(_browser);
         }
+
+        public TVPage ClickOnTVTemplate()
+        {
+            Base.MongoDb.UpdateSteps($"Click on tv template.");
+            _browserHelper.WaitForElement(tv, nameof(tv));
+            _browserHelper.Click(tv, nameof(tv));
+
+            return new TVPage(_browser);
+        }
+
     }
 }

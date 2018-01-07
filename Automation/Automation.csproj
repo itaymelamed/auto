@@ -136,6 +136,7 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
+    <Compile Include="PagesObjects\TVPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

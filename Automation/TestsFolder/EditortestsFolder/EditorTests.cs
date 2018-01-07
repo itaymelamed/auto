@@ -402,7 +402,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Retry(2)]
             public void Editor_List_ValidateAscendingOrder()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -426,14 +425,12 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Retry(2)]
             public void Editor_List_ValidateDescendingOrder()
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
-                listsTemplate.ClickOnAscendingBtn();
                 List<string> before = listsTemplate.GetItemsIndex();
                 listsTemplate.ClickOnDscBtn();
                 List<string> after = listsTemplate.GetItemsIndex();
@@ -451,7 +448,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Retry(2)]
             public void Editor_List_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -484,7 +480,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Retry(2)]
             public void Editor_Article_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -514,7 +509,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Retry(2)]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -523,7 +517,57 @@ namespace Automation.TestsFolder.EditortestsFolder
                 ArticleBase articleBase = editorPage.ClickOnArticle();
                 articleBase.ClickOnPlayBuzzCBX();
                 articleBase.SetPlayBuzzURL("http://www.playbuzz.com/meliak10/when-and-where-in-time-should-you-live");
-                Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "layBuzz not appears");
+                Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "PlayBuzz not appears.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test23Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "39")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_TV_FullFlow()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                TVPage tVPage = editorPage.ClickOnTVTemplate();
+                tVPage.WriteTitle("Test TV Template");
+                tVPage.DragVideo();
+                tVPage.WriteDec("text text text text");
+                tVPage.WriteTags(new BsonArray());
+                PreviewPage previewPage = tVPage.ClickOnPreviewBtn();
+                PostPage postPage =  previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("Test TV Template"),"The post was not created.");
+                postPage.ValidateComponents(new BsonArray(".jw-video.jw-reset", ".post-title", ".post-metadata",".share-component--post-bottom", ".grid-container.grid-container--post",".articles-grid.articles-grid--narrow.articles-grid--followed-by-section",".taboola-container"));
+            }
+        }
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test24Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "40")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_TV_FullFlow()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                TVPage tVPage = editorPage.ClickOnTVTemplate();
+                tVPage.DragVideo();
+                tVPage.ValidateVideoAppear();
+                Assert.True(tVPage.ValidateVideoAppear(), "The video was not appear after dragNdrop video.");
+
+
             }
         }
     }
