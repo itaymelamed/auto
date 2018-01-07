@@ -24,7 +24,7 @@ namespace Automation.BrowserFolder
         {
             lock(_syncObject)
             {
-                Balancer = Balancer ? false : true;
+                Balancer = !Balancer;
                 return Balancer ? _hub1 : _hub2;
             }
         }
