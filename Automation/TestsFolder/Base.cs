@@ -12,7 +12,7 @@ namespace Automation.TestsFolder
     [TestFixture]
     public class Base
     {
-        static bool _hubLoadBalancer = true;
+        static HubLoadBalancer _hubLoadBalancer;
         protected Browser _browser { get; set; }
         protected BsonValue _params { get; set; }    
         protected Test _test { get; set; }
@@ -26,8 +26,9 @@ namespace Automation.TestsFolder
         {
             lock (_syncObject)
             {
-                _hubLoadBalancer = _hubLoadBalancer ? false : true;
                 _config = _config ?? new Configurations();
+                _hubLoadBalancer = _hubLoadBalancer ?? new HubLoadBalancer(_config);
+                HubLoadBalancer.UpdateHubs();
                 MongoDb = MongoDb ?? new MongoDb("TestRuns");
                 _testRun = _testRun ?? new TestRun(_config);
             }
@@ -35,7 +36,7 @@ namespace Automation.TestsFolder
             _test = new Test(_config);
             _params = new Params(_test, _config).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
-            _browser = new Browser(_config, _hubLoadBalancer);
+            _browser = new Browser(_config);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
             _browser.Navigate(_config.Url);

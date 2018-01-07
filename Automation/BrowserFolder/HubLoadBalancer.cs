@@ -6,27 +6,24 @@ namespace Automation.BrowserFolder
 {
     public class HubLoadBalancer
     {
-        string _hub1;
-        string _hub2;
+        public static bool _hub { get; set; }
         Configurations _config;
         static readonly object _syncObject = new object();
-        bool Balancer { get; set; } 
 
         public HubLoadBalancer(Configurations config)
         {
             _config = config;
-            _hub1 = $"http://{_config.GetIp(0)}:4444/wd/hub";
-            _hub2 = _hub1 = $"http://{_config.GetIp(1)}:4444/wd/hub";
-            Balancer = true;
+            _hub = true;
         }
 
-        public string GetAvailbleHub()
+        public static void UpdateHubs()
         {
-            lock(_syncObject)
-            {
-                Balancer = !Balancer;
-                return Balancer ? _hub1 : _hub2;
-            }
+            _hub = _hub ? false : true;
+        }
+
+        public static bool GetHub()
+        {
+            return _hub;
         }
     }
 }
