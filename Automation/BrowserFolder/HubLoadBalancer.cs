@@ -30,9 +30,9 @@ namespace Automation.BrowserFolder
                 else
                     return $"http://{_config.GetIp(1)}:4444/wd/hub";
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw new Exception(_hub1 + _hub2);
             }
         }
     }
