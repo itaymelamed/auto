@@ -15,6 +15,7 @@ namespace Automation.BrowserFolder
         List<Test> _hub1List;
         List<Test> _hub2List;
         private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
+        private readonly static object _synObject;
 
         public HubLoadBalancer(Configurations config)
         {
@@ -46,9 +47,12 @@ namespace Automation.BrowserFolder
 
         public string GetAvailbleHub(Test test)
         {
-            if(IsQueue())
+            lock(_synObject)
             {
-                waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue() || _hub1List.Count < 8 || _hub2List.Count < 8);
+                if (IsQueue())
+                {
+                    waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue() || _hub1List.Count < 8 || _hub2List.Count < 8);
+                }
             }
 
             string avHub = _hub1List.Count <= _hub2List.Count ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
