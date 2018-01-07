@@ -1,15 +1,39 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/BrowserFolder/HubLoadBalancer.cs">
     <Files>
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="426" Column="32" />
-      <File FileName="Auto Status" />
+      <File FileName="Automation/BrowserFolder/HubLoadBalancer.cs" Line="27" Column="14" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="87" Column="39" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
+      <File FileName="Automation/BrowserFolder/Browser.cs" Line="19" Column="16" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="39" Column="29" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/Ip.txt" Line="1" Column="41" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="EditortestsFolder" expanded="True">
+                    <Node name="EditorTests+Test10Class" expanded="True" />
+                    <Node name="EditorTests+Test13Class" expanded="True">
+                      <Node name="Editor_List_ValidateTtitle" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/Auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -17,8 +17,8 @@ namespace Automation.BrowserFolder
         {
             _config = config;
             _apiObj = new ApiObject();
-            _hub1 = _apiObj.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
-            _hub2 = _apiObj.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
+            _hub1 = _apiObj.GetRequest($"http://ip-10-0-8-224.us-west-2.compute.internal/api/hub")["slotCounts"]["free"].ToString();
+            _hub2 = _apiObj.GetRequest($"http://ip-10-0-6-142.us-west-2.compute.internal/api/hub")["slotCounts"]["free"].ToString();
         }
 
         public string GetAvalibleHub()
