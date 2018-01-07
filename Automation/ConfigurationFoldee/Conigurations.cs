@@ -83,10 +83,10 @@ namespace Automation.ConfigurationFolder
             return _mongoDb.GetConfig(siteName);
         }
 
-        string GetIp()
+        public string GetIp(int i = 0)
         {
             var ipTxtLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ConfigurationFoldee/ConfigurationsJsonObject/Ip.txt");
-            string ip = File.ReadAllText(ipTxtLocation);
+            string ip = File.ReadAllText(ipTxtLocation).Split(',')[i];
             return ip;
         }
     }
