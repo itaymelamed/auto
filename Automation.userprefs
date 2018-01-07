@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/BrowserFolder/Browser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/Base.cs">
     <Files>
-      <File FileName="Automation/BrowserFolder/HubLoadBalancer.cs" Line="25" Column="42" />
+      <File FileName="Automation/BrowserFolder/HubLoadBalancer.cs" Line="16" Column="16" />
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="87" Column="23" />
       <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
       <File FileName="Automation/BrowserFolder/Browser.cs" Line="31" Column="52" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="52" Column="34" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="35" Column="13" />
       <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/Test.cs" Line="1" Column="1" />
     </Files>
     <Pads>

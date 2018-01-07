@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Automation.ApiFolder;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
@@ -12,12 +14,18 @@ namespace Automation.BrowserFolder
         Configurations _config;
         List<Test> _hub1List;
         List<Test> _hub2List;
+        private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
 
         public HubLoadBalancer(Configurations config)
         {
             _hub1List = new List<Test>();
             _hub2List = new List<Test>();
             _config = config;
+        }
+
+        public bool IsQueue()
+        {
+            return _hub1List.Count == 8 && _hub1List.Count == 8;
         }
 
         void InsertTestToHub(Test test, int i)
@@ -38,6 +46,11 @@ namespace Automation.BrowserFolder
 
         public string GetAvailbleHub(Test test)
         {
+            if(IsQueue())
+            {
+               waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue());
+            }
+
             string avHub = _hub1List.Count <= _hub2List.Count ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
             if (_hub1List.Count <= _hub2List.Count)
             {
