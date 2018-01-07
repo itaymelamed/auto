@@ -26,9 +26,9 @@ namespace Automation.BrowserFolder
                 Driver = !config.Local ? new RemoteWebDriver(new Uri(hub), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
                 new ChromeDriver(chromeOptions);
             }
-            catch
+            catch(Exception e)
             {
-                throw new Exception(hub); 
+                throw new Exception(hub + e.Message); 
             }
 
             BrowserHelper = new BrowserHelper(Driver);
