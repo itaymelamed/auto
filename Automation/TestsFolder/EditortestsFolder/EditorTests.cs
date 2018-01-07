@@ -368,7 +368,6 @@ namespace Automation.TestsFolder.EditortestsFolder
 
                 Assert.True(listsTemplate.ValidateSubTitlesFields(acValues, titles), "Actual values are not as expected values");
             }
-
         }
 
         [TestFixture]

@@ -88,6 +88,7 @@ namespace Automation.PagesObjects
         public void HoverOverUserProfilePic()
         {
             Base.MongoDb.UpdateSteps($"Hover Over User Profile Picture.");
+            _browserHelper.WaitForElement(userProfilePic, nameof(userProfilePic));
             _browserHelper.Hover(userProfilePic);
         }
 
