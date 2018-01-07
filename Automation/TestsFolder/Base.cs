@@ -27,9 +27,9 @@ namespace Automation.TestsFolder
         {
             lock (_syncObject)
             {
+                _config = _config ?? new Configurations();
                 MongoDb = MongoDb ?? new MongoDb("TestRuns");
                 _testRun = _testRun ?? new TestRun(_config);
-                _config = _config ?? new Configurations();
             }
 
             _hubLoadBalancer = new HubLoadBalancer(_config);
