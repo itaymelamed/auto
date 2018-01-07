@@ -21,7 +21,7 @@ namespace Automation.BrowserFolder
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
-            Driver = !config.Local ? new RemoteWebDriver(new Uri(hubLoadBalancer.GetAvailbleHub()), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
+            Driver = !config.Local ? new RemoteWebDriver(new Uri("http://ip-10-0-6-142.us-west-2.compute.internal:4444/wd/hub"), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
                             new ChromeDriver(chromeOptions);
             BrowserHelper = new BrowserHelper(Driver);
         }
