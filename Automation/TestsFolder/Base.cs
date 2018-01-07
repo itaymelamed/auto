@@ -49,6 +49,7 @@ namespace Automation.TestsFolder
             _test.Result.Url =  _browser.GetUrl();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result);
             _browser.Quit();
+            _hubLoadBalancer._curHub = _hubLoadBalancer._curHub == 0 ? HubLoadBalancer._hub1Count-- : HubLoadBalancer._hub2Count--;
         }
     }
 }
