@@ -16,9 +16,8 @@ namespace Automation.BrowserFolder
         public IWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
 
-        public Browser(Configurations config)
+        public Browser(Configurations config, string hub)
         {
-            string hub = HubLoadBalancer.GetHub() ? "http://ip-10-0-6-142.us-west-2.compute.internal:4444/wd/hub" : "ip-10-0-8-224.us-west-2.compute.internal:4444/wd/hub";
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
