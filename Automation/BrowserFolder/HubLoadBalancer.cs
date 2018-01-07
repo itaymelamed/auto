@@ -15,7 +15,7 @@ namespace Automation.BrowserFolder
         List<Test> _hub1List;
         List<Test> _hub2List;
         private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
-        private readonly static object _synObject;
+        private readonly static object _synObject = new object(); 
 
         public HubLoadBalancer(Configurations config)
         {
@@ -51,7 +51,7 @@ namespace Automation.BrowserFolder
             {
                 if (IsQueue())
                 {
-                    waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue() || _hub1List.Count < 8 || _hub2List.Count < 8);
+                    waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue());
                 }
             }
 
