@@ -11,10 +11,11 @@ namespace Automation.BrowserFolder
         public string _hub1 { get; set; }
         public string _hub2 { get; set; }
         Configurations _config;
-        static readonly object _syncObject = new object();
+        static int _hubCount;
 
         public HubLoadBalancer(Configurations config)
         {
+            _hubCount = 0;
             _config = config;
             _apiObj = new ApiObject();
             _hub1 = _apiObj.GetRequest($"http://ip-10-0-8-224.us-west-2.compute.internal:4444/grid/api/hub")["slotCounts"]["free"].ToString();
@@ -23,10 +24,15 @@ namespace Automation.BrowserFolder
 
         public string GetAvalibleHub()
         {
-            if (int.Parse(_hub1) >= int.Parse(_hub2))
+            if (int.Parse(_hub1) > 0 && int.Parse(_hub1) <= 8 && _hubCount <= 8)
+            {
+                _hubCount++;
                 return $"http://{_config.GetIp(0)}:4444/wd/hub";
-            else
-                return $"http://{_config.GetIp(1)}:4444/wd/hub";
+            }
+
+            if (int.Parse(_hub1) == 8)
+                _hubCount = 0;
+            return $"http://{_config.GetIp(1)}:4444/wd/hub";
         }
     }
 }
