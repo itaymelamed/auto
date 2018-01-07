@@ -15,6 +15,7 @@ namespace Automation.BrowserFolder
 
         public HubLoadBalancer(Configurations config)
         {
+            config = _config;
             _apiObj = new ApiObject();
             _hub1 = _apiObj.GetRequest("http://ip-10-0-8-224.us-west-2.compute.internal:4444/grid/api/hub")["slotCounts"]["free"].ToString();
             _hub2 = _apiObj.GetRequest("http://ip-10-0-6-142.us-west-2.compute.internal:4444/grid/api/hub")["slotCounts"]["free"].ToString();
