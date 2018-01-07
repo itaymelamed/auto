@@ -12,7 +12,7 @@ namespace Automation.TestsFolder
     [TestFixture]
     public class Base
     {
-        HubLoadBalancer _hubLoadBalancer;
+        static bool _hubLoadBalancer = true;
         protected Browser _browser { get; set; }
         protected BsonValue _params { get; set; }    
         protected Test _test { get; set; }
@@ -26,8 +26,8 @@ namespace Automation.TestsFolder
         {
             lock (_syncObject)
             {
+                _hubLoadBalancer = _hubLoadBalancer ? false : true;
                 _config = _config ?? new Configurations();
-                _hubLoadBalancer = _hubLoadBalancer ?? new HubLoadBalancer(_config);
                 MongoDb = MongoDb ?? new MongoDb("TestRuns");
                 _testRun = _testRun ?? new TestRun(_config);
             }
