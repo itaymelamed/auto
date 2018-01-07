@@ -22,8 +22,11 @@ namespace Automation.BrowserFolder
 
         public string GetAvailbleHub()
         {
-            Balancer = Balancer ? false : true ;
-            return Balancer ? _hub1 : _hub2;
+            lock(_syncObject)
+            {
+                Balancer = Balancer ? false : true;
+                return Balancer ? _hub1 : _hub2;
+            }
         }
     }
 }
