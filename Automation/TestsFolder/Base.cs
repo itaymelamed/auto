@@ -33,8 +33,8 @@ namespace Automation.TestsFolder
                 _testRun = _testRun ?? new TestRun(_config);
             }
 
-            _hubLoadBalancer = new HubLoadBalancer(_config);
             _test = new Test(_config);
+            _hubLoadBalancer = new HubLoadBalancer(_config);
             _params = new Params(_test, _config).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
             _browser = new Browser(_config, _hubLoadBalancer.GetAvalibleHub());
