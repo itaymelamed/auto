@@ -1,43 +1,69 @@
 ﻿using System;
+using System.Collections.Generic;
 using Automation.ApiFolder;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
+using Automation.TestsObjects;
 
 namespace Automation.BrowserFolder
 {
     public class HubLoadBalancer
     {
-        ApiObject _apiObj;
-        public string _hub1 { get; set; }
-        public string _hub2 { get; set; }
         Configurations _config;
-        public static int _hub1Count = 0;
-        public static int _hub2Count = 0;
-        public int _curHub { get; set; }
+        List<Test> _hub1List;
+        List<Test> _hub2List;
 
         public HubLoadBalancer(Configurations config)
         {
+            _hub1List = new List<Test>();
+            _hub2List = new List<Test>();
             _config = config;
-            _apiObj = new ApiObject();
-            _hub1 = _apiObj.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
-            _hub2 = _apiObj.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
         }
 
-        public string GetAvalibleHub()
+        void InsertTestToHub(Test test, int i)
         {
-            if (int.Parse(_hub1) > 0 && int.Parse(_hub1) <= 8 && _hub1Count <= 8 && _hub1Count >= _hub2Count)
+            if (i == 0)
+                _hub1List.Add(test);
+            else
+                _hub2List.Add(test);
+        }
+
+        public void CleanTestFromHub(Test test)
+        {
+            if (_hub1List.Contains(test))
+                _hub1List.Remove(test);
+            else
+                _hub2List.Remove(test);
+        }
+
+        public string GetAvailbleHub(Test test)
+        {
+            string avHub = _hub1List.Count <= _hub2List.Count ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
+            if (_hub1List.Count <= _hub2List.Count)
             {
-                _hub1Count++;
-                _curHub = 0;
-                return $"http://{_config.GetIp(0)}:4444/wd/hub";
+                avHub = $"http://{_config.GetIp(0)}:4444/wd/hub";
+                InsertTestToHub(test, 0);
+                return avHub;
             }
 
-            else
-            {
-                _hub2Count++;
-                _curHub = 1;
-                return $"http://{_config.GetIp(1)}:4444/wd/hub";
-            }
+            avHub = $"http://{_config.GetIp(1)}:4444/wd/hub";
+            InsertTestToHub(test, 1);
+            return avHub;
         }
+
+        //public string GetAvalibleHub()
+        //{
+        //    if (int.Parse(_hub1Url) > 0 && int.Parse(_hub1Url) <= 8 && _hub1Count <= 8 && _hub1Count >= _hub2Count)
+        //    {
+        //        _hub1Count++;
+        //        return $"http://{_config.GetIp(0)}:4444/wd/hub";
+        //    }
+
+        //    else
+        //    {
+        //        _hub2Count++;
+        //        return $"http://{_config.GetIp(1)}:4444/wd/hub";
+        //    }
+        //}
     }
 }
