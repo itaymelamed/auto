@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using System.IO;
 using Automation.MongoDbObject;
+using Automation.ApiFolder;
 
 namespace Automation.ConfigurationFolder
 {
@@ -86,7 +87,7 @@ namespace Automation.ConfigurationFolder
         public string GetIp(int i = 0)
         {
             var ipTxtLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ConfigurationFoldee/ConfigurationsJsonObject/Ip.txt");
-            string ip = File.ReadAllText(ipTxtLocation).Split(',')[i];
+            string ip = File.ReadAllText(ipTxtLocation).Split(',')[0];
             return ip;
         }
     }

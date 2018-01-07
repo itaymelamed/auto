@@ -6,6 +6,7 @@ using Automation.TestsObjects;
 using Automation.MongoDbObject;
 using static Automation.TestsObjects.Result;
 using Automation.TestsObject;
+using Automation.ApiFolder;
 
 namespace Automation.TestsFolder
 {
