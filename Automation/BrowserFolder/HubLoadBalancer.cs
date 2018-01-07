@@ -25,8 +25,8 @@ namespace Automation.BrowserFolder
         {
             lock(_syncObject)
             {
-                if (int.Parse(_hub1) == 8)
-                    return $"http://{_config.GetIp(1)}:4444/wd/hub";
+                if (int.Parse(_hub1) >= int.Parse(_hub2))
+                    return $"http://{_config.GetIp(0)}:4444/wd/hub";
                 else
                     return $"http://{_config.GetIp(1)}:4444/wd/hub";
             }
