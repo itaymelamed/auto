@@ -137,6 +137,7 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
     <Compile Include="BrowserFolder\Capbilties.cs" />
+    <Compile Include="BrowserFolder\HubLoadBalancer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
