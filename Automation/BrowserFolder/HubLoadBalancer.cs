@@ -19,7 +19,7 @@ namespace Automation.BrowserFolder
 
         public int CheckHubLoad(string hubUrl)
         {
-            return int.Parse(_apiObj.GetRequest(hubUrl)["used"].ToString());
+            return int.Parse(_apiObj.GetRequest($"{hubUrl}/status")["used"].ToString());
         }
 
         public string GetIdleHub()
