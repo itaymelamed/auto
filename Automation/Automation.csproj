@@ -138,6 +138,7 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
     <Compile Include="BrowserFolder\Capbilties.cs" />
     <Compile Include="BrowserFolder\HubLoadBalancer.cs" />
+    <Compile Include="ApiFolder\ApiObject.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -156,6 +157,7 @@
     <Folder Include="TestsFolder\EditortestsFolder\" />
     <Folder Include="PagesObjects\CasterObjectsFolder\" />
     <Folder Include="PagesObjects\ExternalPagesobjects\" />
+    <Folder Include="ApiFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationFoldee\ConfigurationsJsonObject\Ip.txt">

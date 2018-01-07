@@ -20,7 +20,7 @@ namespace Automation.BrowserFolder
         public Browser(Configurations config)
         {
             _cap = new Capbilties();
-            Driver = !config.Local ? new RemoteWebDriver(new Uri($"http://{config.Ip}:4444/wd/hub"), _cap.DesiredCap, TimeSpan.FromMinutes(30)) :
+            Driver = !config.Local ? new RemoteWebDriver(new Uri(new HubLoadBalancer().GetIdleHub()), _cap.DesiredCap, TimeSpan.FromMinutes(30)) :
                             new ChromeDriver(_cap.Options);
             BrowserHelper = new BrowserHelper(Driver);
         }
