@@ -25,10 +25,10 @@ namespace Automation.BrowserFolder
         {
             try
             {
-                if (int.Parse(_hub1) <= int.Parse(_hub2))
-                    return $"http://{_config.GetIp(0)}:4444/wd/hub";
-                else
+                if (int.Parse(_hub1) == 0)
                     return $"http://{_config.GetIp(1)}:4444/wd/hub";
+                else
+                    return $"http://{_config.GetIp(0)}:4444/wd/hub";
             }
             catch
             {
