@@ -17,18 +17,18 @@ namespace Automation.BrowserFolder
         {
             _config = config;
             _apiObj = new ApiObject();
-            _hub1 = _apiObj.GetRequest("http://ip-10-0-8-224.us-west-2.compute.internal:4444/grid/api/hub")["slotCounts"]["free"].ToString();
-            _hub2 = _apiObj.GetRequest("http://ip-10-0-6-142.us-west-2.compute.internal:4444/grid/api/hub")["slotCounts"]["free"].ToString();
+            _hub1 = _apiObj.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
+            _hub2 = _apiObj.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString();
         }
 
         public string GetAvalibleHub()
         {
             lock(_syncObject)
             {
-                if (int.Parse(_hub1) == 0)
-                    return $"http://{_config.GetIp(1)}:4444/wd/hub";
-                else
+                if (int.Parse(_hub1) == 8)
                     return $"http://{_config.GetIp(0)}:4444/wd/hub";
+                else
+                    return $"http://{_config.GetIp(1)}:4444/wd/hub";
             }
         }
     }
