@@ -23,16 +23,12 @@ namespace Automation.BrowserFolder
 
         public string GetAvalibleHub()
         {
-            try
+            lock(_syncObject)
             {
                 if (int.Parse(_hub1) == 0)
                     return $"http://{_config.GetIp(1)}:4444/wd/hub";
                 else
                     return $"http://{_config.GetIp(0)}:4444/wd/hub";
-            }
-            catch
-            {
-                throw new Exception(_hub1 + _hub2);
             }
         }
     }
