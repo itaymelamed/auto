@@ -136,8 +136,9 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
-    <Compile Include="BrowserFolder\HubLoadBalancer.cs" />
     <Compile Include="ApiFolder\ApiObject.cs" />
+    <Compile Include="LoadBalancerFolder\HubLoadBalancer.cs" />
+    <Compile Include="LoadBalancerFolder\Hub.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -157,6 +158,7 @@
     <Folder Include="PagesObjects\CasterObjectsFolder\" />
     <Folder Include="PagesObjects\ExternalPagesobjects\" />
     <Folder Include="ApiFolder\" />
+    <Folder Include="LoadBalancerFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationFoldee\ConfigurationsJsonObject\Ip.txt">
