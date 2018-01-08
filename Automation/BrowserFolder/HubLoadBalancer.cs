@@ -49,10 +49,8 @@ namespace Automation.BrowserFolder
         {
             lock(_synObject)
             {
-                if (IsQueue())
-                {
-                    waitHandle.WaitOne(TimeSpan.FromMinutes(30), !IsQueue());
-                }
+                while (IsQueue())
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
             }
 
             string avHub = _hub1List.Count <= _hub2List.Count ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
