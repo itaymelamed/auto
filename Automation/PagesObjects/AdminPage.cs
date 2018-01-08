@@ -7,7 +7,7 @@ namespace Automation.PagesObjects
 {
     public class AdminPage
     {
-        [FindsBy(How = How.CssSelector, Using = "[href='/castr']")]
+        [FindsBy(How = How.CssSelector, Using = "[href*='/castr']")]
         IWebElement caster { get; set; }
 
         Browser _browser;
