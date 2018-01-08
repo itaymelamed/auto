@@ -13,8 +13,8 @@ namespace Automation.BrowserFolder
     {
         Configurations _config;
         ApiObject _api;
-        int _hub1;
-        int _hub2;
+        int _hub1Free;
+        int _hub2Free;
         static readonly object _syncObject = new object();
 
         public HubLoadBalancer(Configurations config)
@@ -25,14 +25,14 @@ namespace Automation.BrowserFolder
 
         public void UpdateHubs()
         {
-            _hub1 = int.Parse(_api.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
-            _hub2 = int.Parse(_api.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
+            _hub1Free = int.Parse(_api.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
+            _hub2Free = int.Parse(_api.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
         }
 
         public bool IsQueue()
         {
             UpdateHubs();
-            return _hub1 == 0 && _hub2 >= 0;
+            return _hub1Free == 0 && _hub2Free == 0;
         }
 
         public string GetAvailbleHub()
@@ -41,7 +41,7 @@ namespace Automation.BrowserFolder
             {
                 while (IsQueue())
                     Thread.Sleep(TimeSpan.FromSeconds(1));
-                return _hub1 >= _hub2 ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
+                return _hub1Free >= _hub2Free ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
             }
         }
     }
