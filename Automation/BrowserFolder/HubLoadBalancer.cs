@@ -19,14 +19,19 @@ namespace Automation.BrowserFolder
 
         public HubLoadBalancer(Configurations config)
         {
-            _api = new ApiObject();
-            _hub1 = int.Parse(_api.GetRequest($"http://{config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
-            _hub2 = int.Parse(_api.GetRequest($"http://{config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
             _config = config;
+            _api = new ApiObject();
+        }
+
+        public void UpdateHubs()
+        {
+            _hub1 = int.Parse(_api.GetRequest($"http://{_config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
+            _hub2 = int.Parse(_api.GetRequest($"http://{_config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
         }
 
         public bool IsQueue()
         {
+            UpdateHubs();
             return _hub1 == 0 && _hub2 >= 0;
         }
 

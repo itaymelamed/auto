@@ -115,7 +115,7 @@ namespace Automation.BrowserFolder
                     {
                         return func();
                     }
-                    catch(Exception e)
+                    catch
                     {
                         return false;
                     }

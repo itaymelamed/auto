@@ -13,8 +13,7 @@ namespace Automation.TestsFolder
     [TestFixture]
     public class Base
     {
-        string _hubUrl;
-        static HubLoadBalancer _hubLoadBalancer;
+        HubLoadBalancer _hubLoadBalancer;
         protected Browser _browser { get; set; }
         protected BsonValue _params { get; set; }    
         protected Test _test { get; set; }
