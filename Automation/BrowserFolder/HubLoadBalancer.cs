@@ -26,7 +26,7 @@ namespace Automation.BrowserFolder
 
         public bool IsQueue()
         {
-            return _hub1List.Count >= 8 && _hub1List.Count >= 8;
+            return _hub1List.Count >= 8 && _hub2List.Count >= 8;
         }
 
         void InsertTestToHub(Test test, int i)
