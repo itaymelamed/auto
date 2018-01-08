@@ -23,7 +23,7 @@ namespace Automation.LoadBalancerFolder
 
         public bool IsHubAvalible()
         {
-            return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString()) == 0;
+            return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString()) != 0;
         }
 
         public int GetWaitingSessions()
