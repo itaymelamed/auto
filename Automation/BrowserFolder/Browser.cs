@@ -17,7 +17,7 @@ namespace Automation.BrowserFolder
         public BrowserHelper BrowserHelper { get; }
         static readonly object _syncObject = new object();
 
-        public Browser(Configurations config, HubLoadBalancer loadBalancer)
+        public Browser(HubLoadBalancer loadBalancer)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
@@ -25,10 +25,18 @@ namespace Automation.BrowserFolder
             lock(_syncObject)
             {
                 string url = loadBalancer.GetAvailbleHub();
-                Driver = !config.Local ? new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
-                new ChromeDriver(chromeOptions);
+                Driver = new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30));
             }
 
+            BrowserHelper = new BrowserHelper(Driver);
+        }
+
+        public Browser()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+            chromeOptions.AddArgument("disable-infobars");
+            Driver = new ChromeDriver(chromeOptions);
             BrowserHelper = new BrowserHelper(Driver);
         }
 

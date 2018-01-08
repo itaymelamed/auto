@@ -35,8 +35,8 @@ namespace Automation.TestsFolder
             _test = new Test(_config);
             _params = new Params(_test, _config).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
-            _hubLoadBalancer = new HubLoadBalancer(_config);
-            _browser = new Browser(_config, _hubLoadBalancer);
+            _hubLoadBalancer = !_config.Local? new HubLoadBalancer(_config) : null;
+            _browser = !_config.Local ? new Browser(_hubLoadBalancer) : new Browser();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
             _browser.Navigate(_config.Url);
