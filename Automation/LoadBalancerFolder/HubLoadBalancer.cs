@@ -21,7 +21,7 @@ namespace Automation.BrowserFolder
         {
             _config = config;
             _hub1 = new Hub(_config, 0);
-            _hub2 = new Hub(_config, 1); 
+            _hub2 = new Hub(_config, 1);
         }
 
         public bool IsQueued()
@@ -31,17 +31,14 @@ namespace Automation.BrowserFolder
 
         public string GetAvailbleHub()
         {
-            lock(_syncObject)
-            {
-                while (IsQueued())
-                    Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            while (IsQueued())
+                Thread.Sleep(TimeSpan.FromMilliseconds(100));
 
-                if (_hub1.GetHubFreeNodes() > _hub2.GetHubFreeNodes())
-                    return _hub1.GetHubUrl();
-                else
-                    return
-                        _hub2.GetHubUrl();
-            }
+            if (_hub1.GetHubFreeNodes() > _hub2.GetHubFreeNodes())
+                return _hub1.GetHubUrl();
+            else
+                return
+                    _hub2.GetHubUrl();
         }
     }
 }
