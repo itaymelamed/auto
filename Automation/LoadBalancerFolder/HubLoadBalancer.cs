@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
-using Automation.ApiFolder;
 using Automation.ConfigurationFolder;
 using Automation.LoadBalancerFolder;
-using Automation.TestsFolder;
-using Automation.TestsObjects;
 
 namespace Automation.BrowserFolder
 {
@@ -36,9 +31,7 @@ namespace Automation.BrowserFolder
 
             if (_hub1.GetHubFreeNodes() > _hub2.GetHubFreeNodes())
                 return _hub1.GetHubUrl();
-            else
-                return
-                    _hub2.GetHubUrl();
+            return _hub2.GetHubUrl();
         }
     }
 }
