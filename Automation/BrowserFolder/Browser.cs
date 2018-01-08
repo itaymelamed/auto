@@ -15,15 +15,20 @@ namespace Automation.BrowserFolder
     {
         public IWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
+        static readonly object _syncObject = new object();
 
         public Browser(Configurations config, HubLoadBalancer loadBalancer)
         {
-            string url = loadBalancer.GetAvailbleHub();
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
-            Driver = !config.Local ? new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
-            new ChromeDriver(chromeOptions);
+            lock(_syncObject)
+            {
+                string url = loadBalancer.GetAvailbleHub();
+                Driver = !config.Local ? new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
+                new ChromeDriver(chromeOptions);
+            }
+
             BrowserHelper = new BrowserHelper(Driver);
         }
 
