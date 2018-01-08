@@ -12,58 +12,32 @@ namespace Automation.BrowserFolder
     public class HubLoadBalancer
     {
         Configurations _config;
-        List<Test> _hub1List;
-        List<Test> _hub2List;
-        private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
-        private readonly static object _synObject = new object(); 
+        ApiObject _api;
+        int _hub1;
+        int _hub2;
+        static readonly object _syncObject = new object();
 
         public HubLoadBalancer(Configurations config)
         {
-            _hub1List = new List<Test>();
-            _hub2List = new List<Test>();
+            _api = new ApiObject();
+            _hub1 = int.Parse(_api.GetRequest($"http://{config.GetIp(0)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
+            _hub2 = int.Parse(_api.GetRequest($"http://{config.GetIp(1)}:4444/grid/api/hub")["slotCounts"]["free"].ToString());
             _config = config;
         }
 
         public bool IsQueue()
         {
-            return _hub1List.Count >= 8 && _hub2List.Count >= 8;
+            return _hub1 == 0 && _hub2 >= 0;
         }
 
-        void InsertTestToHub(Test test, int i)
+        public string GetAvailbleHub()
         {
-            if (i == 0)
-                _hub1List.Add(test);
-            else
-                _hub2List.Add(test);
-        }
-
-        public void CleanTestFromHub(Test test)
-        {
-            if (_hub1List.Contains(test))
-                _hub1List.Remove(test);
-            else
-                _hub2List.Remove(test);
-        }
-
-        public string GetAvailbleHub(Test test)
-        {
-            lock(_synObject)
+            lock(_syncObject)
             {
                 while (IsQueue())
                     Thread.Sleep(TimeSpan.FromSeconds(1));
+                return _hub1 >= _hub2 ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
             }
-
-            string avHub = _hub1List.Count <= _hub2List.Count ? $"http://{_config.GetIp(0)}:4444/wd/hub" : $"http://{_config.GetIp(1)}:4444/wd/hub";
-            if (_hub1List.Count <= _hub2List.Count)
-            {
-                avHub = $"http://{_config.GetIp(0)}:4444/wd/hub";
-                InsertTestToHub(test, 0);
-                return avHub;
-            }
-
-            avHub = $"http://{_config.GetIp(1)}:4444/wd/hub";
-            InsertTestToHub(test, 1);
-            return avHub;
         }
     }
 }

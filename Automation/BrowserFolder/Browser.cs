@@ -16,21 +16,14 @@ namespace Automation.BrowserFolder
         public IWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
 
-        public Browser(Configurations config, string hub)
+        public Browser(Configurations config, HubLoadBalancer loadBalancer)
         {
+            string url = loadBalancer.GetAvailbleHub();
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
-            try
-            {
-                Driver = !config.Local ? new RemoteWebDriver(new Uri(hub), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
-                new ChromeDriver(chromeOptions);
-            }
-            catch(Exception e)
-            {
-                throw new Exception(hub + e.Message); 
-            }
-
+            Driver = !config.Local ? new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30)) :
+            new ChromeDriver(chromeOptions);
             BrowserHelper = new BrowserHelper(Driver);
         }
 
