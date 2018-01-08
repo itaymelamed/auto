@@ -23,12 +23,26 @@ namespace Automation.LoadBalancerFolder
 
         public bool IsHubAvalible()
         {
-            return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString()) != 0;
+            try
+            {
+                return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString()) != 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public int GetWaitingSessions()
         {
-            return int.Parse(_api.GetRequest(_hubApiUrl)["newSessionRequestCount"].ToString());
+            try
+            {
+                return int.Parse(_api.GetRequest(_hubApiUrl)["newSessionRequestCount"].ToString());
+            }
+            catch
+            {
+                return 8;
+            }
         }
 
         public string GetHubUrl()
@@ -38,12 +52,26 @@ namespace Automation.LoadBalancerFolder
 
         public int GetHubFreeNodes()
         {
-            return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString());
+            try
+            {
+                return int.Parse(_api.GetRequest(_hubApiUrl)["slotCounts"]["free"].ToString());
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public bool Queued()
         {
-            return GetWaitingSessions() != 0;
+            try
+            {
+                return GetWaitingSessions() != 0;
+            }
+            catch
+            {
+                return true;
+            }
         }
     }
 }
