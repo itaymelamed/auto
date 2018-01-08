@@ -54,7 +54,7 @@ namespace Automation.ConfigurationFolder
         {
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
             Ip = GetIp();
-            MongoDbConnectionString = $"mongodb://{Ip}:27017";
+            MongoDbConnectionString = $"mongodb://{GetIp(2)}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
