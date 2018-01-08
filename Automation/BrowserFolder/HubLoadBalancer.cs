@@ -67,20 +67,5 @@ namespace Automation.BrowserFolder
             InsertTestToHub(test, 1);
             return avHub;
         }
-
-        //public string GetAvalibleHub()
-        //{
-        //    if (int.Parse(_hub1Url) > 0 && int.Parse(_hub1Url) <= 8 && _hub1Count <= 8 && _hub1Count >= _hub2Count)
-        //    {
-        //        _hub1Count++;
-        //        return $"http://{_config.GetIp(0)}:4444/wd/hub";
-        //    }
-
-        //    else
-        //    {
-        //        _hub2Count++;
-        //        return $"http://{_config.GetIp(1)}:4444/wd/hub";
-        //    }
-        //}
     }
 }
