@@ -26,14 +26,14 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public bool IsQueued()
+        public bool HubsFree()
         {
-            return _hubs.All(h => !h.IsHubAvalible());
+            return _hubs.All(h => h.IsHubAvalible());
         }
 
         public string GetAvailbleHub()
         {            
-            WaitUntill(() => !IsQueued());
+            WaitUntill(() => HubsFree());
             return _hubs.OrderByDescending(h => h.GetHubFreeNodes())
                         .FirstOrDefault().GetHubUrl();
         }
