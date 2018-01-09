@@ -326,6 +326,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "43")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Ignore("")]
             public void Castr_Ftb90_PublishPostInEditor()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -340,6 +341,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
+        [Ignore("")]
         public class Test15Class : Base
         {
             [Test]
