@@ -92,8 +92,8 @@ namespace Automation.ConfigurationFolder
 
         public string GetIp(int i = 0)
         {
-            var ipTxtLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ConfigurationFoldee/ConfigurationsJsonObject/Ip.txt");
-            string ip = File.ReadAllText(ipTxtLocation).Split(',')[i];
+            var ipTxtLocation = "/host/ip.txt";
+            string ip = File.ReadAllText(ipTxtLocation).Split(';').First();
             return ip;
         }
     }

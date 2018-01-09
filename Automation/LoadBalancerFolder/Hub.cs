@@ -1,6 +1,4 @@
-﻿using System;
-using Automation.ApiFolder;
-using Automation.ConfigurationFolder;
+﻿using Automation.ApiFolder;
 
 namespace Automation.LoadBalancerFolder
 {
@@ -10,12 +8,11 @@ namespace Automation.LoadBalancerFolder
         string _url;
         string _hubApiUrl;
         ApiObject _api;
-        Configurations _config;
 
-        public Hub(string host, int port)
+        public Hub(int port, int HubNum)
         {
             _api = new ApiObject();
-            _baseUrl = $"http://{host}:{port}";
+            _baseUrl = $"http://hub{HubNum}:{port}";
             _url = $"http://{_baseUrl}/wd/hub";
             _hubApiUrl = $"http://{_baseUrl}/grid/api/hub";
         }
