@@ -13,8 +13,8 @@ namespace Automation.LoadBalancerFolder
         {
             _api = new ApiObject();
             _baseUrl = $"http://hub{HubNum}:{port}";
-            _url = $"http://{_baseUrl}/wd/hub";
-            _hubApiUrl = $"http://{_baseUrl}/grid/api/hub";
+            _url = $"{_baseUrl}/wd/hub";
+            _hubApiUrl = $"{_baseUrl}/grid/api/hub";
         }
 
         public bool IsHubAvalible()
