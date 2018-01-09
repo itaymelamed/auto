@@ -24,11 +24,8 @@ namespace Automation.BrowserFolder
             return !_hub1.IsHubAvalible() && !_hub2.IsHubAvalible();
         }
 
-        public string GetAvailbleHub(bool turnOn = true)
-        {
-            if (!turnOn)
-                return _hub1.GetHubUrl();
-            
+        public string GetAvailbleHub()
+        {            
             while (IsQueued())
                 Thread.Sleep(TimeSpan.FromMilliseconds(100));
 

@@ -13,8 +13,6 @@ namespace Automation.Helpersobjects
         public Type LineUp { get; }
         public List<Type> Templates { get; }
         public string Title { get; }
-        Browser _browser;
-
 
         public PostCreator(Browser browser)
             :base(browser)
@@ -38,7 +36,5 @@ namespace Automation.Helpersobjects
 
             return new PostPage(_browser);
         }
-
-
     }
 }

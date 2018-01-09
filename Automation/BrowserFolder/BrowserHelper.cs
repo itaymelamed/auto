@@ -204,14 +204,14 @@ namespace Automation.BrowserFolder
             action.MoveToElement(el).Perform();
         }
 
-        public void WaitUntill(IWebElement el, Func<IWebElement, bool> func, int timeOut = 30)
+        public void ExecuteUntill(Action action, int timeOut = 20)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
             wait.Until(d => {
                 try
                 {
-                    MoveToEl(el);
-                    return func(el) == true;
+                    action();
+                    return true;
                 }
                 catch
                 {
@@ -365,6 +365,12 @@ namespace Automation.BrowserFolder
         public void MoveToIframe(string frameName)
         {
             _driver.SwitchTo().Frame(frameName);
+        }
+
+        public void ClickByPoint(IWebElement el, int x, int y)
+        {
+            Actions action = new Actions(_driver);
+            action.MoveToElement(el, x, y).Click();
         }
     }
 }

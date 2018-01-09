@@ -5,13 +5,14 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using System.IO;
 using Automation.MongoDbObject;
-using Automation.ApiFolder;
+using System.Linq;
 
 namespace Automation.ConfigurationFolder
 {
     public class Configurations
     {
         public ConfigObject ConfigObject { get; }
+        public BsonDocument GlobalConfigObject { get; }
         public Enviroment Env { get; }
         public BrowserType BrowserT { get; }
         public string SiteName { get; }
@@ -58,6 +59,7 @@ namespace Automation.ConfigurationFolder
 			Env = GetEnvType();
             SiteName = GetSiteName();
             BrowserT = BrowserType.Desktop;
+            GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             Url = $"http://{Env}.{ConfigObject.Url}";
         }
@@ -81,6 +83,11 @@ namespace Automation.ConfigurationFolder
         BsonValue GetConfigJson(string siteName)
         {
             return _mongoDb.GetConfig(siteName);
+        }
+
+        BsonDocument GetGlobalConfig()
+        {
+            return _mongoDb.GetAllDocuments("Configurations").First();
         }
 
         public string GetIp(int i = 0)

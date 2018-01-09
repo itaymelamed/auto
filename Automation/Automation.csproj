@@ -140,6 +140,7 @@
     <Compile Include="LoadBalancerFolder\HubLoadBalancer.cs" />
     <Compile Include="LoadBalancerFolder\Hub.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\FtbPost.cs" />
+    <Compile Include="PagesObjects\SettingsPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

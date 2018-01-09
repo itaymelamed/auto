@@ -25,15 +25,18 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[href='/admin']")]
         IWebElement admin { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[href='/edit_settings']")]
+        IWebElement settings { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = ".user-menu__link img")]
         IWebElement userProfilePic { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".items-list")]
         protected IList<IWebElement> leagues { get; set; }
 
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        protected Browser _browser;
+        protected IWebDriver _driver;
+        protected BrowserHelper _browserHelper;
 
         public HomePage(Browser browser)
         {
@@ -94,10 +97,19 @@ namespace Automation.PagesObjects
         public AdminPage ClickOnAdmin()
         {
             Base.MongoDb.UpdateSteps($"Click on Admin.");
-            _browserHelper.WaitForElement(admin, nameof(admin), 60, true);
+            _browserHelper.WaitForElement(admin, nameof(admin), 30, true);
             _browserHelper.Click(admin, nameof(admin));
 
             return new AdminPage(_browser);
+        }
+
+        public SettingsPage ClickOnSettings()
+        {
+            Base.MongoDb.UpdateSteps($"Click on Settings.");
+            _browserHelper.WaitForElement(settings, nameof(settings), 30, true);
+            _browserHelper.Click(settings, nameof(settings));
+
+            return new SettingsPage(_browser);
         }
 
         public bool ValidateAdminAppears()

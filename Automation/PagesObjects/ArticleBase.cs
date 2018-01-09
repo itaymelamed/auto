@@ -287,7 +287,7 @@ namespace Automation.PagesObjects
             }
             _browserHelper.WaitUntillTrue(() => 
             {
-                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
+                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" , "DTest"}));
                 return GetTagsValue().Count() > 0;
             }, "Failed to add tags");
         }
@@ -370,7 +370,7 @@ namespace Automation.PagesObjects
         public bool ValidatePlayBuzzImageAppears()
         {
             Base.MongoDb.UpdateSteps("Validate PlayBuzz Image Appears");
-            _browserHelper.MoveToIframe("pb_feed_iframe");
+            _browserHelper.ExecuteUntill(() => _browserHelper.MoveToIframe("pb_feed_iframe"));
             return _browserHelper.WaitForElement(playBuzzImage, nameof(playBuzzImage));
         }
 

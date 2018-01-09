@@ -321,13 +321,14 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
+        [Ignore("")]
         public class Test14Class : Base
         {
             [Test]
             [Property("TestCaseId", "43")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
             [Ignore("")]
-            public void Castr_Ftb90_PublishPostInEditor()
+            public void Castr_Ftb90()
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
@@ -347,15 +348,21 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "44")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
-            public void Castr_Ftb90_PublishPostInEditor()
+            public void Castr_Ftb90_PublishIdPost()
             {
+                _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
+                SettingsPage settingsPage = homePage.ClickOnSettings();
+                settingsPage.ChangeLanguage(Languages.id);
+                settingsPage.ClickOnSaveBtn();
+                 EditorPage editorPage = settingsPage.ClickOnWriteAnArticle();
                 PostCreator postCreator = new PostCreator(_browser);
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
-                CastrPage castrPage = homePage.GotoCastrByUrl("");
-                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
-
+                CastrPage castrPage = homePage.GoToCastr();
+                castrPage.FilterByLanguage("id");
+                CastrPage newPosts = new CastrPage(_browser);
+                Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor-Id.");
             }
         }
     }
