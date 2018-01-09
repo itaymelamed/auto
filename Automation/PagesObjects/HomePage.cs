@@ -123,6 +123,12 @@ namespace Automation.PagesObjects
             return adminPage.ClickOnCasterLink();
         }
 
+        public CastrPage GotoCastrByUrl(string brandBaseUrl)
+        {
+            _browser.Navigate($"{brandBaseUrl}/management/castr");
+            return new CastrPage(_browser); 
+        }
+
         public void ClickOnMenu()
         {
             Base.MongoDb.UpdateSteps($"Click on menu.");

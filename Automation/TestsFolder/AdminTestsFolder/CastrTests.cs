@@ -318,5 +318,43 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(postPage2.ValidatePostCreated(postCreator.Title), "User has not redircted to post after click on twitter link.");
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test14Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "43")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            public void Castr_Ftb90_PublishPostInEditor()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GotoCastrByUrl("");
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test15Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "44")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            public void Castr_Ftb90_PublishPostInEditor()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GotoCastrByUrl("");
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+
+            }
+        }
     }
 }

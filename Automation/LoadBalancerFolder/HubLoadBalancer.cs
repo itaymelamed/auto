@@ -15,8 +15,8 @@ namespace Automation.BrowserFolder
         public HubLoadBalancer(Configurations config)
         {
             _config = config;
-            _hub1 = new Hub(_config, 0);
-            _hub2 = new Hub(_config, 1);
+            _hub1 = new Hub(_config, 4444);
+            _hub2 = new Hub(_config, 4445);
         }
 
         public bool IsQueued()
@@ -24,8 +24,11 @@ namespace Automation.BrowserFolder
             return !_hub1.IsHubAvalible() && !_hub2.IsHubAvalible();
         }
 
-        public string GetAvailbleHub()
+        public string GetAvailbleHub(bool turnOn = true)
         {
+            if (!turnOn)
+                return _hub1.GetHubUrl();
+            
             while (IsQueued())
                 Thread.Sleep(TimeSpan.FromMilliseconds(100));
 

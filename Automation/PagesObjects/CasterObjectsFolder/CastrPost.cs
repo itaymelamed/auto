@@ -36,7 +36,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         IWebElement resetBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".publish")]
-        IWebElement publishBtn { get; set; }
+        protected IWebElement publishBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".publish-list__item input")]
         IList<IWebElement> pubishToCheckBox { get; set; }
@@ -231,7 +231,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             ValidateSucMsg();
         }
 
-        public void PublishPost()
+        public virtual void PublishPost()
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
@@ -243,7 +243,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
         }
 
-        public void PublishPostToFeed(LeaguePages leaguePage, int league)
+        public virtual void PublishPostToFeed(LeaguePages leaguePage, int league)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));

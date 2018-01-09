@@ -484,8 +484,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
-            [Category("test")]
-            //[Retry(1)]
+            [Retry(2)]
             public void Editor_Article_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;

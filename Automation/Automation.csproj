@@ -139,6 +139,7 @@
     <Compile Include="ApiFolder\ApiObject.cs" />
     <Compile Include="LoadBalancerFolder\HubLoadBalancer.cs" />
     <Compile Include="LoadBalancerFolder\Hub.cs" />
+    <Compile Include="PagesObjects\CasterObjectsFolder\FtbPost.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

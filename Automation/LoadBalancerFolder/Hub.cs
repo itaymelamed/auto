@@ -6,19 +6,17 @@ namespace Automation.LoadBalancerFolder
 {
     public class Hub
     {
-        int _hubIndex;
         string _url;
         string _hubApiUrl;
         ApiObject _api;
         Configurations _config;
 
-        public Hub(Configurations config, int i)
+        public Hub(Configurations config, int port)
         {
-            _hubIndex = i;
             _api = new ApiObject();
             _config = config;
-            _url = $"http://{_config.GetIp(i)}:4444/wd/hub";
-            _hubApiUrl = $"http://{_config.GetIp(i)}:4444/grid/api/hub";
+            _url = $"http://{_config.GetIp(0)}:{port}/wd/hub";
+            _hubApiUrl = $"http://{_config.GetIp(0)}:{port}/grid/api/hub";
         }
 
         public bool IsHubAvalible()
