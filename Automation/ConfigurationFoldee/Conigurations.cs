@@ -94,6 +94,7 @@ namespace Automation.ConfigurationFolder
         {
             var ipTxtLocation = "/host/ip.txt";
             string ip = File.ReadAllText(ipTxtLocation).Split(';').First();
+            var a = new Uri("http://"+ip);
             return ip;
         }
     }
