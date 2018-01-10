@@ -33,7 +33,7 @@ namespace Automation.BrowserFolder
 
         public string GetAvailbleHub()
         {            
-            WaitUntill(() => HubsFree());
+            //WaitUntill(() => HubsFree());
             return _hubs.OrderByDescending(h => h.GetHubFreeNodes())
                         .FirstOrDefault().GetHubUrl();
         }
