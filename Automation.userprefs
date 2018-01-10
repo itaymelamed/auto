@@ -2,31 +2,17 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/BrowserFolder/HubLoadBalancer.cs" Line="45" Column="10" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="87" Column="23" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
-      <File FileName="Automation/BrowserFolder/Browser.cs" Line="31" Column="52" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="16" Column="26" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/Test.cs" Line="1" Column="1" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="49" Column="20" />
+      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="19" Column="9" />
+      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="14" Column="22" />
+      <File FileName="Automation/packages.config" Line="18" Column="36" />
       <File FileName="auto Status" />
+      <File FileName=".gitignore" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="Automation" expanded="True">
-            <Node name="Automation" expanded="True">
-              <Node name="Automation" expanded="True">
-                <Node name="TestsFolder" expanded="True">
-                  <Node name="EditortestsFolder" expanded="True">
-                    <Node name="EditorTests+Test10Class" expanded="True" />
-                    <Node name="EditorTests+Test13Class" expanded="True">
-                      <Node name="Editor_List_ValidateTtitle" selected="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
+          <Node name="Automation" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
