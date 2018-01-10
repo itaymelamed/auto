@@ -1,21 +1,20 @@
 ﻿using Automation.ApiFolder;
-using Automation.ConfigurationFolder;
 
 namespace Automation.LoadBalancerFolder
 {
     public class Hub
     {
+        string _baseUrl;
         string _url;
         string _hubApiUrl;
         ApiObject _api;
-        Configurations _config;
 
-        public Hub(Configurations config, int port)
+        public Hub(string host, int port)
         {
             _api = new ApiObject();
-            _config = config;
-            _url = $"http://{_config.GetIp()}:{port}/wd/hub";
-            _hubApiUrl = $"http://{_config.GetIp()}:{port}/grid/api/hub";
+            _baseUrl = $"http://{host}:{port}";
+            _url = $"{_baseUrl}/wd/hub";
+            _hubApiUrl = $"{_baseUrl}/grid/api/hub";
         }
 
         public bool IsHubAvalible()
@@ -38,7 +37,7 @@ namespace Automation.LoadBalancerFolder
             }
             catch
             {
-                return 8;
+                return 0;
             }
         }
 
@@ -56,18 +55,6 @@ namespace Automation.LoadBalancerFolder
             catch
             {
                 return 0;
-            }
-        }
-
-        public bool Queued()
-        {
-            try
-            {
-                return GetWaitingSessions() != 0;
-            }
-            catch
-            {
-                return true;
             }
         }
     }

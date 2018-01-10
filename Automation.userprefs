@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/LoadBalancerFolder/HubLoadBalancer.cs">
     <Files>
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="18" Column="40" />
       <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
@@ -16,10 +16,9 @@
       <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPage.cs" Line="217" Column="37" />
       <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="264" Column="1" />
       <File FileName="Automation/PagesObjects/CasterObjectsFolder/FtbPost.cs" Line="1" Column="1" />
-      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="36" Column="48" />
-      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="19" Column="10" />
+      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="27" Column="39" />
+      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="1" Column="1" />
       <File FileName="Automation/TestsObject/TestRun.cs" Line="25" Column="45" />
-      <File FileName="auto Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
