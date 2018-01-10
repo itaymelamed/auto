@@ -92,7 +92,7 @@ namespace Automation.BrowserFolder
 
         public void ScrollToEl(IWebElement el)
         {
-            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", el);
+            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true)", el);
         }
 
         public void ScrollToBottom()

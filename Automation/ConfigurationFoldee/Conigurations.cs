@@ -54,7 +54,7 @@ namespace Automation.ConfigurationFolder
         public Configurations()
         {
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
-            MongoDbConnectionString = Local ? $"mongodb://{GetIp(1)}:32001" : $"mongodb://{GetIp(0)}:32001";
+            MongoDbConnectionString = $"mongodb://{GetIp()}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
@@ -90,10 +90,10 @@ namespace Automation.ConfigurationFolder
             return _mongoDb.GetAllDocuments("Configurations").First();
         }
 
-        public string GetIp(int i = 0)
+        public string GetIp()
         {
-            var ipTxtLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ConfigurationFoldee/ConfigurationsJsonObject/Ip.txt");
-            string ip = File.ReadAllText(ipTxtLocation).Split(',')[i];
+            var ipTxtLocation = "/host/ip.txt";
+            string ip = File.ReadAllText(ipTxtLocation).Split(';').First();
             return ip;
         }
     }

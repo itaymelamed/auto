@@ -62,6 +62,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".social-networks .collapse")]
         IList<IWebElement> socialNetworksArrows { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[name=publish_to_another_site]")]
+        IWebElement publishAlsoToCb { get; set; }
+
         public enum LeaguePages
         {
             ftbpro,
@@ -253,6 +256,14 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.Click(publishBtn, nameof(publishBtn));
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
+        }
+
+        public bool ValidatePublishAlsoTo()
+        {
+            Base.MongoDb.UpdateSteps($"Validate 'Publish Also To'.");
+            _browserHelper.WaitForElement(publishAlsoToCb, nameof(publishAlsoToCb));
+            _browserHelper.ScrollToEl(publishAlsoToCb);
+            return !_browserHelper.WaitUntillTrue(() => publishAlsoToCb.GetAttribute("checked") == "true", "Check box is checked", 5, false);
         }
     }
 }

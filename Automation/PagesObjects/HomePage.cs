@@ -59,6 +59,15 @@ namespace Automation.PagesObjects
             return new FaceBookconnectPage(_browser);
         }
 
+        public void ClickOnConnectBtnWithCoockies()
+        {
+            _browserHelper.WaitForElement(connectBtn, "Connect Button");
+
+            Base.MongoDb.UpdateSteps($"Click on Connect Button.");
+            connectBtn.Click();
+            ValidateUserProfilePic();
+        }
+
         public EditorPage ClickOnAddArticle()
         {
             _browserHelper.WaitForElement(writeAnArticleBtn, "Write an article Button");

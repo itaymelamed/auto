@@ -15,8 +15,8 @@ namespace Automation.LoadBalancerFolder
         {
             _api = new ApiObject();
             _config = config;
-            _url = $"http://{_config.GetIp(0)}:{port}/wd/hub";
-            _hubApiUrl = $"http://{_config.GetIp(0)}:{port}/grid/api/hub";
+            _url = $"http://{_config.GetIp()}:{port}/wd/hub";
+            _hubApiUrl = $"http://{_config.GetIp()}:{port}/grid/api/hub";
         }
 
         public bool IsHubAvalible()

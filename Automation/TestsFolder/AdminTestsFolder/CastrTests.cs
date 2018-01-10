@@ -342,27 +342,56 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        [Ignore("")]
         public class Test15Class : Base
         {
             [Test]
-            [Property("TestCaseId", "44")]
+            [Property("TestCaseId", "45")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Retry(2)]
             public void Castr_Ftb90_PublishIdPost()
             {
                 _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
-                SettingsPage settingsPage = homePage.ClickOnSettings();
-                settingsPage.ChangeLanguage(Languages.id);
-                settingsPage.ClickOnSaveBtn();
-                 EditorPage editorPage = settingsPage.ClickOnWriteAnArticle();
                 PostCreator postCreator = new PostCreator(_browser);
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
-                CastrPage castrPage = homePage.GoToCastr();
-                castrPage.FilterByLanguage("id");
+                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
+                _browser.Navigate(url);
+                HomePage homePageFtb = new HomePage(_browser);
+                homePage.ClickOnConnectBtnWithCoockies();
+                CastrPage castrPage = homePageFtb.GoToCastr();
                 CastrPage newPosts = new CastrPage(_browser);
                 Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor-Id.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test16Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "46")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Retry(2)]
+            public void Castr_FTB90_CheckIDPostsFromDiffrentDomains()
+            {
+                _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
+                _browser.Navigate(url);
+                HomePage homePageFtb = new HomePage(_browser);
+                homePage.ClickOnConnectBtnWithCoockies();
+                PostCreator postCreatorFtb90 = new PostCreator(_browser);
+                PostPage postPageFTb90 = postCreatorFtb90.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePageFtb.GoToCastr();
+                CastrPage newPosts = new CastrPage(_browser);
+                CastrPost castrPostFTB90 = newPosts.ClickOnPost(postCreatorFtb90.Title);
+                Assert.True(castrPostFTB90.ValidatePublishAlsoTo());
+                CastrPost castrPost = newPosts.ClickOnPost(postCreator.Title);
+                Assert.True(castrPostFTB90.ValidatePublishAlsoTo());
             }
         }
     }

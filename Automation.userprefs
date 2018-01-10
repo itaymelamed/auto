@@ -2,12 +2,23 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/BrowserFolder/HubLoadBalancer.cs" Line="45" Column="10" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="87" Column="23" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="65" Column="1" />
       <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
-      <File FileName="Automation/BrowserFolder/Browser.cs" Line="31" Column="52" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="16" Column="26" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/Test.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="359" Column="40" />
+      <File FileName="Automation/PagesObjects/HomePage.cs" Line="62" Column="21" />
+      <File FileName="Automation/PagesObjects/AdminPage.cs" Line="1" Column="1" />
+      <File FileName="Automation/packages.config" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="41" Column="33" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="95" Column="92" />
+      <File FileName="Automation/BrowserFolder/Browser.cs" Line="20" Column="31" />
+      <File FileName="Automation/Helpersobjects/PostCreator.cs" Line="9" Column="18" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPage.cs" Line="217" Column="37" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="264" Column="1" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/FtbPost.cs" Line="1" Column="1" />
+      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="34" Column="38" />
+      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="16" Column="36" />
+      <File FileName="Automation/TestsObject/TestRun.cs" Line="1" Column="1" />
       <File FileName="auto Status" />
     </Files>
     <Pads>
@@ -17,11 +28,14 @@
             <Node name="Automation" expanded="True">
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
-                  <Node name="EditortestsFolder" expanded="True">
-                    <Node name="EditorTests+Test10Class" expanded="True" />
-                    <Node name="EditorTests+Test13Class" expanded="True">
-                      <Node name="Editor_List_ValidateTtitle" selected="True" />
+                  <Node name="AdminTestsFolder" expanded="True">
+                    <Node name="CastrTests+Test15Class" expanded="True" />
+                    <Node name="CastrTests+Test16Class" expanded="True">
+                      <Node name="Castr_FTB90_CheckIDPostsFromDiffrentDomains" selected="True" />
                     </Node>
+                  </Node>
+                  <Node name="PostPagesFolder" expanded="True">
+                    <Node name="PostPageTests+Test11Class" expanded="True" />
                   </Node>
                 </Node>
               </Node>
@@ -34,7 +48,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ConfigurationFoldee/Conigurations.cs" relfile="Automation/ConfigurationFoldee/Conigurations.cs" line="56" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
