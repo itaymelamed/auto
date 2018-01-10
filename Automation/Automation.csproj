@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -140,6 +140,25 @@
     <Compile Include="PagesObjects\CasterObjectsFolder\FtbPost.cs" />
     <Compile Include="PagesObjects\SettingsPage.cs" />
     <Compile Include="PagesObjects\TVPage.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Browser.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Cache.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\CacheEntry.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Content.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Cookie.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Creator.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Entry.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\HarResult.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Header.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Log.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Page.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\PageTimings.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Param.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\PostData.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\ProxyApi.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\QueryStringItem.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Request.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Response.cs" />
+    <Compile Include="ApiFolder\ProxyApiFolder\Har\Timings.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -160,6 +179,8 @@
     <Folder Include="PagesObjects\ExternalPagesobjects\" />
     <Folder Include="ApiFolder\" />
     <Folder Include="LoadBalancerFolder\" />
+    <Folder Include="ApiFolder\ProxyApiFolder\" />
+    <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
