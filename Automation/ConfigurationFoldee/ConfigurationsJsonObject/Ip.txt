@@ -1,1 +1,0 @@
-﻿ip-10-0-8-48.us-west-2.compute.internal,ec2-34-209-34-125.us-west-2.compute.amazonaws.com
