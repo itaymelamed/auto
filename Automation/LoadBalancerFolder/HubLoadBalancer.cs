@@ -40,8 +40,15 @@ namespace Automation.BrowserFolder
 
         void WaitUntill(Func<bool> func)
         {
-            while (!func())
-                Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            try
+            {
+                while (!func())
+                    Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

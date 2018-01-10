@@ -1,13 +1,12 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/Base.cs">
     <Files>
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="49" Column="20" />
-      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="19" Column="9" />
-      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="14" Column="22" />
-      <File FileName="Automation/packages.config" Line="18" Column="36" />
-      <File FileName="auto Status" />
-      <File FileName=".gitignore" Line="1" Column="1" />
+      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="5" Column="18" />
+      <File FileName="Automation/BrowserFolder/Browser.cs" Line="27" Column="47" />
+      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="22" Column="15" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="35" Column="39" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
