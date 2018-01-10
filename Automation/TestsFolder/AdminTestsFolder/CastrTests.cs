@@ -347,6 +347,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Test]
             [Property("TestCaseId", "45")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Ignore("")]
             [Retry(2)]
             public void Castr_Ftb90_PublishIdPost()
             {
@@ -373,6 +374,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Property("TestCaseId", "46")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
             [Retry(2)]
+            [Ignore("")]
             public void Castr_FTB90_CheckIDPostsFromDiffrentDomains()
             {
                 _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
