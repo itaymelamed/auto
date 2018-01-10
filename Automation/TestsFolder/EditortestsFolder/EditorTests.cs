@@ -524,5 +524,58 @@ namespace Automation.TestsFolder.EditortestsFolder
                 Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "layBuzz not appears");
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test23Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "44")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            [Ignore("Fail test due automation code, need to fix.")]
+            public void Editor_TV_FullFlow()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                TVPage tVPage = editorPage.ClickOnTVTemplate();
+                tVPage.WriteTitle("Test TV Template");
+                tVPage.SetEmbedCode(_params["JWembedCode"].ToString());
+                tVPage.DragVideo();
+                tVPage.ClickOnOkBtn();
+                tVPage.SetSeoDesc();
+                tVPage.WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest", "DTest" }));
+                PreviewPage previewPage = tVPage.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("Test TV Template"), "The post was not created.");
+                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test24Class : Base
+        {
+            [Test]
+            [Property("TestCaseId", "43")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            public void Editor_TV_ValidateEmbedCode()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                TVPage tVPage = editorPage.ClickOnTVTemplate();
+                tVPage.SetEmbedCode(_params["JWembedCode"].ToString());
+                tVPage.DragVideo();
+                tVPage.ClickOnOkBtn();
+                Assert.True(tVPage.ValidateVideoAppear(), "The video was not appear after dragNdrop video.");
+            }
+        }
     }
 }

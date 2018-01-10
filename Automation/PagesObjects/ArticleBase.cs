@@ -16,7 +16,7 @@ namespace Automation.PagesObjects
         IWebElement titleTextBox { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        IWebElement editorMedia { get; set; }
+        protected   IWebElement editorMedia { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
         IWebElement editorSeo { get; set; }
@@ -372,6 +372,12 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Validate PlayBuzz Image Appears");
             _browserHelper.ExecuteUntill(() => _browserHelper.MoveToIframe("pb_feed_iframe"));
             return _browserHelper.WaitForElement(playBuzzImage, nameof(playBuzzImage));
+        }
+
+        public void SetSeoDesc()
+        {
+            _browserHelper.WaitForElement(editorSeo,nameof(editorSeo));
+            _browserHelper.SetText(editorSeo,"text text text");
         }
 
     }
