@@ -1,12 +1,14 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/LoadBalancerFolder/HubLoadBalancer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="49" Column="20" />
-      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="5" Column="18" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="58" Column="29" />
+      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="14" Column="36" />
       <File FileName="Automation/BrowserFolder/Browser.cs" Line="27" Column="47" />
-      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="50" Column="22" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="38" Column="55" />
+      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="18" Column="16" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="32" Column="52" />
+      <File FileName="Automation/MongoDbObject/MongoDb.cs" Line="24" Column="16" />
+      <File FileName="auto Status" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
