@@ -19,19 +19,26 @@ namespace Automation.BrowserFolder
             _hub2 = new Hub(_config, 4445);
         }
 
-        public bool IsQueued()
+        public bool HubsFree()
         {
-            return !_hub1.IsHubAvalible() && !_hub2.IsHubAvalible();
+            return _hub1.IsHubAvalible() && _hub2.IsHubAvalible();
         }
 
         public string GetAvailbleHub()
         {            
-            while (IsQueued())
-                Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            WaitUntill(() => HubsFree());
 
             if (_hub1.GetHubFreeNodes() > _hub2.GetHubFreeNodes())
                 return _hub1.GetHubUrl();
             return _hub2.GetHubUrl();
+        }
+
+        public bool WaitUntill(Func<bool> func)
+        {
+            while (!func())
+                Thread.Sleep(TimeSpan.FromMilliseconds(100));
+
+            return true;
         }
     }
 }
