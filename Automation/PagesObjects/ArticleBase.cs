@@ -249,7 +249,7 @@ namespace Automation.PagesObjects
             _browserHelper.MoveToEl(editorTags);
             tagsList.ForEach(t => {
                 editorTags.SendKeys(t);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 editorTags.SendKeys(Keys.Enter);
             });
         }
