@@ -1,23 +1,32 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="59" Column="23" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="21" Column="18" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="36" Column="75" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="303" Column="94" />
-      <File FileName="Automation/PagesObjects/HomePage.cs" Line="62" Column="21" />
-      <File FileName="Automation/PagesObjects/AdminPage.cs" Line="1" Column="1" />
-      <File FileName="Automation/packages.config" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/BaseUi.cs" Line="29" Column="47" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="111" Column="14" />
-      <File FileName="Automation/ApiFolder/ApiObject.cs" Line="1" Column="1" />
-      <File FileName="Automation/ApiFolder/ProxyApiFolder/Har/QueryStringItem.cs" Line="1" Column="1" />
-      <File FileName="Automation/ApiFolder/ProxyApiFolder/ProxyApi.cs" Line="50" Column="9" />
-      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="10" Column="6" />
-      <File FileName="Automation/TestsObject/Test.cs" Line="41" Column="21" />
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="18" Column="97" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="61" Column="38" />
+      <File FileName="auto Status" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="EditortestsFolder" expanded="True">
+                    <Node name="EditorTests+Test16Class" expanded="True" />
+                  </Node>
+                  <Node name="PostPagesFolder" expanded="True">
+                    <Node name="PostPageTests+Test11Class" expanded="True">
+                      <Node name="PostPage_ValidateUiComponentsExistOnPage" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

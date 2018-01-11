@@ -91,5 +91,13 @@ namespace Automation.PagesObjects
 
             return new CastrPage(_browser);
         }
+
+        public string GetPostId()
+        {
+            var postParsedUrl = _browser.GetUrl().Split('/').Last();
+            var postId =new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
+
+            return postId;
+        }
     }
 }

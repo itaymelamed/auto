@@ -3,11 +3,11 @@ using OpenQA.Selenium.Remote;
 using System;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Automation.ConfigurationFolder;
 using System.IO;
 using Automation.TestsObjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
+using Automation.ApiFolder;
 
 namespace Automation.BrowserFolder
 {
@@ -15,34 +15,32 @@ namespace Automation.BrowserFolder
     {
         public IWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
+        public ProxyApi ProxyApi { get; set; }
         static readonly object _syncObject = new object();
+        ChromeOptions _options;
 
-        public Browser(HubLoadBalancer loadBalancer)
+        public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            chromeOptions.AddArgument("disable-infobars");
             lock(_syncObject)
             {
+                _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
                 string url = loadBalancer.GetAvailbleHub();
-                Driver = new RemoteWebDriver(new Uri(url), chromeOptions.ToCapabilities(), TimeSpan.FromMinutes(30));
+                Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
             }
 
             BrowserHelper = new BrowserHelper(Driver);
         }
 
-        public Browser()
+        public Browser(bool proxy = false)
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            chromeOptions.AddArgument("disable-infobars");
-            Driver = new ChromeDriver(chromeOptions);
+            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+            Driver = new ChromeDriver(_options);
             BrowserHelper = new BrowserHelper(Driver);
         }
 
         public void Navigate(string url)
         {
-            BaseUi.MongoDb.UpdateSteps($"Navigated to url: {url}");
+            Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
             Driver.Navigate().GoToUrl(url);
         }
         
@@ -135,6 +133,25 @@ namespace Automation.BrowserFolder
         public string GetSource()
         {
             return Driver.PageSource;
+        }
+
+        ChromeOptions CreateChromeOptions()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+            chromeOptions.AddArgument("disable-infobars");
+
+            return chromeOptions;
+        }
+
+        ChromeOptions CreateProxyChromeOptions()
+        {
+            ProxyApi = new ProxyApi(Base._config.Host);
+            var options = CreateChromeOptions();
+            var prxoy = ProxyApi.CreateProxy();
+            options.Proxy = prxoy;
+
+            return options;
         }
     }
 }

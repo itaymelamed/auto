@@ -159,6 +159,8 @@
     <Compile Include="ApiFolder\ProxyApiFolder\Har\Response.cs" />
     <Compile Include="ApiFolder\ProxyApiFolder\Har\Timings.cs" />
     <Compile Include="ApiFolder\ProxyApiFolder\ProxyApi.cs" />
+    <Compile Include="TestsFolder\Base.cs" />
+    <Compile Include="TestsFolder\BaseNetworkTraffic.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

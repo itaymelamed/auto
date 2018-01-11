@@ -39,7 +39,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "15")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("90Min")]
             [Retry(2)]
             public void Castr_FilterByLanguageEn()
             {

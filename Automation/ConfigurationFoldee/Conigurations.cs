@@ -17,7 +17,7 @@ namespace Automation.ConfigurationFolder
         public BrowserType BrowserT { get; }
         public string SiteName { get; }
         public string Url { get; }
-        public string Ip { get; }
+        public string Host { get; }
         public bool Local { get; }
         public static string MongoDbConnectionString { get; set; }
         MongoDb _mongoDb;
@@ -53,8 +53,9 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
+            Host = GetHost();
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
-            MongoDbConnectionString = $"mongodb://{GetIp()}:32001";
+            MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
@@ -90,7 +91,7 @@ namespace Automation.ConfigurationFolder
             return _mongoDb.GetAllDocuments("Configurations").First();
         }
 
-        public string GetIp()
+        string GetHost()
         {
             var ipTxtLocation = "/host/ip.txt";
             string ip = File.ReadAllText(ipTxtLocation).Split(';').First();

@@ -4,6 +4,9 @@ using System.Web;
 using AutomatedTester.BrowserMob.HAR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OpenQA.Selenium;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Automation.ApiFolder
 {
@@ -19,7 +22,7 @@ namespace Automation.ApiFolder
         {
             _api = new ApiObject();
             _url = url;
-            _baseUrlProxy = $"{_url}/proxy";
+            _baseUrlProxy = $"http://{_url}:32300/proxy";
             using (var response = _api.MakeRequest(_baseUrlProxy, "POST"))
             {
                 var responseStream = response.GetResponseStream();
@@ -38,8 +41,7 @@ namespace Automation.ApiFolder
                 }
             }
 
-            var parts = url.Split(':');
-            _proxy = parts[1].TrimStart('/') + ":" + _port;
+            _proxy = _url.TrimStart('/') + ":" + _port;
         }
 
         public void NewHar(string reference = null)
@@ -82,6 +84,19 @@ namespace Automation.ApiFolder
         public void Close()
         {
             _api.MakeRequest($"{_baseUrlProxy}/{_port}", "DELETE");
+        }
+
+        public Proxy CreateProxy()
+        {
+            Proxy proxy = new Proxy();
+            proxy.HttpProxy = _proxy;
+
+            return proxy;
+        }
+
+        public List<Request> GetRequests()
+        {
+            return GetHar().Log.Entries.ToList().Select(e => e.Request).ToList();
         }
     }
 }

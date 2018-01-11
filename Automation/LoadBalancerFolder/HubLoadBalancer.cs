@@ -22,7 +22,7 @@ namespace Automation.BrowserFolder
 
             for (int i = 0; i < _hubsNum; i++)
             {
-                _hubs.Add(new Hub(config.GetIp() ,4444 + i));
+                _hubs.Add(new Hub(config.Host ,4444 + i));
             }
         }
 
