@@ -544,7 +544,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("EditPage")]
             [Category("AllBrands")]
-            [Ignore("Fail test due automation code, need to fix.")]
+            [Retry(2)]
             public void Editor_TV_FullFlow()
             {
                 HomePage homePage = new HomePage(_browser);
