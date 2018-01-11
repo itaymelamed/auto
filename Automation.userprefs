@@ -1,28 +1,22 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/EditortestsFolder/EditorTests.cs">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="25" Column="31" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="6" Column="2" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="385" Column="80" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="59" Column="23" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="21" Column="18" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="36" Column="75" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="303" Column="94" />
       <File FileName="Automation/PagesObjects/HomePage.cs" Line="62" Column="21" />
       <File FileName="Automation/PagesObjects/AdminPage.cs" Line="1" Column="1" />
       <File FileName="Automation/packages.config" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="41" Column="33" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="95" Column="92" />
-      <File FileName="Automation/BrowserFolder/Browser.cs" Line="20" Column="31" />
-      <File FileName="Automation/Helpersobjects/PostCreator.cs" Line="9" Column="18" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPage.cs" Line="217" Column="37" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="264" Column="1" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/FtbPost.cs" Line="1" Column="1" />
-      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="29" Column="31" />
-      <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="5" Column="18" />
-      <File FileName="Automation/TestsObject/TestRun.cs" Line="25" Column="45" />
-      <File FileName="Automation/ApiFolder/ProxyApiFolder/Har/ProxyApi.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/BaseUi.cs" Line="29" Column="47" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="111" Column="14" />
       <File FileName="Automation/ApiFolder/ApiObject.cs" Line="1" Column="1" />
-      <File FileName="Automation/ApiFolder/ProxyApiFolder/Har/HarResult.cs" Line="1" Column="1" />
-      <File FileName="auto Status" />
+      <File FileName="Automation/ApiFolder/ProxyApiFolder/Har/QueryStringItem.cs" Line="1" Column="1" />
+      <File FileName="Automation/ApiFolder/ProxyApiFolder/ProxyApi.cs" Line="50" Column="9" />
+      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="10" Column="6" />
+      <File FileName="Automation/TestsObject/Test.cs" Line="41" Column="21" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="18" Column="97" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

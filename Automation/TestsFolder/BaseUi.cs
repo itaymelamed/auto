@@ -6,12 +6,11 @@ using Automation.TestsObjects;
 using Automation.MongoDbObject;
 using static Automation.TestsObjects.Result;
 using Automation.TestsObject;
-using Automation.ApiFolder;
 
 namespace Automation.TestsFolder
 {
     [TestFixture]
-    public class Base
+    public class BaseUi
     {
         HubLoadBalancer _hubLoadBalancer;
         protected Browser _browser { get; set; }

@@ -42,7 +42,7 @@ namespace Automation.BrowserFolder
 
         public void Navigate(string url)
         {
-            Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
+            BaseUi.MongoDb.UpdateSteps($"Navigated to url: {url}");
             Driver.Navigate().GoToUrl(url);
         }
         

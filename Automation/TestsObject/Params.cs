@@ -19,7 +19,7 @@ namespace Automation.TestsObject
 
         public BsonValue GetParams()
         {
-            return _context["AllBrands"] != "" ? _context["AllBrands"] : _context[Base._testRun.SiteName];
+            return _context["AllBrands"] != "" ? _context["AllBrands"] : _context[BaseUi._testRun.SiteName];
         }
     }
 }

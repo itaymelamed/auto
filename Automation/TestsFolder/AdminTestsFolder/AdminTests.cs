@@ -9,11 +9,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test1Class : Base
+        public class Test1Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "1")]
-            [Category("Sanity")][Category("Admin")]
+            [Category("Sanity")][Category("Admin")][Category("AllBrands")]
             [Retry(2)]
             public void Admin_LoginAsAdmin()
             {
@@ -29,11 +29,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test2Class : Base
+        public class Test2Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "2")]
-            [Category("Sanity")][Category("Admin")]
+            [Category("Sanity")][Category("Admin")][Category("AllBrands")]
             [Retry(2)]
             public void Admin_TemplatesValidateAdminTemplates()
             {

@@ -13,7 +13,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public override void PublishPostToFeed(LeaguePages leaguePage, int league)
         {
-            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            BaseUi.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             CheckLeague(league);
             ChooseLeaguePage(leaguePage);
@@ -24,7 +24,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public override void PublishPost()
         {
-            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            BaseUi.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             CheckLeague(0);
             CheckPublishTo(1);

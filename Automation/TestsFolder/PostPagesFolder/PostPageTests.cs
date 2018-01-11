@@ -10,11 +10,11 @@ namespace Automation.TestsFolder.PostPagesFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test11Class : Base
+        public class Test11Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "13")]
-            [Category("Sanity")][Category("Admin")][Category("PostPage")]
+            [Category("Sanity")][Category("Admin")][Category("PostPage")][Category("AllBrands")]
             [Retry(2)]
             public void PostPage_ValidateUiComponentsExistOnPage()
             {

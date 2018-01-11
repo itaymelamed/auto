@@ -39,14 +39,14 @@ namespace Automation.PagesObjects
 
         public void DragVideo()
         {
-            Base.MongoDb.UpdateSteps("Drag and drop video elemnet");
+            BaseUi.MongoDb.UpdateSteps("Drag and drop video elemnet");
             _browserHelper.WaitForElement(previewIframe, nameof(previewIframe));
             _browserHelper.DragElement(previewIframe, editorMedia);
         }
 
         public bool ValidateVideoAppear()
         {
-            Base.MongoDb.UpdateSteps("Validate video appear");
+            BaseUi.MongoDb.UpdateSteps("Validate video appear");
             DragVideo();
             return _browserHelper.WaitForElement(videoContainer, nameof(videoContainer));
         }
@@ -54,13 +54,13 @@ namespace Automation.PagesObjects
 
         public void SetEmbedCode(string embadeCode)
         {
-            Base.MongoDb.UpdateSteps("Set JW embed code");
+            BaseUi.MongoDb.UpdateSteps("Set JW embed code");
             _browserHelper.WaitForElement(embedCode,nameof(embedCode));
             _browserHelper.SetText(embedCode,embadeCode); 
         }
         public void ClickOnOkBtn()
         {
-            Base.MongoDb.UpdateSteps("Click on ok btn");
+            BaseUi.MongoDb.UpdateSteps("Click on ok btn");
             _browserHelper.WaitForElement(okBtn,nameof(okBtn));
             _browserHelper.Click(okBtn,nameof(okBtn));
         }

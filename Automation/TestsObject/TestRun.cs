@@ -17,25 +17,25 @@ namespace Automation.TestsObjects
         public TestRun(Configurations config)
         {
             Results = new Results();
-            TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
+            TestRunId = !config.Local ? (BaseUi.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
             Date = DateTime.Now.AddHours(2).ToString("MM/dd/yy HH:mm:ss");
             SiteName = config.SiteName;
 
-            Base.MongoDb.InserTestRun(this);
+            BaseUi.MongoDb.InserTestRun(this);
         }
 
         public void UpdataResults()
         {
-            var docs = Base.MongoDb.GetAllDocuments($"testRun{TestRunId}");
+            var docs = BaseUi.MongoDb.GetAllDocuments($"testRun{TestRunId}");
 
             Results.Passed = docs.FindAll(x => x["Result"]["Status"] == TestStatus.Passed.ToString()).Count;
             Results.Failed = docs.FindAll(x => x["Result"]["Status"] == TestStatus.Failed.ToString()).Count;
             Results.SentToHub = docs.FindAll(x => x["Result"]["Status"] == TestStatus.SentToHub.ToString()).Count;
             Results.Running = docs.FindAll(x => x["Result"]["Status"] == TestStatus.Running.ToString()).Count;
 
-            Base.MongoDb.UpdateTestRunResults(this);
-            Base.MongoDb.UpdateDuration(this);
+            BaseUi.MongoDb.UpdateTestRunResults(this);
+            BaseUi.MongoDb.UpdateDuration(this);
         }
     }
 }

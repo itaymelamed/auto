@@ -27,7 +27,7 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnPublishBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on Publish button.");
+            BaseUi.MongoDb.UpdateSteps($"Click on Publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             publishBtn.Click();
 
@@ -36,7 +36,7 @@ namespace Automation.PagesObjects
 
         public ArticleBase ClickOnEditButton()
         {
-            Base.MongoDb.UpdateSteps($"Click on edit button.");
+            BaseUi.MongoDb.UpdateSteps($"Click on edit button.");
             _browserHelper.WaitForElement(editBtn, nameof(editBtn));
             editBtn.Click();
 

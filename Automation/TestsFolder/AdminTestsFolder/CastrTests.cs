@@ -13,11 +13,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test1Class : Base
+        public class Test1Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "14")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_NavigateToCastrFromAdminPage()
             {
@@ -35,11 +35,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test2Class : Base
+        public class Test2Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "15")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_FilterByLanguageEn()
             {
@@ -58,11 +58,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : Base
+        public class Test3Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "16")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_FilterByType_Article()
             {
@@ -82,11 +82,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test4Class : Base
+        public class Test4Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "17")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
@@ -107,11 +107,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test5Class : Base
+        public class Test5Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "20")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
@@ -131,11 +131,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test6Class : Base
+        public class Test6Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "22")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckReset()
             {
@@ -159,11 +159,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test7Class : Base
+        public class Test7Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "23")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckNewStatus()
             {
@@ -180,11 +180,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test8Class : Base
+        public class Test8Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "25")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckPublishStatus()
             {
@@ -204,11 +204,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test10Class : Base
+        public class Test10Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "28")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
@@ -229,11 +229,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test11Class : Base
+        public class Test11Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "40")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
             {
@@ -266,11 +266,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test12Class : Base
+        public class Test12Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "41")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Retry(2)]
             public void Castr_Social_Networks_Facebook()
             {
@@ -296,11 +296,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test13Class : Base
+        public class Test13Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "42")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
             [Ignore("Bug")]
             public void Castr_Social_Networks_Twitter()
             {
@@ -322,7 +322,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         [TestFixture]
         [Parallelizable]
         [Ignore("")]
-        public class Test14Class : Base
+        public class Test14Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "43")]
@@ -342,7 +342,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test15Class : Base
+        public class Test15Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "45")]
@@ -368,7 +368,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test16Class : Base
+        public class Test16Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "46")]

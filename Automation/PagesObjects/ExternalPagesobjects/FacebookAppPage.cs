@@ -26,7 +26,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public IWebElement SearchPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Serach post in Facebook. Post:{title}.");
+            BaseUi.MongoDb.UpdateSteps($"Serach post in Facebook. Post:{title}.");
             var post = _browserHelper.ExecutUntillTrue(() => posts.ToList().Where(p => p.FindElement(By.XPath(".//p")).Text == title).FirstOrDefault(), "Facebook post was not created.");
             return post;
         }
@@ -38,20 +38,20 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public IWebElement GetPostBody(string title)
         {
-             Base.MongoDb.UpdateSteps($"Serach post in body.");
+             BaseUi.MongoDb.UpdateSteps($"Serach post in body.");
              return _driver.FindElement(By.XPath($"//a[contains(text(),'{title}')]"));
          }
 
         public bool VlidatePostDetails(string title)
         {
-            Base.MongoDb.UpdateSteps($"Validate post context.");
+            BaseUi.MongoDb.UpdateSteps($"Validate post context.");
             var el = SearchPost(title);
             return GetPostBody(title).Text.Contains(title);
         }
 
         public PostPage ClickOnPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Click On facebook Post.");
+            BaseUi.MongoDb.UpdateSteps($"Click On facebook Post.");
             _browserHelper.ClickJavaScript(GetPostBody(title));
             _browser.SwitchToLastTab();
             return new PostPage(_browser); 
@@ -59,7 +59,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public void ScrollToPost()
         {
-            Base.MongoDb.UpdateSteps($"Scroll to post..");
+            BaseUi.MongoDb.UpdateSteps($"Scroll to post..");
             _browserHelper.ScrollToBottom();
         }
     }

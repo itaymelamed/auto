@@ -24,7 +24,7 @@ namespace Automation.PagesObjects
 
         public CastrPage ClickOnCasterLink()
         {
-            Base.MongoDb.UpdateSteps($"Click on Caster.");
+            BaseUi.MongoDb.UpdateSteps($"Click on Caster.");
             _browserHelper.WaitForElement(caster, nameof(caster));
             _browserHelper.Click(caster, nameof(caster));
 

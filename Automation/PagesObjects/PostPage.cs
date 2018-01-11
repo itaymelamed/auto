@@ -40,7 +40,7 @@ namespace Automation.PagesObjects
             componentsstrings.ForEach(c =>
             {
                 IWebElement el = null;
-                Base.MongoDb.UpdateSteps($"Validate Component {c}.");
+                BaseUi.MongoDb.UpdateSteps($"Validate Component {c}.");
                 if (_browserHelper.ExecutUntillTrue(() => el = _driver.FindElement(By.CssSelector(c)), "", 0, false) == null)
                     errors += $"Component {c} does not exsist {Environment.NewLine}";
             });
@@ -50,7 +50,7 @@ namespace Automation.PagesObjects
 
         public string ValidateTagsOnSourcePage(BsonArray tags)
         {
-            Base.MongoDb.UpdateSteps("Validate Tags On Source Page.");
+            BaseUi.MongoDb.UpdateSteps("Validate Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
             _browser.Navigate(_browser.GetUrl()+"?test=test");
@@ -63,7 +63,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostCreated(string postTitle)
         {
-            Base.MongoDb.UpdateSteps("Validate Post creation.");
+            BaseUi.MongoDb.UpdateSteps("Validate Post creation.");
             _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "User has not redirected to posts page.");
             _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "Post title is not shown on url.");
             return true;
@@ -71,7 +71,7 @@ namespace Automation.PagesObjects
 
         public void HoverOverOptions()
         {
-            Base.MongoDb.UpdateSteps("Hover over 'Options'.");
+            BaseUi.MongoDb.UpdateSteps("Hover over 'Options'.");
             _browserHelper.WaitForElement(options, nameof(options));
             _browserHelper.Hover(options);
         }
@@ -86,7 +86,7 @@ namespace Automation.PagesObjects
                 return _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
             }, "Failed to hover over options.");
 
-            Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
+            BaseUi.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
             _browserHelper.Click(openInCaster, nameof(openInCaster));
 
             return new CastrPage(_browser);
