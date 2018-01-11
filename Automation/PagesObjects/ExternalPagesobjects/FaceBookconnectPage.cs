@@ -36,10 +36,10 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             _browserHelper.WaitForElement(passwordTxtBox, nameof(passwordTxtBox));
             _browserHelper.WaitForElement(loginBtn, nameof(loginBtn));
 
-            BaseUi.MongoDb.UpdateSteps($"Set email in text box {user.UserName}.");
+            BaseUi.MongoDb.UpdateSteps($"Set email in text box.");
             _browserHelper.SetText(emailTxtBox, user.UserName);
 
-            BaseUi.MongoDb.UpdateSteps($"Set password in text box {user.Password}.");
+            BaseUi.MongoDb.UpdateSteps($"Set password in text box.");
             _browserHelper.SetText(passwordTxtBox, user.Password);
 
 			BaseUi.MongoDb.UpdateSteps($"Click on Login button.");
