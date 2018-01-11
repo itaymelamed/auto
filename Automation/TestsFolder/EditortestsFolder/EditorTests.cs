@@ -565,6 +565,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("EditPage")]
+            [Retry(2)]
             public void Editor_TV_ValidateEmbedCode()
             {
                 HomePage homePage = new HomePage(_browser);
