@@ -443,37 +443,37 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-        //[TestFixture]
-        //[Parallelizable]
-        //public class Test17Class : BaseUi
-        //{
-        //    [Test]
-        //    [Property("TestCaseId", "46")]
-        //    [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
-        //    [Retry(2)]
-        //    public void Castr_FTB90_PublishAnIdPostFromFTB90Caster()
-        //    {
-        //        HomePage homePage = new HomePage(_browser);
-        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
-        //        PostCreator postCreator = new PostCreator(_browser);
-        //        PostPage postPage = postCreator.Create(typeof(ArticleBase));
-        //        CastrPage castrPage = homePage.GoToCastr();
-        //        CastrPage newPosts = new CastrPage(_browser);
-        //        newPosts.ClickOnPost(postCreator.Title);
-        //        FtbPost castrPostFTB90 = new FtbPost(_browser);
-        //        castrPostFTB90.CheckpublishToCategoryCb();
-        //        castrPostFTB90.PublishPostToTeam(1, 0, new List<int> { 0, 1 }, "l");
-        //        castrPostFTB90.ValidateSucMsg();
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "46")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Retry(2)]
+            public void Castr_FTB90_PublishAnIdPostFromFTB90Caster()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = new CastrPage(_browser);
+                newPosts.ClickOnPost(postCreator.Title);
+                FtbPost castrPostFTB90 = new FtbPost(_browser);
+                castrPostFTB90.CheckpublishToCategoryCb();
+                castrPostFTB90.PublishPostToTeam(1, 0, new List<int> { 0, 1 }, "l");
+                castrPostFTB90.ValidateSucMsg();
 
-        //        ApiObject _api = new ApiObject();
-        //        JsonHelper jsonHelper = new JsonHelper();
-        //        Assert.True(jsonHelper.SearchArticleInFeed("teams" ,postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
-        //        Assert.True(jsonHelper.SearchArticleInFeed("teams",postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
-        //        Assert.False(jsonHelper.SearchArticleInFeed("teams", postCreator.Title, 1, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-        //        Assert.False(jsonHelper.SearchArticleInFeed("teams",postCreator.Title, 5, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-        //        Assert.False(jsonHelper.SearchArticleInFeed("teams", postCreator.Title, 17, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-        //        Assert.False(jsonHelper.SearchArticleInFeed("lists", postCreator.Title, 179, 0, $"90Min.com"), $"Post '{postCreator.Title}' published to 90Min feed.");
-        //    }
-        //}
+                ApiObject _api = new ApiObject();
+                JsonHelper jsonHelper = new JsonHelper(_config.GlobalConfigObject["Apis"]["Feed"].ToString());
+                Assert.True(jsonHelper.SearchArticleInFeed( postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
+                Assert.True(jsonHelper.SearchArticleInFeed(postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
+                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 1, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 5, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 17, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+                //Assert.False(jsonHelper.SearchArticleInFeed("lists", postCreator.Title, 179, 0, $"90Min.com"), $"Post '{postCreator.Title}' published to 90Min feed.");
+            }
+        }
     }
 }

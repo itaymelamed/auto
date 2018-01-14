@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using Automation.TestsFolder;
 using Newtonsoft.Json.Linq;
 
 namespace Automation.ApiFolder
@@ -14,13 +15,13 @@ namespace Automation.ApiFolder
         public JsonHelper(string apiBaseUrl)
         {
             _api = new ApiObject();
-            _apiUrls = apiBaseUrl;
+            _apiUrls = apiBaseUrl.Replace("{language}", Base._config.ConfigObject.Language);
         }
 
         public bool SearchArticleInFeed(string valueToSearch, int team = 179, int timeOut = 20)
         {
             int timePassed = 0;
-            string url = "";
+            string url = _apiUrls.Replace("{team}", team.ToString());
             JObject res = _api.GetRequest(url);
 
             search = (r) => {
