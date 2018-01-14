@@ -73,7 +73,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90Min");
+            return TestContext.Parameters.Get("siteName", "Ftb90");
         }
 
         static string GetParams(string param)
@@ -93,9 +93,9 @@ namespace Automation.ConfigurationFolder
 
         string GetHost()
         {
-            var ipTxtLocation = "/host/ip.txt";
-            string ip = File.ReadAllText(ipTxtLocation).Split(';').First();
-            return ip;
+            var hostTxt = "/host/ip.txt";
+            string host = File.ReadAllText(hostTxt).Split(';').First();
+            return host;
         }
     }
 }

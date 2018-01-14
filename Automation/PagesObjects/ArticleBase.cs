@@ -16,7 +16,7 @@ namespace Automation.PagesObjects
         IWebElement titleTextBox { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        protected   IWebElement editorMedia { get; set; }
+        protected IWebElement editorMedia { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
         IWebElement editorSeo { get; set; }
@@ -287,7 +287,7 @@ namespace Automation.PagesObjects
             }
             _browserHelper.WaitUntillTrue(() => 
             {
-                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" , "DTest"}));
+                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
                 return GetTagsValue().Count() > 0;
             }, "Failed to add tags");
         }
@@ -379,6 +379,5 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(editorSeo,nameof(editorSeo));
             _browserHelper.SetText(editorSeo,"text text text");
         }
-
     }
 }

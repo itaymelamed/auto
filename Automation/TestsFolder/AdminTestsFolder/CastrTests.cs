@@ -5,6 +5,10 @@ using Automation.Helpersobjects;
 using Automation.PagesObjects.CasterObjectsFolder;
 using static Automation.PagesObjects.CasterObjectsFolder.CastrPost;
 using Automation.PagesObjects.ExternalPagesobjects;
+using System.Collections.Generic;
+using Automation.ApiFolder;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -17,7 +21,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "14")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_NavigateToCastrFromAdminPage()
             {
@@ -39,7 +46,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "15")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("90Min")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_FilterByLanguageEn()
             {
@@ -49,7 +59,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 AdminPage adminPage = homePage.ClickOnAdmin();
                 CastrPage castrPage = adminPage.ClickOnCasterLink();
                 castrPage.FilterByLanguage("en");
-                CastrPage englishPosts = new CastrPage(_browser); 
+                CastrPage englishPosts = new CastrPage(_browser);
                 var errors = englishPosts.CheckAllPostsInEnglish();
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -62,7 +72,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "16")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_FilterByType_Article()
             {
@@ -86,7 +99,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "17")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
@@ -111,13 +127,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "20")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
-                PostCreator postCreator = new PostCreator(_browser); 
+                PostCreator postCreator = new PostCreator(_browser);
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
@@ -135,7 +154,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "22")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckReset()
             {
@@ -163,7 +185,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "23")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckNewStatus()
             {
@@ -184,7 +209,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "25")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckPublishStatus()
             {
@@ -208,7 +236,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "28")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
@@ -233,7 +264,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "40")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
             {
@@ -270,7 +304,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "41")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_Social_Networks_Facebook()
             {
@@ -300,7 +337,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "42")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
             [Ignore("Bug")]
             public void Castr_Social_Networks_Twitter()
             {
@@ -326,8 +366,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "43")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
-            [Ignore("")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Ftb90")]
             public void Castr_Ftb90()
             {
                 HomePage homePage = new HomePage(_browser);
@@ -346,8 +388,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "45")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
-            [Ignore("")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Ftb90")]
             [Retry(2)]
             public void Castr_Ftb90_PublishIdPost()
             {
@@ -372,9 +416,11 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "46")]
-            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Ftb90")]
             [Retry(2)]
-            [Ignore("")]
             public void Castr_FTB90_CheckIDPostsFromDiffrentDomains()
             {
                 _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
@@ -396,5 +442,38 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(castrPostFTB90.ValidatePublishAlsoTo());
             }
         }
+
+        //[TestFixture]
+        //[Parallelizable]
+        //public class Test17Class : BaseUi
+        //{
+        //    [Test]
+        //    [Property("TestCaseId", "46")]
+        //    [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
+        //    [Retry(2)]
+        //    public void Castr_FTB90_PublishAnIdPostFromFTB90Caster()
+        //    {
+        //        HomePage homePage = new HomePage(_browser);
+        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
+        //        PostCreator postCreator = new PostCreator(_browser);
+        //        PostPage postPage = postCreator.Create(typeof(ArticleBase));
+        //        CastrPage castrPage = homePage.GoToCastr();
+        //        CastrPage newPosts = new CastrPage(_browser);
+        //        newPosts.ClickOnPost(postCreator.Title);
+        //        FtbPost castrPostFTB90 = new FtbPost(_browser);
+        //        castrPostFTB90.CheckpublishToCategoryCb();
+        //        castrPostFTB90.PublishPostToTeam(1, 0, new List<int> { 0, 1 }, "l");
+        //        castrPostFTB90.ValidateSucMsg();
+
+        //        ApiObject _api = new ApiObject();
+        //        JsonHelper jsonHelper = new JsonHelper();
+        //        Assert.True(jsonHelper.SearchArticleInFeed("teams" ,postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
+        //        Assert.True(jsonHelper.SearchArticleInFeed("teams",postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
+        //        Assert.False(jsonHelper.SearchArticleInFeed("teams", postCreator.Title, 1, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+        //        Assert.False(jsonHelper.SearchArticleInFeed("teams",postCreator.Title, 5, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+        //        Assert.False(jsonHelper.SearchArticleInFeed("teams", postCreator.Title, 17, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
+        //        Assert.False(jsonHelper.SearchArticleInFeed("lists", postCreator.Title, 179, 0, $"90Min.com"), $"Post '{postCreator.Title}' published to 90Min feed.");
+        //    }
+        //}
     }
 }

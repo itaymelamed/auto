@@ -2,22 +2,34 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="67" Column="1" />
-      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="561" Column="43" />
-      <File FileName="Automation/PagesObjects/TVPage.cs" Line="21" Column="69" />
-      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="112" Column="1" />
-      <File FileName="Automation/PagesObjects/EditorPage.cs" Line="96" Column="9" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="42" Column="1" />
-      <File FileName="Automation/PagesObjects/PreviewPage.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/LeagueFeed.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="453" Column="25" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="309" Column="42" />
+      <File FileName="Automation/ApiFolder/JsonHelper.cs" Line="21" Column="10" />
+      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="25" Column="6" />
+      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="18" Column="98" />
       <File FileName="auto Status" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="TestsFolder" expanded="True">
+                  <Node name="AdminTestsFolder" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/liorshagan/Desktop/repo/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
-      <Breakpoint file="/Users/liorshagan/Desktop/repo/auto/Automation/PagesObjects/ArticleBase.cs" relfile="Automation/PagesObjects/ArticleBase.cs" line="112" column="45" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="357" column="73" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/PagesObjects/CasterObjectsFolder/FtbPost.cs" relfile="Automation/PagesObjects/CasterObjectsFolder/FtbPost.cs" line="19" column="42" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

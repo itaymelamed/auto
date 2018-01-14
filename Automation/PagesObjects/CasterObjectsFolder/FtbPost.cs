@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 
@@ -13,7 +13,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public override void PublishPostToFeed(LeaguePages leaguePage, int league)
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on publish button.");
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             CheckLeague(league);
             ChooseLeaguePage(leaguePage);
@@ -24,7 +24,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public override void PublishPost()
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on publish button.");
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             CheckLeague(0);
             CheckPublishTo(1);
@@ -33,5 +33,17 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
         }
 
+        public void PublishPostToTeam(int team, int league, List<int> publishTo, string category)
+        {
+            Base.MongoDb.UpdateSteps($"Publish post to team #{team}.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            CheckLeague(league);
+            ClickOnTeamArrow(team);
+            SelectPublishTo(publishTo);
+            InsertCategory(category);
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            //_browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
+        }
     }
 }

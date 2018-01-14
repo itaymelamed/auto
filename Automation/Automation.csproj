@@ -161,6 +161,7 @@
     <Compile Include="ApiFolder\ProxyApiFolder\ProxyApi.cs" />
     <Compile Include="TestsFolder\Base.cs" />
     <Compile Include="TestsFolder\BaseNetworkTraffic.cs" />
+    <Compile Include="ApiFolder\JsonHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
