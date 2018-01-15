@@ -64,8 +64,12 @@ namespace Automation.BrowserFolder
 
         public void SetText(IWebElement el, string text)
         {
-            MoveToEl(el);
-            el.SendKeys(text);
+            WaitUntillTrue(() => 
+            {
+                MoveToEl(el);
+                el.SendKeys(text);
+                return true;
+            });
         }
 
         public void DragElement(IWebElement drag, IWebElement drop)

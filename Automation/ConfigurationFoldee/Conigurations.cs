@@ -12,6 +12,7 @@ namespace Automation.ConfigurationFolder
     public class Configurations
     {
         public ConfigObject ConfigObject { get; }
+        public ApiConfig ApiConfig { get; }
         public BsonDocument GlobalConfigObject { get; }
         public Enviroment Env { get; }
         public BrowserType BrowserT { get; }
@@ -62,6 +63,7 @@ namespace Automation.ConfigurationFolder
             BrowserT = BrowserType.Desktop;
             GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
+            ApiConfig = GetApiConfig();
             Url = $"http://{Env}.{ConfigObject.Url}";
         }
 
@@ -84,6 +86,11 @@ namespace Automation.ConfigurationFolder
         BsonValue GetConfigJson(string siteName)
         {
             return _mongoDb.GetConfig(siteName);
+        }
+
+        ApiConfig GetApiConfig()
+        {
+            return BsonSerializer.Deserialize<ApiConfig>(GlobalConfigObject["ApiConfig"] as BsonDocument);
         }
 
         BsonDocument GetGlobalConfig()

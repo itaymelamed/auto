@@ -162,6 +162,7 @@
     <Compile Include="TestsFolder\Base.cs" />
     <Compile Include="TestsFolder\BaseNetworkTraffic.cs" />
     <Compile Include="ApiFolder\JsonHelper.cs" />
+    <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\ApiConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

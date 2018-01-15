@@ -7,8 +7,6 @@ using static Automation.PagesObjects.CasterObjectsFolder.CastrPost;
 using Automation.PagesObjects.ExternalPagesobjects;
 using System.Collections.Generic;
 using Automation.ApiFolder;
-using System.Linq;
-using Newtonsoft.Json.Linq;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -331,6 +329,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
+
         [TestFixture]
         [Parallelizable]
         public class Test13Class : BaseUi
@@ -416,10 +415,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         {
             [Test]
             [Property("TestCaseId", "46")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("Castr")]
-            [Category("Ftb90")]
+            [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
             [Retry(2)]
             public void Castr_FTB90_CheckIDPostsFromDiffrentDomains()
             {
@@ -448,7 +444,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test17Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "46")]
+            [Property("TestCaseId", "47")]
             [Category("Sanity")][Category("Admin")][Category("Castr")][Category("Ftb90")]
             [Retry(2)]
             public void Castr_FTB90_PublishAnIdPostFromFTB90Caster()
@@ -465,14 +461,23 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 castrPostFTB90.PublishPostToTeam(1, 0, new List<int> { 0, 1 }, "l");
                 castrPostFTB90.ValidateSucMsg();
 
-                ApiObject _api = new ApiObject();
-                JsonHelper jsonHelper = new JsonHelper(_config.GlobalConfigObject["Apis"]["Feed"].ToString());
-                Assert.True(jsonHelper.SearchArticleInFeed( postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
-                Assert.True(jsonHelper.SearchArticleInFeed(postCreator.Title), $"Post '{postCreator.Title}' was not published to team's feed.");
-                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 1, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 5, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-                Assert.False(jsonHelper.SearchArticleInFeed(postCreator.Title, 17, 0), $"Post '{postCreator.Title}' published to an unchecked team's feed.");
-                //Assert.False(jsonHelper.SearchArticleInFeed("lists", postCreator.Title, 179, 0, $"90Min.com"), $"Post '{postCreator.Title}' published to 90Min feed.");
+                JsonHelper jsonHelper = new JsonHelper(179, postCreator.Title);
+                Assert.True(jsonHelper.SearchArticleInFeed(), $"Post '{postCreator.Title}' was not published to team's feed.");
+
+                jsonHelper = new JsonHelper(1, postCreator.Title);
+                Assert.False(jsonHelper.SearchArticleInFeed(0), "Post apeared on an unchecked team's feed.");
+
+                jsonHelper = new JsonHelper(2, postCreator.Title);
+                Assert.False(jsonHelper.SearchArticleInFeed(0), "Post apeared on an unchecked team's feed.");
+
+                jsonHelper = new JsonHelper("id", 179, "90Min", postCreator.Title);
+                Assert.False(jsonHelper.SearchArticleInFeed(0), "Post apeared on 90Min team's feed.");
+
+                jsonHelper = new JsonHelper("en", 179, "90Min", postCreator.Title);
+                Assert.False(jsonHelper.SearchArticleInFeed(0), "Post apeared on 90Min team's feed.");
+
+                jsonHelper = new JsonHelper("lists", postCreator.Title);
+                Assert.True(jsonHelper.SearchArticleInFeed(), $"Post '{postCreator.Title}' was not published to List catageory feed.");
             }
         }
     }

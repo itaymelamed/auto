@@ -248,11 +248,11 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             ValidateSucMsg();
         }
 
-        public virtual void PublishPost()
+        public virtual void PublishPost(int league = 0)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            CheckLeague(0);
+            CheckLeague(league);
             CheckPublishTo(1);
             UncheckPublishToFtb();
             _browserHelper.Click(publishBtn, nameof(publishBtn));
