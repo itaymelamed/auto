@@ -163,6 +163,7 @@
     <Compile Include="TestsFolder\BaseNetworkTraffic.cs" />
     <Compile Include="ApiFolder\JsonHelper.cs" />
     <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\ApiConfig.cs" />
+    <Compile Include="PagesObjects\SlideShowPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
