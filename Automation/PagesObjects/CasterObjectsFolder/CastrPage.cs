@@ -170,7 +170,7 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitUntillTrue(() => {
                 var typesCount = types.ToList().Count();
-                return typesCount == 10;
+                return typesCount == 9;
             });
 
             _browserHelper.WaitUntillTrue(() =>
