@@ -7,6 +7,7 @@ using static Automation.PagesObjects.CasterObjectsFolder.CastrPost;
 using Automation.PagesObjects.ExternalPagesobjects;
 using System.Collections.Generic;
 using Automation.ApiFolder;
+using Automation.ApiFolder.FacebookApi;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -317,15 +318,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
                 post.PublishToSocialNetwork(0, 2, 0);
-                _browser.Navigate(_config.ConfigObject.FacebookUrl);
-                FacebookAppPage facebookAppPage = new FacebookAppPage(_browser);
-                facebookAppPage.ScrollToPost();
-
-                Assert.True(facebookAppPage.ValidatePostTitle(postCreator.Title));
-                Assert.True(facebookAppPage.VlidatePostDetails(postCreator.Title), "Post title was not shown in facebook post body.");
-
-                PostPage postPage2 = facebookAppPage.ClickOnPost(postCreator.Title);
-                Assert.True(postPage2.ValidatePostCreated(postCreator.Title), "User has not redirected to post.");
+                FacebookClient facebookClient = new FacebookClient();
+                Assert.True(facebookClient.SearchPost(postCreator.Title), $"Post {postCreator.Title} was not created");
             }
         }
 

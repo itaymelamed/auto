@@ -14,6 +14,8 @@ namespace Automation.ApiFolder
         string _url;
         string _valueToSearch;
 
+        public JsonHelper() { }
+
         public JsonHelper(int team, string valueToSearch)
         {
             _api = new ApiObject();
@@ -53,7 +55,7 @@ namespace Automation.ApiFolder
             return articles.Count >= 1;
         }
 
-        bool WaitUntill(Func<bool> func, int timeOut)
+        public bool WaitUntill(Func<bool> func, int timeOut)
         {
             int timePassed = 0;
             while(!func() && timePassed <= timeOut)

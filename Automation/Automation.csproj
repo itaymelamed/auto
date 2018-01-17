@@ -164,6 +164,8 @@
     <Compile Include="ApiFolder\JsonHelper.cs" />
     <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\ApiConfig.cs" />
     <Compile Include="PagesObjects\SlideShowPage.cs" />
+    <Compile Include="ApiFolder\FacebookApi\FacebookClient.cs" />
+    <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\FacebookApiConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -187,6 +189,7 @@
     <Folder Include="ApiFolder\ProxyApiFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
     <Folder Include="TestsFolder\ApiTestsFolder\" />
+    <Folder Include="ApiFolder\FacebookApi\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

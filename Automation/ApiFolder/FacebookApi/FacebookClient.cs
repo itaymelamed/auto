@@ -1,0 +1,38 @@
+﻿using System.Linq;
+using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
+using Automation.TestsFolder;
+using Newtonsoft.Json.Linq;
+
+namespace Automation.ApiFolder.FacebookApi
+{
+    public class FacebookClient
+    {
+        readonly ApiObject _apiObject;
+        readonly FacebookApiConfig _facebookApiConfig;
+        readonly string _accessToken;
+
+        public FacebookClient()
+        {
+            _apiObject = new ApiObject();
+            _facebookApiConfig = Base._config.FacebookApiConfig;
+            _accessToken = _facebookApiConfig.Token;
+        }
+
+        JObject Get(string endpoint, string args = null)
+        {
+            return _apiObject.GetRequest($"{_facebookApiConfig.Url}/{endpoint}?access_token={_accessToken}&{args}");
+        }
+
+        JObject GetGroupPosts()
+        {
+            return Get($"{_facebookApiConfig.GroupId}/feed");
+        }
+
+        public bool SearchPost(string postTitle)
+        {
+            var posts = GetGroupPosts()["data"];
+            JsonHelper jsonHelper = new JsonHelper();
+            return jsonHelper.WaitUntill(() => posts.Where(p => p["message"].ToString() == postTitle).Count() > 0, 30);
+        }
+    }
+}

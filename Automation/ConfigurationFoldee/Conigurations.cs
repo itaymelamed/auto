@@ -13,6 +13,7 @@ namespace Automation.ConfigurationFolder
     {
         public ConfigObject ConfigObject { get; }
         public ApiConfig ApiConfig { get; }
+        public FacebookApiConfig FacebookApiConfig { get; }
         public BsonDocument GlobalConfigObject { get; }
         public Enviroment Env { get; }
         public BrowserType BrowserT { get; }
@@ -63,7 +64,8 @@ namespace Automation.ConfigurationFolder
             BrowserT = BrowserType.Desktop;
             GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
-            ApiConfig = GetApiConfig();
+            ApiConfig = GetConfig<ApiConfig>("ApiConfig");
+            FacebookApiConfig = GetConfig<FacebookApiConfig>("FacebookApiConfig");
             Url = $"http://{Env}.{ConfigObject.Url}";
         }
 
@@ -75,7 +77,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "Ftb90");
+            return TestContext.Parameters.Get("siteName", "90Min");
         }
 
         static string GetParams(string param)
@@ -88,9 +90,9 @@ namespace Automation.ConfigurationFolder
             return _mongoDb.GetConfig(siteName);
         }
 
-        ApiConfig GetApiConfig()
+        T GetConfig<T>(string prop)
         {
-            return BsonSerializer.Deserialize<ApiConfig>(GlobalConfigObject["ApiConfig"] as BsonDocument);
+            return BsonSerializer.Deserialize<T>(GlobalConfigObject[prop] as BsonDocument);
         }
 
         BsonDocument GetGlobalConfig()
