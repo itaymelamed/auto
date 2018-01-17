@@ -28,7 +28,7 @@ namespace Automation.BrowserFolder
 
         public bool HubsFree()
         {
-            return _hubs.All(h => h.IsHubAvalible());
+            return _hubs.Any(h => h.IsHubAvalible());
         }
 
         public string GetAvailbleHub()
