@@ -50,10 +50,10 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(connectBtn, "Connect Button");
 
-            BaseUi.MongoDb.UpdateSteps($"Click on Connect Button.");
+            Base.MongoDb.UpdateSteps($"Click on Connect Button.");
             connectBtn.Click();
 
-            BaseUi.MongoDb.UpdateSteps($"Switch to FaceBook login tab.");
+            Base.MongoDb.UpdateSteps($"Switch to FaceBook login tab.");
             _browser.SwitchToLastTab();
 
             return new FaceBookconnectPage(_browser);
@@ -63,7 +63,7 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(connectBtn, "Connect Button");
 
-            BaseUi.MongoDb.UpdateSteps($"Click on Connect Button.");
+            Base.MongoDb.UpdateSteps($"Click on Connect Button.");
             connectBtn.Click();
             ValidateUserProfilePic();
         }
@@ -72,7 +72,7 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(writeAnArticleBtn, "Write an article Button");
 
-            BaseUi.MongoDb.UpdateSteps($"Click on Write New Article Button.");
+            Base.MongoDb.UpdateSteps($"Click on Write New Article Button.");
             _browserHelper.Click(writeAnArticleBtn, nameof(writeAnArticleBtn));
 
             return new EditorPage(_browser);
@@ -86,26 +86,26 @@ namespace Automation.PagesObjects
         public string ValidatemenuBtnTxt()
         {
             _browserHelper.WaitForElement(menu, "Menu button");
-            BaseUi.MongoDb.UpdateSteps($"Validate Menu button text.");
+            Base.MongoDb.UpdateSteps($"Validate Menu button text.");
             return menu.Text;
         }
 
         public void ValidateUserProfilePic()
         {
-            BaseUi.MongoDb.UpdateSteps($"Validate user's profile pic.");
+            Base.MongoDb.UpdateSteps($"Validate user's profile pic.");
             _browserHelper.WaitForElement(userProfilePic, nameof(userProfilePic), 180, true);
             Thread.Sleep(1000);
         }
 
         public void HoverOverUserProfilePic()
         {
-            BaseUi.MongoDb.UpdateSteps($"Hover Over User Profile Picture.");
+            Base.MongoDb.UpdateSteps($"Hover Over User Profile Picture.");
             _browserHelper.Hover(userProfilePic);
         }
 
         public AdminPage ClickOnAdmin()
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on Admin.");
+            Base.MongoDb.UpdateSteps($"Click on Admin.");
             _browserHelper.WaitForElement(admin, nameof(admin), 30, true);
             _browserHelper.Click(admin, nameof(admin));
 
@@ -114,7 +114,7 @@ namespace Automation.PagesObjects
 
         public SettingsPage ClickOnSettings()
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on Settings.");
+            Base.MongoDb.UpdateSteps($"Click on Settings.");
             _browserHelper.WaitForElement(settings, nameof(settings), 30, true);
             _browserHelper.Click(settings, nameof(settings));
 
@@ -123,7 +123,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateAdminAppears()
         {
-            BaseUi.MongoDb.UpdateSteps($"Validate Admin Appears.");
+            Base.MongoDb.UpdateSteps($"Validate Admin Appears.");
             return _browserHelper.WaitForElement(admin, nameof(admin), 2, false);
         }
 
@@ -138,9 +138,7 @@ namespace Automation.PagesObjects
 
         public CastrPage GoToCastr()
         {
-            HoverOverUserProfilePic();
-            AdminPage adminPage = ClickOnAdmin();
-
+            AdminPage adminPage = new AdminPage(_browser);
             return adminPage.ClickOnCasterLink();
         }
 

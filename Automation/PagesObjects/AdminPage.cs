@@ -10,6 +10,12 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[href*='/castr']")]
         IWebElement caster { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[href*='/create_post']")]
+        IWebElement createPostLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".message")]
+        IWebElement postTitle { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -24,11 +30,24 @@ namespace Automation.PagesObjects
 
         public CastrPage ClickOnCasterLink()
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on Caster.");
+            Base.MongoDb.UpdateSteps($"Click on Caster.");
             _browserHelper.WaitForElement(caster, nameof(caster));
             _browserHelper.Click(caster, nameof(caster));
 
             return new CastrPage(_browser);
+        }
+
+        public void ClickOnCreatePost()
+        {
+            Base.MongoDb.UpdateSteps($"Click on Create Post.");
+            _browserHelper.WaitForElement(createPostLink, nameof(createPostLink));
+            _browserHelper.ClickJavaScript(createPostLink);
+        }
+
+        public string GetPostTitle()
+        {
+            _browserHelper.WaitForElement(postTitle, nameof(postTitle));
+            return postTitle.Text;
         }
     }
 }

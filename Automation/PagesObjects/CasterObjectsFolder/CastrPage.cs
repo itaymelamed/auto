@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Automation.BrowserFolder;
 using Automation.PagesObjects.CasterObjectsFolder;
 using Automation.TestsFolder;
@@ -103,7 +102,7 @@ namespace Automation.PagesObjects
         public bool ValidateCasterPage()
         {
             Base.MongoDb.UpdateSteps("Validate user is on Castr page.");
-            return _browserHelper.WaitForUrlToChange($"{BaseUi._config.Url}/management/castr");
+            return _browserHelper.WaitForUrlToChange($"{Base._config.Url}/management/castr");
         }
 
         public void FilterByLanguage(string language)
@@ -202,7 +201,6 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Select status {status}.");
             _browserHelper.WaitForElement(statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
-            Thread.Sleep(TimeSpan.FromSeconds(8));
 
             return new CastrPage(_browser);
         }
@@ -211,7 +209,8 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Search post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
-            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => t.Text == title).FirstOrDefault(), $"Could not find post {title}.");
+            var aaa = new string(postsTitles.ToList()[0].Text.Replace('-', ' ').ToLower().ToCharArray());
+            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => new string(t.Text.Replace('-', ' ').ToLower().ToCharArray())  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
         }
 
         public CastrPost ClickOnPost(string title)
@@ -220,7 +219,7 @@ namespace Automation.PagesObjects
             _browserHelper.WaitUntillTrue(() => 
             {
                 _browserHelper.Click(SerachPost(title), $"Post title {title}");
-                return posts.ToList().Any(p => p.Text.Contains(title) && p.GetAttribute("class") == "selected");
+                return posts.ToList().Any(p => p.GetAttribute("class") == "selected");
             });
 
             return new CastrPost(_browser);
@@ -233,7 +232,7 @@ namespace Automation.PagesObjects
             {
                 var checkBx = postsTitles.IndexOf(SerachPost(title));
                 resultsInputs[checkBx].Click();
-                return posts.Where(x => x.Text.Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
+                return posts.Where(x => new string(x.Text.ToLower().Replace('-', ' ').ToCharArray()).Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
             });
         }
 
@@ -253,7 +252,7 @@ namespace Automation.PagesObjects
         public bool SearchPostByTitle(string title)
         {
             Base.MongoDb.UpdateSteps($"Search post {title}.");
-            return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => p.Text == title));
+            return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => new string(p.Text.Replace('-', ' ').ToLower().ToCharArray()) == title));
         }
     }
 }

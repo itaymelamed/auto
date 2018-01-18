@@ -87,11 +87,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "6")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("Tags")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxInsertSingleTag()
             {
@@ -120,11 +116,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "7")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("Tags")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxInsertMultipleTags()
             {
@@ -152,12 +144,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test6Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "8")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("Tags")]
-            [Category("AllBrands")]
+            [Property("TestCaseId", "8")][Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxSugestionsTags()
             {
@@ -325,10 +312,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "30")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateTextBoxsBodys()
             {
@@ -353,10 +337,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "31")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateSubTitelsFields()
             {
@@ -381,10 +362,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "33")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateDragImages()
             {
@@ -404,10 +382,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "35")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateAscendingOrder()
             {
@@ -429,10 +404,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "36")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("EditPage")]
-            [Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateDescendingOrder()
             {

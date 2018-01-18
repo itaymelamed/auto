@@ -153,5 +153,10 @@ namespace Automation.BrowserFolder
 
             return options;
         }
+
+        public void AddCookies(string key, string value)
+        {
+            Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
+        }
     }
 }

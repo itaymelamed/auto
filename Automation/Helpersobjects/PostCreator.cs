@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Automation.BrowserFolder;
 using Automation.PagesObjects;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace Automation.Helpersobjects
         public Type Lists { get; }
         public Type LineUp { get; }
         public List<Type> Templates { get; }
-        public string Title { get; }
+        public string Title { get; set; }
 
         public PostCreator(Browser browser)
             :base(browser)
@@ -35,6 +36,16 @@ namespace Automation.Helpersobjects
             postPage.ValidatePostCreated(Title);
 
             return new PostPage(_browser);
+        }
+
+        public string Create()
+        {
+            AdminPage adminPage = ClickOnAdmin();
+            adminPage.ClickOnCreatePost();
+            var title = adminPage.GetPostTitle().Split('>')[1];
+            var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-"," ");
+            Title = parsedTitle.Trim();
+            return parsedTitle;
         }
     }
 }

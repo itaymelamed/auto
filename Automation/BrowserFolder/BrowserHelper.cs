@@ -127,10 +127,10 @@ namespace Automation.BrowserFolder
 
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 if (throwEx)
-                    throw new NUnit.Framework.AssertionException($"{ex}");
+                    throw new NUnit.Framework.AssertionException($"{ex}. {e.Message}");
                 return false;
             }
         }
@@ -154,10 +154,10 @@ namespace Automation.BrowserFolder
 
                 return func();
             }
-            catch
+            catch(Exception e)
             {
                 if(throwEx)
-                    throw new NUnit.Framework.AssertionException(ex);
+                    throw new NUnit.Framework.AssertionException(e.Message);
                 return null;
             }
         }

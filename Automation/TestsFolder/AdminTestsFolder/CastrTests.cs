@@ -136,7 +136,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -163,7 +163,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -194,7 +194,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
 
@@ -218,7 +218,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -245,7 +245,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -276,7 +276,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -313,7 +313,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -340,7 +340,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
@@ -368,7 +368,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GotoCastrByUrl("");
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor.");
@@ -392,7 +392,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
@@ -417,7 +417,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
@@ -446,7 +446,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                PostPage postPage = postCreator.Create(typeof(ArticleBase));
+                postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = new CastrPage(_browser);
                 newPosts.ClickOnPost(postCreator.Title);

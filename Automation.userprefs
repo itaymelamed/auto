@@ -2,18 +2,20 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="319" Column="66" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="63" Column="1" />
-      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPage.cs" Line="172" Column="57" />
-      <File FileName="Automation/packages.config" Line="16" Column="35" />
-      <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="37" Column="1" />
-      <File FileName="Automation/ApiFolder/FacebookApi/FacebookClient.cs" Line="36" Column="1" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="68" Column="60" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/FacebookApiConfig.cs" Line="9" Column="2" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ConfigObject.cs" Line="16" Column="24" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/ApiConfig.cs" Line="1" Column="1" />
-      <File FileName="Automation/ConfigurationFoldee/ConfigurationsJsonObject/IUser.cs" Line="1" Column="1" />
-      <File FileName="Automation/ApiFolder/JsonHelper.cs" Line="22" Column="49" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="21" Column="40" />
+      <File FileName="Automation/TestsFolder/BaseUi.cs" Line="10" Column="21" />
+      <File FileName="Automation/BrowserFolder/Browser.cs" Line="22" Column="16" />
+      <File FileName="Automation/TestsFolder/BaseNetworkTraffic.cs" Line="17" Column="46" />
+      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="31" Column="38" />
+      <File FileName="Automation/ApiFolder/ProxyApiFolder/ProxyApi.cs" Line="97" Column="30" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="451" Column="53" />
+      <File FileName="Automation/TestsFolder/EditortestsFolder/EditorTests.cs" Line="575" Column="42" />
+      <File FileName="Automation/Helpersobjects/PostCreator.cs" Line="45" Column="44" />
+      <File FileName="Automation/PagesObjects/AdminPage.cs" Line="35" Column="58" />
+      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="147" Column="1" />
+      <File FileName="Automation/PagesObjects/HomePage.cs" Line="142" Column="50" />
+      <File FileName="Automation/MongoDbObject/MongoDb.cs" Line="114" Column="1" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPage.cs" Line="9" Column="34" />
       <File FileName="auto Status" />
     </Files>
     <Pads>
@@ -24,11 +26,10 @@
               <Node name="Automation" expanded="True">
                 <Node name="TestsFolder" expanded="True">
                   <Node name="AdminTestsFolder" expanded="True">
-                    <Node name="CastrTests+Test12Class" expanded="True">
-                      <Node name="Castr_Social_Networks_Facebook" selected="True" />
+                    <Node name="CastrTests+Test5Class" expanded="True">
+                      <Node name="Castr_CheckArchiveStatus" selected="True" />
                     </Node>
                   </Node>
-                  <Node name="EditortestsFolder" expanded="True" />
                 </Node>
               </Node>
             </Node>
@@ -42,6 +43,7 @@
     <BreakpointStore>
       <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/BrowserFolder/BrowserHelper.cs" relfile="Automation/BrowserFolder/BrowserHelper.cs" line="361" column="73" />
       <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ApiFolder/FacebookApi/FacebookClient.cs" relfile="Automation/ApiFolder/FacebookApi/FacebookClient.cs" line="33" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" relfile="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" line="27" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
