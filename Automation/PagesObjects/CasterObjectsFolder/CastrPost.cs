@@ -267,7 +267,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             UncheckPublishToFtb();
             ChooseLeaguePage(leaguePage);
             _browserHelper.Click(publishBtn, nameof(publishBtn));
-            _browserHelper.ConfirmAlarem();
+            //_browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
 

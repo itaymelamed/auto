@@ -287,6 +287,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 newPosts = newPosts.SelectStatus(Statuses.New);
                 post = newPosts.ClickOnPost(postCreator.Title);
                 post.PublishPostToFeed(LeaguePages.ftbpro, 0);
+
                 _browser.Navigate($"{_config.Url}/{feedUrl}");
                 FeedPage feedPage = new FeedPage(_browser);
                 Assert.True(feedPage.ValidateArticleByTitle(postCreator.Title), $"Post {postCreator.Title} was not shown on {feedUrl} after it was reseted.");

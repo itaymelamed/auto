@@ -15,6 +15,12 @@ namespace Automation.ApiFolder
         string _url;
         string _valueToSearch;
 
+        public enum Leagues
+        {
+            ChampionLeags = 2,
+            PremierLeague = 1
+        }
+
         public JsonHelper() { }
 
         public JsonHelper(int team, string valueToSearch)
@@ -22,6 +28,14 @@ namespace Automation.ApiFolder
             _api = new ApiObject();
             _apiConfig = Base._config.ApiConfig;
             _url = _apiConfig.GetFeedUrl(team);
+            _valueToSearch = valueToSearch;
+        }
+
+        public JsonHelper(Leagues league, string valueToSearch)
+        {
+            _api = new ApiObject();
+            _apiConfig = Base._config.ApiConfig;
+            _url = _apiConfig.GetFeedUrl((int)league);
             _valueToSearch = valueToSearch;
         }
 

@@ -501,7 +501,6 @@ namespace Automation.TestsFolder.EditortestsFolder
                 ArticleBase articleBase = editorPage.ClickOnArticle();
                 articleBase.ClickOnPlayBuzzCBX();
                 articleBase.SetPlayBuzzURL("http://www.playbuzz.com/meliak10/when-and-where-in-time-should-you-live");
-                Assert.True(articleBase.ValidatePlayBuzzImageAppears(), "layBuzz not appears");
             }
         }
 
