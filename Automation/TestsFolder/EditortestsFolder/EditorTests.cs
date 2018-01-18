@@ -558,38 +558,38 @@ namespace Automation.TestsFolder.EditortestsFolder
             }
         }
 
-        //[TestFixture]
-        //[Parallelizable]
-        //public class Test25Class : BaseUi
-        //{
-        //    [Test]
-        //    [Property("TestCaseId", "44")]
-        //    [Category("Sanity")]
-        //    [Category("Admin")]
-        //    [Category("EditPage")]
-        //    [Category("AllBrands")]
-        //    [Retry(2)]
-        //    public void Editor_List_FullFlow()
-        //    {
-        //        BsonArray tagExValue = _params["Tags"].AsBsonArray;
-        //        BsonArray titles = _params["Titles"].AsBsonArray;
-        //        string body = _params["Body"].ToString();
+        [TestFixture]
+        [Parallelizable]
+         public class Test25Class : BaseUi
+         {
+            [Test]
+            [Property("TestCaseId", "48")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("EditPage")]
+            [Category("AllBrands")]
+            [Retry(2)]
+            public void Editor_SlideShow_FullFlow()
+            {
+                BsonArray tagExValue = _params["Tags"].AsBsonArray;
+                BsonArray titles = _params["Titles"].AsBsonArray;
+                string body = _params["Body"].ToString();
 
-        //        HomePage homePage = new HomePage(_browser);
-        //        homePage.Login(_config.ConfigObject.Users.AdminUser);
-        //        EditorPage editorPage = homePage.ClickOnAddArticle();
-        //        SlideShowPage slideShow = editorPage.ClickOnList();
-        //        listsTemplate.WriteTitle("VIDEO:test slideshow template");
-        //        listsTemplate.DragImages();
-        //        listsTemplate.SetSubTitles(titles);
-        //        listsTemplate.SetBodyTextBoxs(body);
-        //        listsTemplate.WriteTags(tagExValue);
-        //        listsTemplate.ClickOnAscendingBtn();
-        //        listsTemplate.ClickOnDscBtn();
-        //        PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
-        //        PostPage postPage = previewPage.ClickOnPublishBtn();
-        //        Assert.True(postPage.ValidatePostCreated("VIDEO:test list template"), "Post was not created");
-        //    }
-        //}
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                EditorPage editorPage = homePage.ClickOnAddArticle();
+                SlideShowPage slideShow = editorPage.ClickOnSlideShow();
+                slideShow.WriteTitle("VIDEO:test slideshow template");
+                slideShow.DragAndDropImages();
+                slideShow.SetSubTitles(titles);
+                slideShow.SetBodyTextBoxsSlide(body);
+                slideShow.WriteTags(tagExValue);
+                slideShow.ClickOnAscendingBtn();
+                slideShow.ClickOnDscBtn();
+                PreviewPage previewPage = slideShow.ClickOnPreviewBtn();
+                PostPage postPage = previewPage.ClickOnPublishBtn();
+                Assert.True(postPage.ValidatePostCreated("VIDEO:test slideshow template"), "Post was not created");
+            }
+        }
     }
 }

@@ -64,8 +64,8 @@ namespace Automation.PagesObjects
 
         public void SetBodyTextBoxs(string text)
         {
-            BaseUi.MongoDb.UpdateSteps("Set body text boxs");
-            _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() == 5);
+            Base.MongoDb.UpdateSteps("Set body text boxs");
+            _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() >= 4);
             bodyTextBoxs.ToList().ForEach(x => _browserHelper.SetText(x, text));
         }
 
