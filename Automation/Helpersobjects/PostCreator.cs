@@ -40,6 +40,7 @@ namespace Automation.Helpersobjects
 
         public string Create()
         {
+            HoverOverUserProfilePic();
             AdminPage adminPage = ClickOnAdmin();
             adminPage.ClickOnCreatePost();
             var title = adminPage.GetPostTitle().Split('>')[1];
