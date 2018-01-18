@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.TestsFolder;
 using Newtonsoft.Json.Linq;
@@ -32,7 +33,7 @@ namespace Automation.ApiFolder.FacebookApi
         {
             var posts = GetGroupPosts()["data"];
             JsonHelper jsonHelper = new JsonHelper();
-            return jsonHelper.WaitUntill(() => posts.Where(p => p["message"].ToString().ToLower().Replace('-', ' ') == postTitle).Count() > 0, 30);
+            return jsonHelper.WaitUntill(() => posts.Any(p =>  Regex.Replace(p["message"].ToString().Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)  == postTitle), 30);
         }
     }
 }
