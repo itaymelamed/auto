@@ -32,7 +32,7 @@ namespace Automation.ApiFolder.FacebookApi
         {
             var posts = GetGroupPosts()["data"];
             JsonHelper jsonHelper = new JsonHelper();
-            return jsonHelper.WaitUntill(() => posts.Where(p => p["message"].ToString() == postTitle).Count() > 0, 30);
+            return jsonHelper.WaitUntill(() => posts.Where(p => p["message"].ToString().ToLower().Replace('-', ' ') == postTitle).Count() > 0, 30);
         }
     }
 }
