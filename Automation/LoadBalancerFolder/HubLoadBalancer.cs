@@ -42,7 +42,7 @@ namespace Automation.BrowserFolder
         public bool WaitUntill(Func<bool> func)
         {
             while (!func())
-                Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            {};
 
             return true;
         }
