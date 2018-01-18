@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.TestsFolder;
@@ -49,10 +50,9 @@ namespace Automation.ApiFolder
         bool Search()
         {
             JObject res = _api.GetRequest(_url);
-            var articles = res["data"]["feed"].ToList()
+            return res["data"]["feed"].ToList()
                     .Where(x => x.ToString().Contains("article"))
-                       .Where(j => j["article"]["title"].ToString() == _valueToSearch).ToList();
-            return articles.Count >= 1;
+                                              .Any(j => Regex.Replace(j["article"]["title"].ToString().ToLower().Replace('-', ' '), @"[\d-]", string.Empty) == _valueToSearch);
         }
 
         public bool WaitUntill(Func<bool> func, int timeOut)
