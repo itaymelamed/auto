@@ -90,7 +90,6 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             :base(browser)
         {
             _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
-            Thread.Sleep(2000);
         }
 
         public bool ValidateTextAreasDissabled()

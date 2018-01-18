@@ -2,10 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="21" Column="40" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/CastrTests.cs" Line="322" Column="49" />
-      <File FileName="Automation/ApiFolder/JsonHelper.cs" Line="47" Column="46" />
-      <File FileName="Automation/ApiFolder/FacebookApi/FacebookClient.cs" Line="36" Column="153" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="41" Column="31" />
+      <File FileName="Automation/PagesObjects/CasterObjectsFolder/CastrPost.cs" Line="86" Column="19" />
       <File FileName="auto Status" />
     </Files>
     <Pads>
