@@ -29,7 +29,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         IList<IWebElement> leagueCheckBox { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "button.archive")]
-        IWebElement archiveBtn { get; set; }
+        protected IWebElement archiveBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".reset")]
         IWebElement resetBtn { get; set; }
@@ -251,6 +251,8 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            if (!archiveBtn.Enabled)
+                ResetPost();
             CheckLeague(league);
             CheckPublishTo(1);
             UncheckPublishToFtb();
@@ -263,6 +265,8 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            if (!archiveBtn.Enabled)
+                ResetPost();
             CheckLeague(league);
             UncheckPublishToFtb();
             ChooseLeaguePage(leaguePage);
