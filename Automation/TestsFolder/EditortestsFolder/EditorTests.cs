@@ -15,7 +15,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "3")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateInputFields()
             {
@@ -37,7 +37,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "4")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTitleTextfieled()
             {
@@ -62,7 +62,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "5")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateBodyTextfieled()
             {
@@ -87,7 +87,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "6")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxInsertSingleTag()
             {
@@ -116,7 +116,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "7")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxInsertMultipleTags()
             {
@@ -144,7 +144,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         public class Test6Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "8")][Category("Sanity")][Category("Admin")][Category("EditPage")][Category("Tags")][Category("AllBrands")]
+            [Property("TestCaseId", "8")][Category("Sanity")][Category("Admin")][Category("Editor")][Category("Tags")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidateTagsTextBoxSugestionsTags()
             {
@@ -171,7 +171,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "9")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_DragAndDropAcoverImage()
@@ -199,7 +199,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "10")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ImageSearch_ValidateMaxSearchResultsAndContent()
@@ -229,7 +229,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("PreviewPage")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_PreviewButtonCheckEditButton()
@@ -258,7 +258,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("PreviewPage")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
             [Retry(2)]
             public void PostPage_Article_PublishButton()
@@ -289,6 +289,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("PostPage")]
             [Category("AllBrands")]
+            [Category("Editor")]
             [Retry(2)]
             public void Editor_List_ValidateTtitle()
             {
@@ -312,7 +313,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "30")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateTextBoxsBodys()
             {
@@ -337,7 +338,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "31")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateSubTitelsFields()
             {
@@ -362,7 +363,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "33")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateDragImages()
             {
@@ -382,7 +383,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "35")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateAscendingOrder()
             {
@@ -404,7 +405,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "36")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_List_ValidateDescendingOrder()
             {
@@ -429,8 +430,9 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "37")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
+            [Category("FullFlow")]
             [Retry(2)]
             public void Editor_List_FullFlow()
             {
@@ -461,7 +463,8 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "38")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
+            [Category("FullFlow")]
             [Retry(2)]
             public void Editor_Article_FullFlow()
             {
@@ -491,7 +494,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "39")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")][Category("AllBrands")]
+            [Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
@@ -512,8 +515,9 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "44")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
+            [Category("FullFlow")]
             [Retry(2)]
             public void Editor_TV_FullFlow()
             {
@@ -542,7 +546,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "43")]
-            [Category("Sanity")][Category("Admin")][Category("EditPage")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
             [Retry(2)]
             public void Editor_TV_ValidateEmbedCode()
             {
@@ -565,8 +569,9 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Property("TestCaseId", "48")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("EditPage")]
+            [Category("Editor")]
             [Category("AllBrands")]
+            [Category("FullFlow")]
             [Retry(2)]
             public void Editor_SlideShow_FullFlow()
             {
