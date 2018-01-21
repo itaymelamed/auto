@@ -210,7 +210,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Search post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
-            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => Regex.Replace(t.Text.Replace('-', ' ').ToLower(),@"[\d -]", string.Empty)  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
+            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => Regex.Replace(t.Text.Replace('-', ' ').ToLower(),@"[\d-]", string.Empty)  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
         }
 
         public CastrPost ClickOnPost(string title)
@@ -232,7 +232,7 @@ namespace Automation.PagesObjects
             {
                 var checkBx = postsTitles.IndexOf(SerachPost(title));
                 resultsInputs[checkBx].Click();
-                return posts.Where(x => Regex.Replace(x.Text.ToLower().Replace('-', ' ').ToLower(), @"[\d -]", string.Empty).Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
+                return posts.Where(x => Regex.Replace(x.Text.ToLower().Replace('-', ' ').ToLower(), @"[\d-]", string.Empty).Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
             });
         }
 
@@ -252,7 +252,7 @@ namespace Automation.PagesObjects
         public bool SearchPostByTitle(string title)
         {
             Base.MongoDb.UpdateSteps($"Search post {title}.");
-            return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d -]", string.Empty) == title));
+            return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title));
         }
     }
 }
