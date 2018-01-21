@@ -31,6 +31,7 @@ namespace Automation.ApiFolder.FacebookApi
 
         public bool SearchPost(string postTitle)
         {
+            Base.MongoDb.UpdateSteps("Validate post creation on Facebook API.");
             var posts = GetGroupPosts()["data"];
             JsonHelper jsonHelper = new JsonHelper();
             return jsonHelper.WaitUntill(() => posts.Any(p =>  Regex.Replace(p["message"].ToString().Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)  == postTitle), 60);
