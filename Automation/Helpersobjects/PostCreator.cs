@@ -34,6 +34,8 @@ namespace Automation.Helpersobjects
             PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
             PostPage postPage = previewPage.ClickOnPublishBtn();
             postPage.ValidatePostCreated(Title);
+            var parsedTitle = new string(Title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-", " ");
+            Title = parsedTitle.Trim();
 
             return new PostPage(_browser);
         }
