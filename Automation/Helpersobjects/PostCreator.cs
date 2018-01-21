@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Automation.BrowserFolder;
 using Automation.PagesObjects;
+using Automation.TestsFolder;
 using NUnit.Framework;
 
 namespace Automation.Helpersobjects
@@ -40,13 +41,14 @@ namespace Automation.Helpersobjects
             return new PostPage(_browser);
         }
 
+
         public string Create()
         {
-            HoverOverUserProfilePic();
-            AdminPage adminPage = ClickOnAdmin();
+            _browser.Navigate(Base._config.Url + "/" + Base._config.ConfigObject.Language + "/" + "admin");
+            AdminPage adminPage = new AdminPage(_browser);
             adminPage.ClickOnCreatePost();
             var title = adminPage.GetPostTitle().Split('>')[1];
-            var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-"," ");
+            var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-", " ");
             Title = parsedTitle.Trim();
             return parsedTitle;
         }
