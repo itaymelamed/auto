@@ -136,7 +136,7 @@ namespace Automation.PagesObjects
             return new HomePage(_browser); 
         }
 
-        public CastrPage GoToCastr()
+        public virtual CastrPage GoToCastr()
         {
             AdminPage adminPage = new AdminPage(_browser);
             return adminPage.ClickOnCasterLink();
@@ -150,7 +150,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnMenu()
         {
-            BaseUi.MongoDb.UpdateSteps($"Click on menu.");
+            Base.MongoDb.UpdateSteps($"Click on menu.");
             _browserHelper.WaitForElement(menu, nameof(menu));
             _browserHelper.Click(menu, nameof(menu));
         }

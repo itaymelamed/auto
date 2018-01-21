@@ -9,7 +9,7 @@ using System;
 
 namespace Automation.PagesObjects
 {
-    public class PostPage
+    public class PostPage : HomePage
     {
         [FindsBy(How = How.CssSelector, Using = ".post-admin-options__label")]
         IWebElement options { get; set; }
@@ -21,16 +21,10 @@ namespace Automation.PagesObjects
         IWebElement title { get; set; }
 
 
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
-
         public PostPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
+
         }
 
         public string ValidateComponents(BsonArray components)
@@ -98,6 +92,13 @@ namespace Automation.PagesObjects
             var postId =new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
 
             return postId;
+        }
+
+        public override CastrPage GoToCastr()
+        {
+            HoverOverUserProfilePic();
+            AdminPage adminPage = ClickOnAdmin();
+            return adminPage.ClickOnCasterLink();
         }
     }
 }

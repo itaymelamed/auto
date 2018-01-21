@@ -372,8 +372,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
-                CastrPage castrPage = homePage.GotoCastrByUrl("");
+                PostPage post = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = post.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor.");
             }
@@ -396,7 +396,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
+                PostPage post = postCreator.Create(typeof(ArticleBase));
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
@@ -421,7 +421,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
+                postCreator.Create(typeof(ArticleBase));
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
@@ -450,8 +450,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
-                CastrPage castrPage = homePage.GoToCastr();
+                PostPage post = postCreator.Create(typeof(ArticleBase));
+                CastrPage castrPage = post.GoToCastr();
                 CastrPage newPosts = new CastrPage(_browser);
                 newPosts.ClickOnPost(postCreator.Title);
                 FtbPost castrPostFTB90 = new FtbPost(_browser);
