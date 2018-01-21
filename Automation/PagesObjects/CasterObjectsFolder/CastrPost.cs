@@ -159,6 +159,8 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on archive button.");
             _browserHelper.WaitForElement(archiveBtn, nameof(archiveBtn));
+            if (!archiveBtn.Enabled)
+                ResetPost();
             _browserHelper.Click(archiveBtn, nameof(archiveBtn));
         }
 
