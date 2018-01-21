@@ -247,13 +247,10 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
             _browserHelper.MoveToEl(editorTags);
-            _browserHelper.WaitUntillTrue(() => {
-                tagsList.ForEach(t => {
-                    editorTags.SendKeys(t);
-                    Thread.Sleep(2000);
-                    editorTags.SendKeys(Keys.Enter);
-                });
-                return tags.ToList().Count() >= 3;
+            tagsList.ForEach(t => {
+                editorTags.SendKeys(t);
+                Thread.Sleep(2000);
+                editorTags.SendKeys(Keys.Enter);
             });
         }
 
@@ -290,7 +287,11 @@ namespace Automation.PagesObjects
             }
             _browserHelper.WaitUntillTrue(() => 
             {
-                WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
+                _browserHelper.WaitUntillTrue(() => {
+                    WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
+                    return tags.ToList().Count() >= 3;
+                });
+
                 return GetTagsValue().Count() > 0;
             }, "Failed to add tags");
         }
