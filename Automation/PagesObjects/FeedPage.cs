@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Automation.BrowserFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -26,12 +27,12 @@ namespace Automation.PagesObjects
         public IWebElement SearchArticle(string title)
         {
             _browserHelper.WaitUntillTrue(() => articles.ToList().Count() == 15);
-            return _browserHelper.ExecutUntillTrue(() => articles.ToList().Where(a => a.Text == title).FirstOrDefault());
+            return _browserHelper.ExecutUntillTrue(() => articles.ToList().Where(a => Regex.Replace(a.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title).FirstOrDefault());
         }
 
         public bool ValidateArticleByTitle(string title)
         {
-            return _browserHelper.RefreshUntill(() => articles.Any(a => a.Text == title), 30);
+            return _browserHelper.RefreshUntill(() => articles.Any(a => Regex.Replace(a.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title), 30);
         }
     }
 }
