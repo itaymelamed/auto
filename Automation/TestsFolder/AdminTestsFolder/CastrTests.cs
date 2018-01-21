@@ -8,6 +8,7 @@ using Automation.PagesObjects.ExternalPagesobjects;
 using System.Collections.Generic;
 using Automation.ApiFolder;
 using Automation.ApiFolder.FacebookApi;
+using System.Threading;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -141,6 +142,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
                 post.ArchivePost();
+                Thread.Sleep(5000);
                 CastrPage archivedPosts = newPosts.SelectStatus(Statuses.archived);
 
                 Assert.True(archivedPosts.SearchPostByTitle(postCreator.Title), "Post was not shown under 'Archive' after archived.");
