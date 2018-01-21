@@ -35,7 +35,7 @@ namespace Automation.ApiFolder
         {
             _api = new ApiObject();
             _apiConfig = Base._config.ApiConfig;
-            _url = _apiConfig.GetFeedUrl((int)league);
+            _url = _apiConfig.GetLeagueUrl(league);
             _valueToSearch = valueToSearch;
         }
 

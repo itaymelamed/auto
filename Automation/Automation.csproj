@@ -188,7 +188,6 @@
     <Folder Include="LoadBalancerFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
-    <Folder Include="TestsFolder\ApiTestsFolder\" />
     <Folder Include="ApiFolder\FacebookApi\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
