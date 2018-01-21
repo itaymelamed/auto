@@ -392,7 +392,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_Ftb90_PublishIdPost()
             {
-                _browser.Navigate(_config.GlobalConfigObject["90Min"]["Url"].ToString());
+                _browser.Navigate("http://" + _config.Env + "." +_config.GlobalConfigObject["90Min"]["Url"]);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
