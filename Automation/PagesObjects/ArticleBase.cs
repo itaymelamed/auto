@@ -247,10 +247,13 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
             _browserHelper.MoveToEl(editorTags);
-            tagsList.ForEach(t => {
-                editorTags.SendKeys(t);
-                Thread.Sleep(2000);
-                editorTags.SendKeys(Keys.Enter);
+            _browserHelper.WaitUntillTrue(() => {
+                tagsList.ForEach(t => {
+                    editorTags.SendKeys(t);
+                    Thread.Sleep(2000);
+                    editorTags.SendKeys(Keys.Enter);
+                });
+                return tags.ToList().Count() >= 3;
             });
         }
 
