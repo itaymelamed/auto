@@ -397,7 +397,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
                 postCreator.Create();
-                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
+                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
                 homePage.ClickOnConnectBtnWithCoockies();
@@ -422,7 +422,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
                 postCreator.Create();
-                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["FTB90"]["Url"]}";
+                var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
                 homePage.ClickOnConnectBtnWithCoockies();
