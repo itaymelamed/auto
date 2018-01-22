@@ -516,7 +516,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Editor")]
-            [Category("AllBrands")]
             [Category("12Min")]
             [Retry(2)]
             public void Editor_TV_FullFlow()
