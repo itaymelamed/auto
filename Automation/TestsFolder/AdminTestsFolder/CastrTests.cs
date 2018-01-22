@@ -272,7 +272,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("90Min")]
-            [Ignore("bug")]
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
             {
