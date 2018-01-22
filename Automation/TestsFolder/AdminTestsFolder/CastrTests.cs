@@ -78,7 +78,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_FilterByType_Article()
             {
@@ -105,7 +105,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
@@ -133,7 +133,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
@@ -161,7 +161,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckReset()
             {
@@ -192,7 +192,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckNewStatus()
             {
@@ -243,7 +243,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
