@@ -52,5 +52,16 @@ namespace Automation.Helpersobjects
             Title = parsedTitle.Trim();
             return parsedTitle;
         }
+
+        public string CreateToDomain(string domain)
+        {
+            _browser.Navigate("http://" + Base._config.Env + "." + Base._config.GlobalConfigObject[domain]["Url"] + "/" + Base._config.GlobalConfigObject[domain]["Language"] + "/" + "admin");
+            AdminPage adminPage = new AdminPage(_browser);
+            adminPage.ClickOnCreatePost();
+            var title = adminPage.GetPostTitle().Split('>')[1];
+            var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-", " ");
+            Title = parsedTitle.Trim();
+            return parsedTitle;
+        }
     }
 }

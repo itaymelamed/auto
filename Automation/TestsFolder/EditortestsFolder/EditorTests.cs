@@ -172,7 +172,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Editor")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Editor_Article_DragAndDropAcoverImage()
             {
@@ -517,7 +517,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Admin")]
             [Category("Editor")]
             [Category("AllBrands")]
-            [Category("FullFlow")]
+            [Category("12Min")]
             [Retry(2)]
             public void Editor_TV_FullFlow()
             {
@@ -546,7 +546,7 @@ namespace Automation.TestsFolder.EditortestsFolder
         {
             [Test]
             [Property("TestCaseId", "43")]
-            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
+            [Category("Sanity")][Category("Admin")][Category("Editor")][Category("90Min")]
             [Retry(2)]
             public void Editor_TV_ValidateEmbedCode()
             {

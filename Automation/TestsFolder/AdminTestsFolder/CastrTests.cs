@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using Automation.ApiFolder;
 using Automation.ApiFolder.FacebookApi;
 using System.Threading;
+using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -75,7 +78,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_FilterByType_Article()
             {
@@ -102,7 +105,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
@@ -130,7 +133,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
@@ -158,7 +161,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_CheckReset()
             {
@@ -189,7 +192,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_CheckNewStatus()
             {
@@ -240,7 +243,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
@@ -268,7 +271,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Ignore("bug")]
             [Retry(2)]
             public void Castr_ResetAndFeatureAPost()
@@ -310,7 +313,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
             public void Castr_Social_Networks_Facebook()
             {
@@ -337,7 +340,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Ignore("Bug")]
             public void Castr_Social_Networks_Twitter()
             {
@@ -358,29 +361,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        [Ignore("")]
-        public class Test14Class : BaseUi
-        {
-            [Test]
-            [Property("TestCaseId", "43")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("Castr")]
-            [Category("Ftb90")]
-            public void Castr_Ftb90()
-            {
-                HomePage homePage = new HomePage(_browser);
-                homePage.Login(_config.ConfigObject.Users.AdminUser);
-                PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
-                CastrPage castrPage = homePage.GoToCastr();
-                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
-                Assert.True(newPosts.SearchPostByTitle(postCreator.Title), "Post was not found under status new after published through editor.");
-            }
-        }
-
-        [TestFixture]
-        [Parallelizable]
         public class Test15Class : BaseUi
         {
             [Test]
@@ -394,9 +374,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate("http://" + _config.Env + "." +_config.GlobalConfigObject["90Min"]["Url"]);
                 HomePage homePage = new HomePage(_browser);
-                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                AdminUser adminUser = BsonSerializer.Deserialize<AdminUser>(_config.GlobalConfigObject["90Min"]["Users"]["AdminUser"] as BsonDocument);
+                homePage.Login(adminUser);
                 PostCreator postCreator = new PostCreator(_browser);
-                postCreator.Create();
+                postCreator.CreateToDomain("90Min");
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
                 _browser.Navigate(url);
                 HomePage homePageFtb = new HomePage(_browser);
