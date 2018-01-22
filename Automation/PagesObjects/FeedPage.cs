@@ -32,7 +32,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateArticleByTitle(string title)
         {
-            return _browserHelper.RefreshUntill(() => articles.Any(a => Regex.Replace(a.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title), 30);
+            return _browserHelper.RefreshUntill(() => articles.Any(a => Regex.Replace(a.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title), 60);
         }
     }
 }
