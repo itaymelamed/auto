@@ -143,7 +143,6 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void CheckLeague(int i)
         {
-            Thread.Sleep(2000);
             Base.MongoDb.UpdateSteps($"Check League #{i}.");
 
             _browserHelper.WaitUntillTrue(() =>
@@ -152,6 +151,21 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 _browserHelper.MoveToEl(league);
                 _browserHelper.ClickJavaScript(league);
                 return leagueCheckBox.ToList().Any(x => x.Selected);
+            }, $"Failed to check league #{i}.", 30);
+        }
+
+        public void UnCheckLeague(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Check League #{i}.");
+            if (!archiveBtn.Enabled)
+                ResetPost();
+
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                var league = leagueCheckBox.Where((l, j) => i == j).FirstOrDefault();
+                _browserHelper.MoveToEl(league);
+                _browserHelper.ClickJavaScript(league);
+                return leagueCheckBox.ToList().Any(x => !x.Selected);
             }, $"Failed to check league #{i}.", 30);
         }
 

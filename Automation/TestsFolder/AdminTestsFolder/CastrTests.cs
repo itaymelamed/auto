@@ -285,6 +285,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+
+                post.UnCheckLeague(0);
                 post.PublishPostToFeed(LeaguePages.ftbpro, 1);
                 CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
                 post = publishedPosts.ClickOnPost(postCreator.Title);

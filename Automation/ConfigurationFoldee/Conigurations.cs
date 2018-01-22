@@ -77,12 +77,12 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "Ftb90");
+            return TestContext.Parameters.Get("siteName", "90Min");
         }
 
         static string GetParams(string param)
         {
-            return TestContext.Parameters.Get(param, "QA6");
+            return TestContext.Parameters.Get(param, "Utest");
         }
 
         BsonValue GetConfigJson(string siteName)
