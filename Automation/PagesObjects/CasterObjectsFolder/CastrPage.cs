@@ -194,7 +194,7 @@ namespace Automation.PagesObjects
         public bool ValidateSucMsg()
         {
             Base.MongoDb.UpdateSteps($"Validate action suc message.");
-            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60, false);
+            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60);
         }
 
         public CastrPage SelectStatus(Statuses status)

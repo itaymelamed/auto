@@ -375,8 +375,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate("http://" + _config.Env + "." +_config.GlobalConfigObject["90Min"]["Url"]);
                 HomePage homePage = new HomePage(_browser);
-                AdminUser adminUser = BsonSerializer.Deserialize<AdminUser>(_config.GlobalConfigObject["90Min"]["Users"]["AdminUser"] as BsonDocument);
-                homePage.Login(adminUser);
+                homePage.Login(_config.ConfigObject.Users.RegularUser);
                 PostCreator postCreator = new PostCreator(_browser);
                 postCreator.CreateToDomain("90Min");
                 var url = $"http://{_config.Env}.{_config.GlobalConfigObject["Ftb90"]["Url"]}";
