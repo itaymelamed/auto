@@ -353,7 +353,8 @@ namespace Automation.BrowserFolder
         {
             WaitUntillTrue(() => 
             {
-                _driver.Navigate().Refresh();
+                var url = _driver.Url;
+                _driver.Navigate().GoToUrl(url + "?test=test");
                 return WaitUntillTrue(func, "", 10);
                 
             }, "Failed after refresh.", timeOut);
