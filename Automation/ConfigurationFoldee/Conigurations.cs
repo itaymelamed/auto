@@ -26,21 +26,21 @@ namespace Automation.ConfigurationFolder
 
         public enum Enviroment
         {
-            UTest,
-            Testo,
-            Demo,
-            QA1,
-            QA2,
-            QA3,
-            QA4,
-            QA5,
-            QA6,
-            QA7,
-            QA8,
-            QA9,
-            QA10,
-            QA11,
-            QA12
+            utest,
+            testo,
+            demo,
+            qa1,
+            qa2,
+            qa3,
+            qa4,
+            qa5,
+            qa6,
+            qa7,
+            qa8,
+            qa9,
+            qa10,
+            qa11,
+            qa12
         }
 
         public enum BrowserType
@@ -71,7 +71,7 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.UTest.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.utest.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
