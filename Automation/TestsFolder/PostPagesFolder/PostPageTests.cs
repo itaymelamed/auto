@@ -23,9 +23,6 @@ namespace Automation.TestsFolder.PostPagesFolder
                 BsonArray components = _params["Components"].AsBsonArray;
 
                 HomePage homePage = new HomePage(_browser);
-                _browser.ProxyApi.NewHar();
-                var aaa = _browser.ProxyApi.GetRequests();
-
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
                 homePageConnected.ValidateUserProfilePic();

@@ -11,14 +11,14 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
         }
 
-        public override void PublishPostToFeed(LeaguePages leaguePage, int league)
+        public override void PublishPostToFeed(Platforms leaguePage, int league)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             if (!archiveBtn.Enabled)
                 ResetPost();
             CheckLeague(league);
-            ChooseLeaguePage(leaguePage);
+            ChoosePlatform(leaguePage);
             _browserHelper.Click(publishBtn, nameof(publishBtn));
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");

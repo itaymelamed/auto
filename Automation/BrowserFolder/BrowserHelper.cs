@@ -349,7 +349,7 @@ namespace Automation.BrowserFolder
             return WaitUntillTrue(() => els.All(t => !t.Enabled), "", 30, false);
         }
 
-        public bool RefreshUntill(Func<bool> func, int timeOut)
+        public bool RefreshUntillQuery(Func<bool> func, string err = "", int timeOut = 30)
         {
             WaitUntillTrue(() => 
             {
@@ -357,7 +357,19 @@ namespace Automation.BrowserFolder
                 _driver.Navigate().GoToUrl(url + "?test=test");
                 return WaitUntillTrue(func, "", 10);
                 
-            }, "Failed after refresh.", timeOut);
+            }, err, timeOut);
+
+            return true;
+        }
+
+        public bool RefreshUntill(Func<bool> func, string err = "", int timeOut = 30)
+        {
+            WaitUntillTrue(() =>
+            {
+                _driver.Navigate().Refresh();
+                return func();
+
+            }, err, timeOut);
 
             return true;
         }

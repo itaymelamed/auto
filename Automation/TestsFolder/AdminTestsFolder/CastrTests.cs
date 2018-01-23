@@ -287,13 +287,13 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
 
                 post.UnCheckLeague(0);
-                post.PublishPostToFeed(LeaguePages.ftbpro, 1);
+                post.PublishPostToFeed(Platforms.ftbpro, 1);
                 CastrPage publishedPosts = newPosts.SelectStatus(Statuses.published);
                 post = publishedPosts.ClickOnPost(postCreator.Title);
                 post.ResetPost();
                 newPosts = newPosts.SelectStatus(Statuses.New);
                 post = newPosts.ClickOnPost(postCreator.Title);
-                post.PublishPostToFeed(LeaguePages.ftbpro, 0);
+                post.PublishPostToFeed(Platforms.ftbpro, 0);
 
                 _browser.Navigate($"{_config.Url}/{feedUrl}");
                 FeedPage feedPage = new FeedPage(_browser);
@@ -457,6 +457,38 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
                 jsonHelper = new JsonHelper("lists", postCreator.Title);
                 Assert.True(jsonHelper.SearchArticleInFeed(), $"Post '{postCreator.Title}' was not published to List catageory feed.");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "49")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("AllBrands")]
+            [Retry(2)]
+            public void Castr_PnPost()
+            {
+                string urbanAirShipUrl = _params["Url"].ToString();
+                var user = _params["Credentials"];
+                    
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                postCreator.Create();
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+
+                post.SendPn(Platforms.mobile, 0);
+                _browser.Navigate(urbanAirShipUrl);
+                UrbanAirShipLoginPage urbanAirShipLoginPage = new UrbanAirShipLoginPage(_browser);
+                urbanAirShipLoginPage.Login(user);
+                Assert.True(urbanAirShipLoginPage.SearchPost(postCreator.Title));
             }
         }
     }

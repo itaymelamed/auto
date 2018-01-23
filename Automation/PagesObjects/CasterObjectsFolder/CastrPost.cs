@@ -79,7 +79,16 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".active-result")]
         IWebElement activeResult { get; set; }
 
-        public enum LeaguePages
+        [FindsBy(How = How.CssSelector, Using = ".league-branch-container .subject .tag")]
+        IWebElement leaguePageLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[name='mobile_notification'")]
+        IWebElement pnCheckBox { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[name='pinned_on_mobile_ttl']")]
+        IWebElement pnHourCbx { get; set; }
+
+        public enum Platforms
         {
             ftbpro,
             category,
@@ -209,18 +218,18 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.Click(publishBtn, nameof(publishBtn));
         }
 
-        public void ChooseLeaguePage(LeaguePages leaguePageVa)
+        public void ChoosePlatform(Platforms platforms)
         {
-            Base.MongoDb.UpdateSteps($"Check League page check box #{leaguePageVa}.");
+            Base.MongoDb.UpdateSteps($"Check League page check box #{platforms}.");
             _browserHelper.WaitUntillTrue(() =>
             {
                 _browserHelper.WaitForElement(leaguePage, nameof(leaguePage));
                 leaguePage.Click();
-                var leagueCb = leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == leaguePageVa.ToString()).FirstOrDefault();
+                var leagueCb = leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == platforms.ToString()).FirstOrDefault();
                 _browserHelper.ClickJavaScript(leagueCb);
                 Thread.Sleep(1000);
-                return leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == leaguePageVa.ToString()).FirstOrDefault().GetAttribute("checked") == "true";
-            }, $"Failed to click on league page {leaguePageVa}.");
+                return leaguePageInputs.ToList().Where(c => c.GetAttribute("value") == platforms.ToString()).FirstOrDefault().GetAttribute("checked") == "true";
+            }, $"Failed to click on league page {platforms}.");
         }
 
         public void SelectPublishToTeam(int team)
@@ -277,7 +286,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed);
         }
 
-        public virtual void PublishPostToFeed(LeaguePages leaguePage, int league)
+        public virtual void PublishPostToFeed(Platforms leaguePage, int league)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
@@ -285,9 +294,28 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 ResetPost();
             CheckLeague(league);
             UncheckPublishToFtb();
-            ChooseLeaguePage(leaguePage);
+            ChoosePlatform(leaguePage);
             _browserHelper.Click(publishBtn, nameof(publishBtn));
             //_browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
+        }
+
+        public void SendPn(Platforms platform, int league)
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
+            if (!archiveBtn.Enabled)
+                ResetPost();
+            UncheckPublishToFtb();
+            ChoosePlatform(platform);
+            _browserHelper.ClickJavaScript(leaguePageLink);
+            _browserHelper.WaitForElement(pnCheckBox, nameof(pnCheckBox));
+            _browserHelper.ClickJavaScript(pnCheckBox);
+            _browserHelper.ConfirmAlarem();
+            _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ConfirmAlarem();
+            _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
 
