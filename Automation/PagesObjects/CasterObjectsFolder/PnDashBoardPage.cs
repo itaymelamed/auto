@@ -13,8 +13,12 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         IWebDriver _driver;
         BrowserHelper _browserHelper;
 
-        public PnDashBoardPage()
+        public PnDashBoardPage(Browser browser)
         {
+            _browser = browser;
+            _driver = browser.Driver;
+            _browserHelper = browser.BrowserHelper;
+            PageFactory.InitElements(_driver, this);
         }
     }
 }

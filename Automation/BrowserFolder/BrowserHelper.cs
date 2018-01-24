@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -366,6 +367,7 @@ namespace Automation.BrowserFolder
         {
             WaitUntillTrue(() =>
             {
+                Base.MongoDb.UpdateSteps("Refreshing Page");
                 _driver.Navigate().Refresh();
                 return func();
 
