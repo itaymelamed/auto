@@ -489,6 +489,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 UrbanAirShipLoginPage urbanAirShipLoginPage = new UrbanAirShipLoginPage(_browser);
                 urbanAirShipLoginPage.Login(user);
                 Assert.True(urbanAirShipLoginPage.SearchPost(postCreator.Title));
+
+
             }
         }
     }
