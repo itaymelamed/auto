@@ -82,7 +82,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".league-branch-container .subject .tag")]
         IWebElement leaguePageLink { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[name='mobile_notification'")]
+        [FindsBy(How = How.CssSelector, Using = "[name='mobile_notification']")]
         IWebElement pnCheckBox { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[name='pinned_on_mobile_ttl']")]
