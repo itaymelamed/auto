@@ -485,12 +485,14 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
 
                 post.SendPn(Platforms.mobile, 0);
+                _browser.Navigate($"{_config.Url}/management/push_notifications?test=test");
+                PnDashBoardPage pnDashBoardPage = new PnDashBoardPage(_browser);
+                Assert.True(pnDashBoardPage.ValidatePost(0, postCreator.Title));
+
                 _browser.Navigate(urbanAirShipUrl);
                 UrbanAirShipLoginPage urbanAirShipLoginPage = new UrbanAirShipLoginPage(_browser);
                 urbanAirShipLoginPage.Login(user);
                 Assert.True(urbanAirShipLoginPage.SearchPost(postCreator.Title));
-
-
             }
         }
     }

@@ -1,4 +1,7 @@
-﻿using Automation.BrowserFolder;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Automation.BrowserFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -6,8 +9,8 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 {
     public class PnDashBoardPage
     {
-        [FindsBy(How = How.XPath, Using = "//header//b[contains(text(), 'Premier League')]")]
-        IWebElement PremierLeague { get; set; }
+        [FindsBy(How = How.TagName, Using = "tbody")]
+        IList<IWebElement> leagues { get; set; }
 
         Browser _browser;
         IWebDriver _driver;
@@ -19,6 +22,16 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _driver = browser.Driver;
             _browserHelper = browser.BrowserHelper;
             PageFactory.InitElements(_driver, this);
+        }
+
+        public bool ValidatePost(int league, string title)
+        {
+            return _browserHelper.RefreshUntill(() =>
+            {
+                _browserHelper.WaitUntillTrue(() => leagues.ToList().Count > 1);
+                return leagues.ToList()[league].FindElements(By.XPath(".//td"))
+                       .Any(t => Regex.Replace(t.Text.ToLower().Replace('-', ' '), "", string.Empty) == title);
+            }, $"Post {title} was not found on PN Dasboard.");
         }
     }
 }
