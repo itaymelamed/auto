@@ -51,7 +51,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             {
                 _browserHelper.WaitForElementDiss(loader);
                 return pns.ToList().Any(m => Regex.Replace(m.Text.ToLower().Replace('-', ' '), @"[\d-]", string.Empty) == postTitle);
-            }, $"Post {postTitle} was not found on PN list.", 60);
+            }, $"Post {postTitle} was not found on PN list.", 120);
         }
     }
 }
