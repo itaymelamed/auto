@@ -185,6 +185,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             if (!archiveBtn.Enabled)
                 ResetPost();
             _browserHelper.Click(archiveBtn, nameof(archiveBtn));
+            ValidateSucMsg();
         }
 
         public void ResetPost()
@@ -313,7 +314,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.ClickJavaScript(pnCheckBox);
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
-            _browserHelper.Click(publishBtn, nameof(publishBtn));
+            _browserHelper.ClickJavaScript(publishBtn);
             _browserHelper.ConfirmAlarem();
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
