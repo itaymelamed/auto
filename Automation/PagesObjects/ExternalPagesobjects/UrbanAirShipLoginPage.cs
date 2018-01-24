@@ -47,7 +47,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public bool SearchPost(string postTitle)
         {
-            return _browserHelper.RefreshUntillQuery(() => 
+            return _browserHelper.RefreshUntill(() => 
             {
                 _browserHelper.WaitForElementDiss(loader);
                 return pns.ToList().Any(m => Regex.Replace(m.Text.ToLower().Replace('-', ' '), @"[\d-]", string.Empty) == postTitle);
