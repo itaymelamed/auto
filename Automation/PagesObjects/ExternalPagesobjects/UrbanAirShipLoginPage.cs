@@ -50,7 +50,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             return _browserHelper.RefreshUntill(() => 
             {
                 _browserHelper.WaitForElementDiss(loader);
-                _browserHelper.WaitForElement(pns.ToList().FirstOrDefault(), "Pn Post" ,20 ,false);
+                _browserHelper.WaitForElement(pns.ToList().FirstOrDefault(), "Pn Post" ,10 ,false);
                 return pns.ToList().Any(m => Regex.Replace(m.Text.ToLower().Replace('-', ' '), @"[\d-]", string.Empty) == postTitle);
             }, $"Post {postTitle} was not found on PN list.", 120);
         }
