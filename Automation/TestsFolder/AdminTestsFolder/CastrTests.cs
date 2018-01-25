@@ -519,5 +519,29 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(schedulrPage.ValidateTime(), "Schedulr time is not correct.");
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "51")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Scedulr")]
+            [Retry(2)]
+            public void Caster_Schedulr_ValidateLeagues()
+            {
+                var leagues = _params["Leagues"].AsBsonArray;
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                homePage.HoverOverUserProfilePic();
+                AdminPage adminPage = homePage.ClickOnAdmin();
+                SchedulrPage schedulrPage = adminPage.ClickOnSchedulrLink();
+
+                Assert.True(schedulrPage.ValidateLeagues(leagues));
+            }
+        }
     }
 }

@@ -3,6 +3,9 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using MongoDB.Bson;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
 {
@@ -10,6 +13,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
     {
         [FindsBy(How = How.Id, Using = "time")]
         IWebElement time { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "league")]
+        IList<IWebElement> leaguesList { get; set; } 
 
         Browser _browser;
         IWebDriver _driver;
@@ -39,6 +45,17 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             string exTime = DateTime.Now.ToString("h:mm");
 
             return day == exDay && month == exMonth && timeString == exTime && zone.Trim() == "London (GMT)";
+        }
+
+        public bool ValidateLeagues(BsonArray leaguesBson)
+        {
+            Base.MongoDb.UpdateSteps("Validate leagues apear.");
+            var exLeagues = leaguesBson.Select(l => l.ToString());
+            _browserHelper.WaitUntillTrue(() => leaguesList.ToList().Count() == exLeagues.Count());
+            var acLeagues = leaguesList.ToList().Select(l => l.Text);
+            var diffs = string.Join(",", exLeagues.Except(acLeagues).Union(acLeagues.Except(exLeagues)));
+
+            return _browserHelper.WaitUntillTrue(() => exLeagues.SequenceEqual(acLeagues), $"Expected Leagues:{string.Join(",",exLeagues)} | Actual Leagues:{string.Join(",", acLeagues)}");
         }
     }
 }
