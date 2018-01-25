@@ -28,7 +28,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".league_selected [type='checkbox']")]
         IList<IWebElement> leagueCheckBox { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "button.archive")]
+        [FindsBy(How = How.CssSelector, Using = ".multiple-archive")]
         protected IWebElement archiveBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".reset")]
@@ -95,10 +95,11 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             mobile
         }  
 
-        public CastrPost(Browser browser)
+        public CastrPost(Browser browser, bool postOpen = true)
             :base(browser)
         {
-            _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
+            if(postOpen)
+                _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "");
         }
 
         public bool ValidateTextAreasDissabled()

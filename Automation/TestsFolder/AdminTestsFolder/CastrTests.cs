@@ -143,7 +143,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 postCreator.Create();
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
-                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                CastrPost post = newPosts.CheckPost(postCreator.Title);
                 post.ArchivePost();
                 Thread.Sleep(5000);
                 CastrPage archivedPosts = newPosts.SelectStatus(Statuses.archived);

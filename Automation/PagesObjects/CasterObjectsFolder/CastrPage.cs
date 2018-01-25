@@ -225,15 +225,16 @@ namespace Automation.PagesObjects
             return new CastrPost(_browser);
         }
 
-        public void CheckPost(string title)
+        public CastrPost CheckPost(string title)
         {
             Base.MongoDb.UpdateSteps($"Click on post: {title}.");
-            _browserHelper.WaitUntillTrue(() => 
+            _browserHelper.ExecuteUntill(() => 
             {
                 var checkBx = postsTitles.IndexOf(SerachPost(title));
                 resultsInputs[checkBx].Click();
-                return posts.Where(x => Regex.Replace(x.Text.ToLower().Replace('-', ' ').ToLower(), @"[\d-]", string.Empty).Contains(title)).FirstOrDefault().GetAttribute("class") == "multiple-selected";
             });
+
+            return new CastrPost(_browser, false);
         }
 
         public string CheckAllPostsInEnglish()
