@@ -134,6 +134,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("AllBrands")]
+            [Ignore("Bug")]
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
