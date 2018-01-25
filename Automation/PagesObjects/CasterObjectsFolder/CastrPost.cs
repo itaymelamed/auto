@@ -278,7 +278,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            if (!archiveBtn.Enabled)
+            if (!saveForLaterBtn.Enabled)
                 ResetPost();
             CheckLeague(league);
             CheckPublishTo(1);
@@ -292,7 +292,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            if (!archiveBtn.Enabled)
+            if (!saveForLaterBtn.Enabled)
                 ResetPost();
             CheckLeague(league);
             UncheckPublishToFtb();
@@ -306,7 +306,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            if (!archiveBtn.Enabled)
+            if (!saveForLaterBtn.Enabled)
                 ResetPost();
             UncheckPublishToFtb();
             ChoosePlatform(platform);
