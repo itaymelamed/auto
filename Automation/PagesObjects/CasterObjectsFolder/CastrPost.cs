@@ -167,7 +167,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         public void UnCheckLeague(int i)
         {
             Base.MongoDb.UpdateSteps($"Check League #{i}.");
-            if (!archiveBtn.Enabled)
+            if (!saveForLaterBtn.Enabled)
                 ResetPost();
 
             _browserHelper.WaitUntillTrue(() =>
