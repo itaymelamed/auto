@@ -508,7 +508,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Castr")]
             [Category("Scedulr")]
             [Retry(2)]
-            public void Caster_Schedulr_validateTime()
+            public void Caster_Schedulr_ValidateTime()
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
