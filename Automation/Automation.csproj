@@ -168,6 +168,7 @@
     <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\FacebookApiConfig.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\UrbanAirShipLoginPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\PnDashBoardPage.cs" />
+    <Compile Include="PagesObjects\CasterObjectsFolder\SchedulrPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

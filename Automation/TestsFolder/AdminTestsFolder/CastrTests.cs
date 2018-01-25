@@ -495,5 +495,29 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(urbanAirShipLoginPage.SearchPost(postCreator.Title));
             }
         }
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "50")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Scedulr")]
+            [Retry(2)]
+            public void Caster_Schedulr_validateTime()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                homePage.HoverOverUserProfilePic();
+                AdminPage adminPage = homePage.ClickOnAdmin();
+                SchedulrPage schedulrPage =  adminPage.ClickOnSchedulrLink();
+
+                Assert.True(schedulrPage.ValidateTime(), "Schedulr time is not correct.");
+            }
+        }
     }
 }
