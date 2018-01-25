@@ -274,6 +274,21 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             ValidateSucMsg();
         }
 
+        public void PublishToSocialNetworks(int league, int team)
+        {
+            if (!saveForLaterBtn.Enabled)
+                ResetPost();
+            CheckLeague(league);
+            SelectPublishToTeam(team);
+            ClickOnSmArrow();
+            CheckSmCbx(0);
+            CheckSmCbx(1);
+            UncheckPublishToFtb();
+            ClickOnPublishBtn();
+            _browserHelper.ConfirmAlarem();
+            ValidateSucMsg();
+        }
+
         public virtual void PublishPost(int league = 0)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");

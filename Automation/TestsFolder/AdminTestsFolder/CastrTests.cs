@@ -547,5 +547,34 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(schedulrPage.ValidateLeagues(leagues));
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "51")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Scedulr")]
+            [Category("AllBrands")]
+            [Retry(2)]
+            public void Caster_Schedulr_SocialNetworks()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                postCreator.Create();
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishToSocialNetworks(0, 2);
+                _browser.Navigate($"{ _config.Url}/management/schedulr");
+                SchedulrPage schdulrPage = new SchedulrPage(_browser);
+
+                Assert.True(schdulrPage.ValidatePostFacebook(postCreator.Title) && schdulrPage.ValidatePostTwitter(postCreator.Title));
+            }
+        }
     }
 }

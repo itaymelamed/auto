@@ -6,6 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
 {
@@ -15,7 +16,13 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         IWebElement time { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "league")]
-        IList<IWebElement> leaguesList { get; set; } 
+        IList<IWebElement> leaguesList { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".card.facebook")]
+        IList<IWebElement> postsFacebook { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".card.twitter")]
+        IList<IWebElement> postsTwitter { get; set; }
 
         Browser _browser;
         IWebDriver _driver;
@@ -56,6 +63,26 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             var diffs = string.Join(",", exLeagues.Except(acLeagues).Union(acLeagues.Except(exLeagues)));
 
             return _browserHelper.WaitUntillTrue(() => exLeagues.SequenceEqual(acLeagues), $"Expected Leagues:{string.Join(",",exLeagues)} | Actual Leagues:{string.Join(",", acLeagues)}");
+        }
+
+        public bool ValidatePostTwitter(string title)
+        {
+            return ValidatePost(postsTwitter.ToList(), title);
+        }
+
+        public bool ValidatePostFacebook(string title)
+        {
+            return ValidatePost(postsFacebook.ToList(), title);
+        }
+
+        bool ValidatePost(List<IWebElement> posts, string title)
+        {
+            Base.MongoDb.UpdateSteps($"Validate post ${title}.");
+            var curHour = DateTime.Parse(time.Text.Split(' ')[2]).TimeOfDay.ToString().Split(':');
+            var post = posts.ToList().Any(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title);
+            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])));
+
+            return hour && post;
         }
     }
 }
