@@ -77,7 +77,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         bool ValidatePost(List<IWebElement> posts, string title)
         {
-            Base.MongoDb.UpdateSteps($"Validate post ${title}.");
+            Base.MongoDb.UpdateSteps($"Validate post {title}.");
             var curHour = DateTime.Parse(time.Text.Split(' ')[2]).TimeOfDay.ToString().Split(':');
             var post = posts.ToList().Any(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title);
             var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])));
