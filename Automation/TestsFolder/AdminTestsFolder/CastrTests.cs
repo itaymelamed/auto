@@ -472,7 +472,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("AllBrands")]
-            //[Ignore("Bug")]
+            [Ignore("Bug")]
             [Retry(2)]
             public void Castr_PnPost()
             {
@@ -651,6 +651,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Castr")]
             [Category("Scedulr")]
             [Category("AllBrands")]
+            [Ignore("")]
             [Retry(2)]
             public void Caster_Schedulr_SocialNetworks()
             {

@@ -36,6 +36,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.ClassName, Using = "league")]
         IList<IWebElement> leagues { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = ".tab.selected")]
+        IWebElement selectedTab { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -90,9 +93,10 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         bool ValidatePost(List<IWebElement> posts, string title, int timeOut = 30, bool ex = true)
         {
             Base.MongoDb.UpdateSteps($"Validate post {title}.");
+            var xxx = postsFacebook.ToList();
             var curHour = DateTime.Parse(time.Text.Split(' ')[2]).TimeOfDay.ToString().Split(':');
-            var post = posts.ToList().Any(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title);
-            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])), "", timeOut, ex);
+            var post = posts.ToList().Where(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title).FirstOrDefault().Displayed;
+            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Where(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])).FirstOrDefault().Displayed, "", timeOut, ex);
 
             return hour && post;
         }
@@ -126,7 +130,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitUntillTrue(() => leagues.ToList().Count() >= 5);
             _browserHelper.Click(leagues.ToList()[league], $"League {league}");
 
-            return new SchedulrPage(_browser); 
+            return new SchedulrPage(_browser);
         }
     }
 }
