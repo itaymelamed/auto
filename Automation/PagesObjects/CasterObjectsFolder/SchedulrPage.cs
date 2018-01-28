@@ -33,6 +33,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = "form button")]
         IWebElement goBtn { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = "league")]
+        IList<IWebElement> leagues { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -115,6 +118,15 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.Click(goBtn, nameof(goBtn));
 
             return new SchedulrPage(_browser);
+        }
+
+        public SchedulrPage SelectLeague(int league)
+        {
+            Base.MongoDb.UpdateSteps($"Click on League #{league}.");
+            _browserHelper.WaitUntillTrue(() => leagues.ToList().Count() >= 5);
+            _browserHelper.Click(leagues.ToList()[league], $"League {league}");
+
+            return new SchedulrPage(_browser); 
         }
     }
 }
