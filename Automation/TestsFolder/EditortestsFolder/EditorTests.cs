@@ -572,7 +572,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Editor")]
             [Category("AllBrands")]
             [Category("FullFlow")]
-            [Retry(2)]
+           // [Retry(2)]
             public void Editor_SlideShow_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
@@ -593,6 +593,8 @@ namespace Automation.TestsFolder.EditortestsFolder
                 PreviewPage previewPage = slideShow.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test slideshow template"), "Post was not created");
+                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
+                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
     }
