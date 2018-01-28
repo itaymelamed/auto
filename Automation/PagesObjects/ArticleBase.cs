@@ -145,7 +145,7 @@ namespace Automation.PagesObjects
             _driver.SwitchTo().DefaultContent();
             _browserHelper.WaitForElement(previewBtn, nameof(previewBtn));
             Base.MongoDb.UpdateSteps($"Click on Preview Button.");
-            previewBtn.Click();
+            _browserHelper.ClickJavaScript(previewBtn);
 
             return new PreviewPage(_browser);
         }
