@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
 {
@@ -64,7 +65,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
             int exDay = DateTime.Now.Day;
             string exMonth = DateTime.Now.ToString("MMMM");
-            string exTime = DateTime.Now.ToString("h:mm");
+            string exTime = DateTime.Now.ToString("H:mm");
 
             return day == exDay && month == exMonth && timeString == exTime && zone.Trim() == "London (GMT)";
         }
