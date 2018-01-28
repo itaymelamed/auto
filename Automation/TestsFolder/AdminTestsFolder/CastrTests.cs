@@ -576,5 +576,36 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(schdulrPage.ValidatePostFacebook(postCreator.Title) && schdulrPage.ValidatePostTwitter(postCreator.Title));
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test22Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "51")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Castr")]
+            [Category("Scedulr")]
+            [Category("AllBrands")]
+            [Retry(2)]
+            [Ignore("")]
+            public void Caster_Schedulr_ValidateDate()
+            {
+                HomePage homePage = new HomePage(_browser);
+                homePage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreator postCreator = new PostCreator(_browser);
+                postCreator.Create();
+                CastrPage castrPage = homePage.GoToCastr();
+                CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
+                CastrPost post = newPosts.ClickOnPost(postCreator.Title);
+                post.PublishToSocialNetworks(0, 2);
+                _browser.Navigate($"{ _config.Url}/management/schedulr");
+                SchedulrPage schdulrPage = new SchedulrPage(_browser);
+                schdulrPage.SelectDay(1);
+
+                Assert.True(schdulrPage.ValidatePostFacebook(postCreator.Title) && schdulrPage.ValidatePostTwitter(postCreator.Title));
+            }
+        }
     }
 }

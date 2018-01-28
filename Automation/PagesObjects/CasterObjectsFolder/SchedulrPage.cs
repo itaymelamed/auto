@@ -24,6 +24,12 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = ".card.twitter")]
         IList<IWebElement> postsTwitter { get; set; }
 
+        [FindsBy(How = How.Id, Using = "date__3i")]
+        IWebElement dayDd { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "form button")]
+        IWebElement goBtn { get; set; }
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -83,6 +89,25 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])));
 
             return hour && post;
+        }
+
+        public void SelectDay(int date)
+        {
+            Base.MongoDb.UpdateSteps("Select Day");
+            _browserHelper.WaitForElement(dayDd, nameof(dayDd));
+            _browserHelper.SelectFromDropDown(dayDd, date.ToString());
+        }
+
+        public void ClickOnGoBtn()
+        {
+            Base.MongoDb.UpdateSteps("Click on Go button.");
+            _browserHelper.WaitForElement(goBtn, nameof(goBtn));
+            _browserHelper.Click(goBtn, nameof(goBtn));
+        }
+
+        public void ValidatePostDiss(string title)
+        {
+            //postsFacebook.ToList().Any(p => Regex.Replace());
         }
     }
 }
