@@ -27,6 +27,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.Id, Using = "date__3i")]
         IWebElement dayDd { get; set; }
 
+        [FindsBy(How = How.Id, Using = "date__1i")]
+        IWebElement yearDd { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "form button")]
         IWebElement goBtn { get; set; }
 
@@ -71,22 +74,22 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             return _browserHelper.WaitUntillTrue(() => exLeagues.SequenceEqual(acLeagues), $"Expected Leagues:{string.Join(",",exLeagues)} | Actual Leagues:{string.Join(",", acLeagues)}");
         }
 
-        public bool ValidatePostTwitter(string title)
+        public bool ValidatePostTwitter(string title, int timeOut = 30, bool ex = true)
         {
-            return ValidatePost(postsTwitter.ToList(), title);
+            return ValidatePost(postsTwitter.ToList(), title, timeOut, ex);
         }
 
-        public bool ValidatePostFacebook(string title)
+        public bool ValidatePostFacebook(string title, int timeOut = 30, bool ex = true)
         {
-            return ValidatePost(postsFacebook.ToList(), title);
+            return ValidatePost(postsFacebook.ToList(), title, timeOut, ex);
         }
 
-        bool ValidatePost(List<IWebElement> posts, string title)
+        bool ValidatePost(List<IWebElement> posts, string title, int timeOut = 30, bool ex = true)
         {
             Base.MongoDb.UpdateSteps($"Validate post {title}.");
             var curHour = DateTime.Parse(time.Text.Split(' ')[2]).TimeOfDay.ToString().Split(':');
             var post = posts.ToList().Any(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title);
-            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])));
+            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Any(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])), "", timeOut, ex);
 
             return hour && post;
         }
@@ -98,16 +101,20 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.SelectFromDropDown(dayDd, date.ToString());
         }
 
-        public void ClickOnGoBtn()
+        public void SelectYear(int year)
+        {
+            Base.MongoDb.UpdateSteps($"Select Year {year}");
+            _browserHelper.WaitForElement(yearDd, nameof(yearDd));
+            _browserHelper.SelectFromDropDown(yearDd, year.ToString());
+        }
+
+        public SchedulrPage ClickOnGoBtn()
         {
             Base.MongoDb.UpdateSteps("Click on Go button.");
             _browserHelper.WaitForElement(goBtn, nameof(goBtn));
             _browserHelper.Click(goBtn, nameof(goBtn));
-        }
 
-        public void ValidatePostDiss(string title)
-        {
-            //postsFacebook.ToList().Any(p => Regex.Replace());
+            return new SchedulrPage(_browser);
         }
     }
 }

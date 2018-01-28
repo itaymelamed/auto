@@ -12,6 +12,7 @@ using System.Threading;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
+using System;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
@@ -553,7 +554,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test21Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "51")]
+            [Property("TestCaseId", "52")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
@@ -582,16 +583,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test22Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "51")]
+            [Property("TestCaseId", "53")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Castr")]
             [Category("Scedulr")]
             [Category("AllBrands")]
             [Retry(2)]
-            [Ignore("")]
             public void Caster_Schedulr_ValidateDate()
             {
+                var curYear = DateTime.Now.Year;
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -602,9 +603,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 post.PublishToSocialNetworks(0, 2);
                 _browser.Navigate($"{ _config.Url}/management/schedulr");
                 SchedulrPage schdulrPage = new SchedulrPage(_browser);
-                schdulrPage.SelectDay(1);
+                schdulrPage.SelectYear(curYear + 1);
+                SchedulrPage schedulrPageNewDate = schdulrPage.ClickOnGoBtn();
 
-                Assert.True(schdulrPage.ValidatePostFacebook(postCreator.Title) && schdulrPage.ValidatePostTwitter(postCreator.Title));
+                Assert.False(schedulrPageNewDate.ValidatePostFacebook(postCreator.Title, 0, false) && schedulrPageNewDate.ValidatePostTwitter(postCreator.Title, 0, false));
             }
         }
     }
