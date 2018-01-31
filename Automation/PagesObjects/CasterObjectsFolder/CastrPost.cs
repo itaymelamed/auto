@@ -354,18 +354,24 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 ResetPost();
             UncheckPublishToFtb();
             ChoosePlatform(platform);
+            Base.MongoDb.UpdateSteps($"Click on League.");
             _browserHelper.Click(leaguePageLink, "");
             Thread.Sleep(4000);
+            Base.MongoDb.UpdateSteps($"Check PN checkbox.");
             _browserHelper.WaitForElement(pnCheckBox, nameof(pnCheckBox));
             _browserHelper.Click(pnCheckBox, "");
             Thread.Sleep(4000);
+            Base.MongoDb.UpdateSteps($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             Thread.Sleep(4000);
             _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.Click(publishBtn, "");
             Thread.Sleep(4000);
+            Base.MongoDb.UpdateSteps($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             Thread.Sleep(4000);
+            Base.MongoDb.UpdateSteps($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
