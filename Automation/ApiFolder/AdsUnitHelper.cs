@@ -11,21 +11,27 @@ namespace Automation.ApiFolder
 {
     public class AdsUnitHelper
     {
-        List<JObject> _acJsons;
-        List<JObject> _exJsons;
+        JObject _exJson;
+        List<string> _adNames;
+        List<Request> _requests;
+
         string _errors;
 
-        public AdsUnitHelper(List<Request> requests, BsonArray exJsons)
+        public AdsUnitHelper(List<Request> requests, BsonValue exJsons, BsonArray adNames)
         {
-            _acJsons = requests.Where(r => r.Url.Contains("https://securepubads.g.doubleclick.net/gampad/ads")).Select(r => RequestToJobject(r)).ToList();
-            _exJsons = BsonArrayToList(exJsons);
+            _requests = requests;
+            _exJson = JObject.Parse(exJsons.ToString());
+            _adNames = adNames.Select(x => x.ToString()).ToList();
             _errors = string.Empty;
         }
 
         public string ValidateJsons()
         {
-            _exJsons.ForEach(e => {
-                _errors = _acJsons.Any(a => JToken.DeepEquals(e, a)) ? "" : $"Ad {e.Properties().Select(p => p.Name).FirstOrDefault()} was not found. {Environment.NewLine}";
+            _adNames.ForEach(n =>
+            {
+                var request = _requests.Where(r => r.Url.Contains(n)).FirstOrDefault();
+                var acJson = RequestToJobject(request);
+                _errors += JToken.DeepEquals(acJson, _exJson) ? "" : $"Ad {n} request was not sent. {Environment.NewLine}";
             });
 
             return _errors;
@@ -46,13 +52,8 @@ namespace Automation.ApiFolder
             }
             catch
             {
-                return JObject.Parse(@"{'name' : 'video'}");
+                return JObject.Parse(@"{'remove' : 'video'}");
             }
-        }
-
-        List<JObject> BsonArrayToList(BsonArray exJsons)
-        {
-            return exJsons.ToList().Select(j => JObject.Parse(j.ToString())).ToList();
         }
     }
 }

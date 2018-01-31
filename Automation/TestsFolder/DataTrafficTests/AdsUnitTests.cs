@@ -20,11 +20,15 @@ namespace Automation.TestsFolder
             public void AdsUnit_PostPage_Article_HeaderAd()
             {
                 var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJsons"].AsBsonArray;
+                var exJsons = _params["ExJson"];
+                var adNames = _params["AdNames"].AsBsonArray;
+
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(_browser.ProxyApi.GetRequests() ,exJsons);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, adNames);
                 string errors = adsUnithelper.ValidateJsons();
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
