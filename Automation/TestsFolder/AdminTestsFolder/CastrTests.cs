@@ -472,7 +472,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("AllBrands")]
-            [Ignore("Bug")]
             [Retry(2)]
             public void Castr_PnPost()
             {
@@ -651,9 +650,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Castr")]
             [Category("Scedulr")]
             [Category("AllBrands")]
-            [Ignore("")]
             [Retry(2)]
-            public void Caster_Schedulr_SocialNetworks()
+            public void Caster_Schedulr_PostBox()
             {
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
@@ -662,7 +660,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage castrPage = homePage.GoToCastr();
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
-                post.PublishToSocialNetworks(0, 2);
+                post.PublishToSocialNetworksSchedul(0, 2, "16");
                 _browser.Navigate($"{ _config.Url}/management/schedulr");
                 SchedulrPage schdulrPage = new SchedulrPage(_browser);
 

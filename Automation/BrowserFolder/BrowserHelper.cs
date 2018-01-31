@@ -391,5 +391,10 @@ namespace Automation.BrowserFolder
             Actions action = new Actions(_driver);
             action.MoveToElement(el, x, y).Click();
         }
+
+        public void SelectDate(string day)
+        {
+            Click(_driver.FindElement(By.LinkText(day)), day);
+        }
     }
 }

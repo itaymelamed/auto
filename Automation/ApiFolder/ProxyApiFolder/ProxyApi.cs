@@ -90,6 +90,7 @@ namespace Automation.ApiFolder
         {
             Proxy proxy = new Proxy();
             proxy.HttpProxy = _proxy;
+            proxy.SslProxy = _proxy;
 
             return proxy;
         }

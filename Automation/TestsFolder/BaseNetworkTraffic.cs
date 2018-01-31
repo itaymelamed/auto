@@ -17,7 +17,6 @@ namespace Automation.TestsFolder
             _browser = !_config.Local ? new Browser(_hubLoadBalancer, true) : new Browser(true);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
-            _browser.Navigate(_config.Url);
         }
 
         [TearDown]

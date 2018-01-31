@@ -88,6 +88,15 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         [FindsBy(How = How.CssSelector, Using = "[name='pinned_on_mobile_ttl']")]
         IWebElement pnHourCbx { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[data-mountpoint-name='social-networks-schedule'] [value='at']")]
+        IWebElement socialNetworksChangeTimeRadio { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[data-mountpoint-name='social-networks-schedule'] #schedule-datetime-picker [name='date']")]
+        IWebElement datePicker { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[title='Next']")]
+        IWebElement dateNxtBtn { get; set; }
+
         public enum Platforms
         {
             ftbpro,
@@ -289,6 +298,26 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             ValidateSucMsg();
         }
 
+        public void PublishToSocialNetworksSchedul(int league, int team, string date)
+        {
+            if (!saveForLaterBtn.Enabled)
+                ResetPost();
+            CheckLeague(league);
+            SelectPublishToTeam(team);
+            ClickOnSmArrow();
+            CheckSmCbx(0);
+            CheckSmCbx(1);
+            UncheckPublishToFtb();
+            _browserHelper.WaitForElement(datePicker, nameof(datePicker));
+            _browserHelper.ClickJavaScript(socialNetworksChangeTimeRadio);
+            _browserHelper.Click(datePicker, nameof(datePicker));
+            _browserHelper.Click(dateNxtBtn, nameof(dateNxtBtn));
+            _browserHelper.SelectDate(date);
+            ClickOnPublishBtn();
+            _browserHelper.ConfirmAlarem();
+            ValidateSucMsg();
+        }
+
         public virtual void PublishPost(int league = 0)
         {
             Base.MongoDb.UpdateSteps($"Click on publish button.");
@@ -325,13 +354,18 @@ namespace Automation.PagesObjects.CasterObjectsFolder
                 ResetPost();
             UncheckPublishToFtb();
             ChoosePlatform(platform);
-            _browserHelper.ClickJavaScript(leaguePageLink);
+            _browserHelper.Click(leaguePageLink, "");
+            Thread.Sleep(3000);
             _browserHelper.WaitForElement(pnCheckBox, nameof(pnCheckBox));
-            _browserHelper.ClickJavaScript(pnCheckBox);
+            _browserHelper.Click(pnCheckBox, "");
+            Thread.Sleep(3000);
             _browserHelper.ConfirmAlarem();
+            Thread.Sleep(3000);
             _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
-            _browserHelper.ClickJavaScript(publishBtn);
+            _browserHelper.Click(publishBtn, "");
+            Thread.Sleep(3000);
             _browserHelper.ConfirmAlarem();
+            Thread.Sleep(3000);
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
