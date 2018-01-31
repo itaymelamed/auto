@@ -649,7 +649,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("Scedulr")]
-            [Category("AllBrands")]
+            //[Category("AllBrands")]
             [Retry(2)]
             public void Caster_Schedulr_PostBox()
             {
