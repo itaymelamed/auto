@@ -355,17 +355,17 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             UncheckPublishToFtb();
             ChoosePlatform(platform);
             _browserHelper.Click(leaguePageLink, "");
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             _browserHelper.WaitForElement(pnCheckBox, nameof(pnCheckBox));
             _browserHelper.Click(pnCheckBox, "");
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             _browserHelper.ConfirmAlarem();
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
             _browserHelper.Click(publishBtn, "");
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             _browserHelper.ConfirmAlarem();
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
