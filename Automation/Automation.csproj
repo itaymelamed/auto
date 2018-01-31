@@ -97,6 +97,9 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.106.2.1\lib\net452\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.HttpUtility">
+      <HintPath>..\packages\Mono.HttpUtility.1.0.0.1\lib\net40\Mono.HttpUtility.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserFolder\Browser.cs" />
@@ -169,6 +172,9 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\UrbanAirShipLoginPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\PnDashBoardPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\SchedulrPage.cs" />
+    <Compile Include="PagesObjects\CasterObjectsFolder\PostBox.cs" />
+    <Compile Include="ApiFolder\AdsUnitHelper.cs" />
+    <Compile Include="TestsFolder\DataTrafficTests\AdsUnitTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -192,6 +198,7 @@
     <Folder Include="ApiFolder\ProxyApiFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
     <Folder Include="ApiFolder\FacebookApi\" />
+    <Folder Include="TestsFolder\DataTrafficTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
