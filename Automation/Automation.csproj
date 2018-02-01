@@ -177,7 +177,7 @@
     <Compile Include="TestsFolder\DataTrafficTests\AdsUnitTests.cs" />
     <Compile Include="TestsFolder\EmbeddedVideoTests.cs" />
     <Compile Include="PagesObjects\Auth0LoginPage.cs" />
-    <Compile Include="TestsFolder\AdminTestsFolder\NewsroomTests.cs" />
+    <Compile Include="TestsFolder\AdminTestsFolder\NewsRoomTests.cs" />
     <Compile Include="PagesObjects\NewsRoomPage.cs" />
   </ItemGroup>
   <ItemGroup />
