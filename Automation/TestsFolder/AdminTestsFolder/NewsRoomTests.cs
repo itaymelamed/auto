@@ -47,6 +47,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 ArticleBase articleBase = editorPage.ClickOnArticle();
                 articleBase.WriteTitle("VIDEO:test article template");
+                articleBase.SearchImage("cats");
                 CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
                 cropImagePopUp.ClickOnCropImageBtn();
                 cropImagePopUp.ClickOnEditokBtn();
@@ -82,6 +83,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.WriteTitle("VIDEO:test list template");
+                listsTemplate.SearchImage("cats");
                 listsTemplate.DragImages();
                 listsTemplate.SetSubTitles(titles);
                 listsTemplate.SetBodyTextBoxs(body);
@@ -118,6 +120,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 SlideShowPage slideShow = editorPage.ClickOnSlideShow();
                 slideShow.WriteTitle("VIDEO:test slideshow template");
+                slideShow.SearchImage("cats");
                 slideShow.DragAndDropImages();
                 slideShow.SetSubTitles(titles);
                 slideShow.SetBodyTextBoxsSlide(body);
