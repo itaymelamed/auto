@@ -1,4 +1,5 @@
 ﻿using Automation.ApiFolder;
+using Automation.PagesObjects;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder
@@ -8,7 +9,7 @@ namespace Automation.TestsFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test11Class : BaseNetworkTraffic
+        public class Test1Class : BaseNetworkTraffic
         {
             [Test]
             [Property("TestCaseId", "55")]
@@ -28,7 +29,10 @@ namespace Automation.TestsFolder
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, adNames);
                 string errors = adsUnithelper.ValidateJsons();
+                Assert.True(string.IsNullOrEmpty(errors), errors);
 
+                PostPage postPage = new PostPage(_browser);
+                errors = postPage.ValidateAds(adNames);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }

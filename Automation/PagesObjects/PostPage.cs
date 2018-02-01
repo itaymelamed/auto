@@ -20,6 +20,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".post-article__post-title__title")]
         IWebElement title { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "iframe")]
+        IList<IWebElement> ads  { get; set; }
+
 
         public PostPage(Browser browser)
             :base(browser)
@@ -99,6 +102,19 @@ namespace Automation.PagesObjects
             HoverOverUserProfilePic();
             AdminPage adminPage = ClickOnAdmin();
             return adminPage.ClickOnCasterLink();
+        }
+
+        public string ValidateAds(BsonArray adsArray)
+        {
+            List<string> els = new List<string>();
+            List<string> aaa = new List<string>();
+            _browserHelper.ExecuteUntill(() => els = _driver.FindElements(By.TagName("html")).Select(d => d.Text).ToList());
+            var adsList = ads.ToList();
+            List<string> adsNames = adsArray.Select(a => a.ToString()).ToList();
+            string errors = string.Empty;
+            adsNames.ForEach(n => errors += ads.ToList().Any(a => a.Text == n)? "" : $"Ad {n} was not displyed. {Environment.NewLine}");
+
+            return errors;
         }
     }
 }
