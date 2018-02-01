@@ -543,7 +543,6 @@ namespace Automation.TestsFolder.EditortestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class Test24Class : BaseUi
@@ -576,7 +575,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Category("Editor")]
             [Category("AllBrands")]
             [Category("FullFlow")]
-           // [Retry(2)]
+            [Retry(2)]
             public void Editor_SlideShow_FullFlow()
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;

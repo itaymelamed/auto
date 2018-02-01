@@ -7,7 +7,7 @@ namespace Automation.PagesObjects
 {
     public class NewsRoomPage
     {
-        [FindsBy(How = How.CssSelector, Using = "[href='/pluralist/editor/new']")]
+        [FindsBy(How = How.CssSelector, Using = "[href*='editor/new']")]
         IWebElement editorBtn { get; set; }
 
         Browser _browser;
@@ -29,6 +29,13 @@ namespace Automation.PagesObjects
             _browserHelper.Click(editorBtn, nameof(editorBtn));
             _browser.SwitchToLastTab();
             return new EditorPage(_browser);
+        }
+
+        public bool validateEditorBtn()
+        {
+            Base.MongoDb.UpdateSteps("Validate editor btn.");
+            _browserHelper.WaitForElement(editorBtn, nameof(editorBtn));
+            return editorBtn.Displayed;
         }
     }
 }

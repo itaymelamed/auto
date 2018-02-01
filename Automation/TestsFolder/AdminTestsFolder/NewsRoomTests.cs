@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.PagesObjects;
+﻿using Automation.PagesObjects;
 using MongoDB.Bson;
 using NUnit.Framework;
 
@@ -23,8 +22,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
-                EditorPage editorPage = newsRoomPage.ClickOnEditorBtn();
-                Assert.True(editorPage.ValidateEditorTitle(), "Login failed");
+                Assert.True(newsRoomPage.validateEditorBtn(), "Login failed");
             }
         }
 
@@ -57,6 +55,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));
+                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
+                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
 
@@ -91,6 +91,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test list template"), "Post was not created");
+                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
+                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
 
@@ -129,6 +131,5 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
     }
 }
