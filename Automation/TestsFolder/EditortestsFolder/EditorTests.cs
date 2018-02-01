@@ -483,6 +483,10 @@ namespace Automation.TestsFolder.EditortestsFolder
                 PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));
+                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+
+
             }
         }
 

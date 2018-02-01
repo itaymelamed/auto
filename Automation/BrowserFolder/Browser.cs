@@ -140,6 +140,7 @@ namespace Automation.BrowserFolder
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
+            chromeOptions.AcceptInsecureCertificates = true;
 
             return chromeOptions;
         }

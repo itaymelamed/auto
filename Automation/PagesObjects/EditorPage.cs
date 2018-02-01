@@ -32,6 +32,10 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".templates li a")]
         IList<IWebElement> templates { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[data-template='Write an Article']")]
+        IWebElement editorTitle { get; set; }
+
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -110,6 +114,12 @@ namespace Automation.PagesObjects
             _browserHelper.Click(slideShow,nameof(slideShow));
 
             return new SlideShowPage(_browser); 
+        }
+
+        public bool ValidateEditorTitle()
+        {
+            Base.MongoDb.UpdateSteps($"Validate editor title");
+            return _browserHelper.WaitForElement(editorTitle,nameof(editorTitle));
         }
     }
 }
