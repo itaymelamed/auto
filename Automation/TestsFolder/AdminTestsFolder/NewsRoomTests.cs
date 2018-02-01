@@ -22,7 +22,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
-                Assert.True(newsRoomPage.validateEditorBtn(), "Login failed");
+                Assert.True(newsRoomPage.ValidateEditorBtn(), "Login failed");
             }
         }
 
@@ -86,7 +86,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 listsTemplate.SearchImage("cats");
                 listsTemplate.DragImages();
                 listsTemplate.SetSubTitles(titles);
-                listsTemplate.SetBodyTextBoxs(body);
+                listsTemplate.SetBodyTextBoxsMmNews(body);
                 listsTemplate.WriteTags(tagExValue);
                 listsTemplate.ClickOnAscendingBtn();
                 listsTemplate.ClickOnDscBtn();

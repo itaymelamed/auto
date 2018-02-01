@@ -31,7 +31,7 @@ namespace Automation.PagesObjects
             return new EditorPage(_browser);
         }
 
-        public bool validateEditorBtn()
+        public bool ValidateEditorBtn()
         {
             Base.MongoDb.UpdateSteps("Validate editor btn.");
             _browserHelper.WaitForElement(editorBtn, nameof(editorBtn));
