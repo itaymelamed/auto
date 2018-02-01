@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
-using MongoDB.Bson;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 

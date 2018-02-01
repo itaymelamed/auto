@@ -36,6 +36,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".count")]
         IList<IWebElement> counters { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".redactor-element.redactor_editor")]
+        IList<IWebElement> bodyTextBoxs2 { get; set; }
+
         public ListsTemplate(Browser browser) :
             base(browser)
         {
@@ -67,6 +70,13 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Set body text boxs");
             _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() >= 4);
             bodyTextBoxs.ToList().ForEach(x => _browserHelper.SetText(x, text));
+        }
+
+        public void SetBodyTextBoxsMmNews(string text)
+        {
+            Base.MongoDb.UpdateSteps("Set body text boxs");
+            _browserHelper.WaitUntillTrue(() => bodyTextBoxs2.ToList().Count() >= 4);
+            bodyTextBoxs2.ToList().ForEach(x => _browserHelper.SetText(x, text));
         }
 
         public List<string> GetBodyTextBoxesValue()
