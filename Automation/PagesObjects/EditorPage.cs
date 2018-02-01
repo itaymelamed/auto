@@ -121,5 +121,6 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Validate editor title");
             return _browserHelper.WaitForElement(editorTitle,nameof(editorTitle));
         }
+
     }
 }

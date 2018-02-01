@@ -29,7 +29,6 @@ namespace Automation.PagesObjects
             PageFactory.InitElements(_driver, this);
         }
 
-
         public NewsRoomPage Login(IUser user)
         {
             Base.MongoDb.UpdateSteps("Set Username");

@@ -1,4 +1,5 @@
-﻿using Automation.PagesObjects;
+﻿using System;
+using Automation.PagesObjects;
 using MongoDB.Bson;
 using NUnit.Framework;
 
@@ -22,7 +23,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
-                Assert.True(newsRoomPage.validateEditorBtn(), "Login failed");
+                EditorPage editorPage = newsRoomPage.ClickOnEditorBtn();
+                Assert.True(editorPage.ValidateEditorTitle(), "Login failed");
             }
         }
 
@@ -38,7 +40,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void Editor_Article_FullFlow()
+            public void FullFlow_Article()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -47,6 +49,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 ArticleBase articleBase = editorPage.ClickOnArticle();
                 articleBase.WriteTitle("VIDEO:test article template");
+                articleBase.SearchImage("cats");
                 CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
                 cropImagePopUp.ClickOnCropImageBtn();
                 cropImagePopUp.ClickOnEditokBtn();
@@ -55,8 +58,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test article template"));
-                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
-                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
 
@@ -72,7 +73,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void Editor_TOPX_FullFlow()
+            public void FullFlow_TOPX()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -82,6 +83,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 ListsTemplate listsTemplate = editorPage.ClickOnList();
                 listsTemplate.WriteTitle("VIDEO:test list template");
+                listsTemplate.SearchImage("cats");
                 listsTemplate.DragImages();
                 listsTemplate.SetSubTitles(titles);
                 listsTemplate.SetBodyTextBoxs(body);
@@ -91,8 +93,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 PreviewPage previewPage = listsTemplate.ClickOnPreviewBtn();
                 PostPage postPage = previewPage.ClickOnPublishBtn();
                 Assert.True(postPage.ValidatePostCreated("VIDEO:test list template"), "Post was not created");
-                var errors = postPage.ValidateComponents(_params["Components"].AsBsonArray);
-                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void Editor_FullFlow_SlideShow()
+            public void FullFlow_slideshow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -118,6 +118,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string body = _params["Body"].ToString();
                 SlideShowPage slideShow = editorPage.ClickOnSlideShow();
                 slideShow.WriteTitle("VIDEO:test slideshow template");
+                slideShow.SearchImage("cats");
                 slideShow.DragAndDropImages();
                 slideShow.SetSubTitles(titles);
                 slideShow.SetBodyTextBoxsSlide(body);
@@ -131,5 +132,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
+
     }
 }
