@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.BrowserFolder;
+﻿using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
