@@ -73,7 +73,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void Editor_TOPX_FullFlow()
+            public void Editor_List_FullFlow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
