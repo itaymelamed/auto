@@ -20,7 +20,7 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".post-article__post-title__title")]
         IWebElement title { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "iframe")]
+        [FindsBy(How = How.CssSelector, Using = "[data-slot-id] iframe")]
         IList<IWebElement> ads  { get; set; }
 
 
@@ -108,6 +108,9 @@ namespace Automation.PagesObjects
         {
             List<string> els = new List<string>();
             List<string> aaa = new List<string>();
+
+            var el = _driver.FindElement(By.CssSelector("[data-slot-id='Top'] iframe"));
+            _driver.SwitchTo().Frame(el);
             _browserHelper.ExecuteUntill(() => els = _driver.FindElements(By.TagName("html")).Select(d => d.Text).ToList());
             var adsList = ads.ToList();
             List<string> adsNames = adsArray.Select(a => a.ToString()).ToList();
