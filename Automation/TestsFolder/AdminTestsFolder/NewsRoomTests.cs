@@ -38,7 +38,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void FullFlow_Article()
+            public void Editor_Article_FullFlow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -72,7 +72,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void FullFlow_TOPX()
+            public void Editor_TOPX_FullFlow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -108,7 +108,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("FullFlow")]
             [Category("Pluralist")]
             [Retry(2)]
-            public void FullFlow_slideshow()
+            public void Editor_FullFlow_SlideShow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
