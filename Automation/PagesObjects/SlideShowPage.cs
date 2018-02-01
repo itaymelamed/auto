@@ -33,7 +33,7 @@ namespace Automation.PagesObjects
             
             Base.MongoDb.UpdateSteps("Drag images to media drop boxes.");
             Thread.Sleep(2000);
-            _browserHelper.WaitUntillTrue(() => dropMedia.ToList().Count() == 5, "Media boxes failed to load");
+            _browserHelper.WaitUntillTrue(() => dropMedia.ToList().Count() >= 4, "Media boxes failed to load");
             _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30, "There were no 30 results images.");
 
             _browserHelper.WaitUntillTrue(() =>
