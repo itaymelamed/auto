@@ -20,9 +20,8 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".post-article__post-title__title")]
         IWebElement title { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[data-slot-id] iframe")]
-        IList<IWebElement> ads  { get; set; }
-
+        [FindsBy(How = How.CssSelector, Using = "div[id*='google_pubconsole'] iframe")]
+        IList<IWebElement> iframes { get; set; }
 
         public PostPage(Browser browser)
             :base(browser)
@@ -106,16 +105,26 @@ namespace Automation.PagesObjects
 
         public string ValidateAds(BsonArray adsArray)
         {
-            List<string> els = new List<string>();
-            List<string> aaa = new List<string>();
+            var errors = string.Empty;
+            var adsNames = adsArray.Select(x => x.ToString()).ToList();
 
-            var el = _driver.FindElement(By.CssSelector("[data-slot-id='Top'] iframe"));
-            _driver.SwitchTo().Frame(el);
-            _browserHelper.ExecuteUntill(() => els = _driver.FindElements(By.TagName("html")).Select(d => d.Text).ToList());
-            var adsList = ads.ToList();
-            List<string> adsNames = adsArray.Select(a => a.ToString()).ToList();
-            string errors = string.Empty;
-            adsNames.ForEach(n => errors += ads.ToList().Any(a => a.Text == n)? "" : $"Ad {n} was not displyed. {Environment.NewLine}");
+            List<string> adsUi = new List<string>();
+            iframes.ToList().ForEach(f =>
+            {
+                _driver.SwitchTo().Frame(f);
+                _browserHelper.ExecuteUntill(() =>
+                {
+                    var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
+                    if (curAd != null)
+                    {
+                        Base.MongoDb.UpdateSteps($"Validate {curAd} displyed.");
+                        adsUi.Add(curAd);
+                    }
+                    _browser.SwitchToFirstTab();
+                });
+            });
+
+            adsNames.Except(adsUi).ToList().ForEach(a => errors += $"*) Ad '{a}' does not displyed. {Environment.NewLine}");
 
             return errors;
         }

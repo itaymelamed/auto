@@ -14,6 +14,7 @@ namespace Automation.ApiFolder
         JObject _exJson;
         List<string> _adNames;
         List<Request> _requests;
+        static string _url = "https://securepubads.g.doubleclick.net/gampad/ads";
 
         string _errors;
 
@@ -29,7 +30,7 @@ namespace Automation.ApiFolder
         {
             _adNames.ForEach(n =>
             {
-                var request = _requests.Where(r => r.Url.Contains(n)).FirstOrDefault();
+                var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
                 _errors += JToken.DeepEquals(acJson, _exJson) ? "" : $"Ad {n} request was not sent. {Environment.NewLine}";
             });
@@ -50,7 +51,7 @@ namespace Automation.ApiFolder
                 var jsonString = JsonConvert.SerializeObject(paramsDic);
                 return JObject.Parse(jsonString);
             }
-            catch
+            catch(Exception e)
             {
                 return JObject.Parse(@"{'remove' : 'video'}");
             }
