@@ -41,7 +41,8 @@ namespace Automation.ConfigurationFolder
             qa9,
             qa10,
             qa11,
-            qa12
+            qa12,
+            Production
         }
 
         public enum BrowserType
