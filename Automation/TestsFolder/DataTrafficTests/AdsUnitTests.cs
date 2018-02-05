@@ -17,6 +17,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
+            [Category("90Min")]
             [Retry(2)]
             public void AdsUnit_PostPage_Article()
             {
@@ -48,6 +49,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
+            [Category("90Min")]
             [Retry(2)]
             public void AdsUnit_PostPage_List()
             {
@@ -79,6 +81,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
+            [Category("90Min")]
             [Retry(2)]
             public void AdsUnit_PostPage_SlideShow()
             {
@@ -110,6 +113,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
+            [Category("90Min")]
             [Retry(2)]
             public void AdsUnit_PostPage_LineUp()
             {
@@ -141,6 +145,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
+            [Category("90Min")]
             [Retry(2)]
             public void AdsUnit_PostPage_TimeOut()
             {
