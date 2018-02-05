@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutomatedTester.BrowserMob.HAR;
+using Automation.TestsFolder;
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -31,6 +32,7 @@ namespace Automation.ApiFolder
         {
             _adNames.ForEach(n =>
             {
+                Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
                 _errors += JToken.DeepEquals(acJson, _exJson) ? "" : $"Ad {n} request was not sent. {Environment.NewLine}";

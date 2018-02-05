@@ -29,14 +29,13 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                Thread.Sleep(2000);
-                string errors = adsUnithelper.ValidateJsons();
+                PostPage postPage = new PostPage(_browser);
+                string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
-                PostPage postPage = new PostPage(_browser);
-                errors = postPage.ValidateAds(displyed);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -62,13 +61,13 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                PostPage postPage = new PostPage(_browser);
+                string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
-                PostPage postPage = new PostPage(_browser);
-                errors = postPage.ValidateAds(displyed);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -94,13 +93,13 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                PostPage postPage = new PostPage(_browser);
+                string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
-                PostPage postPage = new PostPage(_browser);
-                errors = postPage.ValidateAds(displyed);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -126,13 +125,13 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                PostPage postPage = new PostPage(_browser);
+                string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
-                PostPage postPage = new PostPage(_browser);
-                errors = postPage.ValidateAds(displyed);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -158,13 +157,13 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
-                var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                PostPage postPage = new PostPage(_browser);
+                string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
-                PostPage postPage = new PostPage(_browser);
-                errors = postPage.ValidateAds(displyed);
+                var requests = _browser.ProxyApi.GetRequests();
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
