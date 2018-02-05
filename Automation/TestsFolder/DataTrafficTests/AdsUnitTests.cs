@@ -1,4 +1,5 @@
-﻿using Automation.ApiFolder;
+﻿using System.Threading;
+using Automation.ApiFolder;
 using Automation.PagesObjects;
 using NUnit.Framework;
 
@@ -30,6 +31,7 @@ namespace Automation.TestsFolder
                 _browser.Navigate(postUrl);
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                Thread.Sleep(2000);
                 string errors = adsUnithelper.ValidateJsons();
                 Assert.True(string.IsNullOrEmpty(errors), errors);
 
