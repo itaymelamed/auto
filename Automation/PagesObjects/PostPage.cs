@@ -106,6 +106,18 @@ namespace Automation.PagesObjects
         public string ValidateAds(BsonArray adsArray)
         {
             var errors = string.Empty;
+            _browserHelper.WaitUntillTrue(() =>
+            {
+                errors = IframesHandeler(adsArray);
+                return string.IsNullOrEmpty(errors);
+            });
+
+            return errors;
+        }
+
+        string IframesHandeler(BsonArray adsArray)
+        {
+            var errors = string.Empty;
             var adsNames = adsArray.Select(x => x.ToString()).ToList();
 
             List<string> adsUi = new List<string>();
