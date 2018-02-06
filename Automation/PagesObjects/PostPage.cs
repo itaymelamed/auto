@@ -110,7 +110,7 @@ namespace Automation.PagesObjects
             {
                 errors = IframesHandeler(adsArray);
                 return string.IsNullOrEmpty(errors);
-            });
+            },  "" ,30 ,false);
 
             return errors;
         }
@@ -121,7 +121,6 @@ namespace Automation.PagesObjects
             var adsNames = adsArray.Select(x => x.ToString()).ToList();
 
             List<string> adsUi = new List<string>();
-            _browserHelper.WaitUntillTrue(() => iframes.ToList().Count() >= adsNames.Count());
             iframes.ToList().ForEach(f =>
             {
                 _driver.SwitchTo().Frame(f);

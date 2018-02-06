@@ -18,7 +18,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void AdsUnit_PostPage_Article()
             {
@@ -29,6 +29,7 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
+                Thread.Sleep(1000);
                 PostPage postPage = new PostPage(_browser);
                 string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -50,7 +51,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void AdsUnit_PostPage_List()
             {
@@ -61,6 +62,7 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
+                Thread.Sleep(1000);
                 PostPage postPage = new PostPage(_browser);
                 string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -82,7 +84,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void AdsUnit_PostPage_SlideShow()
             {
@@ -93,6 +95,7 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
+                Thread.Sleep(1000);
                 PostPage postPage = new PostPage(_browser);
                 string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -114,7 +117,7 @@ namespace Automation.TestsFolder
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("90Min")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void AdsUnit_PostPage_LineUp()
             {
@@ -125,6 +128,7 @@ namespace Automation.TestsFolder
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
+                Thread.Sleep(1000);
                 PostPage postPage = new PostPage(_browser);
                 string errors = postPage.ValidateAds(displyed);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
