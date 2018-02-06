@@ -108,6 +108,7 @@ namespace Automation.PagesObjects
             var errors = string.Empty;
             _browserHelper.WaitUntillTrue(() =>
             {
+                errors = string.Empty;
                 errors = IframesHandeler(adsArray);
                 return string.IsNullOrEmpty(errors);
             },  "" ,30 ,false);
@@ -124,16 +125,13 @@ namespace Automation.PagesObjects
             iframes.ToList().ForEach(f =>
             {
                 _driver.SwitchTo().Frame(f);
-                _browserHelper.ExecuteUntill(() =>
+                var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
+                if (curAd != null)
                 {
-                    var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
-                    if (curAd != null)
-                    {
-                        Base.MongoDb.UpdateSteps($"Validate {curAd} displyed.");
-                        adsUi.Add(curAd);
-                    }
-                    _browser.SwitchToFirstTab();
-                });
+                    Base.MongoDb.UpdateSteps($"Validate {curAd} displyed.");
+                    adsUi.Add(curAd);
+                }
+                _browser.SwitchToFirstTab();
             });
 
             adsNames.Except(adsUi).ToList().ForEach(a => errors += $"*) Ad '{a}' does not displyed. {Environment.NewLine}");
