@@ -27,7 +27,7 @@ namespace Automation.TestsObjects
         {
             Result = new Result(TestContext.CurrentContext.Result, TestStatus.SentToHub);
             TestNumber = TestContext.CurrentContext.Test.Properties.Get("TestCaseId").ToString();
-            TestRunId = BaseUi._testRun.TestRunId;
+            TestRunId = Base._testRun.TestRunId;
             TestName = string.Concat(TestContext.CurrentContext.Test.Name.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ').
                              Replace("_", " | ");
             Steps = new List<string>();
@@ -35,7 +35,7 @@ namespace Automation.TestsObjects
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
             TestContext.CurrentContext.Test.Properties.Set("Test", this);
 
-            BaseUi.MongoDb.InsertTest(this);
+            Base.MongoDb.InsertTest(this);
         }
 
         public void UpdateTestStatus(TestContext.ResultAdapter result, TestStatus status = TestStatus.None)
@@ -49,15 +49,15 @@ namespace Automation.TestsObjects
             else
                 Result.Status = status.ToString();
             
-            BaseUi.MongoDb.UpdateResult(this);
-            BaseUi._testRun.UpdataResults();
+            Base.MongoDb.UpdateResult(this);
+            Base._testRun.UpdataResults();
         }
 
         public void UpdateTestStep(string step)
         {
             Steps.Add(step);
 
-            BaseUi.MongoDb.UpdateSteps(this);
+            Base.MongoDb.UpdateSteps(this);
         }
     }
 }
