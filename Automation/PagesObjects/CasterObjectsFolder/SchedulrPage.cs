@@ -98,9 +98,9 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             Func<List<IWebElement>> postFunc = () => posts.ToList().Where(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title).ToList();
             var postCount = postFunc().Count() == 1;
             var post = _browserHelper.WaitUntillTrue(() => postFunc().FirstOrDefault().Displayed, "", timeOut, ex);
-            var hour = _browserHelper.WaitUntillTrue(() => postsFacebook.ToList().Where(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])).FirstOrDefault().Displayed, "", timeOut, ex);
+            var hour = _browserHelper.WaitUntillTrue(() => posts.ToList().Where(p => p.GetAttribute("title").Contains(curHour[0]+":"+curHour[1])).FirstOrDefault().Displayed, "", timeOut, ex);
 
-            return hour && post;
+            return hour && post && postCount;
         }
 
         public void SelectDay(int date)
