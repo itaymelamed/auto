@@ -178,6 +178,8 @@
     <Compile Include="PagesObjects\Auth0LoginPage.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\NewsRoomTests.cs" />
     <Compile Include="PagesObjects\NewsRoomPage.cs" />
+    <Compile Include="ApiFolder\GoogleAnalitics.cs" />
+    <Compile Include="TestsFolder\DataTrafficTests\GoogleAnaliticsTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
