@@ -79,7 +79,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "12Up");
+            return TestContext.Parameters.Get("siteName", "Ftb90");
         }
 
         static string GetParams(string param)
