@@ -31,12 +31,7 @@ namespace Automation.ApiFolder
             exJson.Remove("a");
             exJson.Remove("z");
 
-            var ignorList = ignorProp.Select(i => i.ToString()).ToList();
-            ignorList.AddRange(acJson.Properties().Select(p => p.Name).Where(k => !k.Contains("cd")));
-            var acJsonKeys = acJson.Properties().Select(p => p.Name).ToList();
-            var intersect = ignorList.Intersect(acJsonKeys).ToList();
-
-            intersect.ForEach(p => CustumJson(acJson, exJson, p));
+            ignorProp.Select(i => i.ToString()).ToList().ForEach(p => CustumJson(acJson, exJson, p));
             acJson["gtm"] = acJson["gtm"].ToString().Remove(0, 3);
             exJson["gtm"] = exJson["gtm"].ToString().Remove(0, 3);
 
