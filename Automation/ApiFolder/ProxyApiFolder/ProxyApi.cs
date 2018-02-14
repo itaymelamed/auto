@@ -49,6 +49,10 @@ namespace Automation.ApiFolder
             _api.MakeRequest(String.Format("{0}/{1}/har", _baseUrlProxy, _port), "PUT", reference);
         }
 
+        public void NewHarPost(string reference = null)
+        {
+            _api.MakeRequest(String.Format("{0}/{1}/har?captureContent=true", _baseUrlProxy, _port), "PUT", reference);
+        }
 
         public void NewPage(string reference)
         {
