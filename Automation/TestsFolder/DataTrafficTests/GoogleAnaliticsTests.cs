@@ -274,7 +274,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(1)]
-            public void GoogleAnalitics_VideoAdComplete()
+            public void GoogleAnalitics_Video_AdComplete()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
@@ -304,7 +304,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(1)]
-            public void GoogleAnalitics_VideoAdImpression()
+            public void GoogleAnalitics_Video_AdImpression()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
@@ -334,7 +334,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(1)]
-            public void GoogleAnalitics_VideoAdViewableImpression()
+            public void GoogleAnalitics_Video_AdViewableImpression()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
