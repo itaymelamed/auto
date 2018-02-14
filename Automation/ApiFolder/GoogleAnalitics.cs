@@ -58,6 +58,7 @@ namespace Automation.ApiFolder
                 if(string.IsNullOrEmpty(acJson[parameterName].ToString()))
                     throw new NUnit.Framework.AssertionException($"Parameter {parameterName} is empty.");
 
+                Base.MongoDb.UpdateSteps($"Validate {parameterName} is not empty.");
                 acJson.Property(parameterName).Remove();
                 exJson.Property(parameterName).Remove();
             }
