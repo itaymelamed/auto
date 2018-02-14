@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using AutomatedTester.BrowserMob.HAR;
+using Automation.TestsFolder;
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -105,7 +106,11 @@ namespace Automation.ApiFolder
 
             try
             {
-                exJsonNames.ForEach(n => diffs += ex[n].ToString() == ac[n].ToString() ? "" : $"*) Expected value for parameter {n}: {ex[n]}. But Actual is: {ac[n]}.     {Environment.NewLine}");
+                exJsonNames.ForEach(n =>
+                {
+                    Base.MongoDb.UpdateSteps($"Validate parameter {n} value.");
+                    diffs += ex[n].ToString() == ac[n].ToString() ? "" : $"*) Expected value for parameter {n}: {ex[n]}. But Actual is: {ac[n]}.     {Environment.NewLine}";
+                });
             }
             catch
             {
