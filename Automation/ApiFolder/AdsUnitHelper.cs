@@ -41,7 +41,6 @@ namespace Automation.ApiFolder
             return _errors;
         }
 
-
         JObject RequestToJobject(Request request)
         {
             try
