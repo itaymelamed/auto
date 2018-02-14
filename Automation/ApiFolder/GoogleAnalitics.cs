@@ -58,8 +58,17 @@ namespace Automation.ApiFolder
 
         void CustumJson(JObject acJson, JObject exJson, string parameterName)
         {
-            if (!string.IsNullOrEmpty(acJson[parameterName].ToString()))
-                exJson[parameterName] = acJson[parameterName];
+            try
+            {
+                if(string.IsNullOrEmpty(acJson[parameterName].ToString()))
+                    throw new NUnit.Framework.AssertionException($"Parameter {parameterName} is empty.");
+
+                acJson.Property(parameterName).Remove();
+                exJson.Property(parameterName).Remove();
+            }
+            catch
+            {
+            }
         }
 
         JObject RequestToJobject(Request request)
