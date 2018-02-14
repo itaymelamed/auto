@@ -424,7 +424,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(1)]
-            public void GoogleAnalitics_Video_JwVideoSeventyFivecompleted()
+            public void GoogleAnalitics_Video_JwVideoSeventyFiveCompleted()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
@@ -544,7 +544,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(1)]
-            public void GoogleAnalitics_Video_JwVideoSeventyFiveCompleted()
+            public void GoogleAnalitics_Video_JwVideoAdSeventyFiveCompleted()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
