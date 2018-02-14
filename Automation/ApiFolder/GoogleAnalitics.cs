@@ -101,14 +101,14 @@ namespace Automation.ApiFolder
         string CompareJsons(JObject ex, JObject ac)
         {
             string diffs = string.Empty;
-            var exJsonNames = ex.Properties().Select(p => p.Name).ToList();
-            var acJsonNames = ac.Properties().Select(p => p.Name).ToList();
+            var exJsonNames = ex.Properties().Select(p => p.Name).Where(k => k.Contains("cd")).ToList();
+            var acJsonNames = ac.Properties().Select(p => p.Name).Where(k => k.Contains("cd")).ToList();
 
             try
             {
                 exJsonNames.ForEach(n =>
                 {
-                    Base.MongoDb.UpdateSteps($"Validate parameter {n} value.");
+                    Base.MongoDb.UpdateSteps($"Validate parameter {n} = {ex[n]}.");
                     diffs += ex[n].ToString() == ac[n].ToString() ? "" : $"*) Expected value for parameter {n}: {ex[n]}. But Actual is: {ac[n]}.     {Environment.NewLine}";
                 });
             }
