@@ -18,6 +18,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoPlayerEmbed()
             {
@@ -46,6 +47,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_FirstPlay()
             {
@@ -76,6 +78,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_Complete()
             {
@@ -106,6 +109,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_Mute()
             {
@@ -137,6 +141,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_UnMute()
             {
@@ -169,6 +174,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_FullScreenOn()
             {
@@ -202,6 +208,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_FullScreenOff()
             {
@@ -233,6 +240,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_PositionSeeked()
             {
@@ -264,6 +272,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_VideoAdComplete()
             {
@@ -293,6 +302,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_VideoAdImpression()
             {
@@ -322,6 +332,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_VideoAdViewableImpression()
             {
@@ -351,6 +362,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoTwentyFivecompleted()
             {
@@ -380,6 +392,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoFiftyCompleted()
             {
@@ -409,6 +422,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoSeventyFivecompleted()
             {
@@ -438,6 +452,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoTwentyFivecompleted()
             {
@@ -467,6 +482,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoAdNintycompleted()
             {
@@ -496,6 +512,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoFiftycompleted()
             {
@@ -525,6 +542,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoSeventyFiveCompleted()
             {
@@ -554,6 +572,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
+            [Category("90Min")]
             [Retry(1)]
             public void GoogleAnalitics_Video_JwVideoAdNintyCompleted()
             {
