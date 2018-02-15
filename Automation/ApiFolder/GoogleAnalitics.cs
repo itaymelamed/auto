@@ -41,12 +41,21 @@ namespace Automation.ApiFolder
         JObject GetEvent(string eventAction, int timeOut, bool post = false)
         {
             JObject jObject = null;
-            List<Request> requests = !post ? _requests().Where(r => r.Url.Contains(_url)).ToList() : _requests().Where(r => r.Url.Contains(_url) && r.Method == "POST").ToList();
-            var reqs = !post ? requests.Where(r => r.Url.Contains(_url)).Select(r => RequestToJobject(r)).ToList() : requests.Where(r => r.Url ==_url).Select(r => PostDataToJobject(r.PostData.Text)).ToList();
-            var e = reqs.Where(r => r.Properties().Select(p => p.Name).Contains("ea")).ToList();
-            jObject = e.Where(r => r["ea"].ToString() == eventAction).FirstOrDefault();
-            if (post)
-                reqs.ForEach(r => r.Properties().Select(p => p.Name).ToList().ForEach(n => jObject[n] = jObject[n].ToString().Replace("%20", " ")));
+
+            try
+            {
+                List<Request> requests = !post ? _requests().Where(r => r.Url.Contains(_url)).ToList() : _requests().Where(r => r.Url.Contains(_url) && r.Method == "POST").ToList();
+                var reqs = !post ? requests.Where(r => r.Url.Contains(_url)).Select(r => RequestToJobject(r)).ToList() : requests.Where(r => r.Url == _url).Select(r => PostDataToJobject(r.PostData.Text)).ToList();
+                var e = reqs.Where(r => r.Properties().Select(p => p.Name).Contains("ea")).ToList();
+                jObject = e.Where(r => r["ea"].ToString() == eventAction).FirstOrDefault();
+                if (post)
+                    reqs.ForEach(r => r.Properties().Select(p => p.Name).ToList().ForEach(n => jObject[n] = jObject[n].ToString().Replace("%20", " ")));
+
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent.");
+            }
 
             return jObject;
         }
