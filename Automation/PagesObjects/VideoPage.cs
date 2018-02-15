@@ -58,6 +58,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Click ov volume button.");
+            _browserHelper.WaitForElement(volume, nameof(volume), 120);
             _browserHelper.Click(volume, nameof(volume));
         }
 
@@ -65,6 +66,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Click on FullScreen button.");
+            _browserHelper.WaitForElement(fullScreen, nameof(fullScreen), 120);
             _browserHelper.Click(fullScreen, nameof(fullScreen));
         }
 
@@ -72,6 +74,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Drag timeline.");
+            _browserHelper.WaitForElement(progressBar, nameof(progressBar), 120);
             _browserHelper.Click(progressBar, nameof(progressBar));
         }
 
@@ -79,6 +82,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Click on Pause.");
+            _browserHelper.WaitForElement(play, nameof(play), 120);
             _browserHelper.Click(play, nameof(play));
         }
 
