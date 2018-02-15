@@ -15,11 +15,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "63")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoPlayerEmbed()
             {
                 var url = _params["PostUrl"].ToString();
@@ -44,11 +43,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "64")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_FirstPlay()
             {
                 var url = _params["PostUrl"].ToString();
@@ -74,11 +72,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "65")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_Complete()
             {
                 var url = _params["PostUrl"].ToString();
@@ -105,11 +102,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "66")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_Mute()
             {
                 var url = _params["PostUrl"].ToString();
@@ -137,11 +133,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "67")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_UnMute()
             {
                 var url = _params["PostUrl"].ToString();
@@ -170,11 +165,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "68")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_FullScreenOn()
             {
                 var url = _params["PostUrl"].ToString();
@@ -204,11 +198,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "69")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_FullScreenOff()
             {
                 var url = _params["PostUrl"].ToString();
@@ -236,7 +229,6 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "70")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
@@ -268,11 +260,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "71")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_AdComplete()
             {
                 var url = _params["PostUrl"].ToString();
@@ -298,11 +289,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "72")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_AdImpression()
             {
                 var url = _params["PostUrl"].ToString();
@@ -328,11 +318,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "73")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_AdViewableImpression()
             {
                 var url = _params["PostUrl"].ToString();
@@ -358,11 +347,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "74")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoTwentyFivecompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -388,7 +376,6 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "75")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
@@ -418,7 +405,6 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "76")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
@@ -448,11 +434,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "77")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoTwentyFivecompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -478,11 +463,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "78")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoAdNintycompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -508,11 +492,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "79")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoFiftycompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -538,11 +521,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "80")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoAdSeventyFiveCompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -568,11 +550,10 @@ namespace Automation.TestsFolder.DataTrafficTests
         {
             [Test]
             [Property("TestCaseId", "81")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoAdNintyCompleted()
             {
                 var url = _params["PostUrl"].ToString();
