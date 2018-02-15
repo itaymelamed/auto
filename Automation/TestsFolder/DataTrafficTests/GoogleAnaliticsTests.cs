@@ -392,7 +392,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoFiftyCompleted()
             {
                 var url = _params["PostUrl"].ToString();
@@ -422,7 +422,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("PostPage")]
             [Category("GoogleAnalitics")]
             [Category("90Min")]
-            [Retry(1)]
+            [Retry(2)]
             public void GoogleAnalitics_Video_JwVideoSeventyFiveCompleted()
             {
                 var url = _params["PostUrl"].ToString();
