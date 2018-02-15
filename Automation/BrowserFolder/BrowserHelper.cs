@@ -205,8 +205,11 @@ namespace Automation.BrowserFolder
 
         public void Hover(IWebElement el)
         {
-            Actions action = new Actions(_driver);
-            action.MoveToElement(el).Perform();
+            ExecuteUntill(() => 
+            {
+                Actions action = new Actions(_driver);
+                action.MoveToElement(el).Perform();  
+            });
         }
 
         public void ExecuteUntill(Action action, int timeOut = 20)
