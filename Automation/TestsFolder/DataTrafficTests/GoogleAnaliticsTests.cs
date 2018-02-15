@@ -91,7 +91,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.Navigate(url);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromMinutes(3));
+                Thread.Sleep(TimeSpan.FromMinutes(4));
 
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
@@ -556,7 +556,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(60));
+                Thread.Sleep(TimeSpan.FromSeconds(120));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -586,7 +586,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(60));
+                Thread.Sleep(TimeSpan.FromSeconds(120));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
