@@ -26,14 +26,21 @@ namespace Automation.ApiFolder
             var acJson = GetEvent(eventAction, timeOut, post);
             var exJson = JObject.Parse(exJsonBson.ToString());
 
-            acJson.Remove("a");
-            acJson.Remove("z");
-            exJson.Remove("a");
-            exJson.Remove("z");
+            try
+            {
+                acJson.Remove("a");
+                acJson.Remove("z");
+                exJson.Remove("a");
+                exJson.Remove("z");
 
-            ignorProp.Select(i => i.ToString()).ToList().ForEach(p => CustumJson(acJson, exJson, p));
-            acJson["gtm"] = acJson["gtm"].ToString().Remove(0, 3);
-            exJson["gtm"] = exJson["gtm"].ToString().Remove(0, 3);
+                ignorProp.Select(i => i.ToString()).ToList().ForEach(p => CustumJson(acJson, exJson, p));
+                acJson["gtm"] = acJson["gtm"].ToString().Remove(0, 3);
+                exJson["gtm"] = exJson["gtm"].ToString().Remove(0, 3);
+            }
+            catch
+            {
+
+            }
 
             return CompareJsons(exJson, acJson);
         }
@@ -124,6 +131,8 @@ namespace Automation.ApiFolder
                 {
                     Base.MongoDb.UpdateSteps($"Validate parameter {n} = {ex[n]}.");
                     diffs += ex[n].ToString() == ac[n].ToString() ? "" : $"*) Expected value for parameter {n}: {ex[n]}. But Actual is: {ac[n]}.     {Environment.NewLine}";
+                    if (ex[n].ToString() != ac[n].ToString())
+                        Base.MongoDb.UpdateSteps($"Parameter {n} value is diffrent than expected.");
                 });
             }
             catch

@@ -60,7 +60,6 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.Navigate(url);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                //videoPage.WaitForRequest(_browser.ProxyApi.GetRequests, eventAction);
 
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, false);

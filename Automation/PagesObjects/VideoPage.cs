@@ -45,7 +45,7 @@ namespace Automation.PagesObjects
         public bool WaitForVideoToPlay()
         {
             Base.MongoDb.UpdateSteps("wait for video to be played.");
-            return _browserHelper.WaitForElement(videoPlaying, nameof(videoPlaying), 60);
+            return _browserHelper.WaitForElement(videoPlaying, nameof(videoPlaying), 120);
         }
 
         public void WaitForVideoToComplete(int sec)
