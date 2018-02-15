@@ -537,7 +537,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(120));
+                Thread.Sleep(TimeSpan.FromSeconds(180));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);

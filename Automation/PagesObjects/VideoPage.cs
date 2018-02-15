@@ -89,6 +89,7 @@ namespace Automation.PagesObjects
         void HoverOverVideo()
         {
             Base.MongoDb.UpdateSteps("Hover over video.");
+            _browserHelper.WaitForElement(video, nameof(video));
             _browserHelper.Hover(video);
         }
 
