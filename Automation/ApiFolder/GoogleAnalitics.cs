@@ -37,9 +37,9 @@ namespace Automation.ApiFolder
                 acJson["gtm"] = acJson["gtm"].ToString().Remove(0, 3);
                 exJson["gtm"] = exJson["gtm"].ToString().Remove(0, 3);
             }
-            catch
+            catch(Exception e)
             {
-
+                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent. {e.Message}");
             }
 
             return CompareJsons(exJson, acJson);
@@ -59,9 +59,9 @@ namespace Automation.ApiFolder
                     reqs.ForEach(r => r.Properties().Select(p => p.Name).ToList().ForEach(n => jObject[n] = jObject[n].ToString().Replace("%20", " ")));
 
             }
-            catch
+            catch(Exception e)
             {
-                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent.");
+                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent. {e.Message}");
             }
 
             return jObject;
@@ -78,8 +78,9 @@ namespace Automation.ApiFolder
                 acJson.Property(parameterName).Remove();
                 exJson.Property(parameterName).Remove();
             }
-            catch
+            catch(Exception e)
             {
+                throw new NUnit.Framework.AssertionException(e.Message);
             }
         }
 
@@ -135,9 +136,9 @@ namespace Automation.ApiFolder
                         Base.MongoDb.UpdateSteps($"Parameter {n} value is diffrent than expected.");
                 });
             }
-            catch
+            catch(Exception e)
             {
-
+                throw new NUnit.Framework.AssertionException(e.Message);
             }
 
             return diffs;
