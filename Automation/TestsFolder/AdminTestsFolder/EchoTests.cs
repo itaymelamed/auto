@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.Helpersobjects;
+﻿using Automation.Helpersobjects;
 using Automation.PagesObjects;
 using Automation.PagesObjects.EchoFolder;
 using NUnit.Framework;
@@ -17,9 +16,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
+            [Category("MMNews")]
             [Retry(1)]
-           // [Repeat(50)]
             public void Echo_ValidatePostCreation()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);

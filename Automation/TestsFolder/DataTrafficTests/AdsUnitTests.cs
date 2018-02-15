@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using Automation.ApiFolder;
-using Automation.PagesObjects;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder
@@ -14,7 +13,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "55")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
@@ -47,7 +45,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "59")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
@@ -80,7 +77,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "60")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
@@ -113,7 +109,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "61")]
-            [Category("Sanity")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
