@@ -23,6 +23,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "div[id*='google_pubconsole'] iframe")]
         IList<IWebElement> iframes { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".post-metadata__author-name")]
+        IWebElement authorName { get; set; }
+
         public PostPage(Browser browser)
             :base(browser)
         {
@@ -138,5 +141,10 @@ namespace Automation.PagesObjects
 
             return errors;
         }
+
+       // public string GetAuthorName()
+       // {
+            
+      //  }
     }
 }

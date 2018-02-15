@@ -19,6 +19,9 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".text.medium.regular")]
         IList <IWebElement> postsTitles { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".tableBody [style='flex: 0 0 13%;']")]
+        IList <IWebElement> authorNames { get; set; }    
+
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -34,8 +37,17 @@ namespace Automation.PagesObjects.EchoFolder
 
         public bool ValidatePostCreation(string title)
         {
-            Base.MongoDb.UpdateSteps($"Search for post title: {title}");
+            Base.MongoDb.UpdateSteps($"Search for post title: {title}.");
             return _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Any(t => t.Text == title)); 
+        }
+
+        public bool ValidateAuthor(string author, string title)
+        {
+            Base.MongoDb.UpdateSteps($"Validate author name: {author}.");
+            _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count() >= 2);
+            int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
+            string authorIndex = authorNames.ToList()[i].Text;
+            return author == authorIndex;                  
         }
     }
 }
