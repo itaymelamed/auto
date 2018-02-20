@@ -95,10 +95,10 @@
       <HintPath>..\packages\Mono.HttpUtility.1.0.0.1\lib\net40\Mono.HttpUtility.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.3.9.0\lib\net45\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.3.9.1\lib\net45\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.3.9.0\lib\net45\WebDriver.Support.dll</HintPath>
+      <HintPath>..\packages\Selenium.Support.3.9.1\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +184,8 @@
     <Compile Include="PagesObjects\EchoFolder\EchoPage.cs" />
     <Compile Include="Helpersobjects\PostCreatorEcho.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\EchoTests.cs" />
+    <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
+    <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

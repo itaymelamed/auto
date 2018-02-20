@@ -68,18 +68,18 @@ namespace Automation.ConfigurationFolder
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             ApiConfig = GetConfig<ApiConfig>("ApiConfig");
             FacebookApiConfig = GetConfig<FacebookApiConfig>("FacebookApiConfig");
-            Url = $"http://{Env}.{ConfigObject.Url}";
+            Url = $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
         }
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.qa.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.Production.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "Floor8");
+            return TestContext.Parameters.Get("siteName", "12Up");
         }
 
         static string GetParams(string param)
