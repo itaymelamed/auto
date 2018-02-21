@@ -57,8 +57,8 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
-            Host = GetHost();
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            Host = Local ? GetHost() : "mongo";
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
