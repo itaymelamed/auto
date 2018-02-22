@@ -26,7 +26,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public IWebElement SearchPost(string title)
         {
-            BaseUi.MongoDb.UpdateSteps($"Serach post in Facebook. Post:{title}.");
+            Base.MongoDb.UpdateSteps($"Serach post in Facebook. Post:{title}.");
             var post = _browserHelper.ExecutUntillTrue(() => posts.ToList().Where(p => p.FindElement(By.XPath(".//p")).Text == title).FirstOrDefault(), "Facebook post was not created.");
             return post;
         }
@@ -38,7 +38,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public IWebElement GetPostBody(string title)
         {
-             BaseUi.MongoDb.UpdateSteps($"Serach post in body.");
+             Base.MongoDb.UpdateSteps($"Serach post in body.");
              return _driver.FindElement(By.XPath($"//a[contains(text(),'{title}')]"));
          }
 

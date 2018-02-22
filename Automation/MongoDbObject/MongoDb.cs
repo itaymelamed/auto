@@ -139,5 +139,17 @@ namespace Automation.MongoDbObject
                                .Find(x => x["TestCaseId"] == testCaseId).FirstOrDefault();
             }
         }
+
+        public void UpdateAdsTxtResults(Test test)
+        {
+            var collection = _database.GetCollection<BsonDocument>("AdsTxt");
+
+            BsonDocument document = BsonDocument.Parse(JsonConvert.SerializeObject(test));
+            UpdateOptions options = new UpdateOptions();
+            options.IsUpsert = true;
+            var filter = Builders<BsonDocument>.Filter.Where(x => x["TestName"] == "Ads | Validate Ads Txt File");
+
+            collection.ReplaceOne(filter, document, options);
+        }
     }
 }

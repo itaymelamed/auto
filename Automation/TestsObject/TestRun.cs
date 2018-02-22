@@ -1,6 +1,7 @@
 ﻿using System;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
+using NUnit.Framework;
 using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsObjects
@@ -13,9 +14,11 @@ namespace Automation.TestsObjects
         public Results Results { get; set; }
         public string Duration { get; set; }
         public String SiteName { get; }
+        public string Category { get; }
 
         public TestRun(Configurations config)
         {
+            Category = TestContext.Parameters.Get("cat", "local");
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
