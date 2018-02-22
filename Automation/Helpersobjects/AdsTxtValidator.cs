@@ -34,7 +34,6 @@ namespace Automation.Helpersobjects
         string ValidateDomain()
         {
             var domainErrors = string.Empty;
-            ApiObject api = new ApiObject();
             //_domains.ForEach(d => domainErrors += ValidateUrl(d)? "" : $"*) Error with url {d}.  {Environment.NewLine}");
             _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"*) Error with url {d}.  {Environment.NewLine}");
             return domainErrors;

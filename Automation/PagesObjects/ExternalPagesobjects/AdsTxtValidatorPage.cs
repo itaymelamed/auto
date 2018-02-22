@@ -35,13 +35,13 @@ namespace Automation.PagesObjects.ExternalPagesobjects
         {
             var errorsString = string.Empty;
             List<string> errorsList;
-            Counter();
-            _browserHelper.ExecuteUntill(() => 
-            {
-                errorsList = new List<string>();
-                errorsList = errors.ToList().Select(e => e.Text).ToList();
-                errorsList.ForEach(e => errorsString += e + Environment.NewLine);
-            });
+            if (Counter())
+                _browserHelper.ExecuteUntill(() => 
+                {
+                    errorsList = new List<string>();
+                    errorsList = errors.ToList().Select(e => e.Text).ToList();
+                    errorsList.ForEach(e => errorsString += e + Environment.NewLine);
+                });
 
             return errorsString;
         }
@@ -56,8 +56,8 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                 errorsN = int.Parse(errorsNum.Text);
                 warningsN = int.Parse(warningsNum.Text);
 
-                return errorsN > 0 && warningsN > 0;
-            }, "", 60, false);
+                return errorsN > 0 || warningsN > 0;
+            }, "", 30, false);
 
             return result;
         }
