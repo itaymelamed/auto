@@ -150,8 +150,7 @@ namespace Automation.TestsFolder
             public void Ads_ValidateAdsTxtFile()
             {
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
-                var domain = TestContext.Parameters.Get("domain", ".com");
-                _browser.Navigate($"https://adstxt.adnxs.com/?url=www.{_config.SiteName.ToLower()}{domain}/ads.txt");
+                _browser.Navigate($"https://adstxt.adnxs.com/?url=www.{_config.ConfigObject.Url.ToLower()}/ads.txt");
                 AdsTxtValidatorPage adsTxtValidatorPage = new AdsTxtValidatorPage(_browser);
                 var errors = adsTxtValidatorPage.GetErrors();
                 errors += adsTxtValidator.Validate();
