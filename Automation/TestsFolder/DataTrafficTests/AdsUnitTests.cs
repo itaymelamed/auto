@@ -149,11 +149,11 @@ namespace Automation.TestsFolder
             public void Ads_ValidateAdsTxtFile()
             {
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
-                var ignor = _params["Ignor"].AsBsonArray;
+                var ignor = _params["Ignor"];
                 var domain = _params["Domain"].ToString();
                 _browser.Navigate($"https://adstxt.adnxs.com/?url=www.{_config.SiteName.ToLower()}.{domain}/ads.txt");
                 AdsTxtValidatorPage adsTxtValidatorPage = new AdsTxtValidatorPage(_browser);
-                var errors = adsTxtValidatorPage.GetErrors(ignor);
+                var errors = adsTxtValidatorPage.GetErrors();
                 errors += adsTxtValidator.Validate();
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);

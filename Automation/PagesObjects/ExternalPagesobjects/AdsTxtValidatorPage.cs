@@ -31,9 +31,8 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             PageFactory.InitElements(_driver, this);
         }
 
-        public string GetErrors(BsonArray ignor)
+        public string GetErrors()
         {
-            var ignorList = ignor.Select(i => i.ToString()).ToList();
             var errorsString = string.Empty;
             List<string> errorsList;
             Counter();
@@ -41,7 +40,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             {
                 errorsList = new List<string>();
                 errorsList = errors.ToList().Select(e => e.Text).ToList();
-                errorsList.Where(e => ignorList.All(i => !e.Contains(i))).ToList().ForEach(e => errorsString += e + Environment.NewLine);
+                errorsList.ForEach(e => errorsString += e + Environment.NewLine);
             });
 
             return errorsString;
