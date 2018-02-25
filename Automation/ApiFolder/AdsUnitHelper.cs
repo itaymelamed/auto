@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Automation.ApiFolder
 {
-    public class AdsUnitHelper
+    public class AdsUnitHelper : JsonHelper
     {
         JObject _exJson;
         List<string> _adNames;
@@ -35,7 +35,7 @@ namespace Automation.ApiFolder
                 Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                _errors += JToken.DeepEquals(acJson, _exJson) ? "" : $"*) Expected request for {n}: {_exJson}. Actual request: {acJson} {Environment.NewLine}";
+                _errors += $"{n}: {JsonComparer(_exJson, acJson)}";
             });
 
             return _errors;
