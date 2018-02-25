@@ -23,8 +23,18 @@ namespace Automation.ApiFolder
 
         public string ValidateEventRequest(string eventAction, BsonValue exJsonBson, BsonArray ignorProp, bool post = false, int timeOut = 120)
         {
-            var acJson = GetEvent(eventAction, timeOut, post);
-            var exJson = JObject.Parse(exJsonBson.ToString());
+            JObject acJson = GetEvent(eventAction, timeOut, post);
+            JObject exJson = JObject.Parse(exJsonBson.ToString());
+
+            try
+            {
+                acJson = GetEvent(eventAction, timeOut, post);
+                exJson = JObject.Parse(exJsonBson.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent. {e.Message}");
+            }
 
             try
             {
@@ -37,10 +47,7 @@ namespace Automation.ApiFolder
                 acJson["gtm"] = acJson["gtm"].ToString().Remove(0, 3);
                 exJson["gtm"] = exJson["gtm"].ToString().Remove(0, 3);
             }
-            catch(Exception e)
-            {
-                throw new NUnit.Framework.AssertionException($"Event {eventAction} was not sent. {e.Message}");
-            }
+            catch { }
 
             return CompareJsons(exJson, acJson);
         }

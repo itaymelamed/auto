@@ -363,7 +363,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(60));
+                Thread.Sleep(TimeSpan.FromSeconds(180));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -392,7 +392,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(120));
+                Thread.Sleep(TimeSpan.FromSeconds(180));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -421,7 +421,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(120));
+                Thread.Sleep(TimeSpan.FromSeconds(180));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -438,7 +438,7 @@ namespace Automation.TestsFolder.DataTrafficTests
             [Category("GoogleAnalitics")]
             [Category("90Min")]
             [Retry(2)]
-            public void GoogleAnalitics_Video_JwVideoTwentyFivecompleted()
+            public void GoogleAnalitics_Video_JwVideoNintyCompleted()
             {
                 var url = _params["PostUrl"].ToString();
                 var exJson = _params["ExJson"];
