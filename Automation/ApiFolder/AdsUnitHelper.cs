@@ -35,7 +35,7 @@ namespace Automation.ApiFolder
                 Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                _errors += $"{n}: {JsonComparer(_exJson, acJson)}";
+                _errors += $"{JsonComparer(_exJson, acJson)}";
             });
 
             return _errors;
