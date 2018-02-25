@@ -23,6 +23,7 @@ namespace Automation.ConfigurationFoldee.ConfigurationsJsonObject
 	{
         public Users Users { get; set; }
 		public string Url { get; set; }
+        public string Echo { get; set; }
         public string FacebookUrl { get; set; }
         public string TwitterUrl { get; set; }
         public string Language { get; set; }
