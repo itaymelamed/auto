@@ -80,5 +80,25 @@ namespace Automation.ApiFolder
 
             return func();
         }
+
+        public string JsonComparer(JObject exJson, JObject acJson)
+        {
+            var errors = string.Empty;
+
+            var exJsonKeys = exJson.Properties().Select(p => p.Name).ToList();
+            var acJsonKeys = acJson.Properties().Select(p => p.Name).ToList();
+            var diffsKeys = exJsonKeys.Except(acJsonKeys).ToList();
+            diffsKeys.AddRange(acJsonKeys.Except(exJsonKeys));
+            diffsKeys = diffsKeys.Distinct().ToList();
+
+            diffsKeys.ForEach(d => errors += $"{d}               {Environment.NewLine}");
+
+            if (string.IsNullOrEmpty(errors))
+                return errors;
+
+            exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"Expected value for key: {k} is {exJson[k]}. Actual: {acJson[k]} {Environment.NewLine}");
+
+            return errors;
+        }
     }
 }

@@ -9,9 +9,6 @@ using System.Collections.Generic;
 using Automation.ApiFolder;
 using Automation.ApiFolder.FacebookApi;
 using System.Threading;
-using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson;
 using System;
 
 namespace Automation.TestsFolder.AdminTestsFolder
