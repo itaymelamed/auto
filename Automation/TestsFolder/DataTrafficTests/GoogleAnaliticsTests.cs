@@ -363,8 +363,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                videoPage.Seek();
-                Thread.Sleep(TimeSpan.FromMinutes(5));
+                Thread.Sleep(TimeSpan.FromMinutes(10));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -393,8 +392,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                videoPage.Seek();
-                Thread.Sleep(TimeSpan.FromMinutes(5));
+                Thread.Sleep(TimeSpan.FromMinutes(10));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -423,8 +421,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                videoPage.Seek();
-                Thread.Sleep(TimeSpan.FromMinutes(5));
+                Thread.Sleep(TimeSpan.FromMinutes(10));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -453,8 +450,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
-                videoPage.Seek();
-                Thread.Sleep(TimeSpan.FromMinutes(5));
+                Thread.Sleep(TimeSpan.FromMinutes(10));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
