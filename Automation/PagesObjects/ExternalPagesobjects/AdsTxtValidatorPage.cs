@@ -40,7 +40,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                 {
                     errorsList = new List<string>();
                     errorsList = errors.ToList().Select(e => e.Text).ToList();
-                    errorsList.ForEach(e => errorsString += e + @"\n");
+                errorsList.ForEach(e => errorsString +=  "     *)" + e);
                 });
 
             return errorsString;
