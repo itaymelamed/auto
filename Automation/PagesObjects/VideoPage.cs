@@ -68,7 +68,7 @@ namespace Automation.PagesObjects
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Click ov volume button.");
             _browserHelper.WaitForElement(volume, nameof(volume), 120);
-            _browserHelper.Click(volume, nameof(volume));
+            _browserHelper.ExecuteUntill(() => volume.Click());
         }
 
         public void FullScreen()
