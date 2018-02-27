@@ -217,6 +217,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 videoPage.ClickOnPlay();
                 videoPage.FullScreen();
                 videoPage.FullScreen();
+                Thread.Sleep(2000);
 
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
