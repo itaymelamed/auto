@@ -15,6 +15,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[aria-label='Play']")]
         IWebElement play { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[aria-label='Start Playback']")]
+        IWebElement playBtn { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "div.jw-state-playing")]
         IWebElement videoPlaying { get; set; }
 
@@ -29,7 +32,13 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".jw-slider-time .jw-buffer")]
         IWebElement progressBar { get; set; }
-            
+
+        [FindsBy(How = How.CssSelector, Using = ".jw-text-elapsed")]
+        IWebElement timePassed { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".jw-text-duration[role = 'timer']")]
+        IWebElement videoLength { get; set; }
+                            
         BrowserFolder.Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -96,6 +105,46 @@ namespace Automation.PagesObjects
         public void WaitForRequest(Func<List<Request>> func, string eventAction)
         {
             _browserHelper.WaitUntillTrue(() => func().Any(r => r.Url.Contains(eventAction) || r.PostData.Text.Contains(eventAction)), "Request was not sent.", 120);
+        }
+
+        public void ClickOnPlay()
+        {
+            Base.MongoDb.UpdateSteps("Click on Play btn.");
+            _browserHelper.WaitForElement(playBtn, nameof(playBtn), 60);
+            _browserHelper.Click(playBtn, nameof(playBtn));
+        }
+
+        string GetTimePassed()
+        {
+            _browserHelper.Hover(video);
+            _browserHelper.WaitForElement(timePassed, nameof(timePassed));
+            return timePassed.Text;
+        }
+
+        string GetVideoTime()
+        {
+            _browserHelper.Hover(video);
+            _browserHelper.WaitForElement(videoLength, nameof(videoLength));
+            return videoLength.Text;
+        }
+
+        public void WaitForVideoComplete()
+        {
+            Base.MongoDb.UpdateSteps("Waiting for video to be completed.");
+            _browserHelper.WaitUntillTrue(() => GetTimePassed() == GetVideoTime(), "Video was not completed.", 300);
+        }
+
+        public void WaitUntillVideoPrecnent(int precent)
+        {
+            _browserHelper.WaitUntillTrue(() => CalculateTimePassed() >= precent, "Video was not played", 300);
+        }
+
+        double CalculateTimePassed()
+        {
+            var videoTime = TimeSpan.Parse(GetVideoTime()).TotalMinutes;
+            var videoTimePassed = TimeSpan.Parse(GetTimePassed()).TotalMinutes;
+
+            return Math.Round(videoTimePassed / videoTime * 100);
         }
     }
 }

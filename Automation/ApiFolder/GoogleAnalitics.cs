@@ -29,6 +29,7 @@ namespace Automation.ApiFolder
             try
             {
                 acJson = GetEvent(eventAction, timeOut, post);
+                var a = acJson.ToString();
                 exJson = JObject.Parse(exJsonBson.ToString());
             }
             catch (Exception e)
@@ -121,7 +122,7 @@ namespace Automation.ApiFolder
                 var jsonString = JsonConvert.SerializeObject(paramsDic);
                 return JObject.Parse(jsonString);
             }
-            catch(Exception e)
+            catch
             {
                 return JObject.Parse(@"{'error' : 'error'}");
             }
