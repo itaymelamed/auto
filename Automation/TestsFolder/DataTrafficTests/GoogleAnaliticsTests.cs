@@ -152,6 +152,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 videoPage.Mute();
                 Thread.Sleep(1000);
                 videoPage.Mute();
+                Thread.Sleep(2000);
 
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
