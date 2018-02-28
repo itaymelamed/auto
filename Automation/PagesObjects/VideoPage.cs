@@ -30,7 +30,7 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".jw-icon-fullscreen")]
         IWebElement fullScreen { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-slider-time .jw-buffer")]
+        [FindsBy(How = How.CssSelector, Using = ".jw-slider-time")]
         IWebElement progressBar { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".jw-text-elapsed")]
