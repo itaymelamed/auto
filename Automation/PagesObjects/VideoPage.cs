@@ -136,6 +136,7 @@ namespace Automation.PagesObjects
 
         public void WaitUntillVideoPrecnent(int precent)
         {
+            Base.MongoDb.UpdateSteps($"Waiting for video to complete {precent}%.");
             _browserHelper.WaitUntillTrue(() => CalculateTimePassed() >= precent, "Video was not played", 300);
         }
 
@@ -143,8 +144,10 @@ namespace Automation.PagesObjects
         {
             var videoTime = TimeSpan.Parse(GetVideoTime()).TotalMinutes;
             var videoTimePassed = TimeSpan.Parse(GetTimePassed()).TotalMinutes;
+            var completed = Math.Round(videoTimePassed / videoTime * 100);
+            Base.MongoDb.UpdateSteps($"Video completed : {completed}%");
 
-            return Math.Round(videoTimePassed / videoTime * 100);
+            return completed;
         }
     }
 }
