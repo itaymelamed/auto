@@ -186,6 +186,7 @@
     <Compile Include="TestsFolder\AdminTestsFolder\EchoTests.cs" />
     <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
+    <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -142,9 +142,14 @@ namespace Automation.PagesObjects
             return errors;
         }
 
-       // public string GetAuthorName()
-       // {
+       public string GetAuthorName()
+        {
+            Base.MongoDb.UpdateSteps("Get the author name from the post.");
+            _browserHelper.WaitForElement(authorName,nameof(authorName));
+            string authorNameText = authorName.Text;
+            authorNameText = authorNameText.Replace("By", string.Empty);
+            return authorNameText;
             
-      //  }
+        }
     }
 }

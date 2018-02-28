@@ -20,11 +20,22 @@ namespace Automation.PagesObjects.EchoFolder
         IList <IWebElement> postsTitles { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".tableBody [style='flex: 0 0 13%;']")]
-        IList <IWebElement> authorNames { get; set; }    
+        IList <IWebElement> authorNames { get; set; }   
 
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        [FindsBy(How = How.CssSelector, Using = ".tableBody [style='flex: 1 0 97px;']")]
+        IList <IWebElement> domains { get; set; }   
+
+        [FindsBy(How = How.CssSelector, Using = ".oval")]
+        IList<IWebElement> statuses { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title-header")]
+        IWebElement coverStoryTitle { get; set; }
+
+
+
+        protected Browser _browser;
+        protected IWebDriver _driver;
+        protected BrowserHelper _browserHelper;
 
         public EchoPage(Browser browser)
             :base(browser)
@@ -47,7 +58,41 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count() >= 2);
             int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
             string authorIndex = authorNames.ToList()[i].Text;
-            return author == authorIndex;                  
+            return author == authorIndex;
         }
+
+        public bool ValidateDomain(string domain, string title)
+        {
+            Base.MongoDb.UpdateSteps($"Validate the domain of the site: {domain}.");
+            _browserHelper.WaitUntillTrue(() => domains.ToList().Count() >= 2);
+            int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
+            string domainIndex = domains.ToList()[i].Text;
+            return domain.ToLower() == domainIndex;
+        }
+
+        public bool ValidateSatatus(string status, string title)
+        {
+            Base.MongoDb.UpdateSteps($"Validate the status of the post: {status}.");
+            _browserHelper.WaitUntillTrue(() => statuses.ToList().Count() >= 2);
+            int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
+            string statusIndex = statuses.ToList()[i].Text;
+            return status == statusIndex;
+        }
+        public DistributionPage SelectPost(string title)
+        {
+            Base.MongoDb.UpdateSteps($"Select post {title} from the list.");
+            _browserHelper.ExecuteUntill( () => postsTitles.Where(t => t.Text == title).FirstOrDefault().Click());
+
+            return new DistributionPage(_browser);
+        }
+
+        public string GetTitleText()
+        {
+            Base.MongoDb.UpdateSteps("Get the title text.");
+            _browserHelper.WaitForElement(coverStoryTitle,nameof(coverStoryTitle));
+            string title = coverStoryTitle.Text;
+            return title;
+        }
+
     }
 }

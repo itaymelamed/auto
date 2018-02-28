@@ -47,7 +47,6 @@ namespace Automation.BrowserFolder
             return true;
         }
 
-
         public void WaitForElementDiss(IWebElement el, int timeOut = 30)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));

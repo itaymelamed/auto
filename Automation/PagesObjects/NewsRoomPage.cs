@@ -1,4 +1,5 @@
 ﻿using Automation.BrowserFolder;
+using Automation.PagesObjects.EchoFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -9,6 +10,9 @@ namespace Automation.PagesObjects
     {
         [FindsBy(How = How.CssSelector, Using = "[href*='editor/new']")]
         IWebElement editorBtn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Echo')]")]
+        IWebElement echoBtn { get; set; }
 
         Browser _browser;
         IWebDriver _driver;
@@ -36,6 +40,14 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Validate editor btn.");
             _browserHelper.WaitForElement(editorBtn, nameof(editorBtn));
             return editorBtn.Displayed;
+        }
+
+        public EchoPage ClickOnEchoBtn()
+        {
+            Base.MongoDb.UpdateSteps("Clicking on echo Btn");
+            _browserHelper.WaitForElement(echoBtn, nameof(echoBtn));
+            _browserHelper.Click(echoBtn,nameof(echoBtn));
+            return new EchoPage(_browser);
         }
     }
 }
