@@ -458,7 +458,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.WaitForVideoToPlay();
                 videoPage.WaitUntillVideoPrecnent(90);
-                Thread.Sleep(1000);
+                Thread.Sleep(TimeSpan.FromMinutes(1));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
