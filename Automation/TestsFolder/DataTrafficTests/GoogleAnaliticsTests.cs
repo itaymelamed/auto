@@ -88,6 +88,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.Navigate(url);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.ClickOnPlay();
+                videoPage.Seek();
                 videoPage.WaitForVideoComplete();
                 Thread.Sleep(2000);
 
