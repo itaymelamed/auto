@@ -38,6 +38,9 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".jw-text-duration[role = 'timer']")]
         IWebElement videoLength { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".jw-text-alt")]
+        IWebElement adCounter { get; set; }
                             
         BrowserFolder.Browser _browser;
         IWebDriver _driver;
@@ -128,6 +131,13 @@ namespace Automation.PagesObjects
             return videoLength.Text;
         }
 
+        int GetAdTime()
+        {
+            _browserHelper.WaitForElement(adCounter, nameof(adCounter));
+            var adTotalTime = new string(adCounter.Text.ToCharArray().Where(c => char.IsNumber(c)).ToArray());
+            return int.Parse(adTotalTime);
+        }
+
         public void WaitForVideoComplete()
         {
             Base.MongoDb.UpdateSteps("Waiting for video to be completed.");
@@ -148,6 +158,13 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Video completed : {completed}%");
 
             return completed;
+        }
+
+        public bool WaitForAdPrecent(int precent)
+        {
+            double adTime = GetAdTime();
+            Thread.Sleep(2000);
+            return _browserHelper.WaitUntillTrue(() => Math.Round((adTime - GetAdTime()) / adTime * 100) >= precent, "Ad was not played", 60);
         }
     }
 }

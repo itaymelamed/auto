@@ -280,7 +280,8 @@ namespace Automation.TestsFolder.DataTrafficTests
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
                 videoPage.ClickOnPlay();
-                Thread.Sleep(TimeSpan.FromSeconds(180));
+                videoPage.WaitForAdPrecent(100);
+                Thread.Sleep(2000);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -456,7 +457,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 VideoPage videoPage = new VideoPage(_browser);
-                videoPage.WaitForVideoToPlay();
+                videoPage.ClickOnPlay();
                 videoPage.WaitUntillVideoPrecnent(90);
                 Thread.Sleep(TimeSpan.FromMinutes(1));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
