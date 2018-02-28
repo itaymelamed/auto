@@ -17,7 +17,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_ValidatePostCreation()
             {
@@ -42,7 +41,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_ValidateAuthorName()
             {
@@ -69,7 +67,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_ValidateDomain()
             {
@@ -96,7 +93,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_ValidateStatusNew()
             {
@@ -122,7 +118,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_ValidateStatusPublished()
             {
@@ -151,7 +146,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Category("AllBrands")]
             [Retry(1)]
             public void Echo_FeaturePostToCoverStory()
             {
