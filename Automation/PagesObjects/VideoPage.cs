@@ -84,7 +84,7 @@ namespace Automation.PagesObjects
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Drag timeline.");
             _browserHelper.WaitForElement(progressBar, nameof(progressBar), 120);
-            _browserHelper.Click(progressBar, nameof(progressBar), 120);
+            _browserHelper.ExecuteUntill(() => progressBar.Click(), 120);
         }
 
         public void Pause()

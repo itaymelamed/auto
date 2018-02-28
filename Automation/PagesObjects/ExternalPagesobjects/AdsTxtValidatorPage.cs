@@ -31,17 +31,21 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             PageFactory.InitElements(_driver, this);
         }
 
-        public string GetErrors()
+        public string GetErrors(BsonArray ignor)
         {
             var errorsString = string.Empty;
+            var ignorList = ignor.Select(i => i.ToString()).ToList();
             List<string> errorsList;
             if (Counter())
-                _browserHelper.ExecuteUntill(() => 
+            {
+                _browserHelper.ExecuteUntill(() =>
                 {
                     errorsList = new List<string>();
                     errorsList = errors.ToList().Select(e => e.Text).ToList();
-                errorsList.ForEach(e => errorsString +=  "*)" + e);
+                    ignorList.ForEach(i => errorsList.RemoveAll(e => e.Contains(i)));
+                    errorsList.ForEach(e => errorsString += "*)" + e);
                 });
+            }
 
             return errorsString;
         }
