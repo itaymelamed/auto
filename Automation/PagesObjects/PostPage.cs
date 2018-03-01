@@ -26,6 +26,24 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".post-metadata__author-name")]
         IWebElement authorName { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".next-post-button__texts")]
+        IWebElement nextBtn { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".transfer-news--item")]
+        IList<IWebElement> transferNews { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".top-posts-side-bar__item__text")]
+        IList<IWebElement> topArticles { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".post-side .trc_spotlight_item")]
+        IList<IWebElement> taboolaRight { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".post-after .trc_spotlight_item")]
+        IList<IWebElement> taboolaBtm { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".logo-img")]
+        IWebElement logo { get; set; }
+
         public PostPage(Browser browser)
             :base(browser)
         {
@@ -142,14 +160,58 @@ namespace Automation.PagesObjects
             return errors;
         }
 
-       public string GetAuthorName()
+        public string GetAuthorName()
         {
             Base.MongoDb.UpdateSteps("Get the author name from the post.");
             _browserHelper.WaitForElement(authorName,nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
+
             return authorNameText;
-            
+        }
+
+        public PostPage ClickOnNextBtn()
+        {
+            Base.MongoDb.UpdateSteps("Click on next button.");
+            _browserHelper.WaitForElement(nextBtn, nameof(nextBtn));
+            _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(nextBtn));
+
+            return new PostPage(_browser);
+        }
+
+        public PostPage ClickOnTransferNews(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            _browserHelper.ExecuteUntill(() => transferNews.ToList()[i].Click());
+            return new PostPage(_browser);
+        }
+
+        public PostPage ClickOnTopArticle(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(topArticles.ToList()[i]));
+            return new PostPage(_browser);
+        }
+
+        public void ClickTaboolaSide(int i)
+        {
+            Base.MongoDb.UpdateSteps("Click on taboola side article.");
+            _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaRight.ToList()[i]));
+        }
+
+        public void ClickTaboolaBtm(int i)
+        {
+            Base.MongoDb.UpdateSteps("Click on taboola buttom article.");
+            _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaBtm.ToList()[i]));
+        }
+
+        public HomePage ClickOnLogo()
+        {
+            Base.MongoDb.UpdateSteps("Click on top logo.");
+            _browserHelper.WaitForElement(logo, nameof(logo));
+            _browserHelper.Click(logo, nameof(logo));
+
+            return new HomePage(_browser);
         }
     }
 }

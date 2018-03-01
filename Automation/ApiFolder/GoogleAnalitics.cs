@@ -23,8 +23,8 @@ namespace Automation.ApiFolder
 
         public string ValidateEventRequest(string eventAction, BsonValue exJsonBson, BsonArray ignorProp, bool post = false, int timeOut = 120)
         {
-            JObject acJson = GetEvent(eventAction, timeOut, post);
-            JObject exJson = JObject.Parse(exJsonBson.ToString());
+            JObject acJson;
+            JObject exJson;
 
             try
             {

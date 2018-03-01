@@ -151,7 +151,7 @@ namespace Automation.TestsFolder
             {
                 var ignor = _params["Ignor"].AsBsonArray;
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
-                _browser.Navigate($"https://adstxt.adnxs.com/?url=www.{_config.ConfigObject.Url.ToLower()}/ads.txt");
+                _browser.Navigate($"https://adstxt.adnxs.com/?url={_config.Url.ToLower()}/ads.txt");
                 AdsTxtValidatorPage adsTxtValidatorPage = new AdsTxtValidatorPage(_browser);
                 var errors = adsTxtValidatorPage.GetErrors(ignor);
                 errors += adsTxtValidator.Validate();

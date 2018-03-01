@@ -134,6 +134,8 @@ namespace Automation.PagesObjects
         int GetAdTime()
         {
             _browserHelper.WaitForElement(adCounter, nameof(adCounter));
+            _browserHelper.WaitUntillTrue(() => adCounter.Text != "Loading ad");
+            var xx = adCounter.Text;
             var adTotalTime = new string(adCounter.Text.ToCharArray().Where(c => char.IsNumber(c)).ToArray());
             return int.Parse(adTotalTime);
         }
