@@ -42,5 +42,24 @@ namespace Automation.TestsFolder.PostPagesFolder
                 Assert.True(counterRequest.Count() != 0, "A request to counter reads service was not sent.");
             }
         }
+        [TestFixture]
+        [Parallelizable]
+        public class Test2Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "13")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("PostPage")]
+            [Category("AllBrands")]
+            [Retry(2)]
+            public void PostPage_ValidateUiComponentsExistOnPage()
+            {
+                var exCurLanguage = "EN";
+                PostPage postPage = new PostPage(_browser);
+                bool result = postPage.ValidateCurrentLangaugeDropDown(exCurLanguage);
+                Assert.True(result);
+            }
+        }
     }
 }

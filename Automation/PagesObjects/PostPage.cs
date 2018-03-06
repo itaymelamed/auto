@@ -44,9 +44,26 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".logo-img")]
         IWebElement logo { get; set; }
 
+
+        [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
+        IWebElement dropdown { get; set; }
+
         public PostPage(Browser browser)
             :base(browser)
         {
+
+        }
+
+
+        public void HoverLanguage()
+        {
+            _browserHelper.Hover(dropdown);
+        }
+
+        public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
+        {
+            var acCurLanguage = dropdown.Text;
+            return acCurLanguage == exCurLanguage;
 
         }
 
