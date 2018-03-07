@@ -44,6 +44,21 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".logo-img")]
         IWebElement logo { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "div[data-spotim-module='spotim-launcher']")]
+        IWebElement spotim { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "post-content")]
+        IWebElement postContent { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "reactions__list-item")]
+        IList<IWebElement> reactions { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='facebook']")]
+        IWebElement faceBookTop { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='twitter']")]
+        IWebElement twitterTop { get; set; }
+
         public PostPage(Browser browser)
             :base(browser)
         {
@@ -212,6 +227,40 @@ namespace Automation.PagesObjects
             _browserHelper.Click(logo, nameof(logo));
 
             return new HomePage(_browser);
+        }
+
+        public void ClickOnSpotim()
+        {
+            Base.MongoDb.UpdateSteps("Click on Spotim.");
+            _browserHelper.Click(spotim, nameof(spotim));
+        }
+
+        public void ScrollToTitle()
+        {
+            Base.MongoDb.UpdateSteps("Scroll to title.");
+            _browserHelper.Click(spotim, nameof(spotim));
+            _browserHelper.Hover(title);
+        }
+
+        public void ClickOnReaction(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Click on reaction #{i}.");
+            _browserHelper.WaitUntillTrue(() => reactions.ToList().Count() > 2);
+            _browserHelper.Click(reactions.ToList()[i], $"Reaction #{i}");
+        }
+
+        public void ClickOnFacebookTopBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Click on Facebook top button");
+            _browserHelper.WaitForElement(faceBookTop, nameof(faceBookTop));
+            _browserHelper.Click(faceBookTop, nameof(faceBookTop));
+        }
+
+        public void ClickOnTwitterTopBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Click on Twitter top button");
+            _browserHelper.WaitForElement(twitterTop, nameof(twitterTop));
+            _browserHelper.Click(twitterTop, nameof(twitterTop));
         }
     }
 }
