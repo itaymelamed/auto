@@ -25,10 +25,14 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".ui.primary")]
         IWebElement publishBTN { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".ui.active.visible .default.text")]
+        IWebElement channelOpenDropDown { get; set; }
+
  
 
         public DistributionPage(Browser browser)
             :base(browser)
+        
         {
             _browser = browser;
             _driver = browser.Driver;
@@ -51,8 +55,13 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
+        public void SelectChannelDPOpen(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Select channel from the list when the dropdown is open.");
+            _browserHelper.WaitForElement(channelOpenDropDown,nameof(channelOpenDropDown));
+            _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
+        }
 
-     
         public bool ValidateSelectedChannels(string channel)
         {
             Base.MongoDb.UpdateSteps($"Validate selected channels.");
@@ -61,7 +70,7 @@ namespace Automation.PagesObjects.EchoFolder
             return _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Any(c => c.Text == channel));
         }
 
-        public void PublishPost(string channel)
+        public void PublishPostChannel(string channel)
         {
             Base.MongoDb.UpdateSteps($"Validate selected channels.");
             SelectChannel(channel);
@@ -69,12 +78,16 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.Click(publishBTN, nameof(publishBTN));
         }
 
-        public void PublishPost(int i)
+        public void SelectChannelByIndex(int i)
         {
             Base.MongoDb.UpdateSteps($"Validate selected channels.");
-            SelectChannel(i);
-            _browserHelper.WaitForElement(publishBTN, nameof(publishBTN));
-            _browserHelper.Click(publishBTN, nameof(publishBTN));
+            _browserHelper.ExecuteUntill(() => SelectChannel(i));
+        }
+
+        public void ClickOnPublishBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            _browserHelper.Click(publishBTN,nameof(publishBTN));
         }
     }
 }

@@ -127,7 +127,6 @@
     <Compile Include="TestsFolder\AdminTestsFolder\AdminTests.cs" />
     <Compile Include="TestsFolder\PostPagesFolder\PostPageTests.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\CastrTests.cs" />
-    <Compile Include="PagesObjects\AdminPage.cs" />
     <Compile Include="Helpersobjects\PostCreator.cs" />
     <Compile Include="TestsFolder\EditortestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPage.cs" />
@@ -187,6 +186,7 @@
     <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
+    <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

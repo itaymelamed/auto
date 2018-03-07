@@ -28,11 +28,6 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".oval")]
         IList<IWebElement> statuses { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title-header")]
-        IWebElement coverStoryTitle { get; set; }
-
-
-
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
@@ -85,14 +80,5 @@ namespace Automation.PagesObjects.EchoFolder
 
             return new DistributionPage(_browser);
         }
-
-        public string GetTitleText()
-        {
-            Base.MongoDb.UpdateSteps("Get the title text.");
-            _browserHelper.WaitForElement(coverStoryTitle,nameof(coverStoryTitle));
-            string title = coverStoryTitle.Text;
-            return title;
-        }
-
     }
 }

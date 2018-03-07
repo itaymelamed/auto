@@ -34,6 +34,25 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".items-list")]
         protected IList<IWebElement> leagues { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default__header")]
+        protected IList<IWebElement> postsTitlesInFeedPages { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title")]
+        IWebElement topicTitle { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default")]
+        IList<IWebElement> gridTitels { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title-header")]
+        IWebElement coverStoryTitle { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default__header")]
+        IList<IWebElement> topStoriesTtitle { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
+        IList<IWebElement> moreNewsTitles { get; set; }
+
+
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
@@ -142,7 +161,6 @@ namespace Automation.PagesObjects
             return adminPage.ClickOnCasterLink();
         }
 
-
         public CastrPage GotoCastrByUrl(string brandBaseUrl)
         {
             _browser.Navigate($"{brandBaseUrl}/management/castr");
@@ -163,6 +181,57 @@ namespace Automation.PagesObjects
             _browserHelper.Click(leagueEl, nameof(leagueEl));
 
             return new LeagueFeed(_browser);
+        }
+
+        string GetTopicText()
+        {
+            Base.MongoDb.UpdateSteps("Get the topic title text.");
+            _browserHelper.WaitForElement(topicTitle, nameof(topicTitle));
+            string title = topicTitle.Text;
+            return title;
+        }
+
+        public bool ValidateTopicTitle(string title)
+        {
+            Base.MongoDb.UpdateSteps("Validate the topic title text.");
+            string coverTitle = GetTopicText();
+            return coverTitle == title;
+        }
+
+        public bool ValidateTitleApearsInGrid (string title)
+        {
+            Base.MongoDb.UpdateSteps("Validate the post appear on the grid");
+            _browserHelper.WaitUntillTrue(() => gridTitels.ToList().Count() > 2);
+
+            return gridTitels.ToList().Any(t => t.Text == title);
+        }
+
+        public string GetCoverText()
+        {
+            Base.MongoDb.UpdateSteps("Get the title text.");
+            _browserHelper.WaitForElement(coverStoryTitle, nameof(coverStoryTitle));
+            string title = coverStoryTitle.Text;
+            return title;
+        }
+
+        public bool ValidateTopStoriesTitle(string title)
+        {
+            Base.MongoDb.UpdateSteps("Validate the top stories title text.");
+            bool result = false;
+            _browserHelper.WaitUntillTrue(() => topStoriesTtitle.ToList().Count() >= 2);
+            _browserHelper.ExecuteUntill(() => result = topStoriesTtitle.ToList().Any(t => t.Text == title));
+
+            return result;
+        }
+
+        public bool ValidateMoreNewsTitle(string title)
+        {
+            Base.MongoDb.UpdateSteps("Validate the more news title text.");
+            bool result = false;
+            _browserHelper.WaitUntillTrue(() => moreNewsTitles.ToList().Count() >= 2);
+            _browserHelper.ExecuteUntill(() => result = moreNewsTitles.ToList().Any(t => t.Text == title));
+
+            return result;
         }
     }
 }
