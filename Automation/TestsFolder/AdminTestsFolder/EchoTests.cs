@@ -17,6 +17,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_ValidatePostCreation()
             {
@@ -41,6 +43,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_ValidateAuthorName()
             {
@@ -67,6 +71,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_ValidateDomain()
             {
@@ -93,6 +99,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_ValidateStatusNew()
             {
@@ -118,6 +126,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_ValidateStatusPublished()
             {
@@ -146,6 +156,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_FeaturePostToCoverStory()
             {
@@ -177,6 +189,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_FeaturePostToTopstories()
             {
@@ -208,6 +222,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_FeaturePostToMoreNews()
             {
@@ -239,6 +255,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_FeaturePostToCategory()
             {
@@ -270,6 +288,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
             [Retry(2)]
             public void Echo_FeaturePostToTwoCategories()
             {
