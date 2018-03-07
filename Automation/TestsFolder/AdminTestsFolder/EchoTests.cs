@@ -312,8 +312,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 HomePage homePage = new HomePage(_browser);
                 Assert.True(homePage.ValidateTopicTitle(title),$"Expected {title} was not found");
                 Assert.False(homePage.ValidateTitleApearsInGrid(title),"The title was not appear on the grid section");
-
-              }
+            }
         }
     }
 }
