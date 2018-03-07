@@ -17,7 +17,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidatePostCreation()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -41,7 +41,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateAuthorName()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -67,7 +67,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateDomain()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -93,7 +93,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateStatusNew()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -118,7 +118,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateStatusPublished()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -146,7 +146,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_FeaturePostToCoverStory()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
@@ -177,7 +177,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_FeaturePostToTopstories()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
@@ -208,7 +208,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_FeaturePostToMoreNews()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
@@ -239,7 +239,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_FeaturePostToCategory()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
@@ -270,7 +270,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_FeaturePostToTwoCategories()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
