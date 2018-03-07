@@ -34,7 +34,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(echoPage.ValidatePostCreation(title), $"post {title} is not shown on echo page.");
             }
         }
-
+        //this test will fail until we will fix the https in pluralist that return error page
         [TestFixture]
         [Parallelizable]
         public class Test2Class : BaseUi
@@ -63,7 +63,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-         [TestFixture]
+        [TestFixture]
         [Parallelizable]
         public class Test3Class : BaseUi
         {
@@ -132,6 +132,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Echo_ValidateStatusPublished()
             {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -142,7 +143,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
                 DistributionPage distributionPage = echoPage.SelectPost(title);
-                distributionPage.SelectChannelByIndex(0);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.ClickOnPublishBtn();
                 echoPage = echoPage.ClickOnEchoBtn();
                 Assert.True(echoPage.ValidateSatatus("Published", title),$"The status for {title} was diffrent then Published."); 
             }
