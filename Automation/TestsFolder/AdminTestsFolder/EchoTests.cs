@@ -296,7 +296,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Echo_FeaturePostToTwoCategories()
             {
-                var channelIndex = _params["ChannelIndex"].AsInt32;
+                var channelIndex1 = _params["ChannelIndex1"].AsInt32;
+                var channelIndex2 = _params["ChannelIndex2"].AsInt32;
+
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -307,8 +309,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
                 DistributionPage distributionPage = echoPage.SelectPost(title);
-                distributionPage.SelectChannelByIndex(channelIndex);
-                distributionPage.SelectChannelDPOpen(channelIndex);
+                distributionPage.SelectChannelByIndex(channelIndex1);
+                distributionPage.SelectChannelDPOpen(channelIndex2);
                 distributionPage.ClickOnPublishBtn();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
