@@ -307,8 +307,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
                 DistributionPage distributionPage = echoPage.SelectPost(title);
-                distributionPage.SelectChannelByIndex(0);
-                distributionPage.SelectChannelDPOpen(0);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.SelectChannelDPOpen(channelIndex);
                 distributionPage.ClickOnPublishBtn();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
