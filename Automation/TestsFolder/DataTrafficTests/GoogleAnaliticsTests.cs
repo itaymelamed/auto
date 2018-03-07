@@ -748,8 +748,124 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 PostPage postPage = new PostPage(_browser);
-                _browser.BrowserHelper.ScrollToBottom();
+                postPage.ClickOnSpotim();
+                Thread.Sleep(1000);
+                GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
+                string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test26Class : BaseNetworkTraffic
+        {
+            [Test]
+            [Property("TestCaseId", "88")]
+            [Category("PostPage")]
+            [Category("GoogleAnalitics")]
+            [Category("90Min")]
+            [Retry(1)]
+            public void GoogleAnalitics_List_ArticleShareClick()
+            {
+                var url = _params["PostUrl"].ToString();
+                var exJson = _params["ExJson"];
+                var ignor = _params["Ignor"].AsBsonArray;
+                var eventAction = "article share click";
+
+                _browser.ProxyApi.NewHarPost();
+                _browser.Navigate(url);
+                PostPage postPage = new PostPage(_browser);
+                postPage.ClickOnReaction(0);
+                Thread.Sleep(1000);
+                GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
+                string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test27Class : BaseNetworkTraffic
+        {
+            [Test]
+            [Property("TestCaseId", "88")]
+            [Category("PostPage")]
+            [Category("GoogleAnalitics")]
+            [Category("90Min")]
+            [Retry(1)]
+            public void GoogleAnalitics_Article_ArticleShareClick_FaceBookTop()
+            {
+                var url = _params["PostUrl"].ToString();
+                var exJson = _params["ExJson"];
+                var ignor = _params["Ignor"].AsBsonArray;
+                var eventAction = "article share click";
+
+                _browser.ProxyApi.NewHarPost();
+                _browser.Navigate(url);
+                PostPage postPage = new PostPage(_browser);
+                postPage.ClickOnFacebookTopBtn();
+                Thread.Sleep(1000);
+                GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
+                string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test28Class : BaseNetworkTraffic
+        {
+            [Test]
+            [Property("TestCaseId", "88")]
+            [Category("PostPage")]
+            [Category("GoogleAnalitics")]
+            [Category("90Min")]
+            [Retry(1)]
+            public void GoogleAnalitics_Article_ArticleShareClick_TwitterTop()
+            {
+                var url = _params["PostUrl"].ToString();
+                var exJson = _params["ExJson"];
+                var ignor = _params["Ignor"].AsBsonArray;
+                var eventAction = "article share click";
+
+                _browser.ProxyApi.NewHarPost();
+                _browser.Navigate(url);
+                PostPage postPage = new PostPage(_browser);
+                postPage.ClickOnTwitterTopBtn();
+                Thread.Sleep(1000);
+                GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
+                string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test29Class : BaseNetworkTraffic
+        {
+            [Test]
+            [Property("TestCaseId", "88")]
+            [Category("PostPage")]
+            [Category("GoogleAnalitics")]
+            [Category("90Min")]
+            [Retry(1)]
+            public void GoogleAnalitics_Article_ArticleShareClick_TwitterTop()
+            {
+                var url = _params["PostUrl"].ToString();
+                var exJson = _params["ExJson"];
+                var ignor = _params["Ignor"].AsBsonArray;
+                var eventAction = "article share click";
+
+                _browser.ProxyApi.NewHarPost();
+                _browser.Navigate(url);
+                PostPage postPage = new PostPage(_browser);
+                postPage.ClickOnTwitterTopBtn();
+                Thread.Sleep(1000);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor);
 
