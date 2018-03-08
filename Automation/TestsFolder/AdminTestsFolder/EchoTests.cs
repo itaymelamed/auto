@@ -196,7 +196,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Pluralist")]
             [Category("Floor8")]
             [Retry(2)]
-            public void Echo_FeaturePostToTopstories()
+            public void Echo_FeaturePostToTopStories()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);

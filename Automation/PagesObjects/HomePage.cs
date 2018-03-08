@@ -218,8 +218,13 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps("Validate the top stories title text.");
             bool result = false;
-            _browserHelper.WaitUntillTrue(() => topStoriesTtitle.ToList().Count() >= 2);
-            _browserHelper.ExecuteUntill(() => result = topStoriesTtitle.ToList().Any(t => t.Text == title));
+
+            _browserHelper.RefreshUntill(() =>
+            {
+                _browserHelper.WaitUntillTrue(() => topStoriesTtitle.ToList().Count() >= 2);
+                result = topStoriesTtitle.ToList().Any(t => t.Text == title);
+                return result;
+            });
 
             return result;
         }
