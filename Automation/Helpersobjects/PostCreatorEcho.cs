@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Automation.BrowserFolder;
 using Automation.PagesObjects;
 using Automation.PagesObjects.EchoFolder;
@@ -10,6 +11,7 @@ namespace Automation.Helpersobjects
 {
     public class PostCreatorEcho : PostCreator
     {
+        static Random random = new Random();
         string _title;
 
         public PostCreatorEcho(Browser browser)
@@ -29,14 +31,7 @@ namespace Automation.Helpersobjects
             CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
             cropImagePopUp.ClickOnCropImageBtn();
             cropImagePopUp.ClickOnEditokBtn();
-            articleBase.WriteDec(@"ABOUT 90MIN
-                                    90min Company Overview
-                                    90min is a global football media and technology company focused on the digital generation. 90min taps into the passion and dedication of the hyper - connected fan by powering the production of authentic, engaging and socially driven content distributed to a rapidly growing audience of over 60 million monthly users in ten languages across web, mobile and social.
-                                    90min’s mission is to champion fan - generated media as a key ingredient of sports journalism.
-                                    90min includes multilingual support in English, German, Spanish, Italian, French, Turkish, Portuguese, Vietnamese, Thai and Indonesian.With a network of over 200 team communities in Europe, South America and Asia, 90min’s content is consumed by a global audience of millions via online media, mobile platforms and handheld devices. 90min receives over 250 million page views and over 500 million Facebook and Twitter impressions monthly.
-                                    platform which gives fan opinions a single global voice.
-                                    Citizen journalism: By providing a self - publishing platform for football, 90min is recognising passion and turning it into journalistic work.With a strict editorial curation process in place, 90min is democratising the sport media landscape without losing content quality.
-                                    Technology: 90min content generation tools are the richest in online football.Match predictions, test test test test test test test test");
+            articleBase.WriteDec(CreateRendomDesc());
             _browser.BrowserHelper.WaitUntillTrue(() =>
             {
                 _browserHelper.WaitUntillTrue(() => {
@@ -50,6 +45,13 @@ namespace Automation.Helpersobjects
             PostPage postPage = previewPage.ClickOnPublishBtn();
 
             return _title;
+        }
+
+        public string CreateRendomDesc()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, 200)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

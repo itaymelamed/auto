@@ -52,7 +52,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
         IList<IWebElement> moreNewsTitles { get; set; }
 
-
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
