@@ -68,11 +68,16 @@ namespace Automation.PagesObjects.EchoFolder
         public bool ValidateSatatus(string status, string title)
         {
             Base.MongoDb.UpdateSteps($"Validate the status of the post: {status}.");
-            _browserHelper.WaitUntillTrue(() => statuses.ToList().Count() >= 2);
-            int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
-            string statusIndex = statuses.ToList()[i].Text;
-            return status == statusIndex;
+
+            return _browserHelper.RefreshUntill(() => 
+            {
+                _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Any(t => t.Text == title));
+                int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
+                string statusIndex = statuses.ToList()[i].Text;
+                return statusIndex == status;
+            });
         }
+
         public DistributionPage SelectPost(string title)
         {
             Base.MongoDb.UpdateSteps($"Select post {title} from the list.");

@@ -177,6 +177,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 DistributionPage distributionPage = echoPage.SelectPost(title);
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
+                echoPage = distributionPage.ClickOnEchoBtn();
                 _browser.OpenNewTab(_config.Url);
                 HomePage homePage = new HomePage(_browser); 
                 Assert.True(homePage.GetCoverText() == title, $"Expected title was {title} but actual is {homePage.GetCoverText()}");
@@ -276,6 +277,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 DistributionPage distributionPage = echoPage.SelectPost(title);
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
                 _browser.OpenNewTab($"{_config.Url}/channels/latest");
                 FeedPage feedPage = new FeedPage(_browser); 
                 Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");

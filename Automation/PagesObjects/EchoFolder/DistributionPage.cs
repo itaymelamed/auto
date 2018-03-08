@@ -28,7 +28,11 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".ui.active.visible .default.text")]
         IWebElement channelOpenDropDown { get; set; }
 
- 
+        [FindsBy(How = How.CssSelector, Using = ".ui.olive.label.oval")]
+        IWebElement publishedStatus { get; set; }
+
+
+            
 
         public DistributionPage(Browser browser)
             :base(browser)
@@ -89,5 +93,14 @@ namespace Automation.PagesObjects.EchoFolder
             Base.MongoDb.UpdateSteps($"Click on publish button.");
             _browserHelper.Click(publishBTN,nameof(publishBTN));
         }
+
+
+        public void WaitForPublishedSatatus()
+        {
+            Base.MongoDb.UpdateSteps($"Wait for published status");
+            _browserHelper.WaitForElement(publishedStatus,nameof(publishedStatus));
+        }
+
+
     }
 }
