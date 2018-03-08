@@ -8,14 +8,13 @@ using NUnit.Framework;
 
 namespace Automation.Helpersobjects
 {
-    public class PostCreatorEcho 
+    public class PostCreatorEcho : PostCreator
     {
-        Browser _browser;
         string _title;
 
         public PostCreatorEcho(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
             _title = TestContext.CurrentContext.Test.Name + new Random().Next(1, 1000);
         }
 
@@ -38,7 +37,15 @@ namespace Automation.Helpersobjects
                                     platform which gives fan opinions a single global voice.
                                     Citizen journalism: By providing a self - publishing platform for football, 90min is recognising passion and turning it into journalistic work.With a strict editorial curation process in place, 90min is democratising the sport media landscape without losing content quality.
                                     Technology: 90min content generation tools are the richest in online football.Match predictions, test test test test test test test test");
-            articleBase.WriteTags(new BsonArray(new List<string>{ "test1", "test2", "test3" }));
+            _browser.BrowserHelper.WaitUntillTrue(() =>
+            {
+                _browserHelper.WaitUntillTrue(() => {
+                    articleBase.WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
+                    return articleBase.GetTagsValue().Count >= 3;
+                });
+
+                return articleBase.GetTagsValue().Count > 0;
+            }, "Failed to add tags");
             PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
             PostPage postPage = previewPage.ClickOnPublishBtn();
 

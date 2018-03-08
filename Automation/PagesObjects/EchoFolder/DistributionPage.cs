@@ -9,7 +9,6 @@ namespace Automation.PagesObjects.EchoFolder
 {
     public class DistributionPage : EchoPage
     {
-
         [FindsBy(How = How.CssSelector, Using = ".default.text")]
         IWebElement channelDropDown { get; set; }
 
@@ -30,9 +29,6 @@ namespace Automation.PagesObjects.EchoFolder
 
         [FindsBy(How = How.CssSelector, Using = ".ui.olive.label.oval")]
         IWebElement publishedStatus { get; set; }
-
-
-            
 
         public DistributionPage(Browser browser)
             :base(browser)
@@ -100,7 +96,5 @@ namespace Automation.PagesObjects.EchoFolder
             Base.MongoDb.UpdateSteps($"Wait for published status");
             _browserHelper.WaitForElement(publishedStatus,nameof(publishedStatus));
         }
-
-
     }
 }

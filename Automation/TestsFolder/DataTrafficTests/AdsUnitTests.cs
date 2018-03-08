@@ -107,7 +107,6 @@ namespace Automation.TestsFolder
 
         [TestFixture]
         [Parallelizable]
-
         public class Test4Class : BaseNetworkTraffic
         {
             [Test]
