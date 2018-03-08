@@ -86,7 +86,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.SwitchToFirstTab();
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
-                Assert.True(echoPage.ValidateDomain($"{_config.SiteName}.com", title), $"The domain for {title} was diffrent than expected."); 
+                Assert.True(echoPage.ValidateDomain($"{_config.SiteName.ToLower()}.com", title), $"The domain for {title} was diffrent than expected."); 
             }
 
         }
