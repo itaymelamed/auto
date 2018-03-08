@@ -318,8 +318,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.WaitForPublishedSatatus();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
-                Assert.True(homePage.ValidateTopicTitle(title),$"Expected {title} was not found");
-                Assert.False(homePage.ValidateTitleApearsInGrid(title),"The title was not appear on the grid section");
+                Assert.True(homePage.ValidateTitleApearsInGrid(title),$"Expected {title} was not found");
+                Assert.True(homePage.ValidateMoreNewsTitle(title),"The title was not appear on the grid section");
             }
         }
     }

@@ -194,8 +194,13 @@ namespace Automation.PagesObjects
         public bool ValidateTopicTitle(string title)
         {
             Base.MongoDb.UpdateSteps("Validate the topic title text.");
-            string coverTitle = GetTopicText();
-            return coverTitle == title;
+            _browserHelper.RefreshUntill(() => 
+            {
+                string coverTitle = GetTopicText();
+                return coverTitle == title;
+            });
+
+            return GetTopicText() == title;
         }
 
         public bool ValidateTitleApearsInGrid (string title)
