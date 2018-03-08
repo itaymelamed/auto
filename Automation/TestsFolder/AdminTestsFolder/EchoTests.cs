@@ -244,6 +244,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 DistributionPage distributionPage = echoPage.SelectPost(title);
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
                 _browser.OpenNewTab(_config.Url);
                 HomePage homePage = new HomePage(_browser); 
                 Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
@@ -314,6 +315,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.SelectChannelByIndex(channelIndex1);
                 distributionPage.SelectChannelDPOpen(channelIndex2);
                 distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 Assert.True(homePage.ValidateTopicTitle(title),$"Expected {title} was not found");
