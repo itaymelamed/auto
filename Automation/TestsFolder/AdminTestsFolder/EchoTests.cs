@@ -46,6 +46,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
+            [Ignore("Aut-132")]
             [Retry(2)]
             public void Echo_ValidateAuthorName()
             {
