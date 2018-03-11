@@ -322,5 +322,44 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(homePage.ValidateMoreNewsTitle(title),"The title was not appear on the grid section");
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test12Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "99")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_UnpblishPost()
+            {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
+               // _browser.Navigate(_config.Url);
+               // HomePage homePage = new HomePage(_browser);
+              //  Assert.True(homePage.ValidateTitleApearsInGrid(title), $"Expected {title} was not found");
+                distributionPage.UnpublishPost();
+                _browser.Navigate(_config.Url);
+                HomePage homePage = new HomePage(_browser);
+                Assert.False(homePage.ValidateMoreNewsTitle(title), "The title was not appear on the grid section");
+
+            }
+        }
     }
 }

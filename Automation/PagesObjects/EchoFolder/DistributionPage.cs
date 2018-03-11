@@ -9,6 +9,7 @@ namespace Automation.PagesObjects.EchoFolder
 {
     public class DistributionPage : EchoPage
     {
+
         [FindsBy(How = How.CssSelector, Using = ".default.text")]
         IWebElement channelDropDown { get; set; }
 
@@ -29,6 +30,12 @@ namespace Automation.PagesObjects.EchoFolder
 
         [FindsBy(How = How.CssSelector, Using = ".ui.olive.label.oval")]
         IWebElement publishedStatus { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".trashButton")]
+        IWebElement trashIcon { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".actions .primary")]
+        IWebElement yesBtn { get; set; }
 
         public DistributionPage(Browser browser)
             :base(browser)
@@ -95,6 +102,37 @@ namespace Automation.PagesObjects.EchoFolder
         {
             Base.MongoDb.UpdateSteps($"Wait for published status");
             _browserHelper.WaitForElement(publishedStatus,nameof(publishedStatus));
+        }
+
+        public void MarkSelectedChannels()
+        {
+            Base.MongoDb.UpdateSteps($"Mark selected channels in the distribution page");
+            _browserHelper.Click(publishedStatus,nameof(publishedStatus));
+        }
+
+        public void ClickOnTrashIcon()
+        {
+            Base.MongoDb.UpdateSteps($"Remove selected channels in the distribution page");
+            _browserHelper.WaitForElement(trashIcon, nameof(trashIcon));
+            _browserHelper.Click(trashIcon,nameof(trashIcon));          
+        }
+
+        public void ClickOnYesBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Click on the yes button in the confirm Removal popup message");
+            _browserHelper.WaitForElement(yesBtn, nameof(yesBtn));
+            _browserHelper.Click(yesBtn, nameof(yesBtn));
+        }
+
+        public void UnpublishPost()
+        {
+            _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Count() > 0);
+            var selectedNum = selectedChannels.ToList().Count();
+            selectedChannels.ToList()[0].Click();
+            ClickOnTrashIcon();
+            ClickOnYesBtn();
+            _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Count() == selectedNum - 1);
+
         }
     }
 }
