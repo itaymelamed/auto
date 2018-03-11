@@ -31,7 +31,7 @@ namespace Automation.Helpersobjects
             CropImagePopUp cropImagePopUp = articleBase.DragImage(0);
             cropImagePopUp.ClickOnCropImageBtn();
             cropImagePopUp.ClickOnEditokBtn();
-            articleBase.WriteDec(CreateRendomDesc());
+            articleBase.WriteDec(CreateRendomText());
             _browser.BrowserHelper.WaitUntillTrue(() =>
             {
                 _browserHelper.WaitUntillTrue(() => {
@@ -47,11 +47,17 @@ namespace Automation.Helpersobjects
             return _title;
         }
 
-        public string CreateRendomDesc()
+        public string CreateRendomText()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, 200)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            List<string> text = new List<string>();
+            const string chars = "abcdefghijklmnop";
+            for (int i = 0; i < 200; i++)
+            {
+                text.Add(new string(Enumerable.Repeat(chars, 2)
+                    .Select(s => s[random.Next(s.Length)]).ToArray()));
+            }
+
+            return String.Join(" ", text);
         }
     }
 }
