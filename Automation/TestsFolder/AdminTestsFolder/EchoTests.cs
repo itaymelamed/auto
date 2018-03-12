@@ -329,7 +329,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test12Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "99")]
+            [Property("TestCaseId", "100")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]

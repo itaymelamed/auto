@@ -14,7 +14,7 @@ namespace Automation.PagesObjects.EchoFolder
         IWebElement channelDropDown { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[role='listitem']")]
-        IList <IWebElement> topHeaderLinks { get; set; }
+        IList<IWebElement> topHeaderLinks { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".icon.custom")]
         IList<IWebElement> mediumsNames { get; set; }
@@ -38,8 +38,8 @@ namespace Automation.PagesObjects.EchoFolder
         IWebElement yesBtn { get; set; }
 
         public DistributionPage(Browser browser)
-            :base(browser)
-        
+            : base(browser)
+
         {
             _browser = browser;
             _driver = browser.Driver;
@@ -50,8 +50,8 @@ namespace Automation.PagesObjects.EchoFolder
         public void SelectChannel(string channel)
         {
             Base.MongoDb.UpdateSteps($"Selecting channel {channel} from the list.");
-            _browserHelper.WaitForElement(channelDropDown,nameof(channelDropDown));
-            _browserHelper.Click(channelDropDown,nameof(channelDropDown)); 
+            _browserHelper.WaitForElement(channelDropDown, nameof(channelDropDown));
+            _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.Where(t => t.Text == channel).FirstOrDefault().Click());
         }
 
@@ -62,10 +62,11 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
+
         public void SelectChannelDPOpen(int i)
         {
             Base.MongoDb.UpdateSteps($"Selecting channel from the list when the dropdown is open.");
-            _browserHelper.WaitForElement(channelOpenDropDown,nameof(channelOpenDropDown));
+            _browserHelper.WaitForElement(channelOpenDropDown, nameof(channelOpenDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
 
@@ -94,26 +95,26 @@ namespace Automation.PagesObjects.EchoFolder
         public void ClickOnPublishBtn()
         {
             Base.MongoDb.UpdateSteps($"Clicking on publish button.");
-            _browserHelper.Click(publishBTN,nameof(publishBTN));
+            _browserHelper.Click(publishBTN, nameof(publishBTN));
         }
 
         public void WaitForPublishedSatatus()
         {
             Base.MongoDb.UpdateSteps($"Waiting for published status");
-            _browserHelper.WaitForElement(publishedStatus,nameof(publishedStatus));
+            _browserHelper.WaitForElement(publishedStatus, nameof(publishedStatus));
         }
 
         public void MarkSelectedChannels()
         {
             Base.MongoDb.UpdateSteps($"Mark selected channels in the distribution page");
-            _browserHelper.Click(publishedStatus,nameof(publishedStatus));
+            _browserHelper.Click(publishedStatus, nameof(publishedStatus));
         }
 
         public void ClickOnTrashIcon()
         {
             Base.MongoDb.UpdateSteps($"Removing selected channels in the distribution page");
             _browserHelper.WaitForElement(trashIcon, nameof(trashIcon));
-            _browserHelper.Click(trashIcon,nameof(trashIcon));          
+            _browserHelper.Click(trashIcon, nameof(trashIcon));
         }
 
         public void ClickOnYesBtn()
@@ -133,5 +134,9 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Count() == selectedNum - 1);
 
         }
+
+       //public void ClickOn
+
+
     }
 }
