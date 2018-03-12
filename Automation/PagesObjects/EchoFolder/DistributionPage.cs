@@ -97,7 +97,6 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.Click(publishBTN,nameof(publishBTN));
         }
 
-
         public void WaitForPublishedSatatus()
         {
             Base.MongoDb.UpdateSteps($"Wait for published status");
