@@ -35,11 +35,11 @@ namespace Automation.PagesObjects.ExternalPagesobjects
         public string GetErrors(BsonArray ignor)
         {
             var errorsString = string.Empty;
-            errorsString += $"<div><b>{Base._config.SiteName}</b></div>";
             var ignorList = ignor.Select(i => i.ToString()).ToList();
             List<string> errorsList;
             if (Counter())
             {
+                errorsString += $"<div><b>{Base._config.SiteName}</b></div>";
                 _browserHelper.ExecuteUntill(() =>
                 {
                     errorsList = new List<string>();
