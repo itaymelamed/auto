@@ -30,7 +30,7 @@ namespace Automation.PagesObjects
         public void DragAndDropImages()
         {
             
-            Base.MongoDb.UpdateSteps("Drag images to media drop boxes.");
+            Base.MongoDb.UpdateSteps("Dragging images to media drop boxes..");
             Thread.Sleep(2000);
             _browserHelper.WaitUntillTrue(() => dropMedia.ToList().Count() >= 4, "Media boxes failed to load");
             _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30, "There were no 30 results images.");
@@ -51,14 +51,14 @@ namespace Automation.PagesObjects
 
         public void SetBodyTextBoxsSlide(string text)
         {
-            Base.MongoDb.UpdateSteps("Set body text boxs");
+            Base.MongoDb.UpdateSteps("Setting body text boxs");
             _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() >= 4);
             bodyTextBoxs.ToList().ForEach(x => _browserHelper.SetText(x, text));
         }
 
         public List<string> GetBodyTextBoxesSlideValue()
         {
-            Base.MongoDb.UpdateSteps("Get body text boxes value");
+            Base.MongoDb.UpdateSteps("Getting body text boxes value");
             List<string> values = new List<string>();
             _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() == 5);
             bodyTextBoxs.ToList().ForEach(t => values.Add(t.Text));
@@ -68,7 +68,7 @@ namespace Automation.PagesObjects
 
         public string ValidateBodyTextBoxesSlide(List<string> acValues, string text)
         {
-            Base.MongoDb.UpdateSteps("Validate body text boxes.");
+            Base.MongoDb.UpdateSteps("Validating body text boxes.");
 
             var errors = string.Empty;
             if (acValues.All((v => v == text)))

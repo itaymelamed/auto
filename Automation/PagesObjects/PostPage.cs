@@ -82,7 +82,7 @@ namespace Automation.PagesObjects
 
         public string ValidateTagsOnSourcePage(BsonArray tags)
         {
-            Base.MongoDb.UpdateSteps("Validate Tags On Source Page.");
+            Base.MongoDb.UpdateSteps("Validating Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
             _browser.Navigate(_browser.GetUrl()+"?test=test");
@@ -95,7 +95,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostCreated(string postTitle)
         {
-            Base.MongoDb.UpdateSteps("Validate Post creation.");
+            Base.MongoDb.UpdateSteps("Validating Post creation.");
             _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "User has not redirected to posts page.");
             //_browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "Post title is not shown on url.");
             return true;
@@ -103,7 +103,7 @@ namespace Automation.PagesObjects
 
         public void HoverOverOptions()
         {
-            Base.MongoDb.UpdateSteps("Hover over 'Options'.");
+            Base.MongoDb.UpdateSteps("Hovering over the 'Options'.");
             _browserHelper.WaitForElement(options, nameof(options));
             _browserHelper.Hover(options);
         }
@@ -118,7 +118,7 @@ namespace Automation.PagesObjects
                 return _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
             }, "Failed to hover over options.");
 
-            Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
+            Base.MongoDb.UpdateSteps("Clicking on 'Open In Caster'.");
             _browserHelper.Click(openInCaster, nameof(openInCaster));
 
             return new CastrPage(_browser);
@@ -164,7 +164,7 @@ namespace Automation.PagesObjects
                 var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
                 if (curAd != null)
                 {
-                    Base.MongoDb.UpdateSteps($"Validate {curAd} displyed.");
+                    Base.MongoDb.UpdateSteps($"Validating {curAd} displyed.");
                     adsUi.Add(curAd);
                 }
                 _browser.SwitchToFirstTab();
@@ -177,7 +177,7 @@ namespace Automation.PagesObjects
 
         public string GetAuthorName()
         {
-            Base.MongoDb.UpdateSteps("Get the author name from the post.");
+            Base.MongoDb.UpdateSteps("Getting the author name from the post.");
             _browserHelper.WaitForElement(authorName,nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
@@ -187,7 +187,7 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnNextBtn()
         {
-            Base.MongoDb.UpdateSteps("Click on next button.");
+            Base.MongoDb.UpdateSteps("Clicking on next button.");
             _browserHelper.WaitForElement(nextBtn, nameof(nextBtn));
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(nextBtn));
 
@@ -196,33 +196,33 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnTransferNews(int i)
         {
-            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            Base.MongoDb.UpdateSteps($"Clicking on a post in the Transfer News section  {i}");
             _browserHelper.ExecuteUntill(() => transferNews.ToList()[i].Click());
             return new PostPage(_browser);
         }
 
         public PostPage ClickOnTopArticle(int i)
         {
-            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            Base.MongoDb.UpdateSteps($"Clicking on post in the Top Article section {i}");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(topArticles.ToList()[i]));
             return new PostPage(_browser);
         }
 
         public void ClickTaboolaSide(int i)
         {
-            Base.MongoDb.UpdateSteps("Click on taboola side article.");
+            Base.MongoDb.UpdateSteps("Clicking on a post in the taboola side section.");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaRight.ToList()[i]));
         }
 
         public void ClickTaboolaBtm(int i)
         {
-            Base.MongoDb.UpdateSteps("Click on taboola buttom article.");
+            Base.MongoDb.UpdateSteps("Clicking on a post in the taboola bottom section.");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaBtm.ToList()[i]));
         }
 
         public HomePage ClickOnLogo()
         {
-            Base.MongoDb.UpdateSteps("Click on top logo.");
+            Base.MongoDb.UpdateSteps("Clicking on top logo.");
             _browserHelper.WaitForElement(logo, nameof(logo));
             _browserHelper.Click(logo, nameof(logo));
 
@@ -231,34 +231,34 @@ namespace Automation.PagesObjects
 
         public void ClickOnSpotim()
         {
-            Base.MongoDb.UpdateSteps("Click on Spotim.");
+            Base.MongoDb.UpdateSteps("Clicking on Spotim.");
             _browserHelper.Click(spotim, nameof(spotim));
         }
 
         public void ScrollToTitle()
         {
-            Base.MongoDb.UpdateSteps("Scroll to title.");
+            Base.MongoDb.UpdateSteps("Scrolling to title.");
             _browserHelper.Click(spotim, nameof(spotim));
             _browserHelper.Hover(title);
         }
 
         public void ClickOnReaction(int i)
         {
-            Base.MongoDb.UpdateSteps($"Click on reaction #{i}.");
+            Base.MongoDb.UpdateSteps($"Clicking on reaction #{i}.");
             _browserHelper.WaitUntillTrue(() => reactions.ToList().Count() > 2);
             _browserHelper.Click(reactions.ToList()[i], $"Reaction #{i}");
         }
 
         public void ClickOnFacebookTopBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on Facebook top button");
+            Base.MongoDb.UpdateSteps($"Clicking on Facebook top button");
             _browserHelper.WaitForElement(faceBookTop, nameof(faceBookTop));
             _browserHelper.Click(faceBookTop, nameof(faceBookTop));
         }
 
         public void ClickOnTwitterTopBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on Twitter top button");
+            Base.MongoDb.UpdateSteps($"Clicking on Twitter top button");
             _browserHelper.WaitForElement(twitterTop, nameof(twitterTop));
             _browserHelper.Click(twitterTop, nameof(twitterTop));
         }

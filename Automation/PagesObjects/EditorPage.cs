@@ -50,7 +50,7 @@ namespace Automation.PagesObjects
 
         public ArticleBase ClickOnArticle()
         {
-            Base.MongoDb.UpdateSteps($"Click on Article template.");
+            Base.MongoDb.UpdateSteps($"Clicking on Article template.");
             _browserHelper.WaitForElement(article, nameof(article));
             _browserHelper.Click(article, nameof(article));
 
@@ -59,7 +59,7 @@ namespace Automation.PagesObjects
 
         public ListsTemplate ClickOnList()
         {
-            Base.MongoDb.UpdateSteps($"Click on list template.");
+            Base.MongoDb.UpdateSteps($"Clicking on list template.");
             _browserHelper.WaitForElement(list, nameof(list));
             _browserHelper.Click(list, nameof(list));
 
@@ -68,7 +68,7 @@ namespace Automation.PagesObjects
 
         public string Validatetemplates(BsonArray templateNames)
         {
-            Base.MongoDb.UpdateSteps($"Validate templates.");
+            Base.MongoDb.UpdateSteps($"Validating templates.");
             List<string> templatesList = null;
             List<string> templatesNamesList = null;
 
@@ -90,7 +90,7 @@ namespace Automation.PagesObjects
 
         public ArticleBase ClickOnTemplate(int i)
         {
-            Base.MongoDb.UpdateSteps($"Click on template number {i}.");
+            Base.MongoDb.UpdateSteps($"Clicking on template number {i}.");
             _browserHelper.WaitUntillTrue(() => templates.ToList().Count() > 2);
             IWebElement temp = templates.Where((t, j) => j == i).FirstOrDefault();
             _browserHelper.Click(temp, $"template {i}");
@@ -100,7 +100,7 @@ namespace Automation.PagesObjects
 
         public TVPage ClickOnTVTemplate()
         {
-            Base.MongoDb.UpdateSteps($"Click on tv template.");
+            Base.MongoDb.UpdateSteps($"Clicking on tv template.");
             _browserHelper.WaitForElement(tv, nameof(tv));
             _browserHelper.Click(tv, nameof(tv));
 
@@ -109,7 +109,7 @@ namespace Automation.PagesObjects
 
         public SlideShowPage ClickOnSlideShow()
         {
-            Base.MongoDb.UpdateSteps($"Click on slideShow template.");
+            Base.MongoDb.UpdateSteps($"Clicking on slideShow template.");
             _browserHelper.WaitForElement(slideShow,nameof(slideShow));
             _browserHelper.Click(slideShow,nameof(slideShow));
 
@@ -118,9 +118,8 @@ namespace Automation.PagesObjects
 
         public bool ValidateEditorTitle()
         {
-            Base.MongoDb.UpdateSteps($"Validate editor title");
+            Base.MongoDb.UpdateSteps($"Validatting editor title");
             return _browserHelper.WaitForElement(editorTitle,nameof(editorTitle));
         }
-
     }
 }

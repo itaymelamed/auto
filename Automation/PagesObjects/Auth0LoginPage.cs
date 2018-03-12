@@ -31,15 +31,15 @@ namespace Automation.PagesObjects
 
         public NewsRoomPage Login(IUser user)
         {
-            Base.MongoDb.UpdateSteps("Set Username");
+            Base.MongoDb.UpdateSteps("Inserting Username");
             _browserHelper.WaitForElement(userNameTextBox, nameof(userNameTextBox));
             _browserHelper.SetText(userNameTextBox ,user.UserName);
 
-            Base.MongoDb.UpdateSteps("Set Password");
+            Base.MongoDb.UpdateSteps("Inserting Password");
             _browserHelper.WaitForElement(passwordTextBox, nameof(passwordTextBox));
             _browserHelper.SetText(passwordTextBox, user.Password);
 
-            Base.MongoDb.UpdateSteps("Click on login BTN");
+            Base.MongoDb.UpdateSteps("Clicking on the login button");
             _browserHelper.WaitForElement(loginBtn, nameof(loginBtn));
             _browserHelper.Click(loginBtn,nameof(loginBtn));
 
