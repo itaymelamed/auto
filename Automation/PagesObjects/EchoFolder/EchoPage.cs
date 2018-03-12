@@ -43,13 +43,13 @@ namespace Automation.PagesObjects.EchoFolder
 
         public bool ValidatePostCreation(string title)
         {
-            Base.MongoDb.UpdateSteps($"Search for post title: {title}.");
+            Base.MongoDb.UpdateSteps($"Searching for post title: {title}.");
             return _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Any(t => t.Text == title)); 
         }
 
         public bool ValidateAuthor(string author, string title)
         {
-            Base.MongoDb.UpdateSteps($"Validate author name: {author}.");
+            Base.MongoDb.UpdateSteps($"Validating author name: {author}.");
             _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count() >= 2);
             int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
             string authorIndex = authorNames.ToList()[i].Text;
@@ -58,7 +58,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public bool ValidateDomain(string domain, string title)
         {
-            Base.MongoDb.UpdateSteps($"Validate the domain of the site: {domain}.");
+            Base.MongoDb.UpdateSteps($"Validating the domain of the site: {domain}.");
             _browserHelper.WaitUntillTrue(() => domains.ToList().Count() >= 2);
             int i = postsTitles.ToList().Select(t => t.Text).ToList().FindIndex(t => t == title);
             string domainIndex = domains.ToList()[i].Text;
@@ -67,7 +67,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public bool ValidateSatatus(string status, string title)
         {
-            Base.MongoDb.UpdateSteps($"Validate the status of the post: {status}.");
+            Base.MongoDb.UpdateSteps($"Validating the status of the post: {status}.");
 
             return _browserHelper.RefreshUntill(() => 
             {
@@ -80,7 +80,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public DistributionPage SelectPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Select post {title} from the list.");
+            Base.MongoDb.UpdateSteps($"Selecting post {title} from the list.");
             _browserHelper.ExecuteUntill( () => postsTitles.Where(t => t.Text == title).FirstOrDefault().Click());
 
             return new DistributionPage(_browser);

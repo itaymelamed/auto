@@ -49,7 +49,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void SelectChannel(string channel)
         {
-            Base.MongoDb.UpdateSteps($"Select channel {channel} from the list.");
+            Base.MongoDb.UpdateSteps($"Selecting channel {channel} from the list.");
             _browserHelper.WaitForElement(channelDropDown,nameof(channelDropDown));
             _browserHelper.Click(channelDropDown,nameof(channelDropDown)); 
             _browserHelper.ExecuteUntill(() => mediumsNames.Where(t => t.Text == channel).FirstOrDefault().Click());
@@ -57,21 +57,21 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void SelectChannel(int i)
         {
-            Base.MongoDb.UpdateSteps($"Select channel from the list.");
+            Base.MongoDb.UpdateSteps($"Selecting channel from the list.");
             _browserHelper.WaitForElement(channelDropDown, nameof(channelDropDown));
             _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
         public void SelectChannelDPOpen(int i)
         {
-            Base.MongoDb.UpdateSteps($"Select channel from the list when the dropdown is open.");
+            Base.MongoDb.UpdateSteps($"Selecting channel from the list when the dropdown is open.");
             _browserHelper.WaitForElement(channelOpenDropDown,nameof(channelOpenDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
 
         public bool ValidateSelectedChannels(string channel)
         {
-            Base.MongoDb.UpdateSteps($"Validate selected channels.");
+            Base.MongoDb.UpdateSteps($"Validating selected channels.");
             SelectChannel(channel);
 
             return _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Any(c => c.Text == channel));
@@ -79,7 +79,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void PublishPostChannel(string channel)
         {
-            Base.MongoDb.UpdateSteps($"Validate selected channels.");
+            Base.MongoDb.UpdateSteps($"Validating selected channels.");
             SelectChannel(channel);
             _browserHelper.WaitForElement(publishBTN, nameof(publishBTN));
             _browserHelper.Click(publishBTN, nameof(publishBTN));
@@ -87,19 +87,19 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void SelectChannelByIndex(int i)
         {
-            Base.MongoDb.UpdateSteps($"Validate selected channels.");
+            Base.MongoDb.UpdateSteps($"Validating selected channels.");
             _browserHelper.ExecuteUntill(() => SelectChannel(i));
         }
 
         public void ClickOnPublishBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on publish button.");
+            Base.MongoDb.UpdateSteps($"Clicking on publish button.");
             _browserHelper.Click(publishBTN,nameof(publishBTN));
         }
 
         public void WaitForPublishedSatatus()
         {
-            Base.MongoDb.UpdateSteps($"Wait for published status");
+            Base.MongoDb.UpdateSteps($"Waiting for published status");
             _browserHelper.WaitForElement(publishedStatus,nameof(publishedStatus));
         }
 
@@ -111,14 +111,14 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void ClickOnTrashIcon()
         {
-            Base.MongoDb.UpdateSteps($"Remove selected channels in the distribution page");
+            Base.MongoDb.UpdateSteps($"Removing selected channels in the distribution page");
             _browserHelper.WaitForElement(trashIcon, nameof(trashIcon));
             _browserHelper.Click(trashIcon,nameof(trashIcon));          
         }
 
         public void ClickOnYesBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on the yes button in the confirm Removal popup message");
+            Base.MongoDb.UpdateSteps($"Clicking on the yes button in the confirm Removal popup message");
             _browserHelper.WaitForElement(yesBtn, nameof(yesBtn));
             _browserHelper.Click(yesBtn, nameof(yesBtn));
         }
