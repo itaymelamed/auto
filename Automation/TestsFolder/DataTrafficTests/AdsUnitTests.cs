@@ -155,6 +155,9 @@ namespace Automation.TestsFolder
                 var errors = adsTxtValidatorPage.GetErrors(ignor);
                 errors += adsTxtValidator.Validate();
 
+                ApiObject apiObject = new ApiObject();
+                if(!string.IsNullOrEmpty(errors))
+                    apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg={errors}&to=automationads@minutemedia.com&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
