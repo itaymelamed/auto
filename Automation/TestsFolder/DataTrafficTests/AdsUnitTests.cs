@@ -148,6 +148,7 @@ namespace Automation.TestsFolder
             [Category("AllBrands")]
             public void Ads_ValidateAdsTxtFile()
             {
+                const string Email = "automationads@minutemedia.com";
                 var ignor = _params["Ignor"].AsBsonArray;
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
                 _browser.Navigate($"https://adstxt.adnxs.com/?url={_config.Url.ToLower()}/ads.txt");
@@ -157,7 +158,7 @@ namespace Automation.TestsFolder
 
                 ApiObject apiObject = new ApiObject();
                 if(!string.IsNullOrEmpty(errors))
-                    apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg={errors}&to=automationads@minutemedia.com&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
+                    apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_config.SiteName} - Following%20errors%20have%20found%20in%20ads.txt%20file:</h2></b></div>{errors}&to={Email}&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }

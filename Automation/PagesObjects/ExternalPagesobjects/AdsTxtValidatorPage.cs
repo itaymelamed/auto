@@ -39,7 +39,6 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             List<string> errorsList;
             if (Counter())
             {
-                errorsString += $"<div><b>{Base._config.SiteName}</b></div>";
                 _browserHelper.ExecuteUntill(() =>
                 {
                     errorsList = new List<string>();
