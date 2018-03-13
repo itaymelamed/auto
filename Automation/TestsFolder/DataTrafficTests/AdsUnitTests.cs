@@ -3,6 +3,7 @@ using Automation.ApiFolder;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
 using NUnit.Framework;
+using static Automation.ConfigurationFolder.Configurations;
 
 namespace Automation.TestsFolder
 {
@@ -157,7 +158,7 @@ namespace Automation.TestsFolder
                 errors += adsTxtValidator.Validate();
 
                 ApiObject apiObject = new ApiObject();
-                if(!string.IsNullOrEmpty(errors))
+                if(!string.IsNullOrEmpty(errors) && _config.Env == Enviroment.Production)
                     apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_config.SiteName} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}</br></br><img src='{_test.Result.ScreenShot}'></img>&to={Email}&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
