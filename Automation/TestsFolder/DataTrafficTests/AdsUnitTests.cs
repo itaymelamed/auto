@@ -149,7 +149,7 @@ namespace Automation.TestsFolder
             [Category("AllBrands")]
             public void Ads_ValidateAdsTxtFile()
             {
-                string email = TestContext.Parameters.Get("Email");
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
