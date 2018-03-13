@@ -35,8 +35,8 @@ namespace Automation.Helpersobjects
         string ValidateDomain()
         {
             var domainErrors = string.Empty;
-            //_domains.ForEach(d => domainErrors += ValidateUrl(d)? "" : $"*) Error with url {d}.  {Environment.NewLine}");
-            _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"<div><h3>{d}</h3></div>");
+            //_domains.ForEach(d => domainErrors += ValidateUrl(d)? "" : $"<div><h3>format of {d} is incorrect</h3></div>");
+            _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"<div><h3>format of {d} is incorrect</h3></div>");
             return domainErrors;
         }
 
