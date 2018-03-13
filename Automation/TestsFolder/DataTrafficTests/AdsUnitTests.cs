@@ -158,7 +158,7 @@ namespace Automation.TestsFolder
 
                 ApiObject apiObject = new ApiObject();
                 if(!string.IsNullOrEmpty(errors))
-                    apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_config.SiteName} - Following%20errors%20have%20found%20in%20ads.txt%20file:</h2></b></div>{errors}&to={Email}&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
+                    apiObject.GetRequestVoid($"http://{_config.Host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_config.SiteName} - Following%20errors%20have%20found%20in%20ads.txt%20file:</h2></b></div>{errors}</br></br><img src='{_test.Result.ScreenShot}'></img>&to={"itay.m@minutemedia.com"}&subject={_config.SiteName} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }

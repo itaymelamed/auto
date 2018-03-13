@@ -44,7 +44,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                     errorsList = new List<string>();
                     errorsList = errors.ToList().Select(e => e.Text).ToList();
                     ignorList.ForEach(i => errorsList.RemoveAll(e => e.Contains(i)));
-                    errorsList.ForEach(e => errorsString += "<div>" + e + "</div>");
+                    errorsList.ForEach(e => errorsString += "<div><h3>" + e + "</h3></div>");
                 });
             }
 
