@@ -20,7 +20,8 @@ namespace Automation.Helpersobjects
 
         public void SendEmail(string errors)
         {
-            _api.GetRequestVoid($"http://{_host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_brand} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}</br></br>&to={To}&subject={_brand} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed");
+            var url = $"http://{_host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_brand} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}&to={To}&subject={_brand} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed";
+            _api.GetRequestVoid(url);
         }
     }
 }

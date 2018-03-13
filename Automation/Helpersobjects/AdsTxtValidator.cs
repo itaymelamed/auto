@@ -18,6 +18,7 @@ namespace Automation.Helpersobjects
             _adsTxt = GetTxtFile(url).Split(Environment.NewLine.ToCharArray());
             _domains = _adsTxt.ToList().Select(l => l.Split(',')[0]).ToList().Distinct().ToList();
             _domains.RemoveAll(d => d == string.Empty);
+            _domains.RemoveAll(d => d.Contains("#COMMENT"));
         }
 
         public string Validate()
@@ -35,7 +36,7 @@ namespace Automation.Helpersobjects
         {
             var domainErrors = string.Empty;
             //_domains.ForEach(d => domainErrors += ValidateUrl(d)? "" : $"*) Error with url {d}.  {Environment.NewLine}");
-            _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"<div><h3> Error with url {d} format. </h3></div>");
+            _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"<div><h3>{d}</h3></div>");
             return domainErrors;
         }
 
