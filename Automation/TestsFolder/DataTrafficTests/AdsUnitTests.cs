@@ -150,7 +150,6 @@ namespace Automation.TestsFolder
             public void Ads_ValidateAdsTxtFile()
             {
                 string email = TestContext.Parameters.Get("Email");
-                bool sendEmail = bool.Parse(TestContext.Parameters.Get("SendEmail"));
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 AdsTxtValidator adsTxtValidator = new AdsTxtValidator($"{_config.Url}/ads.txt");
@@ -159,9 +158,11 @@ namespace Automation.TestsFolder
                 var errors = adsTxtValidatorPage.GetErrors(ignor);
                 errors += adsTxtValidator.Validate();
 
-                AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
-                if (sendEmail)
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
                     adsTxtMailer.SendEmail(errors);
+                }
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
