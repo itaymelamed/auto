@@ -37,6 +37,15 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".actions .primary")]
         IWebElement yesBtn { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[role='listitem'] a[href*='posts']")]
+        IWebElement openLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[role='listitem'] a[href*='editor']")]
+        IWebElement editLink { get; set; }
+
+
+
+
         public DistributionPage(Browser browser)
             : base(browser)
 
@@ -135,8 +144,17 @@ namespace Automation.PagesObjects.EchoFolder
 
         }
 
-       //public void ClickOn
+        public void ClickOnOpenLink()
+        {
+            _browserHelper.WaitForElement(openLink,nameof(openLink));
+            _browserHelper.Click(openLink, nameof(openLink));
+        }
 
+        public void ClickOnEditLink()
+        {
+            _browserHelper.WaitForElement(editLink, nameof(editLink));
+            _browserHelper.Click(editLink, nameof(editLink));
+        }
 
     }
 }

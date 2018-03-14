@@ -28,6 +28,12 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".oval")]
         IList<IWebElement> statuses { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[class='tableCell']  a[href *= 'editor']")]
+        IList<IWebElement> EchoEditButtons { get; set; }
+
+
+
+
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
@@ -84,6 +90,12 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.ExecuteUntill( () => postsTitles.Where(t => t.Text == title).FirstOrDefault().Click());
 
             return new DistributionPage(_browser);
+        }
+
+        public void ClickOnEditButtonInEcho()
+        {
+            _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
+            EchoEditButtons[0].Click();
         }
     }
 }
