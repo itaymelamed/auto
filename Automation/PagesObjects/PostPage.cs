@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using System.Threading;
 
 namespace Automation.PagesObjects
 {
@@ -46,7 +47,10 @@ namespace Automation.PagesObjects
 
 
         [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
-        IWebElement dropdown { get; set; }
+        IWebElement dropdownCurLangauge { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
+        IList<IWebElement> dropdownLangauges { get; set; }
 
         public PostPage(Browser browser)
             :base(browser)
@@ -54,17 +58,48 @@ namespace Automation.PagesObjects
 
         }
 
-
         public void HoverLanguage()
         {
-            _browserHelper.Hover(dropdown);
+            _browserHelper.Hover(dropdownCurLangauge);
         }
 
         public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
         {
-            var acCurLanguage = dropdown.Text;
+            var acCurLanguage = dropdownCurLangauge.Text;
             return acCurLanguage == exCurLanguage;
 
+        }
+        public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
+        {
+            bool sum = false;
+            var actualCurrentlanguage = dropdownCurLangauge.Text;
+            var exCurDropDownList = exCurDropDown.Select(x => x.ToString()).ToList();
+            var acDropDown = dropdownLangauges.ToList().Select(e => e.GetAttribute("innerHTML").ToUpper()).ToList();
+
+            HoverLanguage();
+            Thread.Sleep(2000);
+            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
+            {
+                if (actualCurrentlanguage == exCurDropDownList[i])
+                {
+                    exCurDropDownList.RemoveAt(i);
+                    break;
+                }
+            }
+
+            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
+            {
+                if ((acDropDown.Contains(exCurDropDownList[i])))
+                    {
+                        sum = true;
+                    }
+                else
+                {
+                    sum = false;
+                    break;
+                }
+            }
+            return sum;
         }
 
         public string ValidateComponents(BsonArray components)
