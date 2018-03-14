@@ -128,6 +128,7 @@
     <Compile Include="TestsFolder\PostPagesFolder\PostPageTests.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\CastrTests.cs" />
     <Compile Include="Helpersobjects\PostCreator.cs" />
+    <Compile Include="Helpersobjects\AdsTxtMailer.cs" />
     <Compile Include="TestsFolder\EditortestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPost.cs" />
