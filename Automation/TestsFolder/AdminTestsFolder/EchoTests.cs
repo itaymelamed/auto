@@ -254,7 +254,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test10Class : BaseUi
+        public class Test9Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "96")]
@@ -288,7 +288,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test11Class : BaseUi
+        public class Test10Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "97")]
@@ -326,7 +326,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test12Class : BaseUi
+        public class Test11Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "100")]
@@ -365,7 +365,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test13Class : BaseUi
+        public class Test12Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "102")]
@@ -399,7 +399,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test14Class : BaseUi
+        public class Test13Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "103")]
@@ -434,7 +434,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test15Class : BaseUi
+        public class Test14Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "104")]
@@ -444,7 +444,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Pluralist")]
             [Category("Floor8")]
             [Retry(2)]
-            public void Echo_ValidateEditLink()
+            public void Echo_ValidateEditLinkInTheEchoPage()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -457,8 +457,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnEditButtonInEcho();
-              
-            }
+                _browser.SwitchToTab(2, 3);
+                string url = _browser.GetUrl();
+                var urlSplitted = url.Split('/');
+                var parseTitle = urlSplitted[4].Split('/');
+                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected  was editor but actual is {parseTitle[0]}");
+
+                ArticleBase article = new ArticleBase(_browser);
+                var titleEditor = article.GetTitleValue().ToLower();
+                Assert.True(titleEditor == title.ToLower());
+            }  
         }
     }
 }
