@@ -362,5 +362,103 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test13Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "102")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateOpenLink()
+            {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.ClickOnOpenLink();
+                _browser.SwitchToLastTab();
+                string url = _browser.GetUrl();
+                var urlSplitted =  url.Split('/');
+                var parseTitle = urlSplitted[4].Split('-');
+                Assert.True(parseTitle[1].ToLower() == title.ToLower(), $"Expected title was {title} but actual is {parseTitle[1]}");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test14Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "103")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateEditLink()
+            {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.ClickOnEditLink();
+                _browser.SwitchToTab(2, 3);
+                string editor = "editor";
+                string url = _browser.GetUrl();
+                var urlSplitted = url.Split('/');
+                 var parseTitle = urlSplitted[4].Split('/');
+                Assert.True(parseTitle[0].ToLower() == editor.ToLower(), $"Expected  was {editor} but actual is {parseTitle[0]}");
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test15Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "104")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateEditLink()
+            {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnEditButtonInEcho();
+              
+            }
+        }
     }
 }

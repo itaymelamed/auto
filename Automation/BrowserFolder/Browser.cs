@@ -8,6 +8,7 @@ using Automation.TestsObjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using Automation.ApiFolder;
+using System.Linq;
 
 namespace Automation.BrowserFolder
 {
@@ -120,9 +121,22 @@ namespace Automation.BrowserFolder
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
         }
 
+        public int GetNumOfTabs()
+        {
+            return Driver.WindowHandles.Count;
+        }
+
         internal void SwitchToLastTab()
         {
             Driver.SwitchTo().Window(Driver.WindowHandles[1]);
+        }
+
+        internal void SwitchToTab(int i, int wait = 0)
+        {
+            var xx = Driver.WindowHandles.ToList();
+            if (wait > 0)
+                BrowserHelper.WaitUntillTrue(() => GetNumOfTabs() == wait);
+            Driver.SwitchTo().Window(Driver.WindowHandles[i]);
         }
 
         public void Close()

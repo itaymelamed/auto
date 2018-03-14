@@ -187,7 +187,6 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
-    <Compile Include="Helpersobjects\AdsTxtMailer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
