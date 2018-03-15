@@ -17,6 +17,7 @@ namespace Automation.TestsFolder
         public static Configurations _config { get; set; }
         public static MongoDb MongoDb { get; set; }
         static readonly object _syncObject = new object();
+        public int Retry { get; set; }
 
         [SetUp]
         public void InitTest()
@@ -31,6 +32,7 @@ namespace Automation.TestsFolder
             _test = new Test(_config);
             _params = new Params(_test, _config).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
+            Retry = _config.Local ? 1 : 2;
         }
 
         [TearDown]

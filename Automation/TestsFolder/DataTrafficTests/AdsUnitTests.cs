@@ -20,7 +20,7 @@ namespace Automation.TestsFolder
             [Category("Production")]
             [Category("Ads")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(4)]
             public void AdsUnit_PostPage_Article()
             {
                 var postUrl = _params["PostUrl"].AsString;
@@ -52,7 +52,7 @@ namespace Automation.TestsFolder
             [Category("Production")]
             [Category("Ads")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(4)]
             public void AdsUnit_PostPage_List()
             {
                 var postUrl = _params["PostUrl"].AsString;
@@ -84,7 +84,7 @@ namespace Automation.TestsFolder
             [Category("Production")]
             [Category("Ads")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(4)]
             public void AdsUnit_PostPage_SlideShow()
             {
                 var postUrl = _params["PostUrl"].AsString;
@@ -116,7 +116,7 @@ namespace Automation.TestsFolder
             [Category("Production")]
             [Category("Ads")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(4)]
             public void AdsUnit_PostPage_LineUp()
             {
                 var postUrl = _params["PostUrl"].AsString;

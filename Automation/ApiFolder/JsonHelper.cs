@@ -91,12 +91,19 @@ namespace Automation.ApiFolder
             diffsKeys.AddRange(acJsonKeys.Except(exJsonKeys));
             diffsKeys = diffsKeys.Distinct().ToList();
 
-            diffsKeys.ForEach(d => errors += $"{d}               {Environment.NewLine}");
+            diffsKeys.ForEach(d => errors += $"{d}");
 
             if (string.IsNullOrEmpty(errors))
                 return errors;
 
-            exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"Expected value for key: {k} is {exJson[k]}. Actual: {acJson[k]} {Environment.NewLine}");
+            try
+            {
+                exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"Expected value for key: {k} is {exJson[k]}. Actual: {acJson[k]} {Environment.NewLine}");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return errors;
         }
