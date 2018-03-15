@@ -52,8 +52,10 @@ namespace Automation.PagesObjects
 
         public bool ValidateAuto0Page()
         {
-            Base.MongoDb.UpdateSteps("Validating you're in aut0 page");
+            Base.MongoDb.UpdateSteps("Validating you're in auth0 page");
             return _browserHelper.WaitForElement(Auto0Panel,nameof(Auto0Panel));
+
         }
+
     }
 }

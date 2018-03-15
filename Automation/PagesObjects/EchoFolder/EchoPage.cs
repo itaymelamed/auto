@@ -31,7 +31,7 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = "[class='tableCell']  a[href *= 'editor']")]
         IList<IWebElement> EchoEditButtons { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".topNavContainer .logout")]
+        [FindsBy(How = How.CssSelector, Using = ".logout")]
         IWebElement logOut { get; set; }
 
 

@@ -474,14 +474,14 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test15Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "106")]
+            [Property("TestCaseId", "105")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
             [Retry(2)]
-            public void Echo_ValidateLogoutButton()
+            public void Echo_ValidateEditLinkInTheEchoPage()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
