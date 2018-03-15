@@ -474,7 +474,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test15Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "105")]
+            [Property("TestCaseId", "106")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
@@ -490,8 +490,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 echoPage.ClickOnLogoutButton();
                 loginPage = new Auth0LoginPage(_browser);
                 Assert.True(loginPage.ValidateAuto0Page());
-               
             }
-        }
+        } 
+
+
+
     }
 }
