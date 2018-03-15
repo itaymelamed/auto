@@ -1,23 +1,24 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/ApiFolder/JsonHelper.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="auto Status">
     <Files>
       <File FileName="Automation/ApiFolder/ApiObject.cs" Line="19" Column="47" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="82" Column="64" />
-      <File FileName="Automation/TestsFolder/DataTrafficTests/AdsUnitTests.cs" Line="63" Column="44" />
-      <File FileName="Automation/ApiFolder/AdsUnitHelper.cs" Line="36" Column="42" />
-      <File FileName="Automation/ApiFolder/JsonHelper.cs" Line="98" Column="13" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/DataTrafficTests/AdsUnitTests.cs" Line="44" Column="9" />
+      <File FileName="Automation/ApiFolder/AdsUnitHelper.cs" Line="1" Column="1" />
+      <File FileName="Automation/ApiFolder/JsonHelper.cs" Line="1" Column="1" />
       <File FileName="Automation/MongoDbObject/MongoDb.cs" Line="37" Column="1" />
-      <File FileName="Automation/TestsFolder/DataTrafficTests/GoogleAnaliticsTests.cs" Line="33" Column="64" />
-      <File FileName="Automation/ApiFolder/GoogleAnalitics.cs" Line="19" Column="16" />
-      <File FileName="Automation/Helpersobjects/AdsTxtValidator.cs" Line="32" Column="20" />
+      <File FileName="Automation/TestsFolder/DataTrafficTests/GoogleAnaliticsTests.cs" Line="1" Column="1" />
+      <File FileName="Automation/ApiFolder/GoogleAnalitics.cs" Line="1" Column="1" />
+      <File FileName="Automation/Helpersobjects/AdsTxtValidator.cs" Line="1" Column="1" />
       <File FileName="Automation/TestsFolder/AdminTestsFolder/EchoTests.cs" Line="14" Column="38" />
       <File FileName="Automation/packages.config" Line="1" Column="1" />
       <File FileName="Automation/LoadBalancerFolder/Hub.cs" Line="1" Column="1" />
       <File FileName="Automation/LoadBalancerFolder/HubLoadBalancer.cs" Line="1" Column="1" />
       <File FileName="Automation/TestsFolder/BaseUi.cs" Line="8" Column="29" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="20" Column="39" />
-      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="21" Column="40" />
+      <File FileName="Automation/TestsFolder/Base.cs" Line="1" Column="1" />
+      <File FileName="Automation/TestsFolder/AdminTestsFolder/AdminTests.cs" Line="17" Column="21" />
+      <File FileName="auto Status" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -28,6 +29,7 @@
                 <Node name="AdsUnitTests+Test2Class" expanded="True">
                   <Node name="AdsUnit_PostPage_List" selected="True" />
                 </Node>
+                <Node name="AdsUnitTests+Test4Class" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -38,8 +40,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ApiFolder/AdsUnitHelper.cs" relfile="Automation/ApiFolder/AdsUnitHelper.cs" line="49" column="1" />
-      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ApiFolder/JsonHelper.cs" relfile="Automation/ApiFolder/JsonHelper.cs" line="105" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ApiFolder/AdsUnitHelper.cs" relfile="Automation/ApiFolder/AdsUnitHelper.cs" line="58" column="1" />
+      <Breakpoint file="/Users/itaymelamed/Desktop/repo/auto/Automation/ApiFolder/JsonHelper.cs" relfile="Automation/ApiFolder/JsonHelper.cs" line="96" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -17,7 +17,7 @@ namespace Automation.TestsFolder
         public static Configurations _config { get; set; }
         public static MongoDb MongoDb { get; set; }
         static readonly object _syncObject = new object();
-        public int Retry { get; set; }
+        static public int Retry { get; set; }
 
         [SetUp]
         public void InitTest()

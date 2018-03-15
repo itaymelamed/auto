@@ -91,9 +91,9 @@ namespace Automation.ApiFolder
             diffsKeys.AddRange(acJsonKeys.Except(exJsonKeys));
             diffsKeys = diffsKeys.Distinct().ToList();
 
-            diffsKeys.ForEach(d => errors += $"{d}");
+            diffsKeys.ForEach(d => errors += $"Following diffrents were found: {d}");
 
-            if (string.IsNullOrEmpty(errors))
+            if (!string.IsNullOrEmpty(errors))
                 return errors;
 
             try
