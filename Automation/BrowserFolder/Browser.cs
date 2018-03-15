@@ -118,6 +118,7 @@ namespace Automation.BrowserFolder
 
         public void SwitchToFirstTab()
         {
+            Base.MongoDb.UpdateSteps("Swithching to first tab");
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
         }
 
@@ -128,6 +129,7 @@ namespace Automation.BrowserFolder
 
         internal void SwitchToLastTab()
         {
+            Base.MongoDb.UpdateSteps("Swithching to last tab");
             Driver.SwitchTo().Window(Driver.WindowHandles[1]);
         }
 
