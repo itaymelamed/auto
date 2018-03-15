@@ -59,6 +59,7 @@ namespace Automation.TestsFolder
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
                 var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
@@ -69,7 +70,7 @@ namespace Automation.TestsFolder
 
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                string errors = adsUnithelper.ValidateJsons(ignor);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -91,6 +92,7 @@ namespace Automation.TestsFolder
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
                 var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
@@ -101,7 +103,7 @@ namespace Automation.TestsFolder
 
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
-                string errors = adsUnithelper.ValidateJsons();
+                string errors = adsUnithelper.ValidateJsons(ignor);
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }

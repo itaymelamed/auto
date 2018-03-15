@@ -28,6 +28,21 @@ namespace Automation.ApiFolder
             _errors = string.Empty;
         }
 
+        public string ValidateJsons(BsonArray ignor)
+        {
+            _adNames.ForEach(n =>
+            {
+                Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
+                var ignorList = ignor.Count > 0 ? ignor.Select(i => i.ToString()).ToList() : new List<string>(){""};
+                var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
+                var acJson = RequestToJobject(request);
+                ignorList.ForEach(i => acJson.Remove(i));
+                _errors += $"{JsonComparer(_exJson, acJson)}";
+            });
+
+            return _errors;
+        }
+
         public string ValidateJsons()
         {
             _adNames.ForEach(n =>
