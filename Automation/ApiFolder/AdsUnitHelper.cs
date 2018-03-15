@@ -36,7 +36,11 @@ namespace Automation.ApiFolder
                 var ignorList = ignor.Count > 0 ? ignor.Select(i => i.ToString()).ToList() : new List<string>(){""};
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                ignorList.ForEach(i => acJson.Remove(i));
+                ignorList.ForEach(i =>
+                {
+                    if (acJson.Properties().Select(p => p.ToString()).Contains(i))
+                    acJson.Remove(i);
+                });
                 _errors += $"{JsonComparer(_exJson, acJson)}";
             });
 
