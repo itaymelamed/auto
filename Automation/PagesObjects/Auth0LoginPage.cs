@@ -17,6 +17,10 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[type='submit']")]
         IWebElement loginBtn { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".auth0-lock-body-content")]
+        IWebElement Auto0Panel { get; set; }
+
+
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
@@ -44,6 +48,12 @@ namespace Automation.PagesObjects
             _browserHelper.Click(loginBtn,nameof(loginBtn));
 
             return new NewsRoomPage(_browser);
+        }
+
+        public bool ValidateAuto0Page()
+        {
+            Base.MongoDb.UpdateSteps("Validating you're in aut0 page");
+            return _browserHelper.WaitForElement(Auto0Panel,nameof(Auto0Panel));
         }
     }
 }

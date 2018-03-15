@@ -468,5 +468,30 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(titleEditor == title.ToLower());
             }  
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test15Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "106")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateLogoutButton()
+            {
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnLogoutButton();
+                loginPage = new Auth0LoginPage(_browser);
+                Assert.True(loginPage.ValidateAuto0Page());
+               
+            }
+        }
     }
 }

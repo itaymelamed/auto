@@ -31,6 +31,8 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = "[class='tableCell']  a[href *= 'editor']")]
         IList<IWebElement> EchoEditButtons { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".topNavContainer .logout")]
+        IWebElement logOut { get; set; }
 
 
 
@@ -97,6 +99,14 @@ namespace Automation.PagesObjects.EchoFolder
             Base.MongoDb.UpdateSteps("Clicking on the edit button in the echo page.");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
             EchoEditButtons[0].Click();
+        }
+
+        public void ClickOnLogoutButton()
+        {
+            Base.MongoDb.UpdateSteps("Clicking on the logout button in the echo page.");
+            _browserHelper.WaitForElement(logOut, nameof(logOut));
+            _browserHelper.Click(logOut,nameof(logOut));
+
         }
     }
 }
