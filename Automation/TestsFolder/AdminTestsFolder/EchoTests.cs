@@ -481,7 +481,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Pluralist")]
             [Category("Floor8")]
             [Retry(2)]
-            public void Echo_ValidateEditLinkInTheEchoPage()
+            public void Echo_ValidateLogoutLink()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
