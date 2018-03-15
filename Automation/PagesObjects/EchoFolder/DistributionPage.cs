@@ -135,6 +135,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void UnpublishPost()
         {
+            Base.MongoDb.UpdateSteps($"Unpublishing post");
             _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Count() > 0);
             var selectedNum = selectedChannels.ToList().Count();
             selectedChannels.ToList()[0].Click();
@@ -146,12 +147,14 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void ClickOnOpenLink()
         {
+            Base.MongoDb.UpdateSteps($"Clicking on open link");
             _browserHelper.WaitForElement(openLink,nameof(openLink));
             _browserHelper.Click(openLink, nameof(openLink));
         }
 
         public void ClickOnEditLink()
         {
+            Base.MongoDb.UpdateSteps($"Clicking on edit link");
             _browserHelper.WaitForElement(editLink, nameof(editLink));
             _browserHelper.Click(editLink, nameof(editLink));
         }

@@ -94,6 +94,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void ClickOnEditButtonInEcho()
         {
+            Base.MongoDb.UpdateSteps("Clicking on the edit button in the echo page.");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
             EchoEditButtons[0].Click();
         }
