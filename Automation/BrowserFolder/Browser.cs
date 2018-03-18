@@ -9,6 +9,7 @@ using Automation.TestsFolder;
 using OpenQA.Selenium;
 using Automation.ApiFolder;
 using System.Linq;
+using NUnit.Framework;
 
 namespace Automation.BrowserFolder
 {
@@ -43,6 +44,7 @@ namespace Automation.BrowserFolder
         {
             var capabilities = new DesiredCapabilities("chrome", "65.0", new Platform(PlatformType.Any));
             capabilities.SetCapability("enableVNC", true);
+            capabilities.SetCapability("name", (TestContext.CurrentContext.Test.Properties.Get("Test") as Test).TestName);
             string url = $"http://{Base._config.Host}:32005/wd/hub";
             Driver = new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);
