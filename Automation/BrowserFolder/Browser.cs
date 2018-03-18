@@ -33,18 +33,22 @@ namespace Automation.BrowserFolder
             BrowserHelper = new BrowserHelper(Driver);
         }
 
+        //public Browser(bool proxy = false)
+        //{
+        //    _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+        //    Driver = new ChromeDriver(_options);
+        //    BrowserHelper = new BrowserHelper(Driver);
+        //}
+
         public Browser(bool proxy = false)
         {
             _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-            Driver = new ChromeDriver(_options);
-            BrowserHelper = new BrowserHelper(Driver);
-        }
-
-        public Browser()
-        {
-            var capabilities = new DesiredCapabilities("chrome", "65.0", new Platform(PlatformType.Any));
+            var capabilities = (DesiredCapabilities)_options.ToCapabilities();
+            capabilities.SetCapability("browser", "chrome");
+            capabilities.SetCapability("version", "65.0");
             capabilities.SetCapability("enableVNC", true);
             capabilities.SetCapability("name", (TestContext.CurrentContext.Test.Properties.Get("Test") as Test).TestName);
+
             string url = $"http://{Base._config.Host}:32005/wd/hub";
             Driver = Base._config.Local ? new ChromeDriver() : new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);

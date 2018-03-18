@@ -57,7 +57,8 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
-            Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            //Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            Local = false;
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
@@ -73,13 +74,13 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.qa.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.Production.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "Pluralist");
+            return TestContext.Parameters.Get("siteName", "90Min");
         }
 
         static string GetParams(string param)
