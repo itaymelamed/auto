@@ -43,6 +43,8 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = "[role='listitem'] a[href*='editor']")]
         IWebElement editLink { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".ui.label.oval.label.leftOptionSelected")]
+        IWebElement FromPublishedToNewButton { get; set; }
 
 
 
@@ -157,6 +159,14 @@ namespace Automation.PagesObjects.EchoFolder
             Base.MongoDb.UpdateSteps($"Clicking on edit link");
             _browserHelper.WaitForElement(editLink, nameof(editLink));
             _browserHelper.Click(editLink, nameof(editLink));
+        }
+
+        public void ClickOnNewButton()
+        {
+            Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
+            _browserHelper.WaitForElement(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
+            _browserHelper.Click(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
+
         }
 
     }

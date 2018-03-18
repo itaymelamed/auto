@@ -494,6 +494,44 @@ namespace Automation.TestsFolder.AdminTestsFolder
         } 
 
 
+        [TestFixture]
+        [Parallelizable]
+        public class Test16Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "126")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_RepublishPostToNewAFeed()
+            {
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
+                _browser.OpenNewTab(_config.Url);
+                HomePage homePage = new HomePage(_browser);
+               // Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                 echoPage = new EchoPage(_browser);
+                 distributionPage = echoPage.SelectPost(title);
+                distributionPage.ClickOnNewButton();
+            }
+        } 
 
     }
 }
