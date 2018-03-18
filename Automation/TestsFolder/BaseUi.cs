@@ -12,7 +12,8 @@ namespace Automation.TestsFolder
         [SetUp]
         public void InitTestUi()
         {
-            _browser = !_config.Local ? new Browser(new HubLoadBalancer(_config)) : new Browser();
+            //_browser = !_config.Local ? new Browser(new HubLoadBalancer(_config)) : new Browser();
+            _browser = new Browser();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
             _browser.Navigate(_config.Url);

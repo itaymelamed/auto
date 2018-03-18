@@ -39,6 +39,15 @@ namespace Automation.BrowserFolder
             BrowserHelper = new BrowserHelper(Driver);
         }
 
+        public Browser()
+        {
+            var capabilities = new DesiredCapabilities("chrome", "65.0", new Platform(PlatformType.Any));
+            capabilities.SetCapability("enableVNC", true);
+            string url = $"http://{Base._config.Host}:32005/wd/hub";
+            Driver = new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
+            BrowserHelper = new BrowserHelper(Driver);
+        }
+
         public void Navigate(string url)
         {
             Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
