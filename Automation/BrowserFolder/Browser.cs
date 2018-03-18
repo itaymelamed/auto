@@ -46,7 +46,7 @@ namespace Automation.BrowserFolder
             capabilities.SetCapability("enableVNC", true);
             capabilities.SetCapability("name", (TestContext.CurrentContext.Test.Properties.Get("Test") as Test).TestName);
             string url = $"http://{Base._config.Host}:32005/wd/hub";
-            Driver = new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
+            Driver = Base._config.Local ? new ChromeDriver() : new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);
         }
 
