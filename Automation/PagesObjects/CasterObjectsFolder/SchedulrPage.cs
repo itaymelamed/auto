@@ -2,7 +2,7 @@
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Linq;

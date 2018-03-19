@@ -72,7 +72,7 @@ namespace Automation.ApiFolder
                 var jsonString = JsonConvert.SerializeObject(paramsDic);
                 return JObject.Parse(jsonString);
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return JObject.Parse(@"{'remove' : 'video'}");
             }

@@ -2,7 +2,7 @@
 using System.Linq;
 using Automation.BrowserFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
 using System;
 using Automation.TestsFolder;

@@ -6,8 +6,8 @@ using Automation.BrowserFolder;
 using Automation.PagesObjects.CasterObjectsFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {

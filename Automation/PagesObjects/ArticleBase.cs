@@ -5,7 +5,7 @@ using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 
 namespace Automation.PagesObjects
