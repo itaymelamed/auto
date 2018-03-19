@@ -20,25 +20,6 @@ namespace Automation.BrowserFolder
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
-        //public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
-        //{
-        //    lock(_syncObject)
-        //    {
-        //        _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-        //        string url = loadBalancer.GetAvailbleHub();
-        //        Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
-        //    }
-
-        //    BrowserHelper = new BrowserHelper(Driver);
-        //}
-
-        //public Browser(bool proxy = false)
-        //{
-        //    _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-        //    Driver = new ChromeDriver(_options);
-        //    BrowserHelper = new BrowserHelper(Driver);
-        //}
-
         public Browser(bool proxy = false)
         {
             string url = $"http://{Base._config.Host}:32005/wd/hub";

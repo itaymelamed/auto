@@ -1,8 +1,5 @@
 ﻿using Automation.PagesObjects;
-using MongoDB.Bson;
 using NUnit.Framework;
-using Automation.PagesObjects.ExternalPagesobjects;
-using System.Linq;
 
 namespace Automation.TestsFolder
 {

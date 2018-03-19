@@ -428,7 +428,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string editor = "editor";
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');
-                 var parseTitle = urlSplitted[4].Split('/');
+                var parseTitle = urlSplitted[4].Split('/');
                 Assert.True(parseTitle[0].ToLower() == editor.ToLower(), $"Expected  was {editor} but actual is {parseTitle[0]}");
             }
         }

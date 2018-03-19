@@ -7,13 +7,11 @@ namespace Automation.TestsFolder
     [TestFixture]
     public class BaseNetworkTraffic : Base
     {
-        //HubLoadBalancer _hubLoadBalancer;
         protected Browser _browser { get; set; }
 
         [SetUp]
         public void InitTestUi()
         {
-            //_hubLoadBalancer = !_config.Local ? new HubLoadBalancer(_config) : null;
             _browser = new Browser(true);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
