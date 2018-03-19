@@ -68,7 +68,7 @@ namespace Automation.ConfigurationFolder
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             ApiConfig = GetConfig<ApiConfig>("ApiConfig");
             FacebookApiConfig = GetConfig<FacebookApiConfig>("FacebookApiConfig");
-            Url = SiteName == "90Min" ? $"https://{Env}.{ConfigObject.Url}".Replace("Production", "www") : $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
+            Url = $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
         }
 
         static Enviroment GetEnvType()
