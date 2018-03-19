@@ -188,7 +188,7 @@ namespace Automation.BrowserFolder
             capabilities.SetCapability("version", "65.0");
             capabilities.SetCapability("enableVNC", true);
             capabilities.SetCapability("enableVideo", true);
-            //capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
+            capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
             capabilities.SetCapability("name", test.TestName);
 
             return capabilities;
