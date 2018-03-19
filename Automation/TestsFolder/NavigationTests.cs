@@ -455,33 +455,5 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
-        
-        [TestFixture]
-        [Parallelizable]
-        public class iLeague : BaseUi
-        {
-            [Test]
-            [Property("TestCaseId", "126")]
-            [Category("Sanity")]
-            [Category("Header")]
-            [Category("Navigation")]
-            [Category("90MinIn")]
-            [Retry(1)]
-            public void iLeagueIcon()
-            {
-                Navigation navigation = new Navigation(_browser);
-                string errors = navigation.ValidateIcon(_params);
-
-                Assert.True(string.IsNullOrEmpty(errors), errors);
-            }
-        }
-
-
-
-
-
-
-
     }
 }

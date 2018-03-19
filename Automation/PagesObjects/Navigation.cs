@@ -4,7 +4,7 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
