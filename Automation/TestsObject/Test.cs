@@ -51,6 +51,9 @@ namespace Automation.TestsObjects
             
             Base.MongoDb.UpdateResult(this);
             Base._testRun.UpdataResults();
+
+            //if (Result.Status == "Passed")
+                
         }
 
         public void UpdateTestStep(string step)
