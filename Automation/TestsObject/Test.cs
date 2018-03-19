@@ -24,11 +24,8 @@ namespace Automation.TestsObjects
 
         public string EnvironmentType { get; }
 
-        ApiObject _api;
-
         public Test(Configurations config)
         {
-            _api = new ApiObject();
             Result = new Result(TestContext.CurrentContext.Result, TestStatus.SentToHub);
             TestNumber = TestContext.CurrentContext.Test.Properties.Get("TestCaseId").ToString();
             TestRunId = Base._testRun.TestRunId;
@@ -55,9 +52,6 @@ namespace Automation.TestsObjects
             
             Base.MongoDb.UpdateResult(this);
             Base._testRun.UpdataResults();
-
-            if (Result.Status == "Passed")
-                _api.MakeRequest($"http://{Base._config.Host}:32005/video/{TestRunId}_{TestNumber}.mp4", "DELETE");
         }
 
         public void UpdateTestStep(string step)
