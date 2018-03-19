@@ -178,6 +178,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 DistributionPage distributionPage = echoPage.SelectPost(title);
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
                 echoPage = distributionPage.ClickOnEchoBtn();
                 _browser.OpenNewTab(_config.Url);
                 HomePage homePage = new HomePage(_browser); 

@@ -49,11 +49,6 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = "[role='combobox']")]
         IWebElement MediumCombobox { get; set; }
 
-
-
-
-
-
         public DistributionPage(Browser browser)
             : base(browser)
 
@@ -150,7 +145,6 @@ namespace Automation.PagesObjects.EchoFolder
             ClickOnTrashIcon();
             ClickOnYesBtn();
             _browserHelper.WaitUntillTrue(() => selectedChannels.ToList().Count() == selectedNum - 1);
-
         }
 
         public void ClickOnOpenLink()
@@ -177,7 +171,6 @@ namespace Automation.PagesObjects.EchoFolder
         public void ValidateComboboxDisabled()
         {
             Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
-           
         }
     }
 }
