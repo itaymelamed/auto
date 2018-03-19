@@ -189,6 +189,7 @@ namespace Automation.BrowserFolder
             capabilities.SetCapability("enableVideo", true);
             capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
             capabilities.SetCapability("name", test.TestName);
+            capabilities.SetCapability("videoFrameRate", 24);
 
             return capabilities;
         }
