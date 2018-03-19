@@ -18,7 +18,7 @@ namespace Automation.Helpersobjects
             To = to;
         }
 
-        public void SendEmail(string errors)
+        public virtual void SendEmail(string errors)
         {
             var url = $"http://{_host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_brand} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}&to={To}&subject={_brand} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed";
             _api.GetRequestVoid(url);

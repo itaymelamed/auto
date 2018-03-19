@@ -3,7 +3,6 @@ using Automation.ApiFolder;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
 using NUnit.Framework;
-using static Automation.ConfigurationFolder.Configurations;
 
 namespace Automation.TestsFolder
 {
@@ -23,6 +22,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_Article()
             {
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
@@ -38,6 +38,13 @@ namespace Automation.TestsFolder
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons();
+
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
+                    adsTxtMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -55,6 +62,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_List()
             {
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
@@ -71,6 +79,13 @@ namespace Automation.TestsFolder
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons(ignor);
+
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
+                    adsTxtMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -88,6 +103,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_SlideShow()
             {
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
@@ -104,6 +120,13 @@ namespace Automation.TestsFolder
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons(ignor);
+
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
+                    adsTxtMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -121,6 +144,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_LineUp()
             {
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
                 var displyed = _params["Displyed"].AsBsonArray;
@@ -136,6 +160,13 @@ namespace Automation.TestsFolder
                 var requests = _browser.ProxyApi.GetRequests();
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons();
+
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
+                    adsTxtMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
