@@ -532,6 +532,5 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.ClickOnNewButton();
             }
         } 
-
     }
 }

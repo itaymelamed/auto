@@ -21,17 +21,17 @@ namespace Automation.BrowserFolder
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
-        public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
-        {
-            lock(_syncObject)
-            {
-                _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-                string url = loadBalancer.GetAvailbleHub();
-                Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
-            }
+        //public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
+        //{
+        //    lock(_syncObject)
+        //    {
+        //        _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+        //        string url = loadBalancer.GetAvailbleHub();
+        //        Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
+        //    }
 
-            BrowserHelper = new BrowserHelper(Driver);
-        }
+        //    BrowserHelper = new BrowserHelper(Driver);
+        //}
 
         //public Browser(bool proxy = false)
         //{
@@ -42,15 +42,8 @@ namespace Automation.BrowserFolder
 
         public Browser(bool proxy = false)
         {
-            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-            var capabilities = (DesiredCapabilities)_options.ToCapabilities();
-            capabilities.SetCapability("browser", "chrome");
-            capabilities.SetCapability("version", "65.0");
-            capabilities.SetCapability("enableVNC", true);
-            capabilities.SetCapability("name", (TestContext.CurrentContext.Test.Properties.Get("Test") as Test).TestName);
-
             string url = $"http://{Base._config.Host}:32005/wd/hub";
-            Driver = Base._config.Local ? new ChromeDriver() : new RemoteWebDriver(new Uri(url), capabilities, TimeSpan.FromMinutes(30));
+            Driver = Base._config.Local ? new ChromeDriver() : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);
         }
 
@@ -184,6 +177,21 @@ namespace Automation.BrowserFolder
             options.Proxy = prxoy;
 
             return options;
+        }
+
+        DesiredCapabilities GetCap(bool proxy)
+        {
+            var test = TestContext.CurrentContext.Test.Properties.Get("Test") as Test;
+            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+            var capabilities = (DesiredCapabilities)_options.ToCapabilities();
+            capabilities.SetCapability("browser", "chrome");
+            capabilities.SetCapability("version", "65.0");
+            capabilities.SetCapability("enableVNC", true);
+            capabilities.SetCapability("enableVideo", true);
+            //capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
+            capabilities.SetCapability("name", test.TestName);
+
+            return capabilities;
         }
 
         public void AddCookies(string key, string value)
