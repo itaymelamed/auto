@@ -499,7 +499,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
         public class Test16Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "126")]
+            [Property("TestCaseId", "127")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Echo")]
@@ -508,7 +508,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Echo_RepublishPostToNewAFeed()
             {
-                var channelIndex = _params["ChannelIndex"].AsInt32;
+                var channelIndex1 = _params["ChannelIndex1"].AsInt32;
+                var channelIndex2 = _params["ChannelIndex2"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -519,17 +520,70 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
                 DistributionPage distributionPage = echoPage.SelectPost(title);
-                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.SelectChannelByIndex(channelIndex1);
                 distributionPage.ClickOnPublishBtn();
                 distributionPage.WaitForPublishedSatatus();
                 _browser.OpenNewTab(_config.Url);
                 HomePage homePage = new HomePage(_browser);
-               // Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
+                Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
+
                 _browser.SwitchToFirstTab();
                 _browser.Refresh();
                  echoPage = new EchoPage(_browser);
-                 distributionPage = echoPage.SelectPost(title);
                 distributionPage.ClickOnNewButton();
+                distributionPage.SelectChannelByIndex(channelIndex2);
+                distributionPage.ClickOnPublishBtn();
+                _browser.OpenNewTab($"{_config.Url}/channels/latest");
+                FeedPage feedPage = new FeedPage(_browser);
+                _browser.Refresh();
+                Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
+
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "128")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_RepublishPostToNewAFeed()
+            {
+                var channelIndex1 = _params["ChannelIndex1"].AsInt32;
+                var channelIndex2 = _params["ChannelIndex2"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex1);
+                distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
+                _browser.OpenNewTab(_config.Url);
+                HomePage homePage = new HomePage(_browser);
+                Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
+
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                 echoPage = new EchoPage(_browser);
+                distributionPage.ClickOnNewButton();
+                distributionPage.SelectChannelByIndex(channelIndex2);
+                distributionPage.ClickOnPublishBtn();
+                _browser.OpenNewTab($"{_config.Url}/channels/latest");
+                FeedPage feedPage = new FeedPage(_browser);
+                _browser.Refresh();
+                Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
             }
         } 
     }

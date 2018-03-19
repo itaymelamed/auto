@@ -46,6 +46,12 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.CssSelector, Using = ".ui.label.oval.label.leftOptionSelected")]
         IWebElement FromPublishedToNewButton { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[role='combobox']")]
+        IWebElement MediumCombobox { get; set; }
+
+
+
+
 
 
         public DistributionPage(Browser browser)
@@ -166,8 +172,12 @@ namespace Automation.PagesObjects.EchoFolder
             Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
             _browserHelper.WaitForElement(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
             _browserHelper.Click(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
-
         }
 
+        public void ValidateComboboxDisabled()
+        {
+            Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
+           
+        }
     }
 }
