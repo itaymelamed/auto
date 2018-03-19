@@ -4,12 +4,11 @@ using System;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
-using Automation.TestsObjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using Automation.ApiFolder;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace Automation.BrowserFolder
 {
@@ -79,7 +78,7 @@ namespace Automation.BrowserFolder
             return Driver.Url;
         }
 
-        public string GetScreenShot(Test test)
+        public string GetScreenShot(TestsObjects.Test test)
         {
             string path = "";
 
@@ -138,7 +137,7 @@ namespace Automation.BrowserFolder
         internal void SwitchToLastTab()
         {
             Base.MongoDb.UpdateSteps("Swithching to last tab");
-            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
+            Driver.SwitchTo().Window(Driver.WindowHandles.Last());
         }
 
         internal void SwitchToTab(int i, int wait = 0)
@@ -181,7 +180,7 @@ namespace Automation.BrowserFolder
 
         DesiredCapabilities GetCap(bool proxy)
         {
-            var test = TestContext.CurrentContext.Test.Properties.Get("Test") as Test;
+            var test = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get("Test") as TestsObjects.Test;
             _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
             var capabilities = (DesiredCapabilities)_options.ToCapabilities();
             capabilities.SetCapability("browser", "chrome");

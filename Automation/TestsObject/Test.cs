@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Automation.ApiFolder;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsObjects
@@ -34,7 +34,8 @@ namespace Automation.TestsObjects
             Steps = new List<string>();
             EnvironmentType = config.Env.ToString();
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
-            TestContext.CurrentContext.Test.Properties.Set("Test", this);
+            //TestContext.CurrentContext.Test.Properties.Set("Test", this);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Set("Test", this);
 
             Base.MongoDb.InsertTest(this);
         }

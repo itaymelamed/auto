@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using Automation.TestsObjects;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Automation.ConfigurationFolder;
 using System;
 
@@ -37,7 +37,7 @@ namespace Automation.MongoDbObject
             return _database.GetCollection<BsonDocument>("Configurations").AsQueryable().First()[siteName];
 		}
 
-        public void InsertTest(Test test)
+        public void InsertTest(TestsObjects.Test test)
         {
             lock(_syncObject1)
             {
@@ -62,7 +62,7 @@ namespace Automation.MongoDbObject
             collection.ReplaceOne(filter, document, options);
         }
 
-        public void UpdateResult(Test test)
+        public void UpdateResult(TestsObjects.Test test)
         {
             lock(_syncObject2)
             {
@@ -87,7 +87,7 @@ namespace Automation.MongoDbObject
             var updateDuration = collection.UpdateOne(filter, update);
         }
 
-        public void UpdateSteps(Test test)
+        public void UpdateSteps(TestsObjects.Test test)
         {
             lock(_syncObject3) 
             {
@@ -103,7 +103,7 @@ namespace Automation.MongoDbObject
         {
             lock (_syncObject4)
             {
-                var test = (TestContext.CurrentContext.Test.Properties.Get("Test")) as Test;
+                var test = (TestExecutionContext.CurrentContext.CurrentTest.Properties.Get("Test")) as TestsObjects.Test;
                 test.Steps.Add(step);
                 var collection = _database.GetCollection<BsonDocument>($"testRun{test.TestRunId}");
 
@@ -140,7 +140,7 @@ namespace Automation.MongoDbObject
             }
         }
 
-        public void UpdateAdsTxtResults(Test test)
+        public void UpdateAdsTxtResults(TestsObjects.Test test)
         {
             var collection = _database.GetCollection<BsonDocument>("AdsTxt");
 
