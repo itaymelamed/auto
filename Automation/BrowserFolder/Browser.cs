@@ -48,7 +48,14 @@ namespace Automation.BrowserFolder
 
         public void Quit()
         {
-            Driver.Quit();
+            try
+            {
+                Driver.Quit();
+            }
+            catch
+            {
+
+            }
         }
 
         public void Refresh()
@@ -64,7 +71,14 @@ namespace Automation.BrowserFolder
 
         public string GetUrl()
         {
-            return Driver.Url;
+            try
+            {
+                return Driver.Url;
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         public string GetScreenShot(TestsObjects.Test test)
