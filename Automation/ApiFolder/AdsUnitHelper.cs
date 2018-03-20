@@ -41,7 +41,7 @@ namespace Automation.ApiFolder
                     if (acJson.Properties().Select(p => p.Name).Contains(i))
                         acJson.Remove(i);
                 });
-                _errors += $"{JsonComparer(_exJson, acJson)}";
+                _errors += $"{JsonComparer(_exJson, acJson, n)}";
             });
 
             return _errors;
@@ -54,7 +54,7 @@ namespace Automation.ApiFolder
                 Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                _errors += $"{JsonComparer(_exJson, acJson)}";
+                _errors += $"{JsonComparer(_exJson, acJson, n)}";
             });
 
             return _errors;
