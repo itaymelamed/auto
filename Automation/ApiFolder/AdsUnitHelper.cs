@@ -38,7 +38,7 @@ namespace Automation.ApiFolder
                 var acJson = RequestToJobject(request);
                 ignorList.ForEach(i =>
                 {
-                    if (acJson.Properties().Select(p => p.Name.ToString()).Contains(i))
+                    if (acJson.Properties().Select(p => p.Name).Contains(i))
                         acJson.Remove(i);
                 });
                 _errors += $"{JsonComparer(_exJson, acJson)}";
