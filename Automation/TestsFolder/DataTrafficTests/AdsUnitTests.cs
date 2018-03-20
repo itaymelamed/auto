@@ -13,6 +13,8 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test1Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "55")]
             [Category("PostPage")]
@@ -22,6 +24,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_Article()
             {
+                retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
@@ -39,7 +42,7 @@ namespace Automation.TestsFolder
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons();
 
-                if (!string.IsNullOrEmpty(errors))
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
                     AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
                     adsTxtMailer.SendEmail(errors);
@@ -53,6 +56,8 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test2Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "59")]
             [Category("PostPage")]
@@ -62,6 +67,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_List()
             {
+                retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
@@ -94,6 +100,8 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test3Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "60")]
             [Category("PostPage")]
@@ -107,6 +115,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_SlideShow()
             {
+                retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
@@ -139,6 +148,8 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test4Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "61")]
             [Category("PostPage")]
@@ -152,6 +163,7 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_LineUp()
             {
+                retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params["ExJson"];
