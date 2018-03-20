@@ -319,10 +319,10 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Inserting {search} in image search text box.");
             _browserHelper.WaitForElement(imageSearchBox, nameof(imageSearchBox));
-            imageSearchBox.Clear();
-            imageSearchBox.SendKeys(search);
+            _browserHelper.ExecuteUntill(() => imageSearchBox.Clear());
+            _browserHelper.SetText(imageSearchBox, search);
             Base.MongoDb.UpdateSteps($"Clicking on image search button.");
-            searchImageBtn.Click();
+            _browserHelper.Click(searchImageBtn, nameof(searchImageBtn));
         }
 
         public int ValidateImageSearchResults(int maxRes)
