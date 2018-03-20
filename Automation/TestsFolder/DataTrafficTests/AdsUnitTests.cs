@@ -148,7 +148,8 @@ namespace Automation.TestsFolder
             [Category("90Min")]
             [Category("90MinIn")]
             [Category("90MinDe")]
-            [Category("12Up")]            [Retry(4)]
+            [Category("12Up")]            
+            [Retry(4)]
             public void AdsUnit_PostPage_LineUp()
             {
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
