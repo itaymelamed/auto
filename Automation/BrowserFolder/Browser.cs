@@ -31,7 +31,14 @@ namespace Automation.BrowserFolder
         public void Navigate(string url)
         {
             Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
-            Driver.Navigate().GoToUrl(url);
+            try
+            {
+                Driver.Navigate().GoToUrl(url);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to navigate to {url}");
+            }
         }
         
         public void Maximize()
