@@ -86,7 +86,7 @@ namespace Automation.TestsFolder
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons(ignor);
 
-                if (!string.IsNullOrEmpty(errors))
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
                     AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
                     adsTxtMailer.SendEmail(errors);
@@ -134,7 +134,7 @@ namespace Automation.TestsFolder
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons(ignor);
 
-                if (!string.IsNullOrEmpty(errors))
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
                     AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
                     adsTxtMailer.SendEmail(errors);
@@ -181,7 +181,7 @@ namespace Automation.TestsFolder
                 AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
                 string errors = adsUnithelper.ValidateJsons();
 
-                if (!string.IsNullOrEmpty(errors))
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
                     AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
                     adsTxtMailer.SendEmail(errors);
