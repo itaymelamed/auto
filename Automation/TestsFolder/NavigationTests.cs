@@ -63,7 +63,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Category("12up")]
+            [Category("12Up")]
             [Retry(2)]
             public void BuzzIcon()
             {
@@ -130,7 +130,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Category("12up")]
+            [Category("12Up")]
             [Category("Floor8")]
             [Retry(2)]
             public void ListsIcon()
@@ -257,7 +257,7 @@ namespace Automation.TestsFolder
             [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
-            [Category("12up")]
+            [Category("12Up")]
             [Retry(2)]
             public void HighlightsIcon()
             {
@@ -277,7 +277,7 @@ namespace Automation.TestsFolder
             [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
-            [Category("12up")]
+            [Category("12Up")]
             [Category("Floor8")]
             [Retry(2)]
             public void QuizzesIcon()
