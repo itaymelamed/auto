@@ -18,7 +18,7 @@ namespace Automation.TestsObjects
 
         public TestRun(Configurations config)
         {
-            Category = TestContext.Parameters.Get("cat", "local");
+            Category = TestContext.Parameters.Get("cat", "none");
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();

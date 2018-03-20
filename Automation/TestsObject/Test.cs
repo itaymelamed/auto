@@ -34,7 +34,6 @@ namespace Automation.TestsObjects
             Steps = new List<string>();
             EnvironmentType = config.Env.ToString();
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
-            //TestContext.CurrentContext.Test.Properties.Set("Test", this);
             TestExecutionContext.CurrentContext.CurrentTest.Properties.Set("Test", this);
 
             Base.MongoDb.InsertTest(this);
