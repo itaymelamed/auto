@@ -6,9 +6,10 @@ namespace Automation.Helpersobjects
     public class AdsTxtMailer
     {
         public string To;
-        string _host;
-        string _brand;
-        ApiObject _api;
+        protected string _host;
+        protected string _brand;
+        protected ApiObject _api;
+        protected string _url;
 
         public AdsTxtMailer(string to)
         {
@@ -20,8 +21,8 @@ namespace Automation.Helpersobjects
 
         public virtual void SendEmail(string errors)
         {
-            var url = $"http://{_host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_brand} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}&to={To}&subject={_brand} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed";
-            _api.GetRequestVoid(url);
+            _url = $"http://{_host}:32002/users/send?msg=<div><b><h2 style='color: red;'>{_brand} - The%20following%20errors%20were%20found%20in%20the%20ads.txt%20file:</h2></b></div>{errors}&to={To}&subject={_brand} | Automation%20Google%20Ads.txt%20file%20-Tests%20failed";
+            _api.GetRequestVoid(_url);
         }
     }
 }

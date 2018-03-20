@@ -44,8 +44,8 @@ namespace Automation.TestsFolder
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
-                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
-                    adsTxtMailer.SendEmail(errors);
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "Article Template");
+                    adsUnitMailer.SendEmail(errors);
                 }
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -88,8 +88,8 @@ namespace Automation.TestsFolder
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
-                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
-                    adsTxtMailer.SendEmail(errors);
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "List Template");
+                    adsUnitMailer.SendEmail(errors);
                 }
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -112,6 +112,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90MinDe")]
             [Category("12Up")]
+            [Category("DBLTAP")]
             [Retry(4)]
             public void AdsUnit_PostPage_SlideShow()
             {
@@ -136,8 +137,8 @@ namespace Automation.TestsFolder
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
-                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
-                    adsTxtMailer.SendEmail(errors);
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "Slide Show Template");
+                    adsUnitMailer.SendEmail(errors);
                 }
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -183,8 +184,8 @@ namespace Automation.TestsFolder
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
                 {
-                    AdsTxtMailer adsTxtMailer = new AdsTxtMailer(email);
-                    adsTxtMailer.SendEmail(errors);
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "LineUp Template");
+                    adsUnitMailer.SendEmail(errors);
                 }
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);

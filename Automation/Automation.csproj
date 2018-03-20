@@ -194,6 +194,7 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
     <Compile Include="TestsFolder\NavigationTests.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
+    <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
