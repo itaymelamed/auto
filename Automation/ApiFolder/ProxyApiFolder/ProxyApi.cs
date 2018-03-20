@@ -22,7 +22,7 @@ namespace Automation.ApiFolder
         {
             _api = new ApiObject();
             _url = url;
-            _baseUrlProxy = $"http://{_url}:32300/proxy";
+            _baseUrlProxy = $"http://{_url}:32006/proxy";
             using (var response = _api.MakeRequest(_baseUrlProxy, "POST"))
             {
                 var responseStream = response.GetResponseStream();
