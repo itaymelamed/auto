@@ -167,8 +167,11 @@ namespace Automation.BrowserFolder
             var capabilities = (DesiredCapabilities)_options.ToCapabilities();
             capabilities.SetCapability("browser", "chrome");
             capabilities.SetCapability("version", "65.0");
-            capabilities.SetCapability("enableVNC", true);
-            capabilities.SetCapability("enableVideo", true);
+            if(!proxy)
+            {
+                capabilities.SetCapability("enableVNC", true);
+                capabilities.SetCapability("enableVideo", true);
+            }
             capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
             capabilities.SetCapability("name", test.TestName);
             capabilities.SetCapability("videoFrameRate", 24);
