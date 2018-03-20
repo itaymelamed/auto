@@ -57,6 +57,7 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
+            var name = Environment.MachineName;
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
@@ -108,5 +109,13 @@ namespace Automation.ConfigurationFolder
             string host = File.ReadAllText(hostTxt).Split(';').First();
             return host;
         }
+
+        string GetUser()
+        {
+            var usrTxt = "/host/user.txt";
+            string user = File.ReadAllText(usrTxt).Split(';').First();
+            return user;
+        }
+
     }
 }
