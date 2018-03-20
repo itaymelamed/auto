@@ -34,11 +34,14 @@ namespace Automation.PagesObjects
             languages.ForEach(l =>
             {
                 _browser.Navigate($"{Base._config.Url}/{l}");
+                Base.MongoDb.UpdateSteps($"Finding element by selctor {selector}");
                 IWebElement el = _browserHelper.FindElement(By.CssSelector(selector), "Icon");
+                Base.MongoDb.UpdateSteps("Clicking on Icon.");
                 el.Click();
                 var acUrl = _browser.GetUrl().ToLower();
                 var exUrl = GetExUrl(l, selector, url ,selector.Contains("video"));
 
+                Base.MongoDb.UpdateSteps("Validating url.");
                 errors += acUrl.ToLower() == exUrl.ToLower() ? "" : $"Expected url: {exUrl}. Actual: {acUrl}";
             });
 
