@@ -317,8 +317,7 @@ namespace Automation.PagesObjects
             return  _browserHelper.WaitUntillTrue(() => 
             {
                 HoverOverCoverImage();
-                _browserHelper.ClickJavaScript(deleteBtnContainerImage);
-                return _browserHelper.WaitForElement(coverUpload, nameof(coverUpload));
+                return _browserHelper.WaitForElement(deleteBtnContainerImage, nameof(deleteBtnContainerImage));
             });
         }
 
