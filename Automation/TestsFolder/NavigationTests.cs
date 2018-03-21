@@ -12,7 +12,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "99")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -36,7 +35,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "105")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -58,13 +56,12 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "107")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Category("12up")]
+            [Category("12Up")]
             [Retry(3)]
             public void BuzzIcon()
             {
@@ -81,7 +78,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "108")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -103,7 +99,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "109")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -125,7 +120,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "110")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -149,7 +143,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "111")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
@@ -171,7 +164,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "112")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
@@ -192,7 +184,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "113")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
@@ -213,7 +204,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "114")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
@@ -234,7 +224,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "115")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
@@ -255,10 +244,9 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "116")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
-            [Category("12up")]
+            [Category("12Up")]
             [Retry(3)]
             public void HighlightsIcon()
             {
@@ -275,7 +263,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "117")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("12Up")]
@@ -297,7 +284,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "118")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
@@ -317,7 +303,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "119")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
@@ -337,7 +322,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "120")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
@@ -357,7 +341,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "121")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
@@ -377,7 +360,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "122")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
@@ -397,7 +379,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "123")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
@@ -418,7 +399,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "124")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
@@ -438,7 +418,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "125")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
@@ -459,7 +438,6 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "126")]
-            [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]

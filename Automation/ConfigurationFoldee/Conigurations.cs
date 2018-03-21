@@ -109,13 +109,5 @@ namespace Automation.ConfigurationFolder
             string host = File.ReadAllText(hostTxt).Split(';').First();
             return host;
         }
-
-        string GetUser()
-        {
-            var usrTxt = "/host/user.txt";
-            string user = File.ReadAllText(usrTxt).Split(';').First();
-            return user;
-        }
-
     }
 }
