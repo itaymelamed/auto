@@ -38,7 +38,6 @@ namespace Automation.TestsObjects
             Results.Running = docs.FindAll(x => x["Result"]["Status"] == TestStatus.Running.ToString()).Count;
 
             Base.MongoDb.UpdateTestRunResults(this);
-            Base.MongoDb.UpdateDuration(this);
         }
     }
 }
