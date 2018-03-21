@@ -22,14 +22,7 @@ namespace Automation.TestsObjects
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
-            try
-            {
-                Date = DateTime.Now.AddHours(2).ToString("dd/MM HH:mm");
-            }
-            catch
-            {
-            }
-
+            Date = DateTime.Now.AddHours(2).ToString("dd/MM HH:mm");
             SiteName = config.SiteName;
 
             Base.MongoDb.InserTestRun(this);

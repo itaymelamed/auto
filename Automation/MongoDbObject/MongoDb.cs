@@ -77,7 +77,7 @@ namespace Automation.MongoDbObject
 
         public void UpdateDuration(TestRun testRun)
         {
-            var duration = DateTime.Parse(DateTime.Now.AddHours(2).ToString("MM/dd/yyyy HH:mm:ss")) - DateTime.Parse(testRun.Date);
+            var duration = DateTime.Parse(DateTime.Now.AddHours(2).ToString("dd/MM HH:mm")) - DateTime.Parse(testRun.Date);
             testRun.Duration = duration.Duration().ToString();
 
             var collection = _database.GetCollection<BsonDocument>("Runs");
