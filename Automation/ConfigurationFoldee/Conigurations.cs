@@ -85,7 +85,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetParams(string param)
         {
-            return TestContext.Parameters.Get(param, "Utest");
+            return TestContext.Parameters.Get(param, "qa1");
         }
 
         BsonValue GetConfigJson(string siteName)

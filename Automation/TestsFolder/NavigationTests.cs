@@ -18,10 +18,11 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Retry(2)]
+            [Retry(3)]
             public void FixturesIcon()
             {
                 Navigation navigation = new Navigation(_browser);
+
                 string errors = navigation.ValidateIcon(_params);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
@@ -41,7 +42,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Retry(2)]
+            [Retry(3)]
             public void TransfersIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -63,8 +64,8 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Category("12Up")]
-            [Retry(2)]
+            [Category("12up")]
+            [Retry(3)]
             public void BuzzIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -86,7 +87,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb9090")]
-            [Retry(2)]
+            [Retry(3)]
             public void UEFAIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -108,7 +109,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Retry(2)]
+            [Retry(3)]
             public void WorldNewsIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -132,7 +133,7 @@ namespace Automation.TestsFolder
             [Category("Ftb90")]
             [Category("12Up")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void ListsIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -154,7 +155,7 @@ namespace Automation.TestsFolder
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void ViralIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -174,7 +175,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
-            [Retry(2)]
+            [Retry(3)]
             public void ConmebolIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -195,7 +196,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
-            [Retry(2)]
+            [Retry(3)]
             public void RumorsIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -217,7 +218,7 @@ namespace Automation.TestsFolder
             [Category("Navigation")]
             [Category("90Min")]
             [Category("Ftb90")]
-            [Retry(2)]
+            [Retry(3)]
             public void LocalCoverageIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -237,7 +238,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("90Min")]
-            [Retry(2)]
+            [Retry(3)]
             public void EsportsIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -257,8 +258,8 @@ namespace Automation.TestsFolder
             [Category("Sanity")]
             [Category("Header")]
             [Category("Navigation")]
-            [Category("12Up")]
-            [Retry(2)]
+            [Category("12up")]
+            [Retry(3)]
             public void HighlightsIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -279,7 +280,7 @@ namespace Automation.TestsFolder
             [Category("Navigation")]
             [Category("12Up")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void QuizzesIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -300,7 +301,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void TvIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -320,7 +321,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void MusicIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -340,7 +341,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void GossipIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -360,7 +361,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
-            [Retry(2)]
+            [Retry(3)]
             public void VideoIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -380,7 +381,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
-            [Retry(2)]
+            [Retry(3)]
             public void ESLIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -400,7 +401,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
-            [Retry(2)]
+            [Retry(3)]
             public void DreamHackIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -421,7 +422,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
-            [Retry(2)]
+            [Retry(3)]
             public void MDLIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -441,7 +442,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("DBLTAP")]
-            [Retry(2)]
+            [Retry(3)]
             public void FnaticIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -462,7 +463,7 @@ namespace Automation.TestsFolder
             [Category("Header")]
             [Category("Navigation")]
             [Category("90MinIn")]
-            [Retry(2)]
+            [Retry(3)]
             public void iLeagueIcon()
             {
                 Navigation navigation = new Navigation(_browser);
@@ -471,6 +472,116 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
+
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Latest : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "129")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Navigation")]
+            [Category("Pluralist")]
+            [Retry(3)]
+            public void LatestIcon()
+            {
+                Navigation navigation = new Navigation(_browser);
+                string errors = navigation.ValidateIcon(_params);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Politics : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "130")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Navigation")]
+            [Category("Politics")]
+            [Retry(3)]
+            public void PoliticsIcon()
+            {
+                Navigation navigation = new Navigation(_browser);
+                string errors = navigation.ValidateIcon(_params);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Perspectives : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "131")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Navigation")]
+            [Category("Pluralist")]
+            [Retry(3)]
+            public void PerspectivesIcon()
+            {
+                Navigation navigation = new Navigation(_browser);
+                string errors = navigation.ValidateIcon(_params);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Media : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "132")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Navigation")]
+            [Category("Pluralist")]
+            [Retry(3)]
+            public void MediaIcon()
+            {
+                Navigation navigation = new Navigation(_browser);
+                string errors = navigation.ValidateIcon(_params);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Culture : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "133")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Navigation")]
+            [Category("Pluralist")]
+            [Retry(3)]
+            public void CultureIcon()
+            {
+                Navigation navigation = new Navigation(_browser);
+                string errors = navigation.ValidateIcon(_params);
+
+                Assert.True(string.IsNullOrEmpty(errors), errors);
+            }
+        }
+
+
+
+
+
+
+
 
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -30,7 +31,7 @@ namespace Automation.PagesObjects
             var languages = parameters["Languages"].AsBsonArray.Select(l => l.ToString()).ToList();
             var selector = icon["Selector"].ToString();
             var url = icon["url"].ToString();
-
+                
             languages.ForEach(l =>
             {
                 _browser.Navigate($"{Base._config.Url}/{l}");
@@ -50,9 +51,18 @@ namespace Automation.PagesObjects
 
         string GetExUrl(string language, string selector, string url ,bool video = false)
         {
-            if (video)
-                return $"http://videos.{Base._config.SiteName.ToLower()}{url}";
+            var testId = TestContext.CurrentContext.Test.Properties.Get("TestCaseId").ToString();
 
+            if (video) 
+                return $"http://videos.{Base._config.SiteName.ToLower()}.com{url}";
+
+            if (testId == "112" && language == "es")
+                return $"{Base._config.Url.ToLower()}/{language}/categories/copa-libertadores?view_source=nav_bar&viewmedium=nav_bar_copa-libertadores";
+
+            if (testId == "112" && language == "pt-BR")
+                return $"{Base._config.Url.ToLower()}/{language}/leagues/copa-libertadores?view_source=nav_bar&viewmedium=nav_bar_copa-libertadores";
+           
+           
             if (language == "en")
                 return $"{Base._config.Url.ToLower()}{url}";
             else
