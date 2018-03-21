@@ -30,7 +30,7 @@ namespace Automation.PagesObjects
             var icon = parameters["Icon"];
             var languages = parameters["Languages"].AsBsonArray.Select(l => l.ToString()).ToList();
             var selector = icon["Selector"].ToString();
-            var url = icon["url"].ToString();
+            var url = icon["url"].ToString().Split('?').First();
                 
             languages.ForEach(l =>
             {
@@ -39,8 +39,8 @@ namespace Automation.PagesObjects
                 IWebElement el = _browserHelper.FindElement(By.CssSelector(selector), "Icon");
                 Base.MongoDb.UpdateSteps("Clicking on Icon.");
                 el.Click();
-                var acUrl = _browser.GetUrl().ToLower();
-                var exUrl = GetExUrl(l, selector, url ,selector.Contains("video"));
+                var acUrl = _browser.GetUrl().ToLower().Split('?').First();
+                var exUrl = GetExUrl(l, selector, url ,selector.Contains("video")).Split('?').First();
 
                 Base.MongoDb.UpdateSteps("Validating url.");
                 errors += acUrl.ToLower() == exUrl.ToLower() ? "" : $"Expected url: {exUrl}. Actual: {acUrl}";
@@ -57,17 +57,13 @@ namespace Automation.PagesObjects
                 return $"http://videos.{Base._config.SiteName.ToLower()}.com{url}";
 
             if (testId == "112" && language == "es")
-                return $"{Base._config.Url.ToLower()}/{language}/categories/copa-libertadores?view_source=nav_bar&viewmedium=nav_bar_copa-libertadores";
+                return $"{Base._config.Url.ToLower()}/{language}/categories/copa-libertadores";
 
             if (testId == "112" && language == "pt-BR")
-                return $"{Base._config.Url.ToLower()}/{language}/leagues/copa-libertadores?view_source=nav_bar&viewmedium=nav_bar_copa-libertadores";
-           
-           
-            if (testId == "111" && language == "en")
-                return $"{Base._config.Url.ToLower()}/channels/viral-videos?view_source=nav_bar&viewmedium=nav_bar_viral-videos";
+                return $"{Base._config.Url.ToLower()}/{language}/leagues/copa-libertadores";
 
-            if (testId == "111" && language == "es")
-                return $"{Base._config.Url.ToLower()}/{language}/channels/viral-videos?view_source=nav_bar&viewmedium=nav_bar_viral";
+            if (testId == "111" && language == "es" && Base._config.SiteName == "90Min")
+                return $"{Base._config.Url.ToLower()}/{language}/Categories/viral";
 
             if (language == "en")
                 return $"{Base._config.Url.ToLower()}{url}";
