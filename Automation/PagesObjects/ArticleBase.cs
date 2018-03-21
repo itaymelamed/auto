@@ -312,7 +312,7 @@ namespace Automation.PagesObjects
         {
             HoverOverCoverImage();
             Base.MongoDb.UpdateSteps($"Validating the delete button on cover image.");
-            return _browserHelper.IsClickble(deleteBtnContainerImage, nameof(deleteBtnContainerImage));
+            return _browserHelper.WaitUntillTrue(() => _browserHelper.IsClickble(deleteBtnContainerImage, nameof(deleteBtnContainerImage)));
         }
 
         public void SearchImage(string search)

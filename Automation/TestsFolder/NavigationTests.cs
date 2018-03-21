@@ -21,13 +21,11 @@ namespace Automation.TestsFolder
             public void FixturesIcon()
             {
                 Navigation navigation = new Navigation(_browser);
-
                 string errors = navigation.ValidateIcon(_params);
 
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
 
         [TestFixture]
         [Parallelizable]
@@ -177,7 +175,6 @@ namespace Automation.TestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class Rumors : BaseUi
@@ -197,7 +194,6 @@ namespace Automation.TestsFolder
             }
         }
     
-
         [TestFixture]
         [Parallelizable]
         public class LocalCoverage : BaseUi
@@ -276,7 +272,6 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
 
         [TestFixture]
         [Parallelizable]
@@ -392,7 +387,6 @@ namespace Automation.TestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class MDL : BaseUi
@@ -431,7 +425,6 @@ namespace Automation.TestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class iLeague : BaseUi
@@ -450,8 +443,6 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
-
 
         [TestFixture]
         [Parallelizable]
@@ -472,7 +463,6 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
 
         [TestFixture]
         [Parallelizable]
@@ -553,13 +543,5 @@ namespace Automation.TestsFolder
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
-
-
-
-
-
-
-
-
     }
 }
