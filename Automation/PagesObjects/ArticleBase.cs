@@ -93,6 +93,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".search-results li")]
         protected IList<IWebElement> imagesResults { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "[data-type='Cover'] .upload")]
+        protected IWebElement coverUpload { get; set; }
+
         protected Browser _browser;
         protected IWebDriver _driver;
         protected BrowserHelper _browserHelper;
@@ -310,9 +313,13 @@ namespace Automation.PagesObjects
 
         public bool ValidateDeleteButtonCoverimage()
         {
-            HoverOverCoverImage();
             Base.MongoDb.UpdateSteps($"Validating the delete button on cover image.");
-            return _browserHelper.WaitUntillTrue(() => _browserHelper.IsClickble(deleteBtnContainerImage, nameof(deleteBtnContainerImage)));
+            return  _browserHelper.WaitUntillTrue(() => 
+            {
+                HoverOverCoverImage();
+                _browserHelper.ClickJavaScript(deleteBtnContainerImage);
+                return _browserHelper.WaitForElement(coverUpload, nameof(coverUpload));
+            });
         }
 
         public void SearchImage(string search)

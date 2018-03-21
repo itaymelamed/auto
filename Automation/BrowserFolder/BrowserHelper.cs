@@ -119,7 +119,7 @@ namespace Automation.BrowserFolder
                     {
                         return func();
                     }
-                    catch(Exception)
+                    catch
                     {
                         return false;
                     }
