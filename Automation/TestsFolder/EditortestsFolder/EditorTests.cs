@@ -194,7 +194,6 @@ namespace Automation.TestsFolder.EditortestsFolder
                 cropImagePopUp.ClickOnEditokBtn();
 
                 Assert.IsTrue(articleBase.ValidateContainerImage(), "Container image was not exsists on image fieled after dragging.");
-                Assert.IsTrue(articleBase.ValidateDeleteButtonCoverimage(), "Delete button on cover image was not exsist.");
             }
         }
 
