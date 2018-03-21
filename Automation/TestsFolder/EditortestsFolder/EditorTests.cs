@@ -377,7 +377,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Test]
             [Property("TestCaseId", "33")]
             [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
-            [Retry(2)]
+            [Retry(3)]
             public void Editor_List_ValidateDragImages()
             {
                 _browser.Navigate(_config.Url);

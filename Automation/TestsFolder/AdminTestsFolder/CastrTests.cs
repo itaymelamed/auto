@@ -482,7 +482,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(3)]
             public void Castr_PnPost()
             {
                 string urbanAirShipUrl = _params["Url"].ToString();
