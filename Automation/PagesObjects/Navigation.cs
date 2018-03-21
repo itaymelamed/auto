@@ -63,6 +63,12 @@ namespace Automation.PagesObjects
                 return $"{Base._config.Url.ToLower()}/{language}/leagues/copa-libertadores?view_source=nav_bar&viewmedium=nav_bar_copa-libertadores";
            
            
+            if (testId == "111" && language == "en")
+                return $"{Base._config.Url.ToLower()}/channels/viral-videos?view_source=nav_bar&viewmedium=nav_bar_viral-videos";
+
+            if (testId == "111" && language == "es")
+                return $"{Base._config.Url.ToLower()}/{language}/channels/viral-videos?view_source=nav_bar&viewmedium=nav_bar_viral";
+
             if (language == "en")
                 return $"{Base._config.Url.ToLower()}{url}";
             else
