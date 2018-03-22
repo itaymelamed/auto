@@ -96,7 +96,7 @@ namespace Automation.ApiFolder
 
             if (!string.IsNullOrEmpty(errors))
             {
-                errors += $"<div>Expected JSON: {exJson.ToString()}. Actual JSON: {acJson.ToString()}</div>";
+                errors += $"<div><b>{adName}:</b> </div><div><b>Expected JSON:</b> {exJson.ToString()}.</div> <div><b>Actual JSON: {acJson.ToString()}</b></div>";
                 return errors;
             }
 
