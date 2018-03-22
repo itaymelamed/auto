@@ -95,7 +95,10 @@ namespace Automation.ApiFolder
             diffsKeys.ForEach(d => errors += $"<div><b>{adName}</b>: Following parameter is missing the request: {d}</div></br></br>");
 
             if (!string.IsNullOrEmpty(errors))
+            {
+                errors += $"<div>Expected JSON: {exJson.ToString()}. Actual JSON: {acJson.ToString()}</div>";
                 return errors;
+            }
 
             try
             {
