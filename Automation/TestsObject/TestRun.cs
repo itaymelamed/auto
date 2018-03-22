@@ -13,11 +13,13 @@ namespace Automation.TestsObjects
         public string Date { get; }
         public Results Results { get; set; }
         public string Duration { get; set; }
-        public String SiteName { get; }
+        public string SiteName { get; }
         public string Category { get; }
+        public string User { get; }
 
         public TestRun(Configurations config)
         {
+            User = TestContext.Parameters.Get("user", "None");
             Category = TestContext.Parameters.Get("cat", "none");
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";

@@ -74,7 +74,7 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.utest.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.Production.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
