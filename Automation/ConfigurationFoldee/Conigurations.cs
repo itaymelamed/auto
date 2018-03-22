@@ -80,7 +80,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90Min");
+            return TestContext.Parameters.Get("siteName", "90MinDe");
         }
 
         static string GetParams(string param)

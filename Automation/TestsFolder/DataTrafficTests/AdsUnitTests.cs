@@ -31,6 +31,7 @@ namespace Automation.TestsFolder
                 var displyed = _params["Displyed"].AsBsonArray;
                 var notDisplyed = _params["NotDisplyed"].AsBsonArray;
 
+                _browser.SetBrowserSize();
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);

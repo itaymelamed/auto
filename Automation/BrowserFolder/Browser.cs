@@ -204,5 +204,10 @@ namespace Automation.BrowserFolder
         {
             Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
         }
+
+        public void SetBrowserSize()
+        {
+            Driver.Manage().Window.Size = new System.Drawing.Size(360 ,640);
+        }
     }
 }
