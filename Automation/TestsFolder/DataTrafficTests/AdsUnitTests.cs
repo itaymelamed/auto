@@ -26,10 +26,10 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
@@ -69,10 +69,10 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
@@ -118,10 +118,10 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
@@ -166,10 +166,10 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
