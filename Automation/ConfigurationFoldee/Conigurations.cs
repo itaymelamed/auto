@@ -48,6 +48,7 @@ namespace Automation.ConfigurationFolder
         public enum BrowserType
         {
             Desktop,
+            Mobile,
             Chrome,
             FireFox,
             Safari,

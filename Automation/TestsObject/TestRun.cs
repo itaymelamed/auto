@@ -2,7 +2,6 @@
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
 using NUnit.Framework;
-using static Automation.ConfigurationFolder.Configurations;
 using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsObjects
@@ -21,7 +20,7 @@ namespace Automation.TestsObjects
         public TestRun(Configurations config)
         {
             User = TestContext.Parameters.Get("user", "None");
-            Category = Base._config.BrowserT != BrowserType.Desktop ? TestContext.Parameters.Get("cat", "none") : TestContext.Parameters.Get("cat", "none") + "Mobile";
+            Category = TestContext.Parameters.Get("cat", "none");
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
