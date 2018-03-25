@@ -6,7 +6,7 @@ using AutomatedTester.BrowserMob.HAR;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -56,20 +56,20 @@ namespace Automation.PagesObjects
 
         public bool WaitForVideoToPlay()
         {
-            Base.MongoDb.UpdateSteps("wait for video to be played.");
+            Base.MongoDb.UpdateSteps("Waiting for video to be played.");
             return _browserHelper.WaitForElement(videoPlaying, nameof(videoPlaying), 120);
         }
 
         public void WaitForVideoToComplete(int sec)
         {
-            Base.MongoDb.UpdateSteps("wait for video to be completed.");
+            Base.MongoDb.UpdateSteps("Waiting for video to be completed.");
             Thread.Sleep(TimeSpan.FromSeconds(sec));
         }
 
         public void Mute()
         {
             HoverOverVideo();
-            Base.MongoDb.UpdateSteps("Click ov volume button.");
+            Base.MongoDb.UpdateSteps("Clicking ov volume button.");
             _browserHelper.WaitForElement(volume, nameof(volume), 120);
             _browserHelper.ExecuteUntill(() => volume.Click());
         }
@@ -77,7 +77,7 @@ namespace Automation.PagesObjects
         public void FullScreen()
         {
             HoverOverVideo();
-            Base.MongoDb.UpdateSteps("Click on FullScreen button.");
+            Base.MongoDb.UpdateSteps("Clicking on FullScreen button.");
             _browserHelper.WaitForElement(fullScreen, nameof(fullScreen), 120);
             _browserHelper.Click(fullScreen, nameof(fullScreen));
         }
@@ -85,7 +85,7 @@ namespace Automation.PagesObjects
         public void Seek()
         {
             HoverOverVideo();
-            Base.MongoDb.UpdateSteps("Drag timeline.");
+            Base.MongoDb.UpdateSteps("Dragging timeline.");
             _browserHelper.WaitForElement(progressBar, nameof(progressBar), 120);
             _browserHelper.ExecuteUntill(() => progressBar.Click(), 120);
         }
@@ -93,14 +93,14 @@ namespace Automation.PagesObjects
         public void Pause()
         {
             HoverOverVideo();
-            Base.MongoDb.UpdateSteps("Click on Pause.");
+            Base.MongoDb.UpdateSteps("Clicking on Pause.");
             _browserHelper.WaitForElement(play, nameof(play), 120);
             _browserHelper.Click(play, nameof(play));
         }
 
         void HoverOverVideo()
         {
-            Base.MongoDb.UpdateSteps("Hover over video.");
+            Base.MongoDb.UpdateSteps("Hovering over the video.");
             _browserHelper.WaitForElement(video, nameof(video));
             _browserHelper.Hover(video);
         }
@@ -112,7 +112,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnPlay()
         {
-            Base.MongoDb.UpdateSteps("Click on Play btn.");
+            Base.MongoDb.UpdateSteps("Clicking on the Play button.");
             _browserHelper.WaitForElement(playBtn, nameof(playBtn), 60);
             _browserHelper.Click(playBtn, nameof(playBtn));
         }

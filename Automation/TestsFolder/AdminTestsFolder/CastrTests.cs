@@ -29,6 +29,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_NavigateToCastrFromAdminPage()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -54,6 +55,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_FilterByLanguageEn()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 homePage.HoverOverUserProfilePic();
@@ -80,6 +82,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_FilterByType_Article()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -107,6 +110,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_ValidatePostUrl()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -136,6 +140,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_CheckArchiveStatus()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -164,6 +169,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_CheckReset()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -195,6 +201,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_CheckNewStatus()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -219,6 +226,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_CheckPublishStatus()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -246,6 +254,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_CheckControlsAreDissabledOnPublishPost()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -277,6 +286,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var feedUrl = _params["PremierLeague"].ToString();
                 var feedUrl2 = _params["ChampionLeague"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -317,6 +327,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_Social_Networks_Facebook()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -344,6 +355,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Ignore("Bug")]
             public void Castr_Social_Networks_Twitter()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -427,6 +439,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Castr_FTB90_PublishAnIdPostFromFTB90Caster()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -469,12 +482,13 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("AllBrands")]
-            [Retry(2)]
+            [Retry(3)]
             public void Castr_PnPost()
             {
                 string urbanAirShipUrl = _params["Url"].ToString();
                 var user = _params["Credentials"];
-                    
+
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -510,6 +524,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Caster_Schedulr_ValidateTime()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 homePage.HoverOverUserProfilePic();
@@ -534,6 +549,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Caster_Schedulr_ValidateLeagues()
             {
+                _browser.Navigate(_config.Url);
                 var leagues = _params["Leagues"].AsBsonArray;
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
@@ -559,6 +575,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Caster_Schedulr_SocialNetworks()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -588,6 +605,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Caster_Schedulr_ValidateDate()
             {
+                _browser.Navigate(_config.Url);
                 var curYear = DateTime.Now.Year;
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
@@ -620,6 +638,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Caster_Schedulr_ValidateLeaguesFilter()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
@@ -646,10 +665,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Admin")]
             [Category("Castr")]
             [Category("Scedulr")]
-            //[Category("AllBrands")]
             [Retry(2)]
             public void Caster_Schedulr_PostBox()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);

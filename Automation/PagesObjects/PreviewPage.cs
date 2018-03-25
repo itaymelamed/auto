@@ -1,7 +1,7 @@
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -27,7 +27,7 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnPublishBtn()
         {
-            Base.MongoDb.UpdateSteps($"Click on Publish button.");
+            Base.MongoDb.UpdateSteps($"Clicking on Publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
             publishBtn.Click();
 
@@ -36,7 +36,7 @@ namespace Automation.PagesObjects
 
         public ArticleBase ClickOnEditButton()
         {
-            Base.MongoDb.UpdateSteps($"Click on edit button.");
+            Base.MongoDb.UpdateSteps($"Clicking on edit button.");
             _browserHelper.WaitForElement(editBtn, nameof(editBtn));
             editBtn.Click();
 

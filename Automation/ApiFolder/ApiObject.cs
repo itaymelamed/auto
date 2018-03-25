@@ -16,6 +16,14 @@ namespace Automation.ApiFolder
             }
         }
 
+        public void GetRequestVoid(string url)
+        {
+            using (var client = new WebClient())
+            {
+                var responseString = client.DownloadString(url);
+            }
+        }
+
         public WebResponse MakeRequest(string url, string method, string reference = null)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);

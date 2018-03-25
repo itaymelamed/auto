@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -81,7 +82,7 @@ namespace Automation.ApiFolder
             return func();
         }
 
-        public string JsonComparer(JObject exJson, JObject acJson)
+        public string JsonComparer(JObject exJson, JObject acJson, string adName)
         {
             var errors = string.Empty;
 
@@ -91,12 +92,22 @@ namespace Automation.ApiFolder
             diffsKeys.AddRange(acJsonKeys.Except(exJsonKeys));
             diffsKeys = diffsKeys.Distinct().ToList();
 
-            diffsKeys.ForEach(d => errors += $"{d}               {Environment.NewLine}");
+            diffsKeys.ForEach(d => errors += $"<div><b>{adName}</b>: Following parameter is missing the request: {d}</div></br></br>");
 
-            if (string.IsNullOrEmpty(errors))
+            if (!string.IsNullOrEmpty(errors))
+            {
+                errors += $"<div><b>{adName}:</b> </div><div><b>Expected JSON:</b> {exJson.ToString()}.</div> <div><b>Actual JSON: {acJson.ToString()}</b></div>";
                 return errors;
+            }
 
-            exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"Expected value for key: {k} is {exJson[k]}. Actual: {acJson[k]} {Environment.NewLine}");
+            try
+            {
+                exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"<div><b>{adName}</b>: Expected value for key: {k} is <b>{exJson[k]}</b>. Actual: <b>{acJson[k]}</b></div></br></br>");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return errors;
         }

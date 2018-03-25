@@ -4,7 +4,7 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -33,13 +33,13 @@ namespace Automation.PagesObjects
 
         public void ClickOnCropImageBtn()
         {
-            if (!_browserHelper.WaitForElement(okBtn, "Crop image",20 ,false))
+            if (!_browserHelper.WaitForElement(okBtn, "Cropping image",20 ,false))
             {
                 _browser.Refresh();
                 Thread.Sleep(2000);
                 DragImage(0);
             }
-            BaseUi.MongoDb.UpdateSteps($"Click on crop image Ok button.");
+            BaseUi.MongoDb.UpdateSteps($"Clicking on crop image Ok button.");
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(okBtn);
             _browserHelper.ClickJavaScript(okBtn);
@@ -49,7 +49,7 @@ namespace Automation.PagesObjects
         public void ClickOnEditokBtn()
         {
             _browserHelper.WaitForElement(editOkBtn, "Image edit button");
-            BaseUi.MongoDb.UpdateSteps($"Click on edit Ok button.");
+            BaseUi.MongoDb.UpdateSteps($"Clicking on edit Ok button.");
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(editOkBtn);
             _browserHelper.ClickJavaScript(editOkBtn);

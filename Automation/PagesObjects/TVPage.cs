@@ -2,7 +2,7 @@
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -17,19 +17,11 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".video-container-image")]
         IWebElement videoContainer { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = ".code-wrap textarea")]
         IWebElement embedCode { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.save")]
         IWebElement okBtn { get; set; }
-
-           
-
-
-
-       
-
 
         public TVPage(Browser broswer)
             : base(broswer)
@@ -39,14 +31,14 @@ namespace Automation.PagesObjects
 
         public void DragVideo()
         {
-            BaseUi.MongoDb.UpdateSteps("Drag and drop video elemnet");
+            Base.MongoDb.UpdateSteps("Dragging and drop video elemnet");
             _browserHelper.WaitForElement(previewIframe, nameof(previewIframe));
             _browserHelper.DragElement(previewIframe, editorMedia);
         }
 
         public bool ValidateVideoAppear()
         {
-            BaseUi.MongoDb.UpdateSteps("Validate video appear");
+            Base.MongoDb.UpdateSteps("Validating video appears");
             DragVideo();
             return _browserHelper.WaitForElement(videoContainer, nameof(videoContainer));
         }
@@ -54,13 +46,14 @@ namespace Automation.PagesObjects
 
         public void SetEmbedCode(string embadeCode)
         {
-            BaseUi.MongoDb.UpdateSteps("Set JW embed code");
+            Base.MongoDb.UpdateSteps("Inserting JW embed code");
             _browserHelper.WaitForElement(embedCode,nameof(embedCode));
             _browserHelper.SetText(embedCode,embadeCode); 
         }
+
         public void ClickOnOkBtn()
         {
-            BaseUi.MongoDb.UpdateSteps("Click on ok btn");
+            Base.MongoDb.UpdateSteps("Clicking on ok button");
             _browserHelper.WaitForElement(okBtn,nameof(okBtn));
             _browserHelper.Click(okBtn,nameof(okBtn));
         }

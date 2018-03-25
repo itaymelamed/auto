@@ -13,16 +13,18 @@ namespace Automation.TestsObjects
         public string Date { get; }
         public Results Results { get; set; }
         public string Duration { get; set; }
-        public String SiteName { get; }
+        public string SiteName { get; }
         public string Category { get; }
+        public string User { get; }
 
         public TestRun(Configurations config)
         {
-            Category = TestContext.Parameters.Get("cat", "local");
+            User = TestContext.Parameters.Get("user", "None");
+            Category = TestContext.Parameters.Get("cat", "none");
             Results = new Results();
             TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
             Env = config.Env.ToString();
-            Date = DateTime.Now.AddHours(2).ToString("MM/dd/yy HH:mm:ss");
+            Date = DateTime.Now.AddHours(2).ToString("dd/MM HH:mm");
             SiteName = config.SiteName;
 
             Base.MongoDb.InserTestRun(this);
@@ -38,7 +40,6 @@ namespace Automation.TestsObjects
             Results.Running = docs.FindAll(x => x["Result"]["Status"] == TestStatus.Running.ToString()).Count;
 
             Base.MongoDb.UpdateTestRunResults(this);
-            Base.MongoDb.UpdateDuration(this);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 using System.Linq;
 using System.Collections.Generic;
@@ -45,12 +45,29 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".logo-img")]
         IWebElement logo { get; set; }
 
+<<<<<<< HEAD
 
         [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
         IWebElement dropdownCurLangauge { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
         IList<IWebElement> dropdownLangauges { get; set; }
+=======
+        [FindsBy(How = How.CssSelector, Using = "div[data-spotim-module='spotim-launcher']")]
+        IWebElement spotim { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "post-content")]
+        IWebElement postContent { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "reactions__list-item")]
+        IList<IWebElement> reactions { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='facebook']")]
+        IWebElement faceBookTop { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='twitter']")]
+        IWebElement twitterTop { get; set; }
+>>>>>>> 79ffbbe6b1dde554dd1835fce93f5fb7c985e2cc
 
         public PostPage(Browser browser)
             :base(browser)
@@ -119,7 +136,7 @@ namespace Automation.PagesObjects
 
         public string ValidateTagsOnSourcePage(BsonArray tags)
         {
-            Base.MongoDb.UpdateSteps("Validate Tags On Source Page.");
+            Base.MongoDb.UpdateSteps("Validating Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
             _browser.Navigate(_browser.GetUrl()+"?test=test");
@@ -132,7 +149,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostCreated(string postTitle)
         {
-            Base.MongoDb.UpdateSteps("Validate Post creation.");
+            Base.MongoDb.UpdateSteps("Validating Post creation.");
             _browserHelper.WaitUntillTrue(() => _browser.GetUrl().Contains("posts"), "User has not redirected to posts page.");
             //_browserHelper.WaitUntillTrue(() => _browser.GetUrl().Replace("-", " ").Contains(postTitle.ToLower().Replace(":", " ")), "Post title is not shown on url.");
             return true;
@@ -140,7 +157,7 @@ namespace Automation.PagesObjects
 
         public void HoverOverOptions()
         {
-            Base.MongoDb.UpdateSteps("Hover over 'Options'.");
+            Base.MongoDb.UpdateSteps("Hovering over the 'Options'.");
             _browserHelper.WaitForElement(options, nameof(options));
             _browserHelper.Hover(options);
         }
@@ -155,7 +172,7 @@ namespace Automation.PagesObjects
                 return _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
             }, "Failed to hover over options.");
 
-            Base.MongoDb.UpdateSteps("Click on 'Open In Caster'.");
+            Base.MongoDb.UpdateSteps("Clicking on 'Open In Caster'.");
             _browserHelper.Click(openInCaster, nameof(openInCaster));
 
             return new CastrPage(_browser);
@@ -201,7 +218,7 @@ namespace Automation.PagesObjects
                 var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
                 if (curAd != null)
                 {
-                    Base.MongoDb.UpdateSteps($"Validate {curAd} displyed.");
+                    Base.MongoDb.UpdateSteps($"Validating {curAd} displyed.");
                     adsUi.Add(curAd);
                 }
                 _browser.SwitchToFirstTab();
@@ -214,7 +231,7 @@ namespace Automation.PagesObjects
 
         public string GetAuthorName()
         {
-            Base.MongoDb.UpdateSteps("Get the author name from the post.");
+            Base.MongoDb.UpdateSteps("Getting the author name from the post.");
             _browserHelper.WaitForElement(authorName,nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
@@ -224,7 +241,7 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnNextBtn()
         {
-            Base.MongoDb.UpdateSteps("Click on next button.");
+            Base.MongoDb.UpdateSteps("Clicking on next button.");
             _browserHelper.WaitForElement(nextBtn, nameof(nextBtn));
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(nextBtn));
 
@@ -233,37 +250,71 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnTransferNews(int i)
         {
-            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            Base.MongoDb.UpdateSteps($"Clicking on a post in the Transfer News section  {i}");
             _browserHelper.ExecuteUntill(() => transferNews.ToList()[i].Click());
             return new PostPage(_browser);
         }
 
         public PostPage ClickOnTopArticle(int i)
         {
-            Base.MongoDb.UpdateSteps($"Transfer news - Click on post {i}");
+            Base.MongoDb.UpdateSteps($"Clicking on post in the Top Article section {i}");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(topArticles.ToList()[i]));
             return new PostPage(_browser);
         }
 
         public void ClickTaboolaSide(int i)
         {
-            Base.MongoDb.UpdateSteps("Click on taboola side article.");
+            Base.MongoDb.UpdateSteps("Clicking on a post in the taboola side section.");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaRight.ToList()[i]));
         }
 
         public void ClickTaboolaBtm(int i)
         {
-            Base.MongoDb.UpdateSteps("Click on taboola buttom article.");
+            Base.MongoDb.UpdateSteps("Clicking on a post in the taboola bottom section.");
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(taboolaBtm.ToList()[i]));
         }
 
         public HomePage ClickOnLogo()
         {
-            Base.MongoDb.UpdateSteps("Click on top logo.");
+            Base.MongoDb.UpdateSteps("Clicking on top logo.");
             _browserHelper.WaitForElement(logo, nameof(logo));
             _browserHelper.Click(logo, nameof(logo));
 
             return new HomePage(_browser);
+        }
+
+        public void ClickOnSpotim()
+        {
+            Base.MongoDb.UpdateSteps("Clicking on Spotim.");
+            _browserHelper.Click(spotim, nameof(spotim));
+        }
+
+        public void ScrollToTitle()
+        {
+            Base.MongoDb.UpdateSteps("Scrolling to title.");
+            _browserHelper.Click(spotim, nameof(spotim));
+            _browserHelper.Hover(title);
+        }
+
+        public void ClickOnReaction(int i)
+        {
+            Base.MongoDb.UpdateSteps($"Clicking on reaction #{i}.");
+            _browserHelper.WaitUntillTrue(() => reactions.ToList().Count() > 2);
+            _browserHelper.Click(reactions.ToList()[i], $"Reaction #{i}");
+        }
+
+        public void ClickOnFacebookTopBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Clicking on Facebook top button");
+            _browserHelper.WaitForElement(faceBookTop, nameof(faceBookTop));
+            _browserHelper.Click(faceBookTop, nameof(faceBookTop));
+        }
+
+        public void ClickOnTwitterTopBtn()
+        {
+            Base.MongoDb.UpdateSteps($"Clicking on Twitter top button");
+            _browserHelper.WaitForElement(twitterTop, nameof(twitterTop));
+            _browserHelper.Click(twitterTop, nameof(twitterTop));
         }
     }
 }

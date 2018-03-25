@@ -211,7 +211,7 @@ namespace Automation.BrowserFolder
             });
         }
 
-        public void ExecuteUntill(Action action, int timeOut = 20)
+        public void ExecuteUntill(Action action, int timeOut = 40)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
             wait.Until(d => {

@@ -2,7 +2,7 @@
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -27,7 +27,7 @@ namespace Automation.PagesObjects
         {
             _browser.SwitchToFirstTab();
             Thread.Sleep(1000);
-            BaseUi.MongoDb.UpdateSteps($"Click on Write an article Button.");
+            BaseUi.MongoDb.UpdateSteps($"Clicking on 'Write an article' button.");
             if(_browserHelper.WaitForElement(WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
                 _browserHelper.Click(WriteAnArticleBtn, "Write new article button.", 0, false);
 

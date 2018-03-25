@@ -14,7 +14,7 @@ namespace Automation.ApiFolder
     public class GoogleAnalitics
     {
         Func<List<Request>> _requests;
-        static string _url = "https://www.google-analytics.com/collect";
+        static string _url = "www.google-analytics.com/collect";
 
         public GoogleAnalitics(Func<List<Request>> requests)
         {
@@ -65,7 +65,6 @@ namespace Automation.ApiFolder
                 jObject = e.Where(r => r["ea"].ToString() == eventAction).FirstOrDefault();
                 if (post)
                     reqs.ForEach(r => r.Properties().Select(p => p.Name).ToList().ForEach(n => jObject[n] = jObject[n].ToString().Replace("%20", " ")));
-
             }
             catch(Exception e)
             {

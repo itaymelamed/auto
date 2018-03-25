@@ -48,6 +48,7 @@ namespace Automation.ConfigurationFolder
         public enum BrowserType
         {
             Desktop,
+            Mobile,
             Chrome,
             FireFox,
             Safari,
@@ -63,12 +64,18 @@ namespace Automation.ConfigurationFolder
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
-            BrowserT = BrowserType.Desktop;
+            BrowserT = GetBrowserType();
             GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             ApiConfig = GetConfig<ApiConfig>("ApiConfig");
             FacebookApiConfig = GetConfig<FacebookApiConfig>("FacebookApiConfig");
             Url = $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
+        }
+
+        static BrowserType GetBrowserType()
+        {
+            string browserT = TestContext.Parameters.Get("browser", BrowserType.Desktop.ToString());
+            return (BrowserType)Enum.Parse(typeof(BrowserType), browserT);
         }
 
         static Enviroment GetEnvType()
@@ -79,12 +86,12 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90Min");
+            return TestContext.Parameters.Get("siteName", "90MinDe");
         }
 
         static string GetParams(string param)
         {
-            return TestContext.Parameters.Get(param, "Utest");
+            return TestContext.Parameters.Get(param, "utest");
         }
 
         BsonValue GetConfigJson(string siteName)

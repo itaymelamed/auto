@@ -1,5 +1,6 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,18 +57,6 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="Cloudinary">
-      <HintPath>..\packages\CloudinaryDotNet.1.1.1\lib\net\net40\Cloudinary.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\CloudinaryDotNet.1.1.1\lib\net\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Flurl">
-      <HintPath>..\packages\Flurl.2.6.0\lib\net45\Flurl.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -94,11 +83,26 @@
     <Reference Include="Mono.HttpUtility">
       <HintPath>..\packages\Mono.HttpUtility.1.0.0.1\lib\net40\Mono.HttpUtility.dll</HintPath>
     </Reference>
+    <Reference Include="Flurl">
+      <HintPath>..\packages\Flurl.2.7.0\lib\net40\Flurl.dll</HintPath>
+    </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.3.9.1\lib\net45\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.3.11.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.3.9.1\lib\net45\WebDriver.Support.dll</HintPath>
+      <HintPath>..\packages\Selenium.Support.3.11.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="CloudinaryDotNet">
+      <HintPath>..\packages\CloudinaryDotNet.1.2.0\lib\net40\CloudinaryDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\CloudinaryDotNet.1.2.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.PageObjects">
+      <HintPath>..\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -127,8 +131,8 @@
     <Compile Include="TestsFolder\AdminTestsFolder\AdminTests.cs" />
     <Compile Include="TestsFolder\PostPagesFolder\PostPageTests.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\CastrTests.cs" />
-    <Compile Include="PagesObjects\AdminPage.cs" />
     <Compile Include="Helpersobjects\PostCreator.cs" />
+    <Compile Include="Helpersobjects\AdsTxtMailer.cs" />
     <Compile Include="TestsFolder\EditortestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPost.cs" />
@@ -187,7 +191,14 @@
     <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
+<<<<<<< HEAD
     <Compile Include="TestsFolder\HeaderAndFooterFolder\HeaderTests.cs" />
+=======
+    <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
+    <Compile Include="TestsFolder\NavigationTests.cs" />
+    <Compile Include="PagesObjects\Navigation.cs" />
+    <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
+>>>>>>> 79ffbbe6b1dde554dd1835fce93f5fb7c985e2cc
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

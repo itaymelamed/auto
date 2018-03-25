@@ -1,3 +1,4 @@
+**/.DS_Store
 Logger/bin/
 packages/
 Automation/bin/
@@ -5,3 +6,4 @@ Automation/obj/
 Logger/obj/
 *.userprefs
 Automation.userprefs
+.vs/

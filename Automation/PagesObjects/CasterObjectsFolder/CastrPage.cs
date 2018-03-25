@@ -6,8 +6,8 @@ using Automation.BrowserFolder;
 using Automation.PagesObjects.CasterObjectsFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
@@ -102,13 +102,13 @@ namespace Automation.PagesObjects
 
         public bool ValidateCasterPage()
         {
-            Base.MongoDb.UpdateSteps("Validate user is on Castr page.");
+            Base.MongoDb.UpdateSteps("Validating user is on Castr page.");
             return _browserHelper.WaitForUrlToChange($"{Base._config.Url}/management/castr");
         }
 
         public void FilterByLanguage(string language)
         {
-            Base.MongoDb.UpdateSteps($"Filter posts by language: {language}");
+            Base.MongoDb.UpdateSteps($"Filtering posts by language: {language}");
             _browserHelper.WaitForElement(languageDd, nameof(languageDd));
             SelectElement select = new SelectElement(languageDd);
             select.SelectByValue(language);
@@ -116,14 +116,14 @@ namespace Automation.PagesObjects
 
         public string ValidatePostLanguage(CastrPost castrPost, Languages lang)
         {
-            Base.MongoDb.UpdateSteps($"Validate post language");
+            Base.MongoDb.UpdateSteps($"Validating post's language");
             var postUrl = castrPost.GetPostUrl();
             return castrPost.GetPostUrl().ToLower().Contains(lang.ToString()) ? "" : $"{postUrl} is not in {lang}";
         }
 
         public string ValidatePostInEnglish(CastrPost castrPost, Languages lang)
         {
-            Base.MongoDb.UpdateSteps($"Validate post language");
+            Base.MongoDb.UpdateSteps($"Validating post's language");
             var langs = Enum.GetValues(typeof(Languages))
                 .Cast<Languages>()
                 .Select(v => v.ToString())
@@ -152,13 +152,13 @@ namespace Automation.PagesObjects
         {
             SelectAllCheckBoxes();
             _browserHelper.WaitForElementDiss(fetching);
-            Base.MongoDb.UpdateSteps($"Deselect all checkboxes.");
+            Base.MongoDb.UpdateSteps($"Deselecting all checkboxes.");
             SelectAllCheckBoxes();
         }
 
         public void SelectAllCheckBoxes()
         {
-            Base.MongoDb.UpdateSteps($"Select all checkboxes.");
+            Base.MongoDb.UpdateSteps($"Selecting all checkboxes.");
             _browserHelper.WaitForElement(allCbx, nameof(allCbx));
             _browserHelper.Click(allCbx, nameof(allCbx));
         }
@@ -166,7 +166,7 @@ namespace Automation.PagesObjects
         public CastrPage SelectType(Types type)
         {
             _browserHelper.WaitForElementDiss(fetching);
-            Base.MongoDb.UpdateSteps($"Select {type}.");
+            Base.MongoDb.UpdateSteps($"Selecting {type}.");
 
             _browserHelper.WaitUntillTrue(() => {
                 var typesCount = types.ToList().Count();
@@ -185,7 +185,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateFilterByType(Types type)
         {
-            Base.MongoDb.UpdateSteps($"Validate {type} icon is next to each post.");
+            Base.MongoDb.UpdateSteps($"Validating {type} icon is next to each post.");
             _browserHelper.WaitForElementDiss(fetching);
             return _browserHelper.WaitUntillTrue(() => typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString()));
         }
@@ -193,13 +193,13 @@ namespace Automation.PagesObjects
 
         public bool ValidateSucMsg()
         {
-            Base.MongoDb.UpdateSteps($"Validate action suc message.");
+            Base.MongoDb.UpdateSteps($"Validating action succsses message.");
             return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60);
         }
 
         public CastrPage SelectStatus(Statuses status)
         {
-            Base.MongoDb.UpdateSteps($"Select status {status}.");
+            Base.MongoDb.UpdateSteps($"Selecting status {status}.");
             _browserHelper.WaitForElement(statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
 
@@ -208,14 +208,14 @@ namespace Automation.PagesObjects
 
         public IWebElement SerachPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Search post: {title}.");
+            Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
             return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => Regex.Replace(t.Text.Replace('-', ' ').ToLower(),@"[\d-]", string.Empty)  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
         }
 
         public CastrPost ClickOnPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Click on post: {title}.");
+            Base.MongoDb.UpdateSteps($"Clicking on post: {title}.");
             _browserHelper.WaitUntillTrue(() => 
             {
                 _browserHelper.Click(SerachPost(title), $"Post title {title}");
@@ -227,7 +227,7 @@ namespace Automation.PagesObjects
 
         public CastrPost CheckPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Click on post: {title}.");
+            Base.MongoDb.UpdateSteps($"Clicking on post: {title}.");
             _browserHelper.ExecuteUntill(() => 
             {
                 var checkBx = postsTitles.IndexOf(SerachPost(title));
@@ -252,7 +252,7 @@ namespace Automation.PagesObjects
 
         public bool SearchPostByTitle(string title)
         {
-            Base.MongoDb.UpdateSteps($"Search post {title}.");
+            Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
             return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title));
         }
     }

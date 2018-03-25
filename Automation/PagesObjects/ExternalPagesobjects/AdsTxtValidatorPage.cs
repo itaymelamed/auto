@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Automation.BrowserFolder;
+using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.ExternalPagesobjects
 {
@@ -43,7 +44,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                     errorsList = new List<string>();
                     errorsList = errors.ToList().Select(e => e.Text).ToList();
                     ignorList.ForEach(i => errorsList.RemoveAll(e => e.Contains(i)));
-                    errorsList.ForEach(e => errorsString += "*)" + e);
+                    errorsList.ForEach(e => errorsString += "<div><h3>" + e + "</h3></div>");
                 });
             }
 

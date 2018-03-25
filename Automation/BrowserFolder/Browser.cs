@@ -4,10 +4,11 @@ using System;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
-using Automation.TestsObjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using Automation.ApiFolder;
+using System.Linq;
+using NUnit.Framework.Internal;
 
 namespace Automation.BrowserFolder
 {
@@ -19,29 +20,25 @@ namespace Automation.BrowserFolder
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
-        public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
-        {
-            lock(_syncObject)
-            {
-                _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-                string url = loadBalancer.GetAvailbleHub();
-                Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
-            }
-
-            BrowserHelper = new BrowserHelper(Driver);
-        }
-
         public Browser(bool proxy = false)
         {
-            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-            Driver = new ChromeDriver(_options);
+            ProxyApi = proxy? new ProxyApi(Base._config.Host) : null;
+            string url = $"http://{Base._config.Host}:32005/wd/hub";
+            Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);
         }
 
         public void Navigate(string url)
         {
             Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
-            Driver.Navigate().GoToUrl(url);
+            try
+            {
+                Driver.Navigate().GoToUrl(url);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Navigating to {url} was timeout.");
+            }
         }
         
         public void Maximize()
@@ -51,7 +48,14 @@ namespace Automation.BrowserFolder
 
         public void Quit()
         {
-            Driver.Quit();
+            try
+            {
+                Driver.Quit();
+            }
+            catch
+            {
+
+            }
         }
 
         public void Refresh()
@@ -67,10 +71,17 @@ namespace Automation.BrowserFolder
 
         public string GetUrl()
         {
-            return Driver.Url;
+            try
+            {
+                return Driver.Url;
+            }
+            catch
+            {
+                return "";
+            }
         }
 
-        public string GetScreenShot(Test test)
+        public string GetScreenShot(TestsObjects.Test test)
         {
             string path = "";
 
@@ -117,12 +128,27 @@ namespace Automation.BrowserFolder
 
         public void SwitchToFirstTab()
         {
+            Base.MongoDb.UpdateSteps("Swithching to first tab");
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
+        }
+
+        public int GetNumOfTabs()
+        {
+            return Driver.WindowHandles.Count;
         }
 
         internal void SwitchToLastTab()
         {
-            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
+            Base.MongoDb.UpdateSteps("Swithching to last tab");
+            Driver.SwitchTo().Window(Driver.WindowHandles.Last());
+        }
+
+        internal void SwitchToTab(int i, int wait = 0)
+        {
+            var xx = Driver.WindowHandles.ToList();
+            if (wait > 0)
+                BrowserHelper.WaitUntillTrue(() => GetNumOfTabs() == wait);
+            Driver.SwitchTo().Window(Driver.WindowHandles[i]);
         }
 
         public void Close()
@@ -155,9 +181,33 @@ namespace Automation.BrowserFolder
             return options;
         }
 
+        DesiredCapabilities GetCap(bool proxy)
+        {
+            var test = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get("Test") as TestsObjects.Test;
+            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+            var capabilities = (DesiredCapabilities)_options.ToCapabilities();
+            capabilities.SetCapability("browser", "chrome");
+            capabilities.SetCapability("version", "65.0");
+            if(!proxy)
+            {
+                capabilities.SetCapability("enableVNC", true);
+                capabilities.SetCapability("enableVideo", true);
+            }
+            capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
+            capabilities.SetCapability("name", test.TestName);
+            capabilities.SetCapability("videoFrameRate", 24);
+
+            return capabilities;
+        }
+
         public void AddCookies(string key, string value)
         {
             Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
+        }
+
+        public void SetBrowserSize(int width, int height)
+        {
+            Driver.Manage().Window.Size = new System.Drawing.Size(width, height);
         }
     }
 }
