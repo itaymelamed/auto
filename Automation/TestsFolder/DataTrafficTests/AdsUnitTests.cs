@@ -26,7 +26,7 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
                 var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
                 var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
@@ -69,7 +69,7 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
                 var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
                 var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
@@ -118,7 +118,7 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
                 var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
                 var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
@@ -166,7 +166,7 @@ namespace Automation.TestsFolder
             {
                 retries++;
                 string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
-                var postUrl = _params[_config.BrowserT.ToString()]["PostUrl"].AsString;
+                var postUrl = _params["PostUrl"].AsString;
                 var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
                 var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
                 var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
