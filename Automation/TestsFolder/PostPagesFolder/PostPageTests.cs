@@ -45,6 +45,5 @@ namespace Automation.TestsFolder.PostPagesFolder
                 Assert.True(counterRequest.Count() != 0, "A request to counter reads service was not sent.");
             }
         }
-
-        }
     }
+}
