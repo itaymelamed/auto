@@ -1,5 +1,6 @@
 ﻿using Automation.BrowserFolder;
 using NUnit.Framework;
+using static Automation.ConfigurationFolder.Configurations;
 using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsFolder
@@ -14,7 +15,10 @@ namespace Automation.TestsFolder
         {
             _browser = new Browser(true);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
-            _browser.Maximize();
+            if (_config.BrowserT == BrowserType.Desktop)
+                _browser.Maximize();
+            else
+                _browser.SetBrowserSize(375, 812);
         }
 
         [TearDown]

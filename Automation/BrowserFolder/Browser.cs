@@ -37,7 +37,7 @@ namespace Automation.BrowserFolder
             }
             catch
             {
-                throw new NUnit.Framework.AssertionException($"Failed to navigate to {url}");
+                throw new NUnit.Framework.AssertionException($"Navigating to {url} was timeout.");
             }
         }
         
@@ -205,9 +205,9 @@ namespace Automation.BrowserFolder
             Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
         }
 
-        public void SetBrowserSize()
+        public void SetBrowserSize(int width, int height)
         {
-            Driver.Manage().Window.Size = new System.Drawing.Size(360 ,640);
+            Driver.Manage().Window.Size = new System.Drawing.Size(width, height);
         }
     }
 }

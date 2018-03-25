@@ -57,19 +57,24 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
-            var name = Environment.MachineName;
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
-            BrowserT = BrowserType.Desktop;
+            BrowserT = GetBrowserType();
             GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             ApiConfig = GetConfig<ApiConfig>("ApiConfig");
             FacebookApiConfig = GetConfig<FacebookApiConfig>("FacebookApiConfig");
             Url = $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
+        }
+
+        static BrowserType GetBrowserType()
+        {
+            string browserT = TestContext.Parameters.Get("browser", BrowserType.Desktop.ToString());
+            return (BrowserType)Enum.Parse(typeof(BrowserType), browserT);
         }
 
         static Enviroment GetEnvType()
