@@ -24,7 +24,7 @@ namespace Automation.BrowserFolder
         {
             ProxyApi = proxy? new ProxyApi(Base._config.Host) : null;
             string url = $"http://{Base._config.Host}:32005/wd/hub";
-            Driver = Base._config.Local ? new ChromeDriver() : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
+            Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
             BrowserHelper = new BrowserHelper(Driver);
         }
 

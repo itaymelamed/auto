@@ -62,7 +62,7 @@ namespace Automation.ApiFolder
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
 
-                _errors += acJson == null ? $"<div>No request has found for <b>{n}</b>.</div>" : $"{JsonComparer(_exJson, acJson, n)} ";
+                _errors += acJson == null ? $"<div>No request has found for <b>{n}</b>.</div>" : $"{JsonComparer(_exJson, acJson, n)}";
             });
 
             return _errors;
