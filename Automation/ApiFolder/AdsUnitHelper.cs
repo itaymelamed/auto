@@ -36,11 +36,18 @@ namespace Automation.ApiFolder
                 var ignorList = ignor.Count > 0 ? ignor.Select(i => i.ToString()).ToList() : new List<string>(){""};
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
+                if (acJson == null)
+                {
+                    _errors += $"No request has found for {n}"; ;
+                    return;
+                }
+
                 ignorList.ForEach(i =>
                 {
                     if (acJson.Properties().Select(p => p.Name).Contains(i))
                         acJson.Remove(i);
                 });
+
                 _errors += $"{JsonComparer(_exJson, acJson, n)}";
             });
 
@@ -54,7 +61,8 @@ namespace Automation.ApiFolder
                 Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                _errors += $"{JsonComparer(_exJson, acJson, n)}";
+
+                _errors += acJson == null ? $"No request has found for {n}." : $"{JsonComparer(_exJson, acJson, n)} ";
             });
 
             return _errors;
@@ -72,9 +80,9 @@ namespace Automation.ApiFolder
                 var jsonString = JsonConvert.SerializeObject(paramsDic);
                 return JObject.Parse(jsonString);
             }
-            catch(Exception)
+            catch
             {
-                return JObject.Parse(@"{'remove' : 'video'}");
+                return null;
             }
         }
     }
