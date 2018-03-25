@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Automation.PagesObjects
 {
-    public class PostPage : HomePage
+    public class Header : HomePage
     {
         [FindsBy(How = How.CssSelector, Using = ".post-admin-options__label")]
         IWebElement options { get; set; }
@@ -45,7 +45,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".logo-img")]
         IWebElement logo { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
         IWebElement dropdownCurLangauge { get; set; }
 
@@ -67,8 +66,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='twitter']")]
         IWebElement twitterTop { get; set; }
 
+
         public PostPage(Browser browser)
-            :base(browser)
+            : base(browser)
         {
 
         }
@@ -93,7 +93,7 @@ namespace Automation.PagesObjects
 
             HoverLanguage();
             Thread.Sleep(2000);
-            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
+            for (int i = 0; i <= exCurDropDownList.Count - 1; i++)
             {
                 if (actualCurrentlanguage == exCurDropDownList[i])
                 {
@@ -102,12 +102,12 @@ namespace Automation.PagesObjects
                 }
             }
 
-            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
+            for (int i = 0; i <= exCurDropDownList.Count - 1; i++)
             {
                 if ((acDropDown.Contains(exCurDropDownList[i])))
-                    {
-                        sum = true;
-                    }
+                {
+                    sum = true;
+                }
                 else
                 {
                     sum = false;
@@ -137,7 +137,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Validating Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
-            _browser.Navigate(_browser.GetUrl()+"?test=test");
+            _browser.Navigate(_browser.GetUrl() + "?test=test");
             tagsList.ForEach(t => {
                 errors += !_browser.GetSource().Contains(t) ? $"Tag {t} does not exsist on page source. {Environment.NewLine}" : "";
             });
@@ -179,7 +179,7 @@ namespace Automation.PagesObjects
         public string GetPostId()
         {
             var postParsedUrl = _browser.GetUrl().Split('/').Last();
-            var postId =new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
+            var postId = new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
 
             return postId;
         }
@@ -199,7 +199,7 @@ namespace Automation.PagesObjects
                 errors = string.Empty;
                 errors = IframesHandeler(adsArray);
                 return string.IsNullOrEmpty(errors);
-            },  "" ,30 ,false);
+            }, "", 30, false);
 
             return errors;
         }
@@ -230,7 +230,7 @@ namespace Automation.PagesObjects
         public string GetAuthorName()
         {
             Base.MongoDb.UpdateSteps("Getting the author name from the post.");
-            _browserHelper.WaitForElement(authorName,nameof(authorName));
+            _browserHelper.WaitForElement(authorName, nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
 

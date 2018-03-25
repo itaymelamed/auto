@@ -191,14 +191,12 @@
     <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
-<<<<<<< HEAD
     <Compile Include="TestsFolder\HeaderAndFooterFolder\HeaderTests.cs" />
-=======
     <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
     <Compile Include="TestsFolder\NavigationTests.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
     <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
->>>>>>> 79ffbbe6b1dde554dd1835fce93f5fb7c985e2cc
+    <Compile Include="PagesObjects\Header.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
