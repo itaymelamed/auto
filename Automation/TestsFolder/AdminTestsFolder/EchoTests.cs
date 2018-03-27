@@ -670,9 +670,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(1)]
             public void Echo_ValidateNewSatatusFilter()
             {
-                var language = _params["Language"].ToString();
-                var languageChannel = _params["LanguageChannel"].ToString();
-                var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
