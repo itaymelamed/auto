@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.Helpersobjects;
+﻿using Automation.Helpersobjects;
 using Automation.PagesObjects;
 using Automation.PagesObjects.EchoFolder;
 using NUnit.Framework;
@@ -353,14 +352,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
                 distributionPage.WaitForPublishedSatatus();
-               // _browser.Navigate(_config.Url);
-               // HomePage homePage = new HomePage(_browser);
-              //  Assert.True(homePage.ValidateTitleApearsInGrid(title), $"Expected {title} was not found");
                 distributionPage.UnpublishPost();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 Assert.False(homePage.ValidateMoreNewsTitle(title), "The title was not appear on the grid section");
-
             }
         }
 
@@ -494,7 +489,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         } 
 
-
         [TestFixture]
         [Parallelizable]
         public class Test16Class : BaseUi
@@ -538,10 +532,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 FeedPage feedPage = new FeedPage(_browser);
                 _browser.Refresh();
                 Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
-
             }
         } 
-
 
         [TestFixture]
         [Parallelizable]
@@ -651,10 +643,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("Published");
                 Assert.True(echoPage.ValidateStatusses("Published"), "The satatus of the post is wrong");
-              
             }
         } 
-
 
         [TestFixture]
         [Parallelizable]
@@ -676,8 +666,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("New");
-                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");
-              
+                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");              
             }
         } 
     }

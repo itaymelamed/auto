@@ -41,6 +41,8 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.XPath, Using = "//div[@role='listbox'][2]")]
         IWebElement StatusFilter { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".loader")]
+        IWebElement loader { get; set; }
 
         protected Browser _browser;
         protected IWebDriver _driver;
@@ -194,15 +196,14 @@ namespace Automation.PagesObjects.EchoFolder
 
         List<string> GetPostsStatusses()
         {
-            // add step
             Base.MongoDb.UpdateSteps($"Getting all the posts statusses.");
+            _browserHelper.WaitForElementDiss(loader);
             _browserHelper.WaitUntillTrue(() => statuses.ToList().Count > 1);
             return statuses.ToList().Select(s => s.Text).ToList();
         }
 
         public bool ValidateStatusses(string status)
         {
-            //Add step
             Base.MongoDb.UpdateSteps($"Validating all the posts status: {status}.");
             var statusses = GetPostsStatusses();
             return statusses.All(s => s == status);
