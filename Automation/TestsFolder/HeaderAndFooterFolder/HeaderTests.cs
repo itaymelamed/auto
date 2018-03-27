@@ -11,25 +11,6 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test2Class : BaseUi
-        {
-            [Test]
-            [Property("TestCaseId", "13")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("Header")]
-            [Category("AllBrands")]
-            [Retry(2)]
-            public void HeaderAndFooter_ValidateLangauageDropdownExistOnPage()
-            {
-                var exCurLanguage = "EN";
-                Header header = new Header(_browser);
-                bool result = header.ValidateCurrentLangaugeDropDown(exCurLanguage);
-                Assert.True(result);
-            }
-        }
-        [TestFixture]
-        [Parallelizable]
         public class Test101Class : BaseUi
         {
             [Test]
