@@ -229,7 +229,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void Echo_FeaturePostToMoreNews()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
