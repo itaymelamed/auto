@@ -461,7 +461,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
                 ArticleBase article = new ArticleBase(_browser);
                 var titleEditor = article.GetTitleValue().ToLower();
-                Assert.True(titleEditor == title.ToLower());
+                Assert.True(titleEditor == title.ToLower(), $"Expected title was {title.ToLower()}. Actual: {titleEditor}");
             }  
         }
 
