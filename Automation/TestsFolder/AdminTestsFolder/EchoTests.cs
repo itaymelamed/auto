@@ -452,7 +452,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.SwitchToFirstTab();
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
-                echoPage.ClickOnEditButtonInEcho();
+                echoPage.ClickOnEditButtonInEcho(title);
                 _browser.SwitchToTab(2, 3);
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');

@@ -110,11 +110,13 @@ namespace Automation.PagesObjects.EchoFolder
             return new DistributionPage(_browser);
         }
 
-        public void ClickOnEditButtonInEcho()
+        public void ClickOnEditButtonInEcho(string title)
         {
-            Base.MongoDb.UpdateSteps("Clicking on the edit button in the echo page.");
+            Base.MongoDb.UpdateSteps($"Clicking on the edit button in the echo page. Title: {title}");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
-            EchoEditButtons[0].Click();
+            _browserHelper.WaitForElementDiss(loader);
+            var index = postsTitles.ToList().FindIndex(t => t.Text == title);;
+            _browserHelper.Click(EchoEditButtons[index], "Edit Button");
         }
 
         public void ClickOnLogoutButton()
