@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs">
     <Files>
       <File FileName="Automation/PagesObjects/PostPage.cs" Line="50" Column="2" />
-      <File FileName="Automation/PagesObjects/Header.cs" Line="71" Column="10" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="25" Column="10" />
+      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="22" Column="23" />
+      <File FileName="Automation/TestsFolder/PostPagesFolder/PostPageTests.cs" Line="10" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
