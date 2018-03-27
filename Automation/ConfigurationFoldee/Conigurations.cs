@@ -60,7 +60,6 @@ namespace Automation.ConfigurationFolder
         public Configurations()
         {
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
-            User = Local ? GetUser() : "";
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
