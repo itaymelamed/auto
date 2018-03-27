@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Automation.PagesObjects.ExternalPagesobjects;
 using System.Linq;
 
-namespace Automation.TestsFolder.PostPagesFolder
+namespace Automation.TestsFolder.HeaderAndFooterFolder
 {
     [TestFixture]
     public class HeaderTests
@@ -17,14 +17,14 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Property("TestCaseId", "13")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("PostPage")]
+            [Category("Header")]
             [Category("AllBrands")]
             [Retry(2)]
-            public void PostPage_ValidateUiComponentsExistOnPage()
+            public void HeaderAndFooter_ValidateLangauageDropdownExistOnPage()
             {
                 var exCurLanguage = "EN";
-                PostPage postPage = new PostPage(_browser);
-                bool result = postPage.ValidateCurrentLangaugeDropDown(exCurLanguage);
+                Header header = new Header(_browser);
+                bool result = header.ValidateCurrentLangaugeDropDown(exCurLanguage);
                 Assert.True(result);
             }
         }
@@ -36,7 +36,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Property("TestCaseId", "101")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("PostPage")]
+            [Category("Header")]
             [Category("12up")]
             [Category("90Min")]
             [Category("90MinIn")]
@@ -45,7 +45,7 @@ namespace Automation.TestsFolder.PostPagesFolder
 
 
             [Retry(2)]
-            public void PostPage_ValidateUiComponentsExistOnPage()
+            public void HeaderAndFooter_ValidateLangauageDropdownExistOnPage()
             {
                 //click on lang
                 // new header page
@@ -54,8 +54,8 @@ namespace Automation.TestsFolder.PostPagesFolder
                 // curl langs
 
                 var languages = _params["languageDropDownNames"].AsBsonArray;
-                PostPage postPage = new PostPage(_browser);
-                bool result = postPage.ValidateLanguageDropDownLangauge(languages);
+                Header header = new Header(_browser);
+                bool result = header.ValidateLanguageDropDownLangauge(languages);
                 Assert.True(result);
             }
         }

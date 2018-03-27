@@ -73,50 +73,6 @@ namespace Automation.PagesObjects
 
         }
 
-        public void HoverLanguage()
-        {
-            _browserHelper.Hover(dropdownCurLangauge);
-        }
-
-        public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
-        {
-            var acCurLanguage = dropdownCurLangauge.Text;
-            return acCurLanguage == exCurLanguage;
-
-        }
-        public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
-        {
-            bool sum = false;
-            var actualCurrentlanguage = dropdownCurLangauge.Text;
-            var exCurDropDownList = exCurDropDown.Select(x => x.ToString()).ToList();
-            var acDropDown = dropdownLangauges.ToList().Select(e => e.GetAttribute("innerHTML").ToUpper()).ToList();
-
-            HoverLanguage();
-            Thread.Sleep(2000);
-            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
-            {
-                if (actualCurrentlanguage == exCurDropDownList[i])
-                {
-                    exCurDropDownList.RemoveAt(i);
-                    break;
-                }
-            }
-
-            for (int i = 0; i <= exCurDropDownList.Count-1; i++)
-            {
-                if ((acDropDown.Contains(exCurDropDownList[i])))
-                    {
-                        sum = true;
-                    }
-                else
-                {
-                    sum = false;
-                    break;
-                }
-            }
-            return sum;
-        }
-
         public string ValidateComponents(BsonArray components)
         {
             var errors = string.Empty;
