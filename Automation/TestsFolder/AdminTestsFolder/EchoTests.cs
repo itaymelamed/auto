@@ -571,7 +571,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateStatusFilterList()
             {
                 var status = _params["StatusList"].AsBsonArray;
@@ -595,7 +595,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateEnglishFilter()
             {
                 var language = _params["Language"].ToString();
@@ -633,7 +633,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidatePublishedFilter()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -657,7 +657,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateNewSatatusFilter()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
