@@ -457,7 +457,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');
                 var parseTitle = urlSplitted[4].Split('/');
-                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected  was editor but actual is {parseTitle[0]}");
+                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected was editor but actual is {parseTitle[0]}");
 
                 ArticleBase article = new ArticleBase(_browser);
                 var titleEditor = article.GetTitleValue().ToLower();
