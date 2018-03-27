@@ -428,7 +428,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 string editor = "editor";
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');
-                var parseTitle = urlSplitted[4].Split('/');
+                 var parseTitle = urlSplitted[4].Split('/');
                 Assert.True(parseTitle[0].ToLower() == editor.ToLower(), $"Expected  was {editor} but actual is {parseTitle[0]}");
             }
         }
@@ -539,6 +539,151 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.Refresh();
                 Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
 
+            }
+        } 
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "128")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateLanguageFilterList()
+            {
+                var langunges = _params["LagnungesList"].AsBsonArray;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnLangnugeFilter();
+                Assert.True(echoPage.ValidateLanguageFilterList(langunges), "The languages in dropdown didn't match the expected result.");
+              
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "134")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(1)]
+            public void Echo_ValidateStatusFilterList()
+            {
+                var status = _params["StatusList"].AsBsonArray;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                Assert.True(echoPage.ValidateStatusFilterList(status), "The status in dropdown didn't match the expected result.");
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "135")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(1)]
+            public void Echo_ValidateEnglishFilter()
+            {
+                var language = _params["Language"].ToString();
+                var languageChannel = _params["LanguageChannel"].ToString();
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.ClickOnPublishBtn();
+                echoPage = echoPage.ClickOnEchoBtn();
+                echoPage.ClickOnLangnugeFilter();
+                echoPage = echoPage.ClickOnLanguage(language);
+                distributionPage = echoPage.SelectPost(title);
+                Assert.True(distributionPage.ValidateChannelLanguage(languageChannel),$"The post {title} was not in {languageChannel}"); 
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "136")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(1)]
+            public void Echo_ValidatePublishedFilter()
+            {
+                var language = _params["Language"].ToString();
+                var languageChannel = _params["LanguageChannel"].ToString();
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                echoPage = echoPage.ClickOnStatus("Published");
+                Assert.True(echoPage.ValidateStatusses("Published"), "The satatus of the post is wrong");
+              
+            }
+        } 
+
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "139")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(1)]
+            public void Echo_ValidateNewSatatusFilter()
+            {
+                var language = _params["Language"].ToString();
+                var languageChannel = _params["LanguageChannel"].ToString();
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                echoPage = echoPage.ClickOnStatus("New");
+                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");
+              
             }
         } 
     }

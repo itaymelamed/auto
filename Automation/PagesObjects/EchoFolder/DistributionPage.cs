@@ -168,9 +168,18 @@ namespace Automation.PagesObjects.EchoFolder
             _browserHelper.Click(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
         }
 
-        public void ValidateComboboxDisabled()
+        public string GetTitleChannel()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
+            Base.MongoDb.UpdateSteps($"Getting the title of the selected channel");
+            _browserHelper.WaitForElement(selectedChannels.FirstOrDefault(), "channel");
+            return selectedChannels.FirstOrDefault().Text;
+        }
+
+        public bool ValidateChannelLanguage(string language)
+        {
+            string channelText = GetTitleChannel();
+            Base.MongoDb.UpdateSteps($"Validating channel language is {language}");
+            return channelText.Split(' ').Last() == language;
         }
     }
 }

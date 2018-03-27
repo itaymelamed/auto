@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using MongoDB.Bson;
@@ -11,6 +11,7 @@ namespace Automation.ConfigurationFolder
 {
     public class Configurations
     {
+        public string User;
         public ConfigObject ConfigObject { get; }
         public ApiConfig ApiConfig { get; }
         public FacebookApiConfig FacebookApiConfig { get; }
@@ -59,6 +60,7 @@ namespace Automation.ConfigurationFolder
         public Configurations()
         {
             Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            User = Local ? GetUser() : "";
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
@@ -86,7 +88,7 @@ namespace Automation.ConfigurationFolder
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90MinDe");
+            return TestContext.Parameters.Get("siteName", "Floor8");
         }
 
         static string GetParams(string param)

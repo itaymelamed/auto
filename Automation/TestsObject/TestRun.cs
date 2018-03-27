@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
 using NUnit.Framework;
@@ -22,7 +22,7 @@ namespace Automation.TestsObjects
             User = TestContext.Parameters.Get("user", "None");
             Category = TestContext.Parameters.Get("cat", "none");
             Results = new Results();
-            TestRunId = !config.Local ? (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString() : "0";
+            TestRunId = (Base.MongoDb.GetAllDocuments("Runs").Count + 1).ToString();
             Env = config.Env.ToString();
             Date = DateTime.Now.AddHours(2).ToString("dd/MM HH:mm");
             SiteName = config.SiteName;
