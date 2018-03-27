@@ -49,17 +49,24 @@ namespace Automation.BrowserFolder
 
         public void WaitForElementDiss(IWebElement el, int timeOut = 30)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    return !el.Displayed;
-                }
-                catch
-                {
-                    return true;
-                }
-            });
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        return !el.Displayed;
+                    }
+                    catch
+                    {
+                        return true;
+                    }
+                });
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Element was not dissapeared. timeOut.");
+            }
         }
 
         public void SetText(IWebElement el, string text)
@@ -236,17 +243,24 @@ namespace Automation.BrowserFolder
 
         public void WaitUntill(List<IWebElement> els, Func<List<IWebElement>, bool> func, int timeOut = 30)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    return func(els) == true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        return func(els) == true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Time Out.");
+            }
         }
 
         public IWebElement FindElement(By by, string elName, int timeOut = 30)
