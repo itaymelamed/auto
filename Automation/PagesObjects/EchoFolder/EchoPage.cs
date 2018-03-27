@@ -41,6 +41,8 @@ namespace Automation.PagesObjects.EchoFolder
         [FindsBy(How = How.XPath, Using = "//div[@role='listbox'][2]")]
         IWebElement StatusFilter { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".loader")]
+        IWebElement loader { get; set; }
 
         protected Browser _browser;
         protected IWebDriver _driver;
@@ -108,11 +110,13 @@ namespace Automation.PagesObjects.EchoFolder
             return new DistributionPage(_browser);
         }
 
-        public void ClickOnEditButtonInEcho()
+        public void ClickOnEditButtonInEcho(string title)
         {
-            Base.MongoDb.UpdateSteps("Clicking on the edit button in the echo page.");
+            Base.MongoDb.UpdateSteps($"Clicking on the edit button in the echo page. Title: {title}");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
-            EchoEditButtons[0].Click();
+            _browserHelper.WaitForElementDiss(loader);
+            var index = postsTitles.ToList().FindIndex(t => t.Text == title);;
+            _browserHelper.Click(EchoEditButtons[index], "Edit Button");
         }
 
         public void ClickOnLogoutButton()
@@ -194,15 +198,14 @@ namespace Automation.PagesObjects.EchoFolder
 
         List<string> GetPostsStatusses()
         {
-            // add step
             Base.MongoDb.UpdateSteps($"Getting all the posts statusses.");
+            _browserHelper.WaitForElementDiss(loader);
             _browserHelper.WaitUntillTrue(() => statuses.ToList().Count > 1);
             return statuses.ToList().Select(s => s.Text).ToList();
         }
 
         public bool ValidateStatusses(string status)
         {
-            //Add step
             Base.MongoDb.UpdateSteps($"Validating all the posts status: {status}.");
             var statusses = GetPostsStatusses();
             return statusses.All(s => s == status);

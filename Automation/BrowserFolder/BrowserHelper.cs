@@ -213,18 +213,25 @@ namespace Automation.BrowserFolder
 
         public void ExecuteUntill(Action action, int timeOut = 40)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    action();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        action();
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Time Out.");
+            }
         }
 
         public void WaitUntill(List<IWebElement> els, Func<List<IWebElement>, bool> func, int timeOut = 30)

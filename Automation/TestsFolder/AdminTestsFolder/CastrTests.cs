@@ -530,8 +530,9 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.HoverOverUserProfilePic();
                 AdminPage adminPage = homePage.ClickOnAdmin();
                 SchedulrPage schedulrPage =  adminPage.ClickOnSchedulrLink();
+                var errors = schedulrPage.ValidateTime();
 
-                Assert.True(schedulrPage.ValidateTime(), "Schedulr time is not correct.");
+                Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
 

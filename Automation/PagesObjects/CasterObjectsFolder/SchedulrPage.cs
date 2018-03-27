@@ -51,7 +51,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             PageFactory.InitElements(_driver, this);
         }
 
-        public bool ValidateTime()
+        public string ValidateTime()
         {
             Base.MongoDb.UpdateSteps("Validating date.");
             _browserHelper.WaitForElement(time, nameof(time));
@@ -66,7 +66,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             string exMonth = DateTime.Now.ToString("MMMM");
             string exTime = DateTime.Now.ToString("H:mm");
 
-            return day == exDay && month == exMonth && timeString == exTime && zone.Trim() == "London (GMT)";
+            return day == exDay && month == exMonth && timeString == exTime && zone.Trim() == "London (GMT)" ? "" : $"Expected date: {exDay}/{exMonth} {exTime}. Actual: {day}/{month} {timeString}";
         }
 
         public bool ValidateLeagues(BsonArray leaguesBson)

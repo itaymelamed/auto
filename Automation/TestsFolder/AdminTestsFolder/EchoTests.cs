@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.Helpersobjects;
+﻿using Automation.Helpersobjects;
 using Automation.PagesObjects;
 using Automation.PagesObjects.EchoFolder;
 using NUnit.Framework;
@@ -230,7 +229,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void Echo_FeaturePostToMoreNews()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
@@ -353,14 +352,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
                 distributionPage.WaitForPublishedSatatus();
-               // _browser.Navigate(_config.Url);
-               // HomePage homePage = new HomePage(_browser);
-              //  Assert.True(homePage.ValidateTitleApearsInGrid(title), $"Expected {title} was not found");
                 distributionPage.UnpublishPost();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 Assert.False(homePage.ValidateMoreNewsTitle(title), "The title was not appear on the grid section");
-
             }
         }
 
@@ -457,16 +452,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 _browser.SwitchToFirstTab();
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
-                echoPage.ClickOnEditButtonInEcho();
+                echoPage.ClickOnEditButtonInEcho(title);
                 _browser.SwitchToTab(2, 3);
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');
                 var parseTitle = urlSplitted[4].Split('/');
-                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected  was editor but actual is {parseTitle[0]}");
+                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected was editor but actual is {parseTitle[0]}");
 
                 ArticleBase article = new ArticleBase(_browser);
                 var titleEditor = article.GetTitleValue().ToLower();
-                Assert.True(titleEditor == title.ToLower());
+                Assert.True(titleEditor == title.ToLower(), $"Expected title was {title.ToLower()}. Actual: {titleEditor}");
             }  
         }
 
@@ -493,7 +488,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(loginPage.ValidateAuto0Page());
             }
         } 
-
 
         [TestFixture]
         [Parallelizable]
@@ -538,10 +532,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 FeedPage feedPage = new FeedPage(_browser);
                 _browser.Refresh();
                 Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
-
             }
         } 
-
 
         [TestFixture]
         [Parallelizable]
@@ -579,7 +571,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateStatusFilterList()
             {
                 var status = _params["StatusList"].AsBsonArray;
@@ -603,7 +595,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateEnglishFilter()
             {
                 var language = _params["Language"].ToString();
@@ -641,7 +633,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidatePublishedFilter()
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
@@ -651,10 +643,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("Published");
                 Assert.True(echoPage.ValidateStatusses("Published"), "The satatus of the post is wrong");
-              
             }
         } 
-
 
         [TestFixture]
         [Parallelizable]
@@ -667,20 +657,16 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(1)]
+            [Retry(2)]
             public void Echo_ValidateNewSatatusFilter()
             {
-                var language = _params["Language"].ToString();
-                var languageChannel = _params["LanguageChannel"].ToString();
-                var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("New");
-                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");
-              
+                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");              
             }
         } 
     }
