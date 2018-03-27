@@ -11,7 +11,6 @@ namespace Automation.ConfigurationFolder
 {
     public class Configurations
     {
-        public string User;
         public ConfigObject ConfigObject { get; }
         public ApiConfig ApiConfig { get; }
         public FacebookApiConfig FacebookApiConfig { get; }
