@@ -210,7 +210,8 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
-            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => Regex.Replace(t.Text.Replace('-', ' ').ToLower(),@"[\d-]", string.Empty)  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
+            var i = postsTitles.Select(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)).ToList().FindIndex(t => t == title);
+            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList()[i], $"Could not find post {title}.", 0);
         }
 
         public CastrPost ClickOnPost(string title)

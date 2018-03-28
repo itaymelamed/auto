@@ -88,7 +88,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 EchoPage echoPage = new EchoPage(_browser);
                 Assert.True(echoPage.ValidateDomain($"{_config.SiteName.ToLower()}.com", title), $"The domain for {title} was diffrent than expected."); 
             }
-
         }
 
         [TestFixture]
@@ -666,7 +665,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("New");
-                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");              
+                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");
             }
         } 
     }

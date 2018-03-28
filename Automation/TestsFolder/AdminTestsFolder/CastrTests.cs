@@ -115,14 +115,14 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 PostCreator postCreator = new PostCreator(_browser);
                 PostPage postPage = postCreator.Create(typeof(ArticleBase));
-                string ecUrl = _browser.GetUrl();
+                string exUrl = _browser.GetUrl();
                 postPage.HoverOverOptions();
                 CastrPage CasterPage = postPage.ClickOnOpenInCaster();
                 _browser.SwitchToLastTab();
                 CastrPost post = new CastrPost(_browser);
-                string acUrl = post.GetPostUrl();
+                string acUrl = post.GetPostUrl().Replace("https", "http");
 
-                Assert.AreEqual(ecUrl, acUrl);
+                Assert.AreEqual(exUrl, acUrl);
             }
         }
 
