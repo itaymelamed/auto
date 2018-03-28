@@ -63,5 +63,31 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 Assert.False(result);
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "140")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Header")]
+            [Category("DBLTAP")]
+            [Category("Pluralist")]
+            [Category("90MinDE")]
+
+            [Retry(2)]
+            public void HeaderCheckCurLangaugeIsRight()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+
+                bool result = header.ValidateCurrentLangaugeDropDown();
+                Assert.False(result);
+
+                string url = _browser.GetUrl();
+            }
+        }
     }
 }
