@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Automation.PagesObjects
 {
-    public class Header : HomePage
+    public class Header
     {
         
         [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
@@ -19,11 +19,16 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
         IList<IWebElement> dropdownLangauges { get; set; }
 
+        Browser _browser;
+        IWebDriver _driver;
+        BrowserHelper _browserHelper;
 
         public Header(Browser browser)
-            : base(browser)
         {
-
+            _browser = browser;
+            _driver = browser.Driver;
+            _browserHelper = browser.BrowserHelper;
+            PageFactory.InitElements(_driver, this);
         }
 
         public void HoverLanguage()
@@ -39,7 +44,9 @@ namespace Automation.PagesObjects
         }
         public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
         {
+            Base.MongoDb.UpdateSteps("");
             bool sum = false;
+            _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
             var actualCurrentlanguage = dropdownCurLangauge.Text;
             var exCurDropDownList = exCurDropDown.Select(x => x.ToString()).ToList();
             var acDropDown = dropdownLangauges.ToList().Select(e => e.GetAttribute("innerHTML").ToUpper()).ToList();

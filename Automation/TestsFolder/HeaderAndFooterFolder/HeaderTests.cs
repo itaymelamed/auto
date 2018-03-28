@@ -11,7 +11,7 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class Test101Class : BaseUi
+        public class Test1Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "101")]
@@ -33,8 +33,31 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 // curl lang = en
                 // curl =/ list
                 // curl langs
-
+                _browser.Navigate(_config.Url);
                 var languages = _params["languageDropDownNames"].AsBsonArray;
+                Header header = new Header(_browser);
+                bool result = header.ValidateLanguageDropDownLangauge(languages);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test2Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "101")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Header")]
+            [Category("Dbltap")]
+            [Category("Pluralist")]
+            [Category("90MinDE")]
+
+            [Retry(2)]
+            public void HeaderAndFooter_ValidateLangauageDropdownDontExistOnPage()
+            {
+                _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 bool result = header.ValidateLanguageDropDownLangauge(languages);
                 Assert.True(result);
