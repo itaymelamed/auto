@@ -46,11 +46,11 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
         public class Test2Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "101")]
+            [Property("TestCaseId", "139")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Header")]
-            [Category("Dbltap")]
+            [Category("DBLTAP")]
             [Category("Pluralist")]
             [Category("90MinDE")]
 
@@ -59,8 +59,8 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
-                bool result = header.ValidateLanguageDropDownLangauge(languages);
-                Assert.True(result);
+                bool result = header.ValidateLangagueDropDownDoesntAppear();
+                Assert.False(result);
             }
         }
     }

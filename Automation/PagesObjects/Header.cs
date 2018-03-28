@@ -76,5 +76,13 @@ namespace Automation.PagesObjects
             }
             return sum;
         }
+
+        public bool ValidateLangagueDropDownDoesntAppear()
+        {
+            bool sum = false;
+            Base.MongoDb.UpdateSteps("Check if langague dropdown does not appear");
+            sum = _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
+            return sum;
+        }
     }
 }
