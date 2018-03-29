@@ -29,7 +29,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Clicking on Publish button.");
             _browserHelper.WaitForElement(publishBtn, nameof(publishBtn));
-            publishBtn.Click();
+            _browserHelper.Click(publishBtn, nameof(publishBtn));
 
             return new PostPage(_browser);
         }
