@@ -4,7 +4,7 @@ using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
 using NUnit.Framework;
 
-namespace Automation.TestsFolder
+namespace Automation.TestsFolder.DataTrafficTests
 {
     [TestFixture]
     public class AdsUnitTests
