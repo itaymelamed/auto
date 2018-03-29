@@ -3,7 +3,6 @@ using NUnit.Framework;
 
 namespace Automation.TestsFolder.NavigateionTests
 {
-    [TestFixture]
     public class NavigationTests
     {
         [TestFixture]

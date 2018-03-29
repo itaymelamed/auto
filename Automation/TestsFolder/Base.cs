@@ -8,7 +8,6 @@ using Automation.TestsObject;
 
 namespace Automation.TestsFolder
 {
-    [TestFixture]
     public class Base
     {
         protected BsonValue _params { get; set; }
