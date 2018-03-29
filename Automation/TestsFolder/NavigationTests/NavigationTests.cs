@@ -1,7 +1,7 @@
 ﻿using Automation.PagesObjects;
 using NUnit.Framework;
 
-namespace Automation.TestsFolder
+namespace Automation.TestsFolder.NavigateionTests
 {
     [TestFixture]
     public class NavigationTests
