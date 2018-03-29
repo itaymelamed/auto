@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Automation.Helpersobjects;
 using Automation.PagesObjects;
-using Automation.PagesObjects.CasterObjectsFolder;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder.FeedPageTests
 {
-    [TestFixture]
     public class PartnersPageTests
     {
         [TestFixture]

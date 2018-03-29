@@ -6,7 +6,6 @@ using NUnit.Framework;
 
 namespace Automation.TestsFolder.DataTrafficTests
 {
-    [TestFixture]
     public class AdsUnitTests
     {
         [TestFixture]
