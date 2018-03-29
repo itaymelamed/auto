@@ -195,6 +195,8 @@
     <Compile Include="TestsFolder\NavigationTests.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
     <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
+    <Compile Include="PagesObjects\PartnersPage.cs" />
+    <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -220,6 +222,7 @@
     <Folder Include="ApiFolder\FacebookApi\" />
     <Folder Include="TestsFolder\DataTrafficTests\" />
     <Folder Include="PagesObjects\EchoFolder\" />
+    <Folder Include="TestsFolder\FeedPageTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using MongoDB.Bson;
@@ -80,13 +80,13 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.utest.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.qa1.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90Min");
+            return TestContext.Parameters.Get("siteName", "90MinDe");
         }
 
         static string GetParams(string param)

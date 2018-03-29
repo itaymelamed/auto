@@ -417,5 +417,16 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             _browserHelper.WaitForElement(activeResult, nameof(activeResult));
             _browserHelper.Click(activeResult, nameof(activeResult));
         }
+
+        public void PublishToCategory(string category)
+        {
+            if (!saveForLaterBtn.Enabled)
+                ResetPost();
+            CheckpublishToCategoryCb();
+            InsertCategory(category);
+            CheckLeague(0);
+            ClickOnPublishBtn();
+            ValidateSucMsg();
+        }
     }
 }
