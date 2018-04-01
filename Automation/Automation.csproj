@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -195,13 +195,10 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
     <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
-<<<<<<< HEAD
     <Compile Include="PagesObjects\Header.cs" />
-=======
     <Compile Include="PagesObjects\PartnersPage.cs" />
     <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
     <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
->>>>>>> 3d2f9f5038c8c29a72acd30f59fa4648e56b24c9
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
