@@ -13,11 +13,12 @@ namespace Automation.PagesObjects
     public class Header
     {
         
-        [FindsBy(How = How.CssSelector, Using = ".edition-component.has-dropdown")]
+        [FindsBy(How = How.CssSelector, Using = "edition-component__current")]
         IWebElement dropdownCurLangauge { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
         IList<IWebElement> dropdownLangauges { get; set; }
+
 
         Browser _browser;
         IWebDriver _driver;
@@ -38,6 +39,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
         {
+            Base.MongoDb.UpdateSteps("");
             var acCurLanguage = dropdownCurLangauge.Text;
             return acCurLanguage == exCurLanguage;
 
@@ -83,6 +85,27 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Check if langague dropdown does not appear");
             sum = _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
             return sum;
+        }
+
+        public string SelectAndValidateCurLanguageDropDown(BsonArray languages, BsonArray urls)
+        {
+            string errors = string.Empty;
+            List<string> urlsList = urls.Select(u => u.ToString()).ToList();
+            List<string> languagesList = languages.Select(l => l.ToString()).ToList();
+
+            languagesList.ForEach(l => 
+            {
+                HoverLanguage();
+                dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML") == l).First().Click();
+                var url = _browser.GetUrl();
+                int index = languagesList.FindIndex(i => i == l);
+                var exUrl = urlsList[index];
+
+                errors += url == $"{Base._config.Url}/{exUrl}";
+
+            });
+
+            return errors;
         }
     }
 }

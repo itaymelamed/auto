@@ -82,11 +82,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
-
-                bool result = header.ValidateCurrentLangaugeDropDown();
+                bool result = header.SelectAndValidateCurLanguageDropDown();
                 Assert.False(result);
 
-                string url = _browser.GetUrl();
+                string url = _browser.GetUrl()
             }
         }
     }
