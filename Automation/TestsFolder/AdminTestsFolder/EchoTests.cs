@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
-    [TestFixture]
     public class EchoTests
     {
         [TestFixture]

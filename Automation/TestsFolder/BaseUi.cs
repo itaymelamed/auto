@@ -4,7 +4,6 @@ using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsFolder
 {
-    [TestFixture]
     public class BaseUi : Base
     {
         protected Browser _browser { get; set; }   

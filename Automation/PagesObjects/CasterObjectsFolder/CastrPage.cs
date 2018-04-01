@@ -49,6 +49,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "tbody span[title]")]
         protected IList<IWebElement> postsTitles { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".close")]
+        protected IWebElement sucMsgXBtn { get; set; }
+
         public enum Languages
         {
             en,
@@ -210,7 +213,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
-            var i = postsTitles.Select(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)).ToList().FindIndex(t => t == title);
+            var i = postsTitles.Select(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)).ToList().FindIndex(t => t.Contains(title) || title.Contains(t));
             return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList()[i], $"Could not find post {title}.", 0);
         }
 
@@ -255,6 +258,17 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
             return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title));
+        }
+
+        public void PublishToCategoryMultiple(List<string> titles, string category)
+        {
+            Base.MongoDb.UpdateSteps("Publishing multiple posts to category.");
+            titles.ForEach(t => 
+            {
+                CastrPost post = ClickOnPost(t);
+                post.PublishToCategory(category);
+                _browserHelper.Click(sucMsgXBtn, nameof(sucMsgXBtn));
+            });
         }
     }
 }

@@ -193,10 +193,15 @@
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
     <Compile Include="TestsFolder\HeaderAndFooterFolder\HeaderTests.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdminPage.cs" />
-    <Compile Include="TestsFolder\NavigationTests.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
     <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
+<<<<<<< HEAD
     <Compile Include="PagesObjects\Header.cs" />
+=======
+    <Compile Include="PagesObjects\PartnersPage.cs" />
+    <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
+    <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
+>>>>>>> 3d2f9f5038c8c29a72acd30f59fa4648e56b24c9
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -223,6 +228,8 @@
     <Folder Include="TestsFolder\DataTrafficTests\" />
     <Folder Include="PagesObjects\EchoFolder\" />
     <Folder Include="TestsFolder\HeaderAndFooterFolder\" />
+    <Folder Include="TestsFolder\FeedPageTests\" />
+    <Folder Include="TestsFolder\NavigationTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

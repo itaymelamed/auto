@@ -53,6 +53,18 @@ namespace Automation.Helpersobjects
             return parsedTitle;
         }
 
+        public List<string> Create(int posts)
+        {
+            Base.MongoDb.UpdateSteps("Creating multiple posts.");
+            List<string> titles = new List<string>();
+            for (int i = 0; i < posts; i++)
+            {
+                titles.Add(Create());
+            }
+
+            return titles;
+        }
+
         public string CreateToDomain(string domain)
         {
             _browser.Navigate("http://" + Base._config.Env + "." + Base._config.GlobalConfigObject[domain]["Url"] + "/" + Base._config.GlobalConfigObject[domain]["Language"] + "/" + "admin");

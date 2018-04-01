@@ -5,7 +5,6 @@ using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsFolder
 {
-    [TestFixture]
     public class BaseNetworkTraffic : Base
     {
         protected Browser _browser { get; set; }

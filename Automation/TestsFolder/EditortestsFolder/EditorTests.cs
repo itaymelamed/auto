@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace Automation.TestsFolder.EditortestsFolder
 {
-    [TestFixture]
     public class EditorTests
     {
         [TestFixture]

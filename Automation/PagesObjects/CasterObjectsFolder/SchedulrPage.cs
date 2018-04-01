@@ -64,7 +64,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
             int exDay = DateTime.Now.Day;
             string exMonth = DateTime.Now.ToString("MMMM");
-            string exTime = DateTime.Now.ToString("H:mm");
+            string exTime = DateTime.Now.AddHours(1).ToString("H:mm");
 
             return day == exDay && month == exMonth && timeString == exTime && zone.Trim() == "London (GMT)" ? "" : $"Expected date: {exDay}/{exMonth} {exTime}. Actual: {day}/{month} {timeString}";
         }

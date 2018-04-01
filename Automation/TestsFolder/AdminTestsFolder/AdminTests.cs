@@ -4,7 +4,6 @@ using Automation.PagesObjects.ExternalPagesobjects;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
-    [TestFixture]
     public class AdminTests
     {
         [TestFixture]
