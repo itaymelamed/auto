@@ -69,13 +69,14 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
         public class Test3Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "140")]
+            [Property("TestCaseId", "141")]
             [Category("Sanity")]
             [Category("Admin")]
             [Category("Header")]
-            [Category("DBLTAP")]
-            [Category("Pluralist")]
-            [Category("90MinDE")]
+            [Category("90Min")]
+            [Category("12Up")]
+            [Category("Floor8")]
+            [Category("90Min.in")]
 
             [Retry(2)]
             public void HeaderCheckCurLangaugeIsRight()
