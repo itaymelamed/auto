@@ -17,7 +17,7 @@ namespace Automation.TestsFolder
             _browser = new BrowserFolder.Browser(true);
             _browser.Maximize();
             _browser.Navigate(_config.ConfigObject.Echo);
-            _browser.ProxyApi.NewHar();
+            _browser.ProxyApi.NewHar(null, "?captureHeaders=true");
 
             Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
             NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);

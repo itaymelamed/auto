@@ -44,9 +44,9 @@ namespace Automation.ApiFolder
             _proxy = _url.TrimStart('/') + ":" + _port;
         }
 
-        public void NewHar(string reference = null)
+        public void NewHar(string reference = null, string query = "")
         {
-            _api.MakeRequest(String.Format("{0}/{1}/har", _baseUrlProxy, _port), "PUT", reference);
+            _api.MakeRequest(String.Format("{0}/{1}/har" + query, _baseUrlProxy, _port), "PUT", reference);
         }
 
         public void NewHarPost(string reference = null)

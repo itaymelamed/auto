@@ -80,13 +80,13 @@ namespace Automation.ConfigurationFolder
 
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.qa1.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.qa.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "90MinDe");
+            return TestContext.Parameters.Get("siteName", "Pluralist");
         }
 
         static string GetParams(string param)
