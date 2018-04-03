@@ -90,5 +90,33 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 //string url = _browser.GetUrl();
             }
         }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test4Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "142")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Category("12Up")]
+            [Category("Floor8")]
+            [Category("90Min.in")]
+
+            [Retry(2)]
+            public void HeaderCheckCurLangaugeIsRight()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var languages = _params["languages"].AsBsonArray;
+                var urls = _params["urls"].AsBsonArray;
+                var result = header.SelectAndValidateCurLanguageDropDown(languages, urls);
+                Assert.False(string.IsNullOrEmpty(result));
+                //string url = _browser.GetUrl();
+            }
+        }
+
     }
 }
