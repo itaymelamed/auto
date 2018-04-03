@@ -13,7 +13,7 @@ namespace Automation.PagesObjects
     public class Header
     {
         
-        [FindsBy(How = How.CssSelector, Using = "edition-component__current")]
+        [FindsBy(How = How.CssSelector, Using = ".edition-component__current")]
         IWebElement dropdownCurLangauge { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
@@ -97,6 +97,7 @@ namespace Automation.PagesObjects
             {
                 HoverLanguage();
                 dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML") == l).First().Click();
+                PageFactory.InitElements(_driver, this);
                 var url = _browser.GetUrl();
                 int index = languagesList.FindIndex(i => i == l);
                 var exUrl = urlsList[index];
