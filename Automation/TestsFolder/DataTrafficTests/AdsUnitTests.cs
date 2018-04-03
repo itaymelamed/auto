@@ -5,9 +5,8 @@ using Automation.PagesObjects.ExternalPagesobjects;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
-namespace Automation.TestsFolder
+namespace Automation.TestsFolder.DataTrafficTests
 {
-    [TestFixture]
     public class AdsUnitTests
     {
         [TestFixture]

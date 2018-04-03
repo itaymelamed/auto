@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Automation.Helpersobjects;
 using Automation.PagesObjects;
-using Automation.PagesObjects.CasterObjectsFolder;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder.FeedPageTests
 {
-    [TestFixture]
     public class PartnersPageTests
     {
         [TestFixture]
@@ -20,7 +18,7 @@ namespace Automation.TestsFolder.FeedPageTests
             [Category("90Min")]
             [Category("DBLTAP")]
             [Retry(3)]
-            public void ValidatePostsQueue()
+            public void PartnersPage_ValidatePostsQueue()
             {
                 var category = _params["Category"].ToString();
                 _browser.Navigate(_config.Url);

@@ -13,7 +13,6 @@ using System;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
-    [TestFixture]
     public class CastrTests
     {
         [TestFixture]
