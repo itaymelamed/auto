@@ -2,6 +2,7 @@
 using Automation.ApiFolder;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder
@@ -34,12 +35,14 @@ namespace Automation.TestsFolder
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons();
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
@@ -78,12 +81,14 @@ namespace Automation.TestsFolder
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons(ignor);
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
@@ -127,12 +132,14 @@ namespace Automation.TestsFolder
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons(ignor);
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
@@ -174,12 +181,14 @@ namespace Automation.TestsFolder
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons();
 
                 if (!string.IsNullOrEmpty(errors) && retries == 4)
