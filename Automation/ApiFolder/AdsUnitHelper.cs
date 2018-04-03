@@ -19,10 +19,11 @@ namespace Automation.ApiFolder
 
         string _errors;
 
-        public AdsUnitHelper(List<Request> requests, BsonValue exJsons, BsonArray displyed, BsonArray notDisplyed)
+        public AdsUnitHelper(List<Request> requests, BsonValue exJsons, BsonArray displyed, BsonArray notDisplyed, string experimentId)
         {
             _requests = requests;
             _exJson = JObject.Parse(exJsons.ToString());
+            _exJson.Add("experimentId",experimentId);
             _adNames = displyed.Select(x => x.ToString()).ToList();
             _adNames.AddRange(notDisplyed.Select(x => x.ToString()));
             _errors = string.Empty;
