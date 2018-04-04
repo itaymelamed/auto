@@ -22,10 +22,17 @@ namespace Automation.BrowserFolder
 
         public Browser(bool proxy = false)
         {
-            ProxyApi = proxy? new ProxyApi(Base._config.Host) : null;
-            string url = $"http://{Base._config.Host}:32005/wd/hub";
-            Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
-            BrowserHelper = new BrowserHelper(Driver);
+            try
+            {
+                ProxyApi = proxy ? new ProxyApi(Base._config.Host) : null;
+                string url = $"http://{Base._config.Host}:32005/wd/hub";
+                Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
+                BrowserHelper = new BrowserHelper(Driver);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Init Browser has failed.");
+            }
         }
 
         public void Navigate(string url)
