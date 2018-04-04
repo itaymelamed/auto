@@ -14,9 +14,10 @@ namespace Automation.BrowserFolder
 {
     public class Browser
     {
-        public IWebDriver Driver { get; }
+        public RemoteWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
         public ProxyApi ProxyApi { get; set; }
+        public string SessionId { get; }
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
@@ -27,6 +28,7 @@ namespace Automation.BrowserFolder
                 ProxyApi = proxy ? new ProxyApi(Base._config.Host) : null;
                 string url = $"http://{Base._config.Host}:32005/wd/hub";
                 Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
+                SessionId = Driver.SessionId.ToString();
                 BrowserHelper = new BrowserHelper(Driver);
             }
             catch

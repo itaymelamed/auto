@@ -12,6 +12,7 @@ namespace Automation.TestsFolder
         public void InitTestUi()
         {
             _browser = new Browser();
+            _test.UpdateSessionId(_browser.SessionId);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
         }
