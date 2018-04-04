@@ -219,7 +219,14 @@ namespace Automation.BrowserFolder
 
         public Cookie GetCookie(string cookieName)
         {
-            return Driver.Manage().Cookies.GetCookieNamed(cookieName);
+            try
+            {
+                return Driver.Manage().Cookies.GetCookieNamed(cookieName);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Get Cokie oparation has failed.");
+            }
         }
     }
 }
