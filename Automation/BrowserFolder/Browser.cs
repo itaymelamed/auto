@@ -221,11 +221,11 @@ namespace Automation.BrowserFolder
         {
             try
             {
-                return Driver.Manage().Cookies.GetCookieNamed(cookieName);
+                return Driver.Manage().Cookies.GetCookieNamed(cookieName) == null ? throw new NUnit.Framework.AssertionException($"Cookie {cookieName} is missong.") : Driver.Manage().Cookies.GetCookieNamed(cookieName);
             }
             catch
             {
-                throw new NUnit.Framework.AssertionException($"Get Cokie oparation has failed.");
+                throw new NUnit.Framework.AssertionException($"Get Cookie oparation has failed.");
             }
         }
     }
