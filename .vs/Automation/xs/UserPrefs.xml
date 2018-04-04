@@ -2,16 +2,18 @@
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
     <Files>
-      <File FileName="Automation/PagesObjects/Header.cs" Line="120" Column="38" />
-      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="116" Column="2" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="120" Column="23" />
       <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="240" Column="3" />
       <File FileName="Automation/PagesObjects/SlideShowPage.cs" Line="1" Column="1" />
       <File FileName="Automation/PagesObjects/PostPage.cs" Line="1" Column="1" />
+      <File FileName="Automation/Helpersobjects/CommonFunctions.cs" Line="8" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="117" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />

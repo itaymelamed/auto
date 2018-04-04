@@ -99,21 +99,16 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Property("TestCaseId", "142")]
             [Category("Sanity")]
             [Category("Admin")]
-            [Category("Header")]
-            [Category("90Min")]
-            [Category("12Up")]
-            [Category("Floor8")]
-            [Category("90Min.in")]
-
+            [Category("AllBrands")]
             [Retry(2)]
-            public void HeaderCheckCurLangaugeIsRight()
+            public void LogoTest()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
-                var languages = _params["languages"].AsBsonArray;
+                var href = _params["href"].AsBsonArray;
                 var urls = _params["urls"].AsBsonArray;
-                var result = header.SelectAndValidateCurLanguageDropDown(languages, urls);
-                Assert.False(string.IsNullOrEmpty(result));
+                var result = header.SelectAndValidateLogo(href, urls);
+                Assert.True(result);
                 //string url = _browser.GetUrl();
             }
         }

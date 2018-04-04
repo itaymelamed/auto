@@ -19,6 +19,9 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
         IList<IWebElement> dropdownLangauges { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".logo")]
+        IWebElement logo { get; set; }
+
 
         Browser _browser;
         IWebDriver _driver;
@@ -107,6 +110,26 @@ namespace Automation.PagesObjects
             });
 
             return errors;
+        }
+
+        public bool SelectAndValidateLogo(BsonArray href, BsonArray urls)
+        {
+            logo.Click();
+            PageFactory.InitElements(_driver, this);
+            List<string> urlsList = urls.Select(u => u.ToString()).ToList();
+            List<string> hrefList = href.Select(u => u.ToString()).ToList();
+            var curHref = logo.GetAttribute("href");
+            var sum =false;
+            for (int i = 0; i < urlsList.Count - 1; i++)
+            {
+                if(curHref == urlsList[i])
+                {
+                    sum = true;
+                }
+            }
+            return sum;
+
+
         }
     }
 }
