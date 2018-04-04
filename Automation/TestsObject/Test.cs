@@ -68,6 +68,7 @@ namespace Automation.TestsObjects
         public void UpdateSessionId(string sessionId)
         {
             SessionId = sessionId;
+            Base.MongoDb.InsertTest(this);
         }
     }
 }
