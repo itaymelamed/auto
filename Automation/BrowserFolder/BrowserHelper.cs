@@ -87,7 +87,7 @@ namespace Automation.BrowserFolder
                 try
                 {
                     WaitForElement(drag, nameof(drag), 30, false);
-                    WaitForElement(drag, nameof(drop), 30, false);
+                    WaitForElement(drop, nameof(drop), 30, false);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();

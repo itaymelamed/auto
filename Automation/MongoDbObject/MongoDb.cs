@@ -113,7 +113,6 @@ namespace Automation.MongoDbObject
             }
         }
 
-
         public void UpdateTestRunResults(TestRun testRun)
         {
             var collection = _database.GetCollection<BsonDocument>("Runs");
