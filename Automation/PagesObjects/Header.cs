@@ -122,7 +122,7 @@ namespace Automation.PagesObjects
             var sum =false;
             for (int i = 0; i < urlsList.Count - 1; i++)
             {
-                if(curHref == urlsList[i])
+                if (curHref == $"{Base._config.Url}/{urlsList[i]}")
                 {
                     sum = true;
                 }
