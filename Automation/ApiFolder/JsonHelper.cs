@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -102,7 +101,7 @@ namespace Automation.ApiFolder
 
             try
             {
-                exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"<div><b>{adName}</b>: Expected value for key: {k} is <b>{exJson[k]}</b>. Actual: <b>{acJson[k]}</b></div></br></br>");
+                exJson.Properties().Select(p => p.Name).ToList().ForEach(k => errors += exJson[k].ToString() == acJson[k].ToString() ? "" : $"<div><b>{adName}</b>: Expected value for key: {k} is <b>{exJson[k]}</b>. Actual: <b>{acJson[k]}</b></div><div>-------------------------</div>");
             }
             catch (Exception ex)
             {

@@ -101,7 +101,14 @@ namespace Automation.ApiFolder
 
         public List<Request> GetRequests()
         {
-            return GetHar().Log.Entries.ToList().Select(e => e.Request).ToList();
+            try
+            {
+                return GetHar().Log.Entries.ToList().Select(e => e.Request).ToList();
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to get network datat traffic.");
+            }
         }
     }
 }

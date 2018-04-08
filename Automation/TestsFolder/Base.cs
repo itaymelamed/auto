@@ -28,7 +28,7 @@ namespace Automation.TestsFolder
             }
 
             _test = new Test(_config);
-            _params = new Params(_test, _config).GetParams();
+            _params = new Params(_test).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
         }
 

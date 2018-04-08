@@ -3,6 +3,7 @@ using Automation.MongoDbObject;
 using Automation.TestsFolder;
 using Automation.TestsObjects;
 using MongoDB.Bson;
+using System.Linq;
 
 namespace Automation.TestsObject
 {
@@ -11,7 +12,7 @@ namespace Automation.TestsObject
         BsonValue _context;
         MongoDb _mongoDb;
 
-        public Params(Test test, Configurations config)
+        public Params(Test test)
         {
             _mongoDb = new MongoDb("TestCases");
             _context = _mongoDb.GetParams(test.TestNumber)["Params"];

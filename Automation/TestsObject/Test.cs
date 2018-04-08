@@ -12,6 +12,7 @@ namespace Automation.TestsObjects
     public class Test
     {
         public string TestNumber { get; }
+
         public string TestName { get; }
 
         public List<string> Steps { get; set; }
@@ -24,6 +25,8 @@ namespace Automation.TestsObjects
 
         public string EnvironmentType { get; }
 
+        public string SessionId { get; set; }
+
         public Test(Configurations config)
         {
             Result = new Result(TestContext.CurrentContext.Result, TestStatus.SentToHub);
@@ -35,6 +38,7 @@ namespace Automation.TestsObjects
             EnvironmentType = config.Env.ToString();
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
             TestExecutionContext.CurrentContext.CurrentTest.Properties.Set("Test", this);
+            SessionId = string.Empty;
 
             Base.MongoDb.InsertTest(this);
         }
@@ -59,6 +63,12 @@ namespace Automation.TestsObjects
             Steps.Add(step);
 
             Base.MongoDb.UpdateSteps(this);
+        }
+
+        public void UpdateSessionId(string sessionId)
+        {
+            SessionId = sessionId;
+            Base.MongoDb.InsertTest(this);
         }
     }
 }

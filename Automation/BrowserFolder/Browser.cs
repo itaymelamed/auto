@@ -14,18 +14,27 @@ namespace Automation.BrowserFolder
 {
     public class Browser
     {
-        public IWebDriver Driver { get; }
+        public RemoteWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
         public ProxyApi ProxyApi { get; set; }
+        public string SessionId { get; }
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
         public Browser(bool proxy = false)
         {
-            ProxyApi = proxy? new ProxyApi(Base._config.Host) : null;
-            string url = $"http://{Base._config.Host}:32005/wd/hub";
-            Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
-            BrowserHelper = new BrowserHelper(Driver);
+            try
+            {
+                ProxyApi = proxy ? new ProxyApi(Base._config.Host) : null;
+                string url = $"http://{Base._config.Host}:32005/wd/hub";
+                Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
+                SessionId = Driver.SessionId.ToString();
+                BrowserHelper = new BrowserHelper(Driver);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Init Browser has failed.");
+            }
         }
 
         public void Navigate(string url)
@@ -212,7 +221,14 @@ namespace Automation.BrowserFolder
 
         public Cookie GetCookie(string cookieName)
         {
-            return Driver.Manage().Cookies.GetCookieNamed(cookieName);
+            try
+            {
+                return Driver.Manage().Cookies.GetCookieNamed(cookieName) == null ? throw new NUnit.Framework.AssertionException($"Cookie {cookieName} is missong.") : Driver.Manage().Cookies.GetCookieNamed(cookieName);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Get Cookie oparation has failed.");
+            }
         }
     }
 }

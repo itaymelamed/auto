@@ -210,5 +210,11 @@ namespace Automation.PagesObjects.EchoFolder
             var statusses = GetPostsStatusses();
             return statusses.All(s => s == status);
         }
+
+        public void WaitForPosts()
+        {
+            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count >= 1);
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(connectBtn, "Connect Button");
 
             Base.MongoDb.UpdateSteps($"Clicking on Connect Button.");
-            connectBtn.Click();
+            _browserHelper.Click(connectBtn, nameof(connectBtn));
 
             Base.MongoDb.UpdateSteps($"Switching to FaceBook login tab.");
             _browser.SwitchToLastTab();
