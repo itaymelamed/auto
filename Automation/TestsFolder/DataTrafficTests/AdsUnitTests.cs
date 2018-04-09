@@ -2,7 +2,6 @@
 using Automation.ApiFolder;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder.DataTrafficTests
