@@ -102,16 +102,22 @@ namespace Automation.PagesObjects
             languagesList.ForEach(l => 
             {
                 HoverLanguage();
-                Thread.Sleep(2000);
                 if (l != actualCurrentlanguage)
                 {
-                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML") == l).First().Click();
-                    PageFactory.InitElements(_driver, this);
-                    var url = _browser.GetUrl();
+                    var xxx = dropdownLangauges.ToList();
+                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML").ToLower() == l).First().Click();
+                    Thread.Sleep(2000);
+                    HoverLanguage();
+                    _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
+                    actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
                     int index = languagesList.FindIndex(i => i == l);
                     var exUrl = urlsList[index];
-
-                    errors += url == $"{Base._config.Url}/{exUrl}";
+                    var url = _browser.GetUrl().ToLower();
+                    var localeUrl = $"{Base._config.Url}/{exUrl}?setLocale".ToLower();
+                    if(url != localeUrl)
+                    {
+                        errors += localeUrl + "/n";
+                    }
                 }
             });
             return errors;
