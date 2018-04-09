@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Source Not Found">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/ConfigurationFoldee/Conigurations.cs">
     <Files>
       <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="89" Column="1" />
-      <File FileName="Automation/PagesObjects/Header.cs" Line="108" Column="1" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="107" Column="1" />
       <File FileName="Source Not Found" />
+      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="64" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -27,14 +28,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="112" column="1" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="113" column="1" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="119" column="48" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="115" column="1" />
       <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="107" column="1" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="108" column="1" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="110" column="1" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="111" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

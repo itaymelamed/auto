@@ -92,12 +92,11 @@ namespace Automation.PagesObjects
 
         public string SelectAndValidateCurLanguageDropDown(BsonArray languages, BsonArray urls)
         {
+            Base.MongoDb.UpdateSteps("Select and validate current language dropdown");
             string errors = string.Empty;
             List<string> urlsList = urls.Select(u => u.ToString()).ToList();
             List<string> languagesList = languages.Select(l => l.ToString()).ToList();
             var actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
-           // List<string> dropDownLangague = dropdownLangauges.Select(s => s.GetAttribute("innerHTML").ToString()).ToList();
-           
 
             languagesList.ForEach(l => 
             {
