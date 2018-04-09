@@ -3,12 +3,15 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
     <Files>
       <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="89" Column="1" />
-      <File FileName="Automation/PagesObjects/Header.cs" Line="98" Column="66" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="106" Column="98" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="106" column="1" />
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="105" column="54" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />
