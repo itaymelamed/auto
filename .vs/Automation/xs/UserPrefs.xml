@@ -3,12 +3,22 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
     <Files>
       <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="89" Column="1" />
-      <File FileName="Automation/PagesObjects/Header.cs" Line="106" Column="36" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="108" Column="1" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node />
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="HeaderAndFooterFolder" expanded="True">
+                  <Node name="HeaderTests+Test3Class" expanded="True">
+                    <Node name="HeaderCheckCurLangaugeIsRight" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

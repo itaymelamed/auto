@@ -95,8 +95,7 @@ namespace Automation.PagesObjects
             string errors = string.Empty;
             List<string> urlsList = urls.Select(u => u.ToString()).ToList();
             List<string> languagesList = languages.Select(l => l.ToString()).ToList();
-            var actualCurrentlanguage = dropdownCurLangauge.Text;
-            var actualDropDown = dropdownLangauges.Select(el => el.GetAttribute("innerHTML")).ToList();
+            var actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
            // List<string> dropDownLangague = dropdownLangauges.Select(s => s.GetAttribute("innerHTML").ToString()).ToList();
            
 
@@ -104,22 +103,16 @@ namespace Automation.PagesObjects
             {
                 HoverLanguage();
                 Thread.Sleep(2000);
-                for (int i = 0; i <= actualDropDown.Count - 1; i++)
+                if (l != actualCurrentlanguage)
                 {
-                    if (actualCurrentlanguage == actualDropDown[i])
-                    {
-                        dropdownLangauges.RemoveAt(i);
-                        break;
-                    }
+                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML") == l).First().Click();
+                    PageFactory.InitElements(_driver, this);
+                    var url = _browser.GetUrl();
+                    int index = languagesList.FindIndex(i => i == l);
+                    var exUrl = urlsList[index];
+
+                    errors += url == $"{Base._config.Url}/{exUrl}";
                 }
-                dropdownLangauges.Where(ld => ld.GetAttribute("innerHTML") == l).First().Click();
-                PageFactory.InitElements(_driver, this);
-                var url = _browser.GetUrl();
-                int index = languagesList.FindIndex(i => i == l);
-                var exUrl = urlsList[index];
-
-                errors += url == $"{Base._config.Url}/{exUrl}";
-
             });
             return errors;
         }
