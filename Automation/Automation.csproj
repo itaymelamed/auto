@@ -100,11 +100,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.3.11.0\lib\net45\WebDriver.dll</HintPath>
+      <HintPath>packages\Selenium.WebDriver.3.11.1\lib\net45\WebDriver.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.3.11.0\lib\net45\WebDriver.Support.dll</HintPath>
+      <HintPath>packages\Selenium.Support.3.11.1\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
