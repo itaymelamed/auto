@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/ConfigurationFoldee/Conigurations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
     <Files>
       <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="89" Column="1" />
-      <File FileName="Automation/PagesObjects/Header.cs" Line="107" Column="1" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="129" Column="76" />
       <File FileName="Source Not Found" />
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="64" />
     </Files>

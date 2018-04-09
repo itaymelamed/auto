@@ -100,14 +100,13 @@ namespace Automation.PagesObjects
 
             languagesList.ForEach(l => 
             {
-                HoverLanguage();
                 if (l != actualCurrentlanguage)
                 {
                     var xxx = dropdownLangauges.ToList();
-                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML").ToLower() == l).First().Click();
-                    Thread.Sleep(2000);
                     HoverLanguage();
                     _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
+                    Thread.Sleep(2000);
+                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML").ToLower() == l).First().Click();
                     actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
                     int index = languagesList.FindIndex(i => i == l);
                     var exUrl = urlsList[index];
