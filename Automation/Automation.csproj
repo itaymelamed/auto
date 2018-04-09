@@ -201,6 +201,7 @@
     <Compile Include="TestsFolder\ApiTessFolder\EchoApiTests.cs" />
     <Compile Include="TestsFolder\EITestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\ManagementPage.cs" />
+    <Compile Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
