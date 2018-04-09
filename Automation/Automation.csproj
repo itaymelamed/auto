@@ -199,8 +199,6 @@
     <Compile Include="PagesObjects\PartnersPage.cs" />
     <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
     <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
-    <Compile Include="TestsFolder\BaseApi.cs" />
-    <Compile Include="TestsFolder\ApiTessFolder\EchoApiTests.cs" />
     <Compile Include="Helpersobjects\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup />
