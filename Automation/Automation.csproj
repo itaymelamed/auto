@@ -80,6 +80,15 @@
     <Reference Include="Mono.HttpUtility">
       <HintPath>..\packages\Mono.HttpUtility.1.0.0.1\lib\net40\Mono.HttpUtility.dll</HintPath>
     </Reference>
+    <Reference Include="Flurl">
+      <HintPath>..\packages\Flurl.2.7.0\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.3.11.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.3.11.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
     <Reference Include="CloudinaryDotNet">
       <HintPath>..\packages\CloudinaryDotNet.1.2.0\lib\net40\CloudinaryDotNet.dll</HintPath>
     </Reference>
@@ -94,17 +103,6 @@
     </Reference>
     <Reference Include="System.ValueTuple">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="Flurl">
-      <HintPath>..\packages\Flurl.2.7.1\lib\net40\Flurl.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WebDriver">
-      <HintPath>packages\Selenium.WebDriver.3.11.1\lib\net45\WebDriver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>packages\Selenium.Support.3.11.1\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -199,11 +197,12 @@
     <Compile Include="PagesObjects\PartnersPage.cs" />
     <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
     <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
+    <Compile Include="TestsFolder\BaseApi.cs" />
+    <Compile Include="TestsFolder\ApiTessFolder\EchoApiTests.cs" />
+    <Compile Include="TestsFolder\EITestsFolder\EditorTests.cs" />
+    <Compile Include="PagesObjects\ManagementPage.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
@@ -226,6 +225,8 @@
     <Folder Include="PagesObjects\EchoFolder\" />
     <Folder Include="TestsFolder\FeedPageTests\" />
     <Folder Include="TestsFolder\NavigationTests\" />
+    <Folder Include="TestsFolder\ApiTessFolder\" />
+    <Folder Include="TestsFolder\EITestsFolder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
