@@ -104,7 +104,7 @@ namespace Automation.PagesObjects
             {
                 HoverLanguage();
                 Thread.Sleep(2000);
-                for (int i = 0; i <= dropdownLangauges.Count - 1; i++)
+                for (int i = 0; i <= actualDropDown.Count - 1; i++)
                 {
                     if (actualCurrentlanguage == actualDropDown[i])
                     {
