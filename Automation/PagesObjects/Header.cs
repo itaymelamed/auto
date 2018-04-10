@@ -92,22 +92,23 @@ namespace Automation.PagesObjects
 
         public bool SelectAndValidateLogo(BsonArray href, BsonArray urls)
         {
-            logo.Click();
             PageFactory.InitElements(_driver, this);
             List<string> urlsList = urls.Select(u => u.ToString()).ToList();
             List<string> hrefList = href.Select(u => u.ToString()).ToList();
-            var curHref = logo.GetAttribute("href");
             var sum =false;
-            for (int i = 0; i < urlsList.Count - 1; i++)
+
+            urlsList.ForEach(l =>
             {
-                if (curHref == $"{Base._config.Url}/{urlsList[i]}")
+                _browser.Navigate($"{Base._config.Url}/{l}");
+                Thread.Sleep(2000);
+                var curHref = logo.GetAttribute("href");
+                if(curHref == $"{Base._config.Url}/{l}")
                 {
                     sum = true;
                 }
-            }
+
+            });
             return sum;
-
-
         }
     }
 }
