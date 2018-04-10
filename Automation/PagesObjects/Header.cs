@@ -49,7 +49,7 @@ namespace Automation.PagesObjects
         }
         public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
         {
-            Base.MongoDb.UpdateSteps("");
+            Base.MongoDb.UpdateSteps("Validate language dropdown");
             bool sum = false;
             _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
             var actualCurrentlanguage = dropdownCurLangauge.Text;
@@ -88,37 +88,6 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Check if langague dropdown does not appear");
             sum = _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
             return sum;
-        }
-
-        public string SelectAndValidateCurLanguageDropDown(BsonArray languages, BsonArray urls)
-        {
-            Base.MongoDb.UpdateSteps("Select and validate current language dropdown");
-            string errors = string.Empty;
-            List<string> urlsList = urls.Select(u => u.ToString()).ToList();
-            List<string> languagesList = languages.Select(l => l.ToString()).ToList();
-            var actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
-
-            languagesList.ForEach(l => 
-            {
-                if (l != actualCurrentlanguage)
-                {
-                    var xxx = dropdownLangauges.ToList();
-                    HoverLanguage();
-                    _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
-                    Thread.Sleep(2000);
-                    dropdownLangauges.ToList().Where(ld => ld.GetAttribute("innerHTML").ToLower() == l).First().Click();
-                    actualCurrentlanguage = dropdownCurLangauge.Text.ToLower();
-                    int index = languagesList.FindIndex(i => i == l);
-                    var exUrl = urlsList[index];
-                    var url = _browser.GetUrl().ToLower();
-                    var localeUrl = $"{Base._config.Url}/{exUrl}?setLocale".ToLower();
-                    if(url != localeUrl)
-                    {
-                        errors += localeUrl + "/n";
-                    }
-                }
-            });
-            return errors;
         }
 
         public bool SelectAndValidateLogo(BsonArray href, BsonArray urls)
