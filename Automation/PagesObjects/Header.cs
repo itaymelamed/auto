@@ -92,7 +92,6 @@ namespace Automation.PagesObjects
 
         public bool SelectAndValidateLogo(BsonArray href, BsonArray urls)
         {
-            PageFactory.InitElements(_driver, this);
             List<string> urlsList = urls.Select(u => u.ToString()).ToList();
             List<string> hrefList = href.Select(u => u.ToString()).ToList();
             var sum =false;
@@ -100,7 +99,8 @@ namespace Automation.PagesObjects
             urlsList.ForEach(l =>
             {
                 _browser.Navigate($"{Base._config.Url}/{l}");
-                Thread.Sleep(2000);
+                PageFactory.InitElements(_driver, this);
+                _browserHelper.WaitForElement(logo, "");
                 var curHref = logo.GetAttribute("href");
                 if(curHref == $"{Base._config.Url}/{l}")
                 {
