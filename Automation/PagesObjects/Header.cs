@@ -94,17 +94,15 @@ namespace Automation.PagesObjects
         {
             List<string> urlsList = urls.Select(u => u.ToString()).ToList();
             List<string> hrefList = href.Select(u => u.ToString()).ToList();
-            var sum =false;
+            var sum = true;
 
             urlsList.ForEach(l =>
             {
                 _browser.Navigate($"{Base._config.Url}/{l}");
-                PageFactory.InitElements(_driver, this);
-                _browserHelper.WaitForElement(logo, "");
                 var curHref = logo.GetAttribute("href");
-                if(curHref == $"{Base._config.Url}/{l}")
+                if(curHref != $"{Base._config.Url}/{l}")
                 {
-                    sum = true;
+                    sum = false;
                 }
 
             });
