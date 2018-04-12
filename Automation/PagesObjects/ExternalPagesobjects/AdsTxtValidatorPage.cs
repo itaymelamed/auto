@@ -62,7 +62,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                 warningsN = int.Parse(warningsNum.Text);
 
                 return errorsN > 0 || warningsN > 0;
-            }, "", 30, false);
+            }, "", 5, false);
 
             return result;
         }
