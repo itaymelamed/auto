@@ -166,7 +166,7 @@
     <Compile Include="PagesObjects\NewsRoomPage.cs" />
     <Compile Include="ApiFolder\GoogleAnalitics.cs" />
     <Compile Include="TestsFolder\DataTrafficTests\GoogleAnaliticsTests.cs" />
-    <Compile Include="PagesObjects\VideoPage.cs" />
+    <Compile Include="PagesObjects\VideoPlayer.cs" />
     <Compile Include="PagesObjects\EchoFolder\EchoPage.cs" />
     <Compile Include="Helpersobjects\PostCreatorEcho.cs" />
     <Compile Include="TestsFolder\AdminTestsFolder\EchoTests.cs" />
@@ -179,10 +179,10 @@
     <Compile Include="PagesObjects\PartnersPage.cs" />
     <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
     <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
-    <Compile Include="TestsFolder\BaseApi.cs" />
-    <Compile Include="TestsFolder\ApiTessFolder\EchoApiTests.cs" />
     <Compile Include="TestsFolder\EITestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\ManagementPage.cs" />
+    <Compile Include="TestsFolder\VideoPlayerTestsFolder\VideoPlayerTests.cs" />
+    <Compile Include="Helpersobjects\DataLayer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -207,8 +207,8 @@
     <Folder Include="PagesObjects\EchoFolder\" />
     <Folder Include="TestsFolder\FeedPageTests\" />
     <Folder Include="TestsFolder\NavigationTests\" />
-    <Folder Include="TestsFolder\ApiTessFolder\" />
     <Folder Include="TestsFolder\EITestsFolder\" />
+    <Folder Include="TestsFolder\VideoPlayerTestsFolder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

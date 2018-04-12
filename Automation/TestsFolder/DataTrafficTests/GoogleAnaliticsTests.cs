@@ -27,7 +27,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, false);
@@ -55,7 +55,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 Thread.Sleep(2000);
 
@@ -85,7 +85,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.Seek();
                 videoPage.WaitForVideoComplete();
@@ -117,7 +117,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.Mute();
 
@@ -147,7 +147,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.Mute();
                 Thread.Sleep(1000);
@@ -180,7 +180,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.FullScreen();
                 Thread.Sleep(1000);
@@ -213,7 +213,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.FullScreen();
                 videoPage.FullScreen();
@@ -245,7 +245,7 @@ namespace Automation.TestsFolder.DataTrafficTests
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.Seek();
                 Thread.Sleep(1000);
@@ -277,7 +277,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitForAdPrecent(100);
                 Thread.Sleep(2000);
@@ -307,7 +307,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 Thread.Sleep(TimeSpan.FromSeconds(60));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
@@ -336,7 +336,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 Thread.Sleep(TimeSpan.FromSeconds(60));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
@@ -365,7 +365,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitUntillVideoPrecnent(25);
                 Thread.Sleep(1000);
@@ -395,7 +395,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitUntillVideoPrecnent(50);
                 Thread.Sleep(1000);
@@ -425,7 +425,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitUntillVideoPrecnent(75);
                 Thread.Sleep(TimeSpan.FromMinutes(1));
@@ -455,7 +455,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitUntillVideoPrecnent(90);
                 Thread.Sleep(TimeSpan.FromMinutes(1));
@@ -485,7 +485,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.ClickOnPlay();
                 videoPage.WaitForAdPrecent(25);
                 Thread.Sleep(TimeSpan.FromSeconds(60));
@@ -515,7 +515,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.WaitForVideoToPlay();
                 Thread.Sleep(TimeSpan.FromSeconds(60));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
@@ -544,7 +544,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.WaitForVideoToPlay();
                 Thread.Sleep(TimeSpan.FromSeconds(180));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);
@@ -573,7 +573,7 @@ namespace Automation.TestsFolder.DataTrafficTests
                 _browser.ProxyApi.NewHarPost();
                 _browser.Navigate(url);
                 GoogleAnalitics googleAnalitics = new GoogleAnalitics(_browser.ProxyApi.GetRequests);
-                VideoPage videoPage = new VideoPage(_browser);
+                VideoPlayer videoPage = new VideoPlayer(_browser);
                 videoPage.WaitForVideoToPlay();
                 Thread.Sleep(TimeSpan.FromSeconds(120));
                 string errors = googleAnalitics.ValidateEventRequest(eventAction, exJson, ignor, true);

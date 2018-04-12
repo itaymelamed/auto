@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using AutomatedTester.BrowserMob.HAR;
 using Automation.BrowserFolder;
+using Automation.Helpersobjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class VideoPage
+    public class VideoPlayer
     {
         [FindsBy(How = How.CssSelector, Using = "[aria-label='Play']")]
         IWebElement play { get; set; }
@@ -41,17 +41,19 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".jw-text-alt")]
         IWebElement adCounter { get; set; }
-                            
-        BrowserFolder.Browser _browser;
+
+        Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
+        public DataLayer DataLayer { get; }
 
-        public VideoPage(BrowserFolder.Browser browser)
+        public VideoPlayer(Browser browser)
         {
             _browser = browser;
             _driver = browser.Driver;
             _browserHelper = browser.BrowserHelper;
             PageFactory.InitElements(_driver, this);
+            DataLayer = new DataLayer(_browser);
         }
 
         public bool WaitForVideoToPlay()
@@ -103,11 +105,6 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps("Hovering over the video.");
             _browserHelper.WaitForElement(video, nameof(video));
             _browserHelper.Hover(video);
-        }
-
-        public void WaitForRequest(Func<List<Request>> func, string eventAction)
-        {
-            _browserHelper.WaitUntillTrue(() => func().Any(r => r.Url.Contains(eventAction) || r.PostData.Text.Contains(eventAction)), "Request was not sent.", 120);
         }
 
         public void ClickOnPlay()

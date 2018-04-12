@@ -59,10 +59,12 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='twitter']")]
         IWebElement twitterTop { get; set; }
 
+        public VideoPlayer VideoPlayer { get; }
+
         public PostPage(Browser browser)
             :base(browser)
         {
-
+            VideoPlayer = new VideoPlayer(_browser);
         }
 
         public string ValidateComponents(BsonArray components)
