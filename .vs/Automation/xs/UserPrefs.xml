@@ -1,40 +1,21 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/NavigationTests/NavigationTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs">
     <Files>
       <File FileName="Automation/PagesObjects/Header.cs" Line="102" Column="1" />
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="65" />
-      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="84" Column="37" />
+      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="101" Column="14" />
       <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="43" Column="1" />
       <File FileName="Automation/BrowserFolder/Browser.cs" Line="33" Column="14" />
       <File FileName="Automation/TestsFolder/Base.cs" Line="1" Column="1" />
       <File FileName="Automation/TestsFolder/BaseUi.cs" Line="14" Column="31" />
-      <File FileName="Automation/TestsFolder/NavigationTests/NavigationTests.cs" Line="154" Column="48" />
+      <File FileName="Automation/TestsFolder/NavigationTests/NavigationTests.cs" Line="486" Column="9" />
       <File FileName="Automation/PagesObjects/Navigation.cs" Line="26" Column="23" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Automation" expanded="True">
-            <Node name="Automation" expanded="True">
-              <Node name="Automation" expanded="True">
-                <Node name="HeaderAndFooterFolder" expanded="True">
-                  <Node name="HeaderTests+Test4Class" expanded="True">
-                    <Node name="LogoTest" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="102" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />
