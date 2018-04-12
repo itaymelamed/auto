@@ -258,7 +258,7 @@ namespace Automation.PagesObjects
                     editorTags.SendKeys(Keys.Enter);
                 });
 
-                return GetTagsValue().Count >= 3;
+                return GetTagsValue().Count >= tagsArray.Count;
             });
         }
 
