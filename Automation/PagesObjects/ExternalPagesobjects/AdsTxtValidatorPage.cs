@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
