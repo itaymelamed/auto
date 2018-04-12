@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
@@ -51,6 +50,9 @@ namespace Automation.PagesObjects
 
         [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
         IList<IWebElement> moreNewsTitles { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".page-topic__cover-element")]
+        IWebElement coverStory { get; set; }
 
         protected Browser _browser;
         protected IWebDriver _driver;
@@ -241,6 +243,14 @@ namespace Automation.PagesObjects
             _browserHelper.ExecuteUntill(() => result = moreNewsTitles.ToList().Any(t => t.Text == title));
 
             return result;
+        }
+
+        public PostPage ClickOnCoverStory()
+        {
+            Base.MongoDb.UpdateSteps("Clicking on Cover Story Title.");
+            _browserHelper.Click(coverStory, nameof(coverStory));
+
+            return new PostPage(_browser); 
         }
     }
 }

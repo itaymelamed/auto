@@ -35,7 +35,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = "[data-template='Write an Article']")]
         IWebElement editorTitle { get; set; }
 
-
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;
@@ -77,7 +76,7 @@ namespace Automation.PagesObjects
                 templatesNamesList = templateNames.ToList().Select(x => x.ToString()).ToList();
                 templatesList = _driver.FindElements(By.CssSelector(".templates li[class*='template-']")).Select(e => e.GetAttribute("class")).ToList();
                 return templatesList.Count() == templateNames.Count();
-            }, $"Expected {templateNames.Count()} templates but actul templates.");
+            }, $"Expected {templateNames.Count()} templates but actul templates: {templatesList.Count}.");
 
             var errors = string.Empty;
 
@@ -118,7 +117,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateEditorTitle()
         {
-            Base.MongoDb.UpdateSteps($"Validatting editor title");
+            Base.MongoDb.UpdateSteps($"Validatting editor title.");
             return _browserHelper.WaitForElement(editorTitle,nameof(editorTitle));
         }
     }

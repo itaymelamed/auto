@@ -39,7 +39,7 @@ namespace Automation.BrowserFolder
 
         public void Navigate(string url)
         {
-            Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
+            Base.MongoDb.UpdateSteps($"Navigating to url: {url}.");
             try
             {
                 Driver.Navigate().GoToUrl(url);
@@ -52,7 +52,14 @@ namespace Automation.BrowserFolder
         
         public void Maximize()
         {
-            Driver.Manage().Window.Maximize();
+            try
+            {
+                Driver.Manage().Window.Maximize();
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Window maximizing has failed.. Error: {ex.Message}.");
+            }
         }
 
         public void Quit()
@@ -154,7 +161,6 @@ namespace Automation.BrowserFolder
 
         internal void SwitchToTab(int i, int wait = 0)
         {
-            var xx = Driver.WindowHandles.ToList();
             if (wait > 0)
                 BrowserHelper.WaitUntillTrue(() => GetNumOfTabs() == wait);
             Driver.SwitchTo().Window(Driver.WindowHandles[i]);

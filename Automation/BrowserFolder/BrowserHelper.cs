@@ -5,6 +5,7 @@ using System.Threading;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace Automation.BrowserFolder
@@ -20,6 +21,8 @@ namespace Automation.BrowserFolder
 
         public bool WaitForElement(IWebElement el, string elName, int timeOut = 30, bool throwEx = true)
         {
+            var error = string.Empty;
+
             try
             {
                 WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
@@ -37,10 +40,10 @@ namespace Automation.BrowserFolder
 
                 MoveToEl(el);
             }
-            catch
+            catch(Exception e)
             {
                 if (throwEx)
-                    throw new NUnit.Framework.AssertionException($"Could not find element: {elName}.");
+                    throw new NUnit.Framework.AssertionException($"Could not find element: {elName}. Error: {e.Message}.");
                 return false;
             }
 
@@ -86,8 +89,8 @@ namespace Automation.BrowserFolder
             WaitUntillTrue(() => {
                 try
                 {
-                    WaitForElement(drag, nameof(drag), 30, false);
-                    WaitForElement(drop, nameof(drop), 30, false);
+                    WaitForElement(drag, nameof(drag), 30);
+                    WaitForElement(drop, nameof(drop), 30);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();
@@ -126,8 +129,9 @@ namespace Automation.BrowserFolder
                     {
                         return func();
                     }
-                    catch
+                    catch(Exception e)
                     {
+                        ex += e.Message; 
                         return false;
                     }
                 });
@@ -418,6 +422,11 @@ namespace Automation.BrowserFolder
         public void SelectDate(string day)
         {
             Click(_driver.FindElement(By.LinkText(day)), day);
+        }
+
+        public IWebElement FindElement(string locator)
+        {
+            return _driver.FindElement(By.CssSelector(locator));
         }
     }
 }

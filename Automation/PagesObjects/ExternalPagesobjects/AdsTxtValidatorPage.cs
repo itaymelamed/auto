@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -62,7 +60,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
                 warningsN = int.Parse(warningsNum.Text);
 
                 return errorsN > 0 || warningsN > 0;
-            }, "", 30, false);
+            }, "", 5, false);
 
             return result;
         }
