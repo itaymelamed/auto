@@ -126,7 +126,7 @@ namespace Automation.PagesObjects
                 _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 60);
                 _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
                 Thread.Sleep(2000);
-                var image = imagesResults.ToList().Where((x, i) => i == imageIndex).FirstOrDefault();
+                var image = imagesResults.ToList()[imageIndex];
                 Thread.Sleep(2000);
                 _browserHelper.DragElement(image, editorMedia);
                 return true;
@@ -250,10 +250,15 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
             _browserHelper.MoveToEl(editorTags);
-            tagsList.ForEach(t => {
-                editorTags.SendKeys(t);
-                Thread.Sleep(2000);
-                editorTags.SendKeys(Keys.Enter);
+            _browserHelper.WaitUntillTrue(() => 
+            {
+                tagsList.ForEach(t => {
+                    editorTags.SendKeys(t);
+                    Thread.Sleep(2000);
+                    editorTags.SendKeys(Keys.Enter);
+                });
+
+                return GetTagsValue().Count >= 3;
             });
         }
 
