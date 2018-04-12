@@ -13,15 +13,11 @@ namespace Automation.PagesObjects
 {
     public class CastrPage
     {
-        //[FindsBy(How = How.CssSelector, Using = "[name='language']")]
-        //protected IWebElement languageDd { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "[name='language']")]
+        protected IWebElement languageDd { get; set; }
 
-        //[FindsBy(How = How.CssSelector, Using = "select[name='status']")]
-        //protected IWebElement statusDd { get; set; }
-
-        protected IWebElement languageDd => _browserHelper.FindElement("[name='language']");
-
-        protected IWebElement statusDd => _browserHelper.FindElement("select[name='status']");
+        [FindsBy(How = How.CssSelector, Using = "select[name='status']")]
+        protected IWebElement statusDd { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".fetching")]
         protected IWebElement fetching { get; set; }

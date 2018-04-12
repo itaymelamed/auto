@@ -12,15 +12,11 @@ namespace Automation.PagesObjects
 {
     public class ArticleBase
     {
-        //[FindsBy(How = How.CssSelector, Using = "[data-model] [name=title]")]
-        //IWebElement titleTextBox { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "[data-model] [name=title]")]
+        IWebElement titleTextBox { get; set; }
 
-        //[FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        //protected IWebElement editorMedia { get; set; }
-
-        IWebElement titleTextBox => _browserHelper.FindElement("[data-model] [name=title]");
-
-        protected IWebElement editorMedia => _browserHelper.FindElement(".span15.right-container .left.media.drop.old-app");
+        [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
+        protected IWebElement editorMedia { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
         IWebElement editorSeo { get; set; }
@@ -124,17 +120,17 @@ namespace Automation.PagesObjects
 
         public virtual CropImagePopUp DragImage(int imageIndex)
         {
-            if(_browserHelper.WaitUntillTrue(() => 
-            {
-                Base.MongoDb.UpdateSteps($"Dragging image number {imageIndex}.");
-                _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 60);
-                _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
-                Thread.Sleep(2000);
-                var image = imagesResults.ToList()[imageIndex];
-                Thread.Sleep(2000);
-                _browserHelper.DragElement(image, editorMedia);
-                return true;
-            }))
+            if (_browserHelper.WaitUntillTrue(() =>
+             {
+                 Base.MongoDb.UpdateSteps($"Dragging image number {imageIndex}.");
+                 _browserHelper.WaitForElement(editorMedia, nameof(editorMedia), 60);
+                 _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
+                 Thread.Sleep(2000);
+                 var image = imagesResults.ToList()[imageIndex];
+                 Thread.Sleep(2000);
+                 _browserHelper.DragElement(image, editorMedia);
+                 return true;
+             }))
                 return new CropImagePopUp(_browser);
             throw new NUnit.Framework.AssertionException("Failed to drag images.");
         }
@@ -254,9 +250,10 @@ namespace Automation.PagesObjects
 
             _browserHelper.WaitForElement(editorTags, nameof(editorTags), 60, true);
             _browserHelper.MoveToEl(editorTags);
-            _browserHelper.WaitUntillTrue(() => 
+            _browserHelper.WaitUntillTrue(() =>
             {
-                tagsList.ForEach(t => {
+                tagsList.ForEach(t =>
+                {
                     editorTags.SendKeys(t);
                     Thread.Sleep(2000);
                     editorTags.SendKeys(Keys.Enter);
@@ -289,7 +286,7 @@ namespace Automation.PagesObjects
             return tagsList.Any(x => x == tag);
         }
 
-        public void ClickOnMagicStick(int num=1)
+        public void ClickOnMagicStick(int num = 1)
         {
             Base.MongoDb.UpdateSteps($"Clicking on magic stick button.");
             _browserHelper.WaitForElement(magicStick, nameof(magicStick));
@@ -297,9 +294,10 @@ namespace Automation.PagesObjects
             {
                 _browserHelper.Click(magicStick, nameof(magicStick));
             }
-            _browserHelper.WaitUntillTrue(() => 
+            _browserHelper.WaitUntillTrue(() =>
             {
-                _browserHelper.WaitUntillTrue(() => {
+                _browserHelper.WaitUntillTrue(() =>
+                {
                     WriteTags(new BsonArray(new List<string>() { "Atest", "BTest", "CTest" }));
                     return tags.ToList().Count() >= 3;
                 });
@@ -323,11 +321,11 @@ namespace Automation.PagesObjects
         public bool ValidateDeleteButtonCoverimage()
         {
             Base.MongoDb.UpdateSteps($"Validating the delete button on cover image.");
-            return  _browserHelper.WaitUntillTrue(() => 
-            {
-                HoverOverCoverImage();
-                return _browserHelper.WaitForElement(deleteBtnContainerImage, nameof(deleteBtnContainerImage));
-            });
+            return _browserHelper.WaitUntillTrue(() =>
+           {
+               HoverOverCoverImage();
+               return _browserHelper.WaitForElement(deleteBtnContainerImage, nameof(deleteBtnContainerImage));
+           });
         }
 
         public void SearchImage(string search)
@@ -351,8 +349,9 @@ namespace Automation.PagesObjects
         public bool ValidateImageContenet(string search)
         {
             Base.MongoDb.UpdateSteps($"Validating the Image Search content.");
-                                                 
-            _browserHelper.WaitUntillTrue(() => {
+
+            _browserHelper.WaitUntillTrue(() =>
+            {
                 return imagesResults.ToList().Any(r => r.FindElement(By.XPath(".//span")).GetAttribute("data-url").Contains(search));
             }, $"No match found between search query and actual results.", 30);
 
@@ -368,8 +367,8 @@ namespace Automation.PagesObjects
         public void ClickOnPlayBuzzCBX()
         {
             Base.MongoDb.UpdateSteps("Clicking on PlayBuzz CheckBox");
-            _browserHelper.WaitForElement(playBuzzCheckBox,nameof(playBuzzCheckBox));
-            _browserHelper.Click(playBuzzCheckBox,nameof(playBuzzCheckBox));
+            _browserHelper.WaitForElement(playBuzzCheckBox, nameof(playBuzzCheckBox));
+            _browserHelper.Click(playBuzzCheckBox, nameof(playBuzzCheckBox));
         }
 
         public bool ValidatePlayBuzzTBXEnabled()
@@ -383,7 +382,7 @@ namespace Automation.PagesObjects
         {
             Base.MongoDb.UpdateSteps("Inserting Play Buzz URL");
             _browserHelper.WaitForElement(playBuzzUrlField, nameof(playBuzzUrlField));
-            _browserHelper.SetText(playBuzzUrlField,url);
+            _browserHelper.SetText(playBuzzUrlField, url);
         }
 
         public bool ValidatePlayBuzzImageAppears()
@@ -395,8 +394,8 @@ namespace Automation.PagesObjects
 
         public void SetSeoDesc()
         {
-            _browserHelper.WaitForElement(editorSeo,nameof(editorSeo));
-            _browserHelper.SetText(editorSeo,"text text text");
+            _browserHelper.WaitForElement(editorSeo, nameof(editorSeo));
+            _browserHelper.SetText(editorSeo, "text text text");
         }
     }
 }
