@@ -89,11 +89,6 @@ namespace Automation.ConfigurationFolder
             return TestContext.Parameters.Get("siteName", "90Min");
         }
 
-        static string GetParams(string param)
-        {
-            return TestContext.Parameters.Get(param, "utest");
-        }
-
         BsonValue GetConfigJson(string siteName)
         {
             return _mongoDb.GetConfig(siteName);

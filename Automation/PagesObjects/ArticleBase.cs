@@ -12,11 +12,15 @@ namespace Automation.PagesObjects
 {
     public class ArticleBase
     {
-        [FindsBy(How = How.CssSelector, Using = "[data-model] [name=title]")]
-        IWebElement titleTextBox { get; set; }
+        //[FindsBy(How = How.CssSelector, Using = "[data-model] [name=title]")]
+        //IWebElement titleTextBox { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        protected IWebElement editorMedia { get; set; }
+        //[FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
+        //protected IWebElement editorMedia { get; set; }
+
+        IWebElement titleTextBox => _browserHelper.FindElement("[data-model] [name=title]");
+
+        protected IWebElement editorMedia => _browserHelper.FindElement(".span15.right-container .left.media.drop.old-app");
 
         [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
         IWebElement editorSeo { get; set; }

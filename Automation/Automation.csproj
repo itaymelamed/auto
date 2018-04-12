@@ -89,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserFolder\Browser.cs" />
-    <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\Test.cs" />
     <Compile Include="ConfigurationFoldee\Conigurations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConfigurationFoldee\ConfigurationsJsonObject\ConfigObject.cs" />
@@ -158,7 +157,6 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\UrbanAirShipLoginPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\PnDashBoardPage.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\SchedulrPage.cs" />
-    <Compile Include="PagesObjects\CasterObjectsFolder\PostBox.cs" />
     <Compile Include="ApiFolder\AdsUnitHelper.cs" />
     <Compile Include="TestsFolder\DataTrafficTests\AdsUnitTests.cs" />
     <Compile Include="PagesObjects\Auth0LoginPage.cs" />

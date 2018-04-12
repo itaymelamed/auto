@@ -20,7 +20,6 @@ namespace Automation.PagesObjects
         [FindsBy(How = How.CssSelector, Using = ".message")]
         IWebElement postTitle { get; set; }
 
-
         Browser _browser;
         IWebDriver _driver;
         BrowserHelper _browserHelper;

@@ -5,6 +5,7 @@ using System.Threading;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace Automation.BrowserFolder
@@ -421,6 +422,11 @@ namespace Automation.BrowserFolder
         public void SelectDate(string day)
         {
             Click(_driver.FindElement(By.LinkText(day)), day);
+        }
+
+        public IWebElement FindElement(string locator)
+        {
+            return _driver.FindElement(By.CssSelector(locator));
         }
     }
 }
