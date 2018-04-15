@@ -30,7 +30,8 @@ namespace Automation.PagesObjects
                 Thread.Sleep(2000);
                 DragImage(0);
             }
-            BaseUi.MongoDb.UpdateSteps($"Clicking on crop image Ok button.");
+
+            Base.MongoDb.UpdateSteps($"Clicking on crop image Ok button.");
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(okBtn);
             _browserHelper.ClickJavaScript(okBtn);
