@@ -94,7 +94,7 @@ namespace Automation.PagesObjects.EchoFolder
         {
             Base.MongoDb.UpdateSteps($"Clicking on the edit button in the echo page. Title: {title}");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             var index = postsTitles.ToList().FindIndex(t => t.Text == title);;
             _browserHelper.Click(EchoEditButtons[index], "Edit Button");
         }
@@ -179,7 +179,7 @@ namespace Automation.PagesObjects.EchoFolder
         List<string> GetPostsStatusses()
         {
             Base.MongoDb.UpdateSteps($"Getting all the posts statusses.");
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             _browserHelper.WaitUntillTrue(() => statuses.ToList().Count > 1);
             return statuses.ToList().Select(s => s.Text).ToList();
         }
@@ -193,7 +193,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void WaitForPosts()
         {
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count >= 1);
         }
     }

@@ -33,15 +33,12 @@ namespace Automation.PagesObjects
         IWebElement videoLength => FindElement(".jw-text-duration[role = 'timer']");
 
         IWebElement adCounter => FindElement(".jw - text - alt");
-
        
         public DataLayer DataLayer { get; }
 
         public VideoPlayer(Browser browser)
             :base(browser)
         {
-         
-            PageFactory.InitElements(_driver, this);
             DataLayer = new DataLayer(_browser);
         }
 

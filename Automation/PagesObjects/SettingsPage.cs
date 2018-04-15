@@ -33,7 +33,7 @@ namespace Automation.PagesObjects
             Base.MongoDb.UpdateSteps($"Clicking on Save button.");
             _browserHelper.WaitForElement(() => saveBtn, nameof(saveBtn));
             _browserHelper.ClickByPoint(saveBtn ,70, 0);
-            _browserHelper.WaitForElementDiss(loader, 60);
+            _browserHelper.WaitForElementDiss(() => loader, 60);
         }
 
         public EditorPage ClickOnWriteAnArticle()

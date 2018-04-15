@@ -79,7 +79,7 @@ namespace Automation.PagesObjects
         public CastrPage(Browser browser)
             :base(browser)
         {
-            _browserHelper.WaitForElementDiss(fetching);
+            _browserHelper.WaitForElementDiss(() => fetching);
         }
 
         public bool ValidateCasterPage()
@@ -133,7 +133,7 @@ namespace Automation.PagesObjects
         public void DeselectAllCheckBoxes()
         {
             SelectAllCheckBoxes();
-            _browserHelper.WaitForElementDiss(fetching);
+            _browserHelper.WaitForElementDiss(() => fetching);
             Base.MongoDb.UpdateSteps($"Deselecting all checkboxes.");
             SelectAllCheckBoxes();
         }
@@ -147,7 +147,7 @@ namespace Automation.PagesObjects
 
         public CastrPage SelectType(Types type)
         {
-            _browserHelper.WaitForElementDiss(fetching);
+            _browserHelper.WaitForElementDiss(() => fetching);
             Base.MongoDb.UpdateSteps($"Selecting {type}.");
 
             _browserHelper.WaitUntillTrue(() => {
@@ -168,7 +168,7 @@ namespace Automation.PagesObjects
         public bool ValidateFilterByType(Types type)
         {
             Base.MongoDb.UpdateSteps($"Validating {type} icon is next to each post.");
-            _browserHelper.WaitForElementDiss(fetching);
+            _browserHelper.WaitForElementDiss(() => fetching);
             return _browserHelper.WaitUntillTrue(() => typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString()));
         }
 

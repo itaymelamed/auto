@@ -92,6 +92,7 @@ namespace Automation.PagesObjects
                  Thread.Sleep(2000);
                  var image = imagesResults.ToList()[imageIndex];
                  Thread.Sleep(2000);
+                _browserHelper.WaitForElement(() => image);
                  _browserHelper.DragElement(image, editorMedia);
                  return true;
              }))
@@ -140,7 +141,7 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(() => youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
             _browserHelper.Click(youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
 
-            _browserHelper.WaitForElementDiss(youtubeVideoSaveBtn);
+            _browserHelper.WaitForElementDiss(() => youtubeVideoSaveBtn);
         }
 
         public bool CheckYoutubeVideoInPost()
