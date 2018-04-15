@@ -8,35 +8,34 @@ namespace Automation.PagesObjects.EchoFolder
 {
     public class DistributionPage : EchoPage
     {
-        IWebElement channelDropDown => _browserHelper.FindElement(".default.text");
+        IWebElement channelDropDown => FindElement(".default.text");
 
-        List<IWebElement> topHeaderLinks => _browserHelper.FindElements("[role='listitem']");
+        List<IWebElement> topHeaderLinks => FindElements("[role='listitem']");
 
-        List<IWebElement> mediumsNames => _browserHelper.FindElements(".icon.custom");
+        List<IWebElement> mediumsNames => FindElements(".icon.custom");
 
-        List<IWebElement> selectedChannels => _browserHelper.FindElements(".ui.raised");
+        List<IWebElement> selectedChannels => FindElements(".ui.raised");
 
-        IWebElement publishBTN => _browserHelper.FindElement(".ui.primary");
+        IWebElement publishBTN => FindElement(".ui.primary");
 
-        IWebElement channelOpenDropDown => _browserHelper.FindElement(".ui.active.visible .default.text");
+        IWebElement channelOpenDropDown => FindElement(".ui.active.visible .default.text");
 
-        IWebElement publishedStatus => _browserHelper.FindElement(".ui.olive.label.oval");
+        IWebElement publishedStatus => FindElement(".ui.olive.label.oval");
 
-        IWebElement trashIcon => _browserHelper.FindElement(".trashButton");
+        IWebElement trashIcon => FindElement(".trashButton");
 
-        IWebElement yesBtn => _browserHelper.FindElement(".actions .primary");
+        IWebElement yesBtn => FindElement(".actions .primary");
 
-        IWebElement openLink => _browserHelper.FindElement("[role='listitem'] a[href*='posts']");
+        IWebElement openLink => FindElement("[role='listitem'] a[href*='posts']");
 
-        IWebElement editLink => _browserHelper.FindElement("[role='listitem'] a[href*='editor']");
+        IWebElement editLink => FindElement("[role='listitem'] a[href*='editor']");
 
-        IWebElement FromPublishedToNewButton => _browserHelper.FindElement(".ui.label.oval.label.leftOptionSelected");
+        IWebElement FromPublishedToNewButton => FindElement(".ui.label.oval.label.leftOptionSelected");
 
-        IWebElement MediumCombobox => _browserHelper.FindElement("[role='combobox']");
+        IWebElement MediumCombobox => FindElement("[role='combobox']");
 
         public DistributionPage(Browser browser)
             : base(browser)
-
         {
         }
 

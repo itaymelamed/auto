@@ -8,11 +8,11 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 {
     public class FaceBookconnectPage : BaseObject
     {
-        IWebElement emailTxtBox => _browserHelper.FindElement("#email");
+        IWebElement emailTxtBox => FindElement("#email");
 
-        IWebElement passwordTxtBox => _browserHelper.FindElement("#pass");
+        IWebElement passwordTxtBox => FindElement("#pass");
 
-        IWebElement loginBtn => _browserHelper.FindElement("[name='login']");
+        IWebElement loginBtn => FindElement("[name='login']");
 
         public FaceBookconnectPage(Browser browser)
             :base(browser)

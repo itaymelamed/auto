@@ -8,11 +8,11 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 {
     public class AdsTxtValidatorPage : BaseObject
     {
-        IWebElement errorsNum => _browserHelper.FindElement(".error_number");
+        IWebElement errorsNum => FindElement(".error_number");
 
-        IWebElement warningsNum => _browserHelper.FindElement(".warning_number");
+        IWebElement warningsNum => FindElement(".warning_number");
 
-        List<IWebElement> errors => _browserHelper.FindElements("#results p");
+        List<IWebElement> errors => FindElements("#results p");
 
         public AdsTxtValidatorPage(Browser browser)
             :base(browser)
