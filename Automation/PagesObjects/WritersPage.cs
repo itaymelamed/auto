@@ -28,7 +28,7 @@ namespace Automation.PagesObjects
             _browser.SwitchToFirstTab();
             Thread.Sleep(1000);
             BaseUi.MongoDb.UpdateSteps($"Clicking on 'Write an article' button.");
-            if(_browserHelper.WaitForElement(WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
+            if(_browserHelper.WaitForElement(() => WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
                 _browserHelper.Click(WriteAnArticleBtn, "Write new article button.", 0, false);
 
             return new EditorPage(_browser);

@@ -1,7 +1,6 @@
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 using System.Linq;
 using System.Collections.Generic;
@@ -11,53 +10,37 @@ namespace Automation.PagesObjects
 {
     public class PostPage : HomePage
     {
-        [FindsBy(How = How.CssSelector, Using = ".post-admin-options__label")]
-        IWebElement options { get; set; }
+        IWebElement options => FindElement(".post-admin-options__label");
 
-        [FindsBy(How = How.CssSelector, Using = "[href*='/castr']")]
-        IWebElement openInCaster { get; set; }
+        IWebElement openInCaster => FindElement("[href*='/castr']");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-article__post-title__title")]
-        IWebElement title { get; set; }
+        IWebElement title => FindElement(".post-article__post-title__title");
 
-        [FindsBy(How = How.CssSelector, Using = "div[id*='google_pubconsole'] iframe")]
-        IList<IWebElement> iframes { get; set; }
+        List<IWebElement> iframes => FindElements("div[id*='google_pubconsole'] iframe");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-metadata__author-name")]
-        IWebElement authorName { get; set; }
+        IWebElement authorName => FindElement(".post-metadata__author-name");
 
-        [FindsBy(How = How.CssSelector, Using = ".next-post-button__texts")]
-        IWebElement nextBtn { get; set; }
+        IWebElement nextBtn => FindElement(".next-post-button__texts");
 
-        [FindsBy(How = How.CssSelector, Using = ".transfer-news--item")]
-        IList<IWebElement> transferNews { get; set; }
+        List<IWebElement> transferNews => FindElements(".transfer-news--item");
 
-        [FindsBy(How = How.CssSelector, Using = ".top-posts-side-bar__item__text")]
-        IList<IWebElement> topArticles { get; set; }
+        List<IWebElement> topArticles => FindElements(".top-posts-side-bar__item__text");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-side .trc_spotlight_item")]
-        IList<IWebElement> taboolaRight { get; set; }
+        List<IWebElement> taboolaRight => FindElements(".post-side .trc_spotlight_item");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-after .trc_spotlight_item")]
-        IList<IWebElement> taboolaBtm { get; set; }
+        List<IWebElement> taboolaBtm => FindElements(".post-after .trc_spotlight_item");
 
-        [FindsBy(How = How.CssSelector, Using = ".logo-img")]
-        IWebElement logo { get; set; }
+        IWebElement logo => FindElement(".logo-img");
 
-        [FindsBy(How = How.CssSelector, Using = "div[data-spotim-module='spotim-launcher']")]
-        IWebElement spotim { get; set; }
+        IWebElement spotim => FindElement("div[data-spotim-module='spotim-launcher']");
 
-        [FindsBy(How = How.ClassName, Using = "post-content")]
-        IWebElement postContent { get; set; }
+        IWebElement postContent => FindElement(".post-content");
 
-        [FindsBy(How = How.ClassName, Using = "reactions__list-item")]
-        IList<IWebElement> reactions { get; set; }
+        List<IWebElement> reactions => FindElements(".reactions__list-item");
 
-        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='facebook']")]
-        IWebElement faceBookTop { get; set; }
+        IWebElement faceBookTop => FindElement(".cover-social-container [data-type='facebook']");
 
-        [FindsBy(How = How.CssSelector, Using = ".cover-social-container [data-type='twitter']")]
-        IWebElement twitterTop { get; set; }
+        IWebElement twitterTop => FindElement(".cover-social-container [data-type='twitter']");
 
         public VideoPlayer VideoPlayer { get; }
 
@@ -106,18 +89,18 @@ namespace Automation.PagesObjects
         public void HoverOverOptions()
         {
             Base.MongoDb.UpdateSteps("Hovering over the 'Options'.");
-            _browserHelper.WaitForElement(options, nameof(options));
+            _browserHelper.WaitForElement(() => options, nameof(options));
             _browserHelper.Hover(options);
-        }
+        } 
 
         public CastrPage ClickOnOpenInCaster()
         {
             _browserHelper.WaitUntillTrue(() =>
             {
-                _browserHelper.WaitForElement(title, nameof(title));
+                _browserHelper.WaitForElement(() => title, nameof(title));
                 _browserHelper.MoveToEl(title);
                 HoverOverOptions();
-                return _browserHelper.WaitForElement(openInCaster, nameof(openInCaster));
+                return _browserHelper.WaitForElement(() => openInCaster, nameof(openInCaster));
             }, "Failed to hover over options.");
 
             Base.MongoDb.UpdateSteps("Clicking on 'Open In Caster'.");
@@ -180,7 +163,7 @@ namespace Automation.PagesObjects
         public string GetAuthorName()
         {
             Base.MongoDb.UpdateSteps("Getting the author name from the post.");
-            _browserHelper.WaitForElement(authorName,nameof(authorName));
+            _browserHelper.WaitForElement(() => authorName,nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
 
@@ -190,7 +173,7 @@ namespace Automation.PagesObjects
         public PostPage ClickOnNextBtn()
         {
             Base.MongoDb.UpdateSteps("Clicking on next button.");
-            _browserHelper.WaitForElement(nextBtn, nameof(nextBtn));
+            _browserHelper.WaitForElement(() => nextBtn, nameof(nextBtn));
             _browserHelper.ExecuteUntill(() => _browserHelper.ClickJavaScript(nextBtn));
 
             return new PostPage(_browser);
@@ -225,7 +208,7 @@ namespace Automation.PagesObjects
         public HomePage ClickOnLogo()
         {
             Base.MongoDb.UpdateSteps("Clicking on top logo.");
-            _browserHelper.WaitForElement(logo, nameof(logo));
+            _browserHelper.WaitForElement(() => logo, nameof(logo));
             _browserHelper.Click(logo, nameof(logo));
 
             return new HomePage(_browser);
@@ -254,14 +237,14 @@ namespace Automation.PagesObjects
         public void ClickOnFacebookTopBtn()
         {
             Base.MongoDb.UpdateSteps($"Clicking on Facebook top button");
-            _browserHelper.WaitForElement(faceBookTop, nameof(faceBookTop));
+            _browserHelper.WaitForElement(() => faceBookTop, nameof(faceBookTop));
             _browserHelper.Click(faceBookTop, nameof(faceBookTop));
         }
 
         public void ClickOnTwitterTopBtn()
         {
             Base.MongoDb.UpdateSteps($"Clicking on Twitter top button");
-            _browserHelper.WaitForElement(twitterTop, nameof(twitterTop));
+            _browserHelper.WaitForElement(() => twitterTop, nameof(twitterTop));
             _browserHelper.Click(twitterTop, nameof(twitterTop));
         }
     }

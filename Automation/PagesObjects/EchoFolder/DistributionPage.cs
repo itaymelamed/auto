@@ -3,66 +3,47 @@ using System.Linq;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.EchoFolder
 {
     public class DistributionPage : EchoPage
     {
+        IWebElement channelDropDown => _browserHelper.FindElement(".default.text");
 
-        [FindsBy(How = How.CssSelector, Using = ".default.text")]
-        IWebElement channelDropDown { get; set; }
+        List<IWebElement> topHeaderLinks => _browserHelper.FindElements("[role='listitem']");
 
-        [FindsBy(How = How.CssSelector, Using = "[role='listitem']")]
-        IList<IWebElement> topHeaderLinks { get; set; }
+        List<IWebElement> mediumsNames => _browserHelper.FindElements(".icon.custom");
 
-        [FindsBy(How = How.CssSelector, Using = ".icon.custom")]
-        IList<IWebElement> mediumsNames { get; set; }
+        List<IWebElement> selectedChannels => _browserHelper.FindElements(".ui.raised");
 
-        [FindsBy(How = How.CssSelector, Using = ".ui.raised")]
-        IList<IWebElement> selectedChannels { get; set; }
+        IWebElement publishBTN => _browserHelper.FindElement(".ui.primary");
 
-        [FindsBy(How = How.CssSelector, Using = ".ui.primary")]
-        IWebElement publishBTN { get; set; }
+        IWebElement channelOpenDropDown => _browserHelper.FindElement(".ui.active.visible .default.text");
 
-        [FindsBy(How = How.CssSelector, Using = ".ui.active.visible .default.text")]
-        IWebElement channelOpenDropDown { get; set; }
+        IWebElement publishedStatus => _browserHelper.FindElement(".ui.olive.label.oval");
 
-        [FindsBy(How = How.CssSelector, Using = ".ui.olive.label.oval")]
-        IWebElement publishedStatus { get; set; }
+        IWebElement trashIcon => _browserHelper.FindElement(".trashButton");
 
-        [FindsBy(How = How.CssSelector, Using = ".trashButton")]
-        IWebElement trashIcon { get; set; }
+        IWebElement yesBtn => _browserHelper.FindElement(".actions .primary");
 
-        [FindsBy(How = How.CssSelector, Using = ".actions .primary")]
-        IWebElement yesBtn { get; set; }
+        IWebElement openLink => _browserHelper.FindElement("[role='listitem'] a[href*='posts']");
 
-        [FindsBy(How = How.CssSelector, Using = "[role='listitem'] a[href*='posts']")]
-        IWebElement openLink { get; set; }
+        IWebElement editLink => _browserHelper.FindElement("[role='listitem'] a[href*='editor']");
 
-        [FindsBy(How = How.CssSelector, Using = "[role='listitem'] a[href*='editor']")]
-        IWebElement editLink { get; set; }
+        IWebElement FromPublishedToNewButton => _browserHelper.FindElement(".ui.label.oval.label.leftOptionSelected");
 
-        [FindsBy(How = How.CssSelector, Using = ".ui.label.oval.label.leftOptionSelected")]
-        IWebElement FromPublishedToNewButton { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "[role='combobox']")]
-        IWebElement MediumCombobox { get; set; }
+        IWebElement MediumCombobox => _browserHelper.FindElement("[role='combobox']");
 
         public DistributionPage(Browser browser)
             : base(browser)
 
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public void SelectChannel(string channel)
         {
             Base.MongoDb.UpdateSteps($"Selecting channel {channel} from the list.");
-            _browserHelper.WaitForElement(channelDropDown, nameof(channelDropDown));
+            _browserHelper.WaitForElement(() => channelDropDown, nameof(channelDropDown));
             _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.Where(t => t.Text == channel).FirstOrDefault().Click());
         }
@@ -70,7 +51,7 @@ namespace Automation.PagesObjects.EchoFolder
         public void SelectChannel(int i)
         {
             Base.MongoDb.UpdateSteps($"Selecting channel from the list.");
-            _browserHelper.WaitForElement(channelDropDown, nameof(channelDropDown));
+            _browserHelper.WaitForElement(() => channelDropDown, nameof(channelDropDown));
             _browserHelper.Click(channelDropDown, nameof(channelDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
@@ -78,7 +59,7 @@ namespace Automation.PagesObjects.EchoFolder
         public void SelectChannelDPOpen(int i)
         {
             Base.MongoDb.UpdateSteps($"Selecting channel from the list when the dropdown is open.");
-            _browserHelper.WaitForElement(channelOpenDropDown, nameof(channelOpenDropDown));
+            _browserHelper.WaitForElement(() => channelOpenDropDown, nameof(channelOpenDropDown));
             _browserHelper.ExecuteUntill(() => mediumsNames.ToList()[i].Click());
         }
 
@@ -94,7 +75,7 @@ namespace Automation.PagesObjects.EchoFolder
         {
             Base.MongoDb.UpdateSteps($"Validating selected channels.");
             SelectChannel(channel);
-            _browserHelper.WaitForElement(publishBTN, nameof(publishBTN));
+            _browserHelper.WaitForElement(() => publishBTN, nameof(publishBTN));
             _browserHelper.Click(publishBTN, nameof(publishBTN));
         }
 
@@ -113,7 +94,7 @@ namespace Automation.PagesObjects.EchoFolder
         public void WaitForPublishedSatatus()
         {
             Base.MongoDb.UpdateSteps($"Waiting for published status");
-            _browserHelper.WaitForElement(publishedStatus, nameof(publishedStatus));
+            _browserHelper.WaitForElement(() => publishedStatus, nameof(publishedStatus));
         }
 
         public void MarkSelectedChannels()
@@ -125,14 +106,14 @@ namespace Automation.PagesObjects.EchoFolder
         public void ClickOnTrashIcon()
         {
             Base.MongoDb.UpdateSteps($"Removing selected channels in the distribution page");
-            _browserHelper.WaitForElement(trashIcon, nameof(trashIcon));
+            _browserHelper.WaitForElement(() => trashIcon, nameof(trashIcon));
             _browserHelper.Click(trashIcon, nameof(trashIcon));
         }
 
         public void ClickOnYesBtn()
         {
             Base.MongoDb.UpdateSteps($"Clicking on the yes button in the confirm Removal popup message");
-            _browserHelper.WaitForElement(yesBtn, nameof(yesBtn));
+            _browserHelper.WaitForElement(() => yesBtn, nameof(yesBtn));
             _browserHelper.Click(yesBtn, nameof(yesBtn));
         }
 
@@ -150,28 +131,28 @@ namespace Automation.PagesObjects.EchoFolder
         public void ClickOnOpenLink()
         {
             Base.MongoDb.UpdateSteps($"Clicking on open link");
-            _browserHelper.WaitForElement(openLink,nameof(openLink));
+            _browserHelper.WaitForElement(() => openLink,nameof(openLink));
             _browserHelper.Click(openLink, nameof(openLink));
         }
 
         public void ClickOnEditLink()
         {
             Base.MongoDb.UpdateSteps($"Clicking on edit link");
-            _browserHelper.WaitForElement(editLink, nameof(editLink));
+            _browserHelper.WaitForElement(() => editLink, nameof(editLink));
             _browserHelper.Click(editLink, nameof(editLink));
         }
 
         public void ClickOnNewButton()
         {
             Base.MongoDb.UpdateSteps($"Clicking on new button in the distribution page");
-            _browserHelper.WaitForElement(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
+            _browserHelper.WaitForElement(() => FromPublishedToNewButton, nameof(FromPublishedToNewButton));
             _browserHelper.Click(FromPublishedToNewButton, nameof(FromPublishedToNewButton));
         }
 
         public string GetTitleChannel()
         {
             Base.MongoDb.UpdateSteps($"Getting the title of the selected channel");
-            _browserHelper.WaitForElement(selectedChannels.FirstOrDefault(), "channel");
+            _browserHelper.WaitForElement(() => selectedChannels.FirstOrDefault(), "channel");
             return selectedChannels.FirstOrDefault().Text;
         }
 

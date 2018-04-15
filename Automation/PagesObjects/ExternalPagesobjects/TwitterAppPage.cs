@@ -3,25 +3,16 @@ using System.Linq;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.ExternalPagesobjects
 {
-    public class TwitterAppPage
+    public class TwitterAppPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".content")]
-        IList<IWebElement> tweets { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        List<IWebElement> tweets => _browserHelper.FindElements(".content");
 
         public TwitterAppPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         IWebElement SearchTweet(string title)

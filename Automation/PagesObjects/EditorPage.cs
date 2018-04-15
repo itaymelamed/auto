@@ -2,55 +2,39 @@
 using System.Linq;
 using Automation.BrowserFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
 using System;
 using Automation.TestsFolder;
 
 namespace Automation.PagesObjects
 {
-    public class EditorPage
+    public class EditorPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-article']")]
-        IWebElement article { get; set; }
+        IWebElement article => FindElement(".templates li[class='template-article']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-top_x']")]
-        IWebElement list { get; set; }
+        IWebElement list => FindElement(".templates li[class='template-top_x']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-lineup']")]
-        IWebElement lineup { get; set; }
+        IWebElement lineup => FindElement(".templates li[class='template-lineup']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-slideshow']")]
-        IWebElement slideShow { get; set; }
+        IWebElement slideShow => FindElement(".templates li[class='template-slideshow']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-timeout']")]
-        IWebElement timeOut { get; set; }
+        IWebElement timeOut => FindElement(".templates li[class='template-timeout']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li[class='template-tv']")]
-        IWebElement tv { get; set; }
+        IWebElement tv => FindElement(".templates li[class='template-tv']");
 
-        [FindsBy(How = How.CssSelector, Using = ".templates li a")]
-        IList<IWebElement> templates { get; set; }
+        List<IWebElement> templates => FindElements(".templates li a");
 
-        [FindsBy(How = How.CssSelector, Using = "[data-template='Write an Article']")]
-        IWebElement editorTitle { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement editorTitle => FindElement("[data-template='Write an Article']");
 
         public EditorPage(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public ArticleBase ClickOnArticle()
         {
             Base.MongoDb.UpdateSteps($"Clicking on Article template.");
-            _browserHelper.WaitForElement(article, nameof(article));
+            _browserHelper.WaitForElement(() => article, nameof(article));
             _browserHelper.Click(article, nameof(article));
 
             return new ArticleBase(_browser);
@@ -59,7 +43,7 @@ namespace Automation.PagesObjects
         public ListsTemplate ClickOnList()
         {
             Base.MongoDb.UpdateSteps($"Clicking on list template.");
-            _browserHelper.WaitForElement(list, nameof(list));
+            _browserHelper.WaitForElement(() => list, nameof(list));
             _browserHelper.Click(list, nameof(list));
 
             return new ListsTemplate(_browser);
@@ -100,7 +84,7 @@ namespace Automation.PagesObjects
         public TVPage ClickOnTVTemplate()
         {
             Base.MongoDb.UpdateSteps($"Clicking on tv template.");
-            _browserHelper.WaitForElement(tv, nameof(tv));
+            _browserHelper.WaitForElement(() => tv, nameof(tv));
             _browserHelper.Click(tv, nameof(tv));
 
             return new TVPage(_browser);
@@ -109,7 +93,7 @@ namespace Automation.PagesObjects
         public SlideShowPage ClickOnSlideShow()
         {
             Base.MongoDb.UpdateSteps($"Clicking on slideShow template.");
-            _browserHelper.WaitForElement(slideShow,nameof(slideShow));
+            _browserHelper.WaitForElement(() => slideShow,nameof(slideShow));
             _browserHelper.Click(slideShow,nameof(slideShow));
 
             return new SlideShowPage(_browser); 
@@ -118,7 +102,7 @@ namespace Automation.PagesObjects
         public bool ValidateEditorTitle()
         {
             Base.MongoDb.UpdateSteps($"Validatting editor title.");
-            return _browserHelper.WaitForElement(editorTitle,nameof(editorTitle));
+            return _browserHelper.WaitForElement(() => editorTitle,nameof(editorTitle));
         }
     }
 }

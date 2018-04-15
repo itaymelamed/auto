@@ -7,50 +7,36 @@ using Automation.PagesObjects.CasterObjectsFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class CastrPage
+    public class CastrPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "[name='language']")]
-        protected IWebElement languageDd { get; set; }
+        protected IWebElement languageDd => _browserHelper.FindElement("[name='language']");
 
-        [FindsBy(How = How.CssSelector, Using = "select[name='status']")]
-        protected IWebElement statusDd { get; set; }
+        protected IWebElement statusDd => _browserHelper.FindElement("select[name='status']");
 
-        [FindsBy(How = How.CssSelector, Using = ".fetching")]
-        protected IWebElement fetching { get; set; }
+        protected IWebElement fetching => _browserHelper.FindElement(".fetching");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody tr input")]
-        protected IList<IWebElement> resultsInputs { get; set; }
+        protected IWebElement articleCbx => _browserHelper.FindElement("[value='article']");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
-        protected IList<IWebElement> posts { get; set; }
+        protected IWebElement allCbx => _browserHelper.FindElement("[name='types_all']");
 
-        [FindsBy(How = How.CssSelector, Using = "[value='article']")]
-        protected IWebElement articleCbx { get; set; }
+        protected IWebElement sucMsg => _browserHelper.FindElement(".alert-success p");
 
-        [FindsBy(How = How.CssSelector, Using = "[name='types_all']")]
-        protected IWebElement allCbx { get; set; }
+        protected IWebElement captionTxtBox => _browserHelper.FindElement(".caption textarea");
 
-        [FindsBy(How = How.CssSelector, Using = ".types-list input")]
-        protected IList<IWebElement> types { get; set; }
+        protected IWebElement sucMsgXBtn => _browserHelper.FindElement(".close");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-type span")]
-        protected IList<IWebElement> typesIcons { get; set; }
+        protected List<IWebElement> resultsInputs => _browserHelper.FindElements("tbody tr input");
 
-        [FindsBy(How = How.CssSelector, Using = ".alert-success p")]
-        protected IWebElement  sucMsg { get; set; }
+        protected List<IWebElement> posts => _browserHelper.FindElements("tbody tr");
 
-        [FindsBy(How = How.CssSelector, Using = ".caption textarea")]
-        protected IWebElement captionTxtBox { get; set; }
+        protected List<IWebElement> types => _browserHelper.FindElements(".types-list input");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody span[title]")]
-        protected IList<IWebElement> postsTitles { get; set; }
+        protected List<IWebElement> typesIcons => _browserHelper.FindElements(".post-type span");
 
-        [FindsBy(How = How.CssSelector, Using = ".close")]
-        protected IWebElement sucMsgXBtn { get; set; }
+        protected List<IWebElement> postsTitles => _browserHelper.FindElements("tbody span[title]");
 
         public enum Languages
         {
@@ -90,16 +76,9 @@ namespace Automation.PagesObjects
             lowQuality
         }
 
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
-
         public CastrPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
             _browserHelper.WaitForElementDiss(fetching);
         }
 
@@ -112,7 +91,7 @@ namespace Automation.PagesObjects
         public void FilterByLanguage(string language)
         {
             Base.MongoDb.UpdateSteps($"Filtering posts by language: {language}");
-            _browserHelper.WaitForElement(languageDd, nameof(languageDd));
+            _browserHelper.WaitForElement(() => languageDd, nameof(languageDd));
             SelectElement select = new SelectElement(languageDd);
             select.SelectByValue(language);
         }
@@ -162,7 +141,7 @@ namespace Automation.PagesObjects
         public void SelectAllCheckBoxes()
         {
             Base.MongoDb.UpdateSteps($"Selecting all checkboxes.");
-            _browserHelper.WaitForElement(allCbx, nameof(allCbx));
+            _browserHelper.WaitForElement(() => allCbx, nameof(allCbx));
             _browserHelper.Click(allCbx, nameof(allCbx));
         }
 
@@ -197,13 +176,13 @@ namespace Automation.PagesObjects
         public bool ValidateSucMsg()
         {
             Base.MongoDb.UpdateSteps($"Validating action succsses message.");
-            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60);
+            return _browserHelper.WaitForElement(() => sucMsg, nameof(sucMsg), 60);
         }
 
         public CastrPage SelectStatus(Statuses status)
         {
             Base.MongoDb.UpdateSteps($"Selecting status {status}.");
-            _browserHelper.WaitForElement(statusDd, nameof(statusDd));
+            _browserHelper.WaitForElement(() => statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
 
             return new CastrPage(_browser);

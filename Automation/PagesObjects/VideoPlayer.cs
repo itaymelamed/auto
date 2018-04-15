@@ -59,7 +59,7 @@ namespace Automation.PagesObjects
         public bool WaitForVideoToPlay()
         {
             Base.MongoDb.UpdateSteps("Waiting for video to be played.");
-            return _browserHelper.WaitForElement(videoPlaying, nameof(videoPlaying), 120);
+            return _browserHelper.WaitForElement(() => videoPlaying, nameof(videoPlaying), 120);
         }
 
         public void WaitForVideoToComplete(int sec)
@@ -72,7 +72,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Clicking ov volume button.");
-            _browserHelper.WaitForElement(volume, nameof(volume), 120);
+            _browserHelper.WaitForElement(() => volume, nameof(volume), 120);
             _browserHelper.ExecuteUntill(() => volume.Click());
         }
 
@@ -80,7 +80,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Clicking on FullScreen button.");
-            _browserHelper.WaitForElement(fullScreen, nameof(fullScreen), 120);
+            _browserHelper.WaitForElement(() => fullScreen, nameof(fullScreen), 120);
             _browserHelper.Click(fullScreen, nameof(fullScreen));
         }
 
@@ -88,7 +88,7 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Dragging timeline.");
-            _browserHelper.WaitForElement(progressBar, nameof(progressBar), 120);
+            _browserHelper.WaitForElement(() => progressBar, nameof(progressBar), 120);
             _browserHelper.ExecuteUntill(() => progressBar.Click(), 120);
         }
 
@@ -96,41 +96,41 @@ namespace Automation.PagesObjects
         {
             HoverOverVideo();
             Base.MongoDb.UpdateSteps("Clicking on Pause.");
-            _browserHelper.WaitForElement(play, nameof(play), 120);
+            _browserHelper.WaitForElement(() => play, nameof(play), 120);
             _browserHelper.Click(play, nameof(play));
         }
 
         void HoverOverVideo()
         {
             Base.MongoDb.UpdateSteps("Hovering over the video.");
-            _browserHelper.WaitForElement(video, nameof(video));
+            _browserHelper.WaitForElement(() => video, nameof(video));
             _browserHelper.Hover(video);
         }
 
         public void ClickOnPlay()
         {
             Base.MongoDb.UpdateSteps("Clicking on the Play button.");
-            _browserHelper.WaitForElement(playBtn, nameof(playBtn), 60);
+            _browserHelper.WaitForElement(() => playBtn, nameof(playBtn), 60);
             _browserHelper.Click(playBtn, nameof(playBtn));
         }
 
         string GetTimePassed()
         {
             _browserHelper.Hover(video);
-            _browserHelper.WaitForElement(timePassed, nameof(timePassed));
+            _browserHelper.WaitForElement(() => timePassed, nameof(timePassed));
             return timePassed.Text;
         }
 
         string GetVideoTime()
         {
             _browserHelper.Hover(video);
-            _browserHelper.WaitForElement(videoLength, nameof(videoLength));
+            _browserHelper.WaitForElement(() => videoLength, nameof(videoLength));
             return videoLength.Text;
         }
 
         int GetAdTime()
         {
-            _browserHelper.WaitForElement(adCounter, nameof(adCounter));
+            _browserHelper.WaitForElement(() => adCounter, nameof(adCounter));
             _browserHelper.WaitUntillTrue(() => adCounter.Text != "Loading ad");
             var xx = adCounter.Text;
             var adTotalTime = new string(adCounter.Text.ToCharArray().Where(c => char.IsNumber(c)).ToArray());

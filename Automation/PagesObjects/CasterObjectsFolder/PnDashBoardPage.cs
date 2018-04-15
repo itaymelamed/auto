@@ -3,25 +3,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Automation.BrowserFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
 {
-    public class PnDashBoardPage
+    public class PnDashBoardPage :BaseObject
     {
-        [FindsBy(How = How.TagName, Using = "tbody")]
-        IList<IWebElement> leagues { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        List<IWebElement> leagues => _browserHelper.FindElements("tbody");
 
         public PnDashBoardPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public bool ValidatePost(int league, string title)

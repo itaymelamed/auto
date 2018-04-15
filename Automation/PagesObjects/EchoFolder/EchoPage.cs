@@ -5,56 +5,36 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.EchoFolder
 {
     public class EchoPage : NewsRoomPage
     {
-        [FindsBy(How = How.XPath, Using = "//*[@role='listbox'][1]")]
-        IWebElement langnugeDropDown { get; set; }
+        IWebElement langnugeDropDown => _browserHelper.FindElement(By.XPath("//*[@role='listbox'][1]"), "langnuge Drop Down", 0);
 
-        [FindsBy(How = How.XPath, Using = "//*[@role='listbox'][2]")]
-        IWebElement statusDropDown { get; set; }
+        IWebElement statusDropDown => _browserHelper.FindElement(By.XPath("//*[@role='listbox'][2]"), "status Drop Down", 0);
 
-        [FindsBy(How = How.CssSelector, Using = ".text.medium.regular")]
-        IList<IWebElement> postsTitles { get; set; }
+        List<IWebElement> postsTitles => _browserHelper.FindElements(".text.medium.regular");
 
-        [FindsBy(How = How.CssSelector, Using = ".tableBody [style='flex: 0 0 13%;']")]
-        IList<IWebElement> authorNames { get; set; }
+        List<IWebElement> authorNames => _browserHelper.FindElements(".tableBody [style='flex: 0 0 13%;']");
 
-        [FindsBy(How = How.CssSelector, Using = ".tableBody [style='flex: 1 0 97px;']")]
-        IList<IWebElement> domains { get; set; }
+        List<IWebElement> domains => _browserHelper.FindElements(".tableBody [style='flex: 1 0 97px;']");
 
-        [FindsBy(How = How.CssSelector, Using = ".oval")]
-        IList<IWebElement> statuses { get; set; }
+        List<IWebElement> statuses => _browserHelper.FindElements(".oval");
 
-        [FindsBy(How = How.CssSelector, Using = "[class='tableCell']  a[href *= 'editor']")]
-        IList<IWebElement> EchoEditButtons { get; set; }
+        List<IWebElement> EchoEditButtons => _browserHelper.FindElements(".tableCell a[href *= 'editor']");
 
-        [FindsBy(How = How.CssSelector, Using = ".logout")]
-        IWebElement logOut { get; set; }
+        IWebElement logOut => _browserHelper.FindElement(".logout");
 
-        [FindsBy(How = How.CssSelector, Using = "[style= 'margin-right: 3rem;']")]
-        IWebElement languageFilter { get; set; }
+        IWebElement languageFilter => _browserHelper.FindElement("[style= 'margin-right: 3rem;']");
 
-        [FindsBy(How = How.XPath, Using = "//div[@role='listbox'][2]")]
-        IWebElement StatusFilter { get; set; }
+        IWebElement StatusFilter => _browserHelper.FindElement(By.XPath("//div[@role='listbox'][2]"), "Status Filter", 0);
 
-        [FindsBy(How = How.CssSelector, Using = ".loader")]
-        IWebElement loader { get; set; }
-
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
+        IWebElement loader => _browserHelper.FindElement(".loader");
 
         public EchoPage(Browser browser)
             : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public bool ValidatePostCreation(string title)
@@ -122,14 +102,14 @@ namespace Automation.PagesObjects.EchoFolder
         public void ClickOnLogoutButton()
         {
             Base.MongoDb.UpdateSteps("Clicking on the logout button in the echo page.");
-            _browserHelper.WaitForElement(logOut, nameof(logOut));
+            _browserHelper.WaitForElement(() => logOut, nameof(logOut));
             _browserHelper.Click(logOut, nameof(logOut));
         }
 
         public void ClickOnLangnugeFilter()
         {
             Base.MongoDb.UpdateSteps("Clicking on language filter.");
-            _browserHelper.WaitForElement(languageFilter, nameof(languageFilter));
+            _browserHelper.WaitForElement(() => languageFilter, nameof(languageFilter));
             _browserHelper.Click(languageFilter,nameof(languageFilter));
         }
 
@@ -154,7 +134,7 @@ namespace Automation.PagesObjects.EchoFolder
         public void ClickOnSatusFilter()
         {
             Base.MongoDb.UpdateSteps("Clicking on Status Filter.");
-            _browserHelper.WaitForElement(StatusFilter, nameof(StatusFilter));
+            _browserHelper.WaitForElement(() => StatusFilter, nameof(StatusFilter));
             _browserHelper.Click(StatusFilter, nameof(StatusFilter));
         }
 

@@ -22,7 +22,6 @@ namespace Automation.Helpersobjects
             Article = typeof(ArticleBase);
             Lists = typeof(ListsTemplate);
             Templates = new List<Type>() { Article, Lists };
-            _browser = browser;
             Title = $"VIDEO:{TestContext.CurrentContext.Test.Name}" + new Random().Next(1, 1000);
         }
 
