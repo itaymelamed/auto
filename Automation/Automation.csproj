@@ -184,6 +184,8 @@
     <Compile Include="Helpersobjects\DataLayer.cs" />
     <Compile Include="PagesObjects\BaseObject.cs" />
     <Compile Include="PagesObjects\AdminPage.cs" />
+    <Compile Include="PagesObjects\EchoFolder\TagManagement.cs" />
+    <Compile Include="TestsFolder\TagManagementTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

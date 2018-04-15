@@ -360,6 +360,23 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(() => editorSeo, nameof(editorSeo));
             _browserHelper.SetText(editorSeo, "text text text");
+            _browserHelper.WaitForElement(() => editorSeo,nameof(editorSeo));
+            _browserHelper.SetText(editorSeo,"text text text");
+        }
+
+
+        public void FillArticleTemplate()
+        {
+            Base.MongoDb.UpdateSteps("Fill the article template");
+            WriteTitle("EI Full Flow");
+            SearchImage("cat");
+            CropImagePopUp cropImagePopUp = DragImage(0);
+            cropImagePopUp.ClickOnCropImageBtn();
+            cropImagePopUp.ClickOnEditokBtn();
+            WriteDec("kashkosh");
+            WriteTags(new BsonArray{ "test1", "test2", "test3" });
+            PreviewPage previewPage = ClickOnPreviewBtn();
+            PostPage postPage = previewPage.ClickOnPublishBtn();
         }
     }
 }

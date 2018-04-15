@@ -1,5 +1,6 @@
 ﻿using System;
 using Automation.PagesObjects;
+using MongoDB.Bson;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder.EITestsFolder
@@ -8,7 +9,7 @@ namespace Automation.TestsFolder.EITestsFolder
     {
         [TestFixture]
         [Parallelizable]
-        public class EILogin : BaseUi
+        public class EITest1 : BaseUi
         {
             [Test]
             [Property("TestCaseId", "143")]
@@ -26,7 +27,7 @@ namespace Automation.TestsFolder.EITestsFolder
 
         [TestFixture]
         [Parallelizable]
-        public class EIArticleFullFlow : BaseUi
+        public class EITest2 : BaseUi
         {
             [Test]
             [Property("TestCaseId", "144")]
@@ -37,7 +38,13 @@ namespace Automation.TestsFolder.EITestsFolder
                 _browser.Navigate(_config.Url + "/management");
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
                 ManagementPage managementPage = loginPage.LoginEI(_config.ConfigObject.Users.AdminUser);
-
+                managementPage.ClickOnEditorButton();
+                EditorPage editorPage = new EditorPage(_browser);
+                editorPage.ClickOnArticle();
+                ArticleBase articleBase = new ArticleBase(_browser);
+                articleBase.FillArticleTemplate();
+                PostPage postPage = new PostPage(_browser);
+                postPage.ValidateComponents(new BsonArray{".logo-img",".post-cover__media img",".post-article__post-title__title",".post-content",".post-side-content","transfer-news--container",".post-side-content__external-widget.external-widget.external-widget--taboola",".post-metadata",".reactions__list",".share-component--post-cover",".share-component--post-bottom",".trc_rbox.thumbnails-b.trc-content-sponsored",".post-after .trc-content-sponsored",".user-menu__link",".edition-component.has-dropdown",".new-article",".main-sidenav-toggle","#site-header"});
 
             }
         }

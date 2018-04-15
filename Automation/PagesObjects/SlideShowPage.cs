@@ -5,21 +5,17 @@ using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
     public class SlideShowPage : ListsTemplate
     {
 
-        [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
-        IList<IWebElement> dropMedia { get; set; }
+        IList<IWebElement> dropMedia => FindElements(".image-upload-drop-target");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor-element.redactor_editor")]
-        IList<IWebElement> bodyTextBoxs { get; set; }
+        IList<IWebElement> bodyTextBoxs => FindElements(".redactor-element.redactor_editor");
 
-        [FindsBy(How = How.CssSelector, Using = "[name=title]")]
-        IList<IWebElement> titlesBoxs { get; set; }
+        IList<IWebElement> titlesBoxs => FindElements("[name=title]");
 
 
         public SlideShowPage(Browser browser)
