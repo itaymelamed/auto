@@ -6,7 +6,6 @@ using Automation.BrowserFolder;
 using Automation.Helpersobjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {

@@ -1,7 +1,6 @@
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using static Automation.PagesObjects.CastrPage;
 
 namespace Automation.PagesObjects
