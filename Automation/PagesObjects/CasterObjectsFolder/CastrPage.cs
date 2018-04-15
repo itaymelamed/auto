@@ -12,31 +12,31 @@ namespace Automation.PagesObjects
 {
     public class CastrPage : BaseObject
     {
-        protected IWebElement languageDd => _browserHelper.FindElement("[name='language']");
+        protected IWebElement languageDd => FindElement("[name='language']");
 
-        protected IWebElement statusDd => _browserHelper.FindElement("select[name='status']");
+        protected IWebElement statusDd => FindElement("select[name='status']");
 
-        protected IWebElement fetching => _browserHelper.FindElement(".fetching");
+        protected IWebElement fetching => FindElement(".fetching");
 
-        protected IWebElement articleCbx => _browserHelper.FindElement("[value='article']");
+        protected IWebElement articleCbx => FindElement("[value='article']");
 
-        protected IWebElement allCbx => _browserHelper.FindElement("[name='types_all']");
+        protected IWebElement allCbx => FindElement("[name='types_all']");
 
-        protected IWebElement sucMsg => _browserHelper.FindElement(".alert-success p");
+        protected IWebElement sucMsg => FindElement(".alert-success p");
 
-        protected IWebElement captionTxtBox => _browserHelper.FindElement(".caption textarea");
+        protected IWebElement captionTxtBox => FindElement(".caption textarea");
 
-        protected IWebElement sucMsgXBtn => _browserHelper.FindElement(".close");
+        protected IWebElement sucMsgXBtn => FindElement(".close");
 
-        protected List<IWebElement> resultsInputs => _browserHelper.FindElements("tbody tr input");
+        protected List<IWebElement> resultsInputs => FindElements("tbody tr input");
 
-        protected List<IWebElement> posts => _browserHelper.FindElements("tbody tr");
+        protected List<IWebElement> posts => FindElements("tbody tr");
 
-        protected List<IWebElement> types => _browserHelper.FindElements(".types-list input");
+        protected List<IWebElement> types => FindElements(".types-list input");
 
-        protected List<IWebElement> typesIcons => _browserHelper.FindElements(".post-type span");
+        protected List<IWebElement> typesIcons => FindElements(".post-type span");
 
-        protected List<IWebElement> postsTitles => _browserHelper.FindElements("tbody span[title]");
+        protected List<IWebElement> postsTitles => FindElements("tbody span[title]");
 
         public enum Languages
         {
