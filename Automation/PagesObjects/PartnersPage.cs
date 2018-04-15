@@ -7,34 +7,22 @@ using Automation.TestsFolder;
 using MongoDB.Bson;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class PartnersPage
+    public class PartnersPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".partners-topic__excerpt h3")]
-        IWebElement cover { get; set; }
+        IWebElement cover => FindElement(".partners-topic__excerpt h3");
 
-        [FindsBy(How = How.CssSelector, Using = ".grid-container h3")]
-        IList<IWebElement> latestStories { get; set; }
+        List<IWebElement> latestStories => FindElements(".grid-container h3");
 
-        [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
-        IList<IWebElement> moreStories { get; set; }
+        List<IWebElement> moreStories => FindElements(".feedpage-article__title");
 
-        [FindsBy(How = How.CssSelector, Using = ".button-extra-margin-black__link")]
-        IWebElement bottomReadMore { get; set; }
-
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
+        IWebElement bottomReadMore => FindElement(".button-extra-margin-black__link");
 
         public PartnersPage(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public string GetCoverTitle()

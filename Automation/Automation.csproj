@@ -86,6 +86,9 @@
     <Reference Include="WebDriver.Support">
       <HintPath>..\packages\Selenium.Support.3.11.1\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserFolder\Browser.cs" />
@@ -119,7 +122,6 @@
     <Compile Include="PagesObjects\CasterObjectsFolder\CastrPost.cs" />
     <Compile Include="PagesObjects\FeedPage.cs" />
     <Compile Include="PagesObjects\LeagueFeed.cs" />
-    <Compile Include="PagesObjects\ExternalPagesobjects\FacebookAppPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
     <Compile Include="ApiFolder\ApiObject.cs" />
@@ -186,6 +188,8 @@
     <Compile Include="PagesObjects\ManagementPage.cs" />
     <Compile Include="TestsFolder\VideoPlayerTestsFolder\VideoPlayerTests.cs" />
     <Compile Include="Helpersobjects\DataLayer.cs" />
+    <Compile Include="PagesObjects\BaseObject.cs" />
+    <Compile Include="PagesObjects\AdminPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

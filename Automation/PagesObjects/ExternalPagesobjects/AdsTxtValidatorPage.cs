@@ -3,31 +3,20 @@ using System.Linq;
 using Automation.BrowserFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.ExternalPagesobjects
 {
-    public class AdsTxtValidatorPage
+    public class AdsTxtValidatorPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".error_number")]
-        IWebElement errorsNum { get; set; }
+        IWebElement errorsNum => _browserHelper.FindElement(".error_number");
 
-        [FindsBy(How = How.CssSelector, Using = ".warning_number")]
-        IWebElement warningsNum { get; set; }
+        IWebElement warningsNum => _browserHelper.FindElement(".warning_number");
 
-        [FindsBy(How = How.CssSelector, Using = "#results p")]
-        IList<IWebElement> errors { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        List<IWebElement> errors => _browserHelper.FindElements("#results p");
 
         public AdsTxtValidatorPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public string GetErrors(BsonArray ignor)

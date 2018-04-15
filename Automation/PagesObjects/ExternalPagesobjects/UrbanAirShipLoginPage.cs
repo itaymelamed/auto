@@ -4,42 +4,29 @@ using System.Text.RegularExpressions;
 using Automation.BrowserFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects.ExternalPagesobjects
 {
-    public class UrbanAirShipLoginPage
+    public class UrbanAirShipLoginPage : BaseObject
     {
-        [FindsBy(How = How.Id, Using = "id_username")]
-        IWebElement userName { get; set; }
+        IWebElement userName => FindElement("#id_username");
 
-        [FindsBy(How = How.Id, Using = "id_password")]
-        IWebElement password { get; set; }
+        IWebElement password => FindElement("#id_password");
 
-        [FindsBy(How = How.CssSelector, Using = "[value='Log in']")]
-        IWebElement logInBtn { get; set; }
+        IWebElement logInBtn => FindElement("[value='Log in']");
 
-        [FindsBy(How = How.CssSelector, Using = ".message a")]
-        IList<IWebElement> pns { get; set; }
+        List<IWebElement> pns => FindElements(".message a");
 
-        [FindsBy(How = How.CssSelector, Using = ".loader")]
-        IWebElement loader { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement loader => FindElement(".loader");
 
         public UrbanAirShipLoginPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public void Login(BsonValue user)
         {
-            _browserHelper.WaitForElement(logInBtn, nameof(logInBtn));
+            _browserHelper.WaitForElement(() => logInBtn, nameof(logInBtn));
             _browserHelper.SetText(userName ,user["UserName"].ToString());
             _browserHelper.SetText(password, user["Password"].ToString());
             _browserHelper.ClickJavaScript(logInBtn);
@@ -50,7 +37,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
             return _browserHelper.RefreshUntill(() => 
             {
                 _browserHelper.WaitForElementDiss(loader);
-                _browserHelper.WaitForElement(pns.ToList().FirstOrDefault(), "Pn Post" ,20 ,false);
+                _browserHelper.WaitForElement(() => pns.FirstOrDefault(), "Pn Post" ,20 ,false);
                 return pns.ToList().Any(m => Regex.Replace(m.Text.ToLower().Replace('-', ' '), @"[\d-]", string.Empty) == postTitle);
             }, $"Post {postTitle} was not found on PN list.", 120);
         }

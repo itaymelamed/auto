@@ -5,27 +5,19 @@ using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class ManagementPage
+    public class ManagementPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".admin-tools__item-icon--editor")]
-        IWebElement EditorButton { get; set; }
+        IWebElement EditorButton => FindElement(".admin-tools__item-icon--editor");
 
-        protected BrowserHelper _browserHelper;
-        Browser _browser;
-        IWebDriver _driver;
-
-        public ManagementPage(Browser browser) 
+        public ManagementPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public void ClickOnEditorButton()
         {
             Base.MongoDb.UpdateSteps("Clicking on the editor button");
-            _browserHelper.WaitForElement(EditorButton, nameof(EditorButton));
+            _browserHelper.WaitForElement(() => EditorButton, nameof(EditorButton));
             _browserHelper.Click(EditorButton, nameof(EditorButton));
         }
     }

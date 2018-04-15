@@ -6,38 +6,28 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
     public class ListsTemplate : ArticleBase
     {
-        [FindsBy(How = How.CssSelector, Using = ".introduction.fragment")]
-        IWebElement introduction { get; set; }
+        IWebElement introduction => FindElement(".introduction.fragment");
 
-        [FindsBy(How = How.CssSelector, Using = ".image-container__image")]
-        IList<IWebElement> images { get; set; }
+        List<IWebElement> images => FindElements(".image-container__image");
 
-        [FindsBy(How = How.CssSelector, Using = ".public-DraftEditor-content")]
-        IList<IWebElement> bodyTextBoxs { get; set; }
+        List<IWebElement> bodyTextBoxs => FindElements(".public-DraftEditor-content");
 
-        [FindsBy(How = How.CssSelector, Using = ".title-wrapper input")]
-        IList<IWebElement> subTitleFields { get; set; }
+        List<IWebElement> subTitleFields => FindElements(".title-wrapper input");
 
-        [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
-        IList<IWebElement> mediaDropBoxs { get; set; }
+        List<IWebElement> mediaDropBoxs => FindElements(".image-upload-drop-target");
 
-        [FindsBy(How = How.CssSelector, Using = ".ascending")]
-        IWebElement ascendingIcon { get; set; }
+        IWebElement ascendingIcon => FindElement(".ascending");
 
-        [FindsBy(How = How.CssSelector, Using = ".descending")]
-        IWebElement descendingIcon { get; set; }
+        IWebElement descendingIcon => FindElement(".descending");
 
-        [FindsBy(How = How.CssSelector, Using = ".count")]
-        IList<IWebElement> counters { get; set; }
+        List<IWebElement> counters => FindElements(".count");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor-element.redactor_editor")]
-        IList<IWebElement> bodyTextBoxs2 { get; set; }
+        List<IWebElement> bodyTextBoxs2 => FindElements(".redactor-element.redactor_editor");
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -48,7 +38,7 @@ namespace Automation.PagesObjects
         public string GetIntroductionValue()
         {
             BaseUi.MongoDb.UpdateSteps("Getting introduction value");
-            _browserHelper.WaitForElement(introduction, nameof(introduction));
+            _browserHelper.WaitForElement(() => introduction, nameof(introduction));
             return introduction.Text;
         }
 
@@ -158,7 +148,7 @@ namespace Automation.PagesObjects
         {
             BaseUi.MongoDb.UpdateSteps("Clicking on Ascending button");
             _browserHelper.ScrollToTop();
-            _browserHelper.WaitForElement(ascendingIcon, nameof(ascendingIcon));
+            _browserHelper.WaitForElement(() => ascendingIcon, nameof(ascendingIcon));
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
         }
 
@@ -166,7 +156,7 @@ namespace Automation.PagesObjects
         {
             BaseUi.MongoDb.UpdateSteps("Clicking on Descending button");
             _browserHelper.ScrollToTop();
-            _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));
+            _browserHelper.WaitForElement(() => descendingIcon, nameof(descendingIcon));
             _browserHelper.Click(descendingIcon, nameof(descendingIcon));
         }
 

@@ -5,22 +5,14 @@ using Automation.TestsFolder;
 using MongoDB.Bson;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class Navigation
+    public class Navigation : BaseObject
     {
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
-
         public Navigation(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public string ValidateIcon(BsonValue parameters)

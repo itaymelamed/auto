@@ -2,7 +2,6 @@
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,51 +9,35 @@ using System.Text.RegularExpressions;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
 {
-    public class SchedulrPage
+    public class SchedulrPage : BaseObject
     {
-        [FindsBy(How = How.Id, Using = "time")]
-        IWebElement time { get; set; }
+        IWebElement time => _browserHelper.FindElement("#time");
 
-        [FindsBy(How = How.ClassName, Using = "league")]
-        IList<IWebElement> leaguesList { get; set; }
+        List<IWebElement> leaguesList => _browserHelper.FindElements(".league");
 
-        [FindsBy(How = How.CssSelector, Using = ".card.facebook")]
-        IList<IWebElement> postsFacebook { get; set; }
+        List<IWebElement> postsFacebook => _browserHelper.FindElements(".card.facebook");
 
-        [FindsBy(How = How.CssSelector, Using = ".card.twitter")]
-        IList<IWebElement> postsTwitter { get; set; }
+        List<IWebElement> postsTwitter => _browserHelper.FindElements(".card.twitter");
 
-        [FindsBy(How = How.Id, Using = "date__3i")]
-        IWebElement dayDd { get; set; }
+        IWebElement dayDd => _browserHelper.FindElement("#date__3i");
 
-        [FindsBy(How = How.Id, Using = "date__1i")]
-        IWebElement yearDd { get; set; }
+        IWebElement yearDd => _browserHelper.FindElement("#date__1i");
 
-        [FindsBy(How = How.CssSelector, Using = "form button")]
-        IWebElement goBtn { get; set; }
+        IWebElement goBtn => _browserHelper.FindElement("form button");
 
-        [FindsBy(How = How.ClassName, Using = "league")]
-        IList<IWebElement> leagues { get; set; }
+        List<IWebElement> leagues => _browserHelper.FindElements(".league");
 
-        [FindsBy(How = How.ClassName, Using = ".tab.selected")]
-        IWebElement selectedTab { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement selectedTab => _browserHelper.FindElement(".tab.selected");
 
         public SchedulrPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public string ValidateTime()
         {
             Base.MongoDb.UpdateSteps("Validating date.");
-            _browserHelper.WaitForElement(time, nameof(time));
+            _browserHelper.WaitForElement(() => time, nameof(time));
 
             var dateParsed = time .Text.Split(' ');
             var day = int.Parse(dateParsed[0]);
@@ -105,21 +88,21 @@ namespace Automation.PagesObjects.CasterObjectsFolder
         public void SelectDay(int date)
         {
             Base.MongoDb.UpdateSteps("Selecting Day");
-            _browserHelper.WaitForElement(dayDd, nameof(dayDd));
+            _browserHelper.WaitForElement(() => dayDd, nameof(dayDd));
             _browserHelper.SelectFromDropDown(dayDd, date.ToString());
         }
 
         public void SelectYear(int year)
         {
             Base.MongoDb.UpdateSteps($"Selecting Year {year}");
-            _browserHelper.WaitForElement(yearDd, nameof(yearDd));
+            _browserHelper.WaitForElement(() => yearDd, nameof(yearDd));
             _browserHelper.SelectFromDropDown(yearDd, year.ToString());
         }
 
         public SchedulrPage ClickOnGoBtn()
         {
             Base.MongoDb.UpdateSteps("Clicking on Go button.");
-            _browserHelper.WaitForElement(goBtn, nameof(goBtn));
+            _browserHelper.WaitForElement(() => goBtn, nameof(goBtn));
             _browserHelper.Click(goBtn, nameof(goBtn));
 
             return new SchedulrPage(_browser);

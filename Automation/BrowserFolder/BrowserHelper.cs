@@ -5,7 +5,6 @@ using System.Threading;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace Automation.BrowserFolder
@@ -19,7 +18,7 @@ namespace Automation.BrowserFolder
             _driver = driver;
         }
 
-        public bool WaitForElement(IWebElement el, string elName, int timeOut = 30, bool throwEx = true)
+        public bool WaitForElement(Func<IWebElement> el, string elName = "", int timeOut = 30, bool throwEx = true)
         {
             var error = string.Empty;
 
@@ -29,18 +28,17 @@ namespace Automation.BrowserFolder
                 wait.Until(d => {
                     try
                     {
-                        MoveToEl(el);
-                        return el.Displayed;
+                        var element = el();
+                        MoveToEl(element);
+                        return element.Displayed;
                     }
                     catch
                     {
                         return false;
                     }
                 });
-
-                MoveToEl(el);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (throwEx)
                     throw new NUnit.Framework.AssertionException($"Could not find element: {elName}. Error: {e.Message}.");
@@ -89,8 +87,8 @@ namespace Automation.BrowserFolder
             WaitUntillTrue(() => {
                 try
                 {
-                    WaitForElement(drag, nameof(drag), 30);
-                    WaitForElement(drop, nameof(drop), 30);
+                    WaitForElement(() => drag, nameof(drag), 30);
+                    WaitForElement(() => drop, nameof(drop), 30);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();
@@ -426,7 +424,13 @@ namespace Automation.BrowserFolder
 
         public IWebElement FindElement(string locator)
         {
+            _driver.FindElement(By.CssSelector(locator));
             return _driver.FindElement(By.CssSelector(locator));
+        }
+
+        public List<IWebElement> FindElements(string locator)
+        {
+            return _driver.FindElements(By.CssSelector(locator)).ToList();
         }
     }
 }

@@ -1,25 +1,16 @@
 ﻿using System;
 using Automation.BrowserFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class LeagueFeed
+    public class LeagueFeed : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".user-menu__link img")]
-        IWebElement groups { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement groups => FindElement(".user-menu__link img");
 
         public LeagueFeed(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
     }
 }
