@@ -23,6 +23,7 @@ namespace Automation.ApiFolder
         {
             _requests = requests;
             _exJson = JObject.Parse(exJsons.ToString());
+            experimentId = experimentId.First() == '0' ? experimentId.Remove(0) : experimentId;
             _exJson.Add("experimentId",experimentId);
             _adNames = displyed.Select(x => x.ToString()).ToList();
             _adNames.AddRange(notDisplyed.Select(x => x.ToString()));
