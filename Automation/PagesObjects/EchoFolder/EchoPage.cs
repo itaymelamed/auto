@@ -14,23 +14,23 @@ namespace Automation.PagesObjects.EchoFolder
 
         IWebElement statusDropDown => _browserHelper.FindElement(By.XPath("//*[@role='listbox'][2]"), "status Drop Down", 0);
 
-        List<IWebElement> postsTitles => _browserHelper.FindElements(".text.medium.regular");
+        List<IWebElement> postsTitles => FindElements(".text.medium.regular");
 
-        List<IWebElement> authorNames => _browserHelper.FindElements(".tableBody [style='flex: 0 0 13%;']");
+        List<IWebElement> authorNames => FindElements(".tableBody [style='flex: 0 0 13%;']");
 
-        List<IWebElement> domains => _browserHelper.FindElements(".tableBody [style='flex: 1 0 97px;']");
+        List<IWebElement> domains => FindElements(".tableBody [style='flex: 1 0 97px;']");
 
-        List<IWebElement> statuses => _browserHelper.FindElements(".oval");
+        List<IWebElement> statuses => FindElements(".oval");
 
-        List<IWebElement> EchoEditButtons => _browserHelper.FindElements(".tableCell a[href *= 'editor']");
+        List<IWebElement> EchoEditButtons => FindElements(".tableCell a[href *= 'editor']");
 
-        IWebElement logOut => _browserHelper.FindElement(".logout");
+        IWebElement logOut => FindElement(".logout");
 
-        IWebElement languageFilter => _browserHelper.FindElement("[style= 'margin-right: 3rem;']");
+        IWebElement languageFilter => FindElement("[style= 'margin-right: 3rem;']");
 
         IWebElement StatusFilter => _browserHelper.FindElement(By.XPath("//div[@role='listbox'][2]"), "Status Filter", 0);
 
-        IWebElement loader => _browserHelper.FindElement(".loader");
+        IWebElement loader => FindElement(".loader");
 
         public EchoPage(Browser browser)
             : base(browser)
@@ -94,7 +94,7 @@ namespace Automation.PagesObjects.EchoFolder
         {
             Base.MongoDb.UpdateSteps($"Clicking on the edit button in the echo page. Title: {title}");
             _browserHelper.WaitUntillTrue(() => EchoEditButtons.ToList().Count() >= 2);
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             var index = postsTitles.ToList().FindIndex(t => t.Text == title);;
             _browserHelper.Click(EchoEditButtons[index], "Edit Button");
         }
@@ -179,7 +179,7 @@ namespace Automation.PagesObjects.EchoFolder
         List<string> GetPostsStatusses()
         {
             Base.MongoDb.UpdateSteps($"Getting all the posts statusses.");
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             _browserHelper.WaitUntillTrue(() => statuses.ToList().Count > 1);
             return statuses.ToList().Select(s => s.Text).ToList();
         }
@@ -193,7 +193,7 @@ namespace Automation.PagesObjects.EchoFolder
 
         public void WaitForPosts()
         {
-            _browserHelper.WaitForElementDiss(loader);
+            _browserHelper.WaitForElementDiss(() => loader);
             _browserHelper.WaitUntillTrue(() => postsTitles.ToList().Count >= 1);
         }
     }

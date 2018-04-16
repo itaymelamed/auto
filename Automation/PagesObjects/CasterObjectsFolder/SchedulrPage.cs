@@ -11,23 +11,23 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 {
     public class SchedulrPage : BaseObject
     {
-        IWebElement time => _browserHelper.FindElement("#time");
+        IWebElement time => FindElement("#time");
 
-        List<IWebElement> leaguesList => _browserHelper.FindElements(".league");
+        List<IWebElement> leaguesList => FindElements(".league");
 
-        List<IWebElement> postsFacebook => _browserHelper.FindElements(".card.facebook");
+        List<IWebElement> postsFacebook => FindElements(".card.facebook");
 
-        List<IWebElement> postsTwitter => _browserHelper.FindElements(".card.twitter");
+        List<IWebElement> postsTwitter => FindElements(".card.twitter");
 
-        IWebElement dayDd => _browserHelper.FindElement("#date__3i");
+        IWebElement dayDd => FindElement("#date__3i");
 
-        IWebElement yearDd => _browserHelper.FindElement("#date__1i");
+        IWebElement yearDd => FindElement("#date__1i");
 
-        IWebElement goBtn => _browserHelper.FindElement("form button");
+        IWebElement goBtn => FindElement("form button");
 
-        List<IWebElement> leagues => _browserHelper.FindElements(".league");
+        List<IWebElement> leagues => FindElements(".league");
 
-        IWebElement selectedTab => _browserHelper.FindElement(".tab.selected");
+        IWebElement selectedTab => FindElement(".tab.selected");
 
         public SchedulrPage(Browser browser)
             :base(browser)

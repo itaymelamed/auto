@@ -48,7 +48,7 @@ namespace Automation.BrowserFolder
             return true;
         }
 
-        public void WaitForElementDiss(IWebElement el, int timeOut = 30)
+        public void WaitForElementDiss(Func<IWebElement> el, int timeOut = 30)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Automation.BrowserFolder
                 wait.Until(d => {
                     try
                     {
-                        return !el.Displayed;
+                        return !el().Displayed;
                     }
                     catch
                     {

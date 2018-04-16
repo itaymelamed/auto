@@ -8,7 +8,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 {
     public class PnDashBoardPage :BaseObject
     {
-        List<IWebElement> leagues => _browserHelper.FindElements("tbody");
+        List<IWebElement> leagues => FindElements("tbody");
 
         public PnDashBoardPage(Browser browser)
             :base(browser)

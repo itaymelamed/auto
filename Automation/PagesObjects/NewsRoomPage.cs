@@ -9,7 +9,7 @@ namespace Automation.PagesObjects
     {
         IWebElement editorBtn => _browserHelper.FindElement("[href*='editor/new']");
 
-        IWebElement echoBtn => _browserHelper.FindElement("//span[contains(text(), 'Echo')]");
+        IWebElement echoBtn => _browserHelper.FindElement(By.XPath("//span[contains(text(), 'Echo')]"), "Echo Button", 0);
 
         public NewsRoomPage(Browser browser)
             :base(browser)

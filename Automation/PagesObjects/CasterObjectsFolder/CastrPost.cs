@@ -9,63 +9,63 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 {
     public class CastrPost : CastrPage
     {
-        IWebElement postUrl => _browserHelper.FindElement(".urls__input");
+        IWebElement postUrl => FindElement(".urls__input");
 
-        List<IWebElement> textAreas => _browserHelper.FindElements(".form-inline textarea");
+        List<IWebElement> textAreas => FindElements(".form-inline textarea");
 
-        protected List<IWebElement> inputs => _browserHelper.FindElements(".form-inline input");
+        protected List<IWebElement> inputs => FindElements(".form-inline input");
 
-        List<IWebElement> contorls => _browserHelper.FindElements(".controls button");
+        List<IWebElement> contorls => FindElements(".controls button");
 
-        IWebElement ftb90CheckBox => _browserHelper.FindElement("[name='publish_to_another_site']");
+        IWebElement ftb90CheckBox => FindElement("[name='publish_to_another_site']");
 
-        protected List<IWebElement> leagueCheckBox => _browserHelper.FindElements(".league_selected [type='checkbox']");
+        protected List<IWebElement> leagueCheckBox => FindElements(".league_selected [type='checkbox']");
 
-        protected IWebElement archiveBtn => _browserHelper.FindElement(".multiple-archive");
+        protected IWebElement archiveBtn => FindElement(".multiple-archive");
 
-        IWebElement resetBtn => _browserHelper.FindElement(".reset");
+        IWebElement resetBtn => FindElement(".reset");
 
-        protected IWebElement publishBtn => _browserHelper.FindElement(".publish");
+        protected IWebElement publishBtn => FindElement(".publish");
 
-        List<IWebElement> pubishToCheckBox => _browserHelper.FindElements(".publish-list__item input");
+        List<IWebElement> pubishToCheckBox => FindElements(".publish-list__item input");
 
-        IWebElement saveForLaterBtn => _browserHelper.FindElement(".save");
+        IWebElement saveForLaterBtn => FindElement(".save");
 
-        IWebElement resetConfirmPopUpOkBtn => _browserHelper.FindElement(".alert-warning .ok");
+        IWebElement resetConfirmPopUpOkBtn => FindElement(".alert-warning .ok");
 
-        IWebElement leaguePage => _browserHelper.FindElement(".league-branch-container .collapse");
+        IWebElement leaguePage => FindElement(".league-branch-container .collapse");
 
-        List<IWebElement> leaguePageInputs => _browserHelper.FindElements(".league-branch-container input");
+        List<IWebElement> leaguePageInputs => FindElements(".league-branch-container input");
 
-        List<IWebElement> publisToTeams => _browserHelper.FindElements(".subject .collapse");
+        List<IWebElement> publisToTeams => FindElements(".subject .collapse");
 
-        List<IWebElement> socialMediaCbx => _browserHelper.FindElements(".social-networks-leafs li input");
+        List<IWebElement> socialMediaCbx => FindElements(".social-networks-leafs li input");
 
-        List<IWebElement> socialNetworksArrows => _browserHelper.FindElements(".social-networks .collapse");
+        List<IWebElement> socialNetworksArrows => FindElements(".social-networks .collapse");
 
-        IWebElement publishAlsoToCb => _browserHelper.FindElement("[name=publish_to_another_site]");
+        IWebElement publishAlsoToCb => FindElement("[name=publish_to_another_site]");
 
-        List<IWebElement> teamsArrows => _browserHelper.FindElements(".subject span.collapse");
+        List<IWebElement> teamsArrows => FindElements(".subject span.collapse");
 
-        List<IWebElement> publishToCbx => _browserHelper.FindElements(".branchs .leaf [type=checkbox]");
+        List<IWebElement> publishToCbx => FindElements(".branchs .leaf [type=checkbox]");
 
-        IWebElement publishToCatgoryCb => _browserHelper.FindElement("[name='publish_to_category']");
+        IWebElement publishToCatgoryCb => FindElement("[name='publish_to_category']");
 
-        IWebElement categoryTextbox => _browserHelper.FindElement("[data-mountpoint-name=category-container] .chosen-choices input");
+        IWebElement categoryTextbox => FindElement("[data-mountpoint-name=category-container] .chosen-choices input");
 
-        IWebElement activeResult => _browserHelper.FindElement(".active-result");
+        IWebElement activeResult => FindElement(".active-result");
 
-        IWebElement leaguePageLink => _browserHelper.FindElement(".league-branch-container .subject .tag");
+        IWebElement leaguePageLink => FindElement(".league-branch-container .subject .tag");
 
-        IWebElement pnCheckBox => _browserHelper.FindElement("[name='mobile_notification']");
+        IWebElement pnCheckBox => FindElement("[name='mobile_notification']");
 
-        IWebElement pnHourCbx => _browserHelper.FindElement("[name='pinned_on_mobile_ttl']");
+        IWebElement pnHourCbx => FindElement("[name='pinned_on_mobile_ttl']");
 
-        IWebElement socialNetworksChangeTimeRadio => _browserHelper.FindElement("[data-mountpoint-name='social-networks-schedule'] [value='at']");
+        IWebElement socialNetworksChangeTimeRadio => FindElement("[data-mountpoint-name='social-networks-schedule'] [value='at']");
 
-        IWebElement datePicker => _browserHelper.FindElement("[data-mountpoint-name='social-networks-schedule'] #schedule-datetime-picker [name='date']");
+        IWebElement datePicker => FindElement("[data-mountpoint-name='social-networks-schedule'] #schedule-datetime-picker [name='date']");
 
-        IWebElement dateNxtBtn => _browserHelper.FindElement("[title='Next']");
+        IWebElement dateNxtBtn => FindElement("[title='Next']");
 
         public enum Platforms
         {

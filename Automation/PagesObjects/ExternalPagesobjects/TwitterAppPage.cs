@@ -8,7 +8,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 {
     public class TwitterAppPage : BaseObject
     {
-        List<IWebElement> tweets => _browserHelper.FindElements(".content");
+        List<IWebElement> tweets => FindElements(".content");
 
         public TwitterAppPage(Browser browser)
             :base(browser)

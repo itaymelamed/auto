@@ -6,53 +6,38 @@ using Automation.BrowserFolder;
 using Automation.Helpersobjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class VideoPlayer
+    public class VideoPlayer : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "[aria-label='Play']")]
-        IWebElement play { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[aria-label='Start Playback']")]
-        IWebElement playBtn { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div.jw-state-playing")]
-        IWebElement videoPlaying { get; set; }
+        IWebElement play => FindElement("[aria-label='Play']");
 
-        [FindsBy(How = How.TagName, Using = "video")]
-        IWebElement video{ get; set; }
+        IWebElement playBtn => FindElement("[aria-label='Start Playback']");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-icon-volume.jw-icon-tooltip")]
-        IWebElement volume { get; set; }
+        IWebElement videoPlaying => FindElement("div.jw-state-playing");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-icon-fullscreen")]
-        IWebElement fullScreen { get; set; }
+        IWebElement video => FindElement("video");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-slider-time")]
-        IWebElement progressBar { get; set; }
+        IWebElement volume => FindElement(".jw-icon-volume.jw-icon-tooltip");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-text-elapsed")]
-        IWebElement timePassed { get; set; }
+        IWebElement fullScreen => FindElement(".jw-icon-fullscreen");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-text-duration[role = 'timer']")]
-        IWebElement videoLength { get; set; }
+        IWebElement progressBar => FindElement(".jw-slider-time");
 
-        [FindsBy(How = How.CssSelector, Using = ".jw-text-alt")]
-        IWebElement adCounter { get; set; }
+        IWebElement timePassed => FindElement(".jw-text-elapsed");
 
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement videoLength => FindElement(".jw-text-duration[role = 'timer']");
+
+        IWebElement adCounter => FindElement(".jw - text - alt");
+       
         public DataLayer DataLayer { get; }
 
         public VideoPlayer(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
             DataLayer = new DataLayer(_browser);
         }
 

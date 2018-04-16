@@ -2,26 +2,23 @@
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Automation.PagesObjects
 {
     public class TVPage : ArticleBase
     {
-        [FindsBy(How = How.CssSelector, Using = ".code")]
-        IWebElement embedField { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".post-preview")]
-        IWebElement previewIframe { get; set; }
+        IWebElement videoLength => FindElement(".jw-text-duration[role = 'timer']");
 
-        [FindsBy(How = How.CssSelector, Using = ".video-container-image")]
-        IWebElement videoContainer { get; set; }
+        IWebElement embedField => FindElement(".code");
 
-        [FindsBy(How = How.CssSelector, Using = ".code-wrap textarea")]
-        IWebElement embedCode { get; set; }
+        IWebElement previewIframe => FindElement(".post-preview");
 
-        [FindsBy(How = How.CssSelector, Using = ".btn.save")]
-        IWebElement okBtn { get; set; }
+        IWebElement videoContainer => FindElement(".video-container-image");
+
+        IWebElement embedCode => FindElement(".code-wrap textarea");
+
+        IWebElement okBtn => FindElement(".btn.save");
 
         public TVPage(Browser broswer)
             : base(broswer)

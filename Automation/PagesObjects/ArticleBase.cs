@@ -5,101 +5,71 @@ using System.Threading;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 
 namespace Automation.PagesObjects
 {
     public class ArticleBase : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "[data-model] [name=title]")]
-        IWebElement titleTextBox { get; set; }
+        IWebElement titleTextBox => FindElement("[data-model] [name=title]");
 
-        [FindsBy(How = How.CssSelector, Using = ".span15.right-container .left.media.drop.old-app")]
-        protected IWebElement editorMedia { get; set; }
+        protected IWebElement editorMedia => FindElement(".span15.right-container .left.media.drop.old-app");
 
-        [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSeo] [name=description]")]
-        IWebElement editorSeo { get; set; }
+        IWebElement editorSeo => FindElement("[data-view=EditorSeo] [name=description]");
 
-        [FindsBy(How = How.CssSelector, Using = ".tags-container .input")]
-        IWebElement editorTags { get; set; }
+        IWebElement editorTags => FindElement(".tags-container .input");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor_toolbar")]
-        IWebElement editorWysiWyg { get; set; }
+        IWebElement editorWysiWyg => FindElement(".redactor_toolbar");
 
-        [FindsBy(How = How.CssSelector, Using = ".search-image__search-results-list")]
-        IWebElement images { get; set; }
+        IWebElement images => FindElement(".search-image__search-results-list");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor_editor")]
-        IWebElement descTxtBox { get; set; }
+        IWebElement descTxtBox => FindElement(".redactor_editor");
 
-        [FindsBy(How = How.CssSelector, Using = ".orange.publish")]
-        IWebElement previewBtn { get; set; }
+        IWebElement previewBtn => FindElement(".orange.publish");
 
-        [FindsBy(How = How.CssSelector, Using = ".search-tabs .icon-video-icon")]
-        IWebElement youtubeIcon { get; set; }
+        IWebElement youtubeIcon => FindElement(".search-tabs .icon-video-icon");
 
-        [FindsBy(How = How.CssSelector, Using = ".search-video .query")]
-        IWebElement youtubeLinkTxtBox { get; set; }
+        IWebElement youtubeLinkTxtBox => FindElement(".search-video .query");
 
-        [FindsBy(How = How.CssSelector, Using = "[data-view=EditorSearchVideo] button .ficon.icon-search")]
-        IWebElement youtubeSearchBtn { get; set; }
+        IWebElement youtubeSearchBtn => FindElement("[data-view=EditorSearchVideo] button .ficon.icon-search");
 
-        [FindsBy(How = How.CssSelector, Using = ".video-thumb img")]
-        IWebElement youtubeSearchResult { get; set; }
+        IWebElement youtubeSearchResult => FindElement(".video-thumb img");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor_editor p")]
-        IList<IWebElement> dropMedia { get; set; }
+        List<IWebElement> dropMedia => FindElements(".redactor_editor p");
 
-        [FindsBy(How = How.CssSelector, Using = ".btn.save")]
-        IWebElement youtubeVideoSaveBtn { get; set; }
+        IWebElement youtubeVideoSaveBtn => FindElement(".btn.save");
 
-        [FindsBy(How = How.CssSelector, Using = ".ytp-cued-thumbnail-overlay-image")]
-        IWebElement youtubeVideoInPost { get; set; }
+        IWebElement youtubeVideoInPost => FindElement(".ytp-cued-thumbnail-overlay-image");
 
-        [FindsBy(How = How.CssSelector, Using = ".tags-container ul li")]
-        IList<IWebElement> tags { get; set; }
+        List<IWebElement> tags => FindElements(".tags-container ul li");
 
-        [FindsBy(How = How.Id, Using = "autocomplete")]
-        IWebElement autoComplete { get; set; }
+        IWebElement autoComplete => FindElement("#autocomplete");
 
-        [FindsBy(How = How.ClassName, Using = "icon-magic-stick")]
-        IWebElement magicStick { get; set; }
+        IWebElement magicStick => FindElement(".icon-magic-stick");
 
-        [FindsBy(How = How.CssSelector, Using = ".autocomplete-row")]
-        IList<IWebElement> autoCompleteRows { get; set; }
+        List<IWebElement> autoCompleteRows => FindElements(".autocomplete-row");
 
-        [FindsBy(How = How.ClassName, Using = "image-container__image")]
-        IWebElement containerImage { get; set; }
+        IWebElement containerImage => FindElement(".image-container__image");
 
-        [FindsBy(How = How.CssSelector, Using = "[title='DELETE']")]
-        IWebElement deleteBtnContainerImage { get; set; }
+        IWebElement deleteBtnContainerImage => FindElement("[title='DELETE']");
 
-        [FindsBy(How = How.CssSelector, Using = "[style='display: block;'] .query")]
-        IWebElement imageSearchBox { get; set; }
+        IWebElement imageSearchBox => FindElement("[style='display: block;'] .query");
 
-        [FindsBy(How = How.CssSelector, Using = "[style='display: block;'] .search .ficon")]
-        IWebElement searchImageBtn { get; set; }
+        IWebElement searchImageBtn => FindElement("[style='display: block;'] .search .ficon");
 
-        [FindsBy(How = How.CssSelector, Using = "[for='playbuzz_enabled']")]
-        IWebElement playBuzzCheckBox { get; set; }
+        IWebElement playBuzzCheckBox => FindElement("[for='playbuzz_enabled']");
 
-        [FindsBy(How = How.CssSelector, Using = ".playbuzz-url")]
-        IWebElement playBuzzUrlField { get; set; }
+        IWebElement playBuzzUrlField => FindElement(".playbuzz-url");
 
-        [FindsBy(How = How.CssSelector, Using = ".game_image_wrapper img")]
-        IWebElement playBuzzImage { get; set; }
+        IWebElement playBuzzImage => FindElement(".game_image_wrapper img");
 
-        [FindsBy(How = How.CssSelector, Using = ".search-results li")]
-        protected IList<IWebElement> imagesResults { get; set; }
+        protected List<IWebElement> imagesResults => FindElements(".search-results li");
 
-        [FindsBy(How = How.CssSelector, Using = "[data-type='Cover'] .upload")]
-        protected IWebElement coverUpload { get; set; }
+        protected IWebElement coverUpload => FindElement("[data-type='Cover'] .upload");
 
         public ArticleBase(Browser browser)
             :base(browser)
         {
-
         }
 
         public void WriteTitle(string title)
@@ -119,9 +89,11 @@ namespace Automation.PagesObjects
                  Base.MongoDb.UpdateSteps($"Dragging image number {imageIndex}.");
                  _browserHelper.WaitForElement(() => editorMedia, nameof(editorMedia), 60);
                  _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
+                _browserHelper.WaitForElement(() => titleTextBox);
                  Thread.Sleep(2000);
                  var image = imagesResults.ToList()[imageIndex];
                  Thread.Sleep(2000);
+                _browserHelper.WaitForElement(() => image);
                  _browserHelper.DragElement(image, editorMedia);
                  return true;
              }))
@@ -170,7 +142,7 @@ namespace Automation.PagesObjects
             _browserHelper.WaitForElement(() => youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
             _browserHelper.Click(youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
 
-            _browserHelper.WaitForElementDiss(youtubeVideoSaveBtn);
+            _browserHelper.WaitForElementDiss(() => youtubeVideoSaveBtn);
         }
 
         public bool CheckYoutubeVideoInPost()
@@ -390,6 +362,23 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(() => editorSeo, nameof(editorSeo));
             _browserHelper.SetText(editorSeo, "text text text");
+            _browserHelper.WaitForElement(() => editorSeo,nameof(editorSeo));
+            _browserHelper.SetText(editorSeo,"text text text");
+        }
+
+
+        public void FillArticleTemplate()
+        {
+            Base.MongoDb.UpdateSteps("Fill the article template");
+            WriteTitle("EI Full Flow");
+            SearchImage("cat");
+            CropImagePopUp cropImagePopUp = DragImage(0);
+            cropImagePopUp.ClickOnCropImageBtn();
+            cropImagePopUp.ClickOnEditokBtn();
+            WriteDec("kashkosh");
+            WriteTags(new BsonArray{ "test1", "test2", "test3" });
+            PreviewPage previewPage = ClickOnPreviewBtn();
+            PostPage postPage = previewPage.ClickOnPublishBtn();
         }
     }
 }
