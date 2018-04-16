@@ -89,6 +89,7 @@ namespace Automation.PagesObjects
                  Base.MongoDb.UpdateSteps($"Dragging image number {imageIndex}.");
                  _browserHelper.WaitForElement(() => editorMedia, nameof(editorMedia), 60);
                  _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
+                _browserHelper.WaitForElement(() => titleTextBox);
                  Thread.Sleep(2000);
                  var image = imagesResults.ToList()[imageIndex];
                  Thread.Sleep(2000);
