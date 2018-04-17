@@ -20,15 +20,11 @@ namespace Automation.TestsFolder
         [SetUp]
         public void InitTest()
         {
-            if  (_config == null)
+            lock (_syncObject)
             {
-                lock (_syncObject)
-                {
-                    _config = _config ?? new Configurations();
-                    MongoDb = MongoDb ?? new MongoDb("TestRuns");
-                    _testRun = _testRun ?? new TestRun(_config);
-                }
-
+                _config = _config ?? new Configurations();
+                MongoDb = MongoDb ?? new MongoDb("TestRuns");
+                _testRun = _testRun ?? new TestRun(_config);
             }
 
             _test = new Test(_config);
