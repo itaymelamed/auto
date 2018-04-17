@@ -150,10 +150,5 @@ namespace Automation.MongoDbObject
 
             collection.ReplaceOne(filter, document, options);
         }
-
-        public static implicit operator Lazy<object>(MongoDb v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
