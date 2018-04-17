@@ -22,7 +22,7 @@ namespace Automation.PagesObjects
 
         public CastrPage ClickOnCasterLink()
         {
-            Base.MongoDb.UpdateSteps($"Click on Castr.");
+            UpdateStep($"Click on Castr.");
             _browserHelper.WaitForElement(() => castr, nameof(castr));
             _browserHelper.Click(castr, nameof(castr));
 
@@ -31,7 +31,7 @@ namespace Automation.PagesObjects
 
         public SchedulrPage ClickOnSchedulrLink()
         {
-            Base.MongoDb.UpdateSteps($"Click on Scedulr.");
+            UpdateStep($"Click on Scedulr.");
             _browserHelper.WaitForElement(() => schedulr, nameof(schedulr));
             _browserHelper.Click(schedulr, nameof(schedulr));
 
@@ -40,7 +40,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnCreatePost()
         {
-            Base.MongoDb.UpdateSteps($"Click on Create Post.");
+            UpdateStep($"Click on Create Post.");
             _browserHelper.WaitForElement(() => createPostLink, nameof(createPostLink));
             _browserHelper.ClickJavaScript(createPostLink);
         }

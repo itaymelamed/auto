@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
@@ -27,21 +26,22 @@ namespace Automation.PagesObjects
             languages.ForEach(l =>
             {
                 _browser.Navigate($"{Base._config.Url}/{l}");
-                Base.MongoDb.UpdateSteps($"Finding element by selctor {selector}");
-                IWebElement el = _browserHelper.FindElement(By.CssSelector(selector), "Icon");
-                Base.MongoDb.UpdateSteps("Clicking on Icon.");
-                el.Click();
-                var acUrl = _browser.GetUrl().ToLower().Split('?').First();
-                var exUrl = GetExUrl(l, selector, url ,selector.Contains("video")).Split('?').First();
+                UpdateStep($"Finding element by selctor {selector}");
+                IWebElement el = FindElement(selector);
+                UpdateStep("Clicking on Icon.");
+                _browserHelper.Click(el, l);
 
-                Base.MongoDb.UpdateSteps("Validating url.");
+                var acUrl = _browser.GetUrl().ToLower().Split('?').First();
+                var exUrl = GetExUrl(l, url ,selector.Contains("video")).Split('?').First();
+
+                UpdateStep("Validating url.");
                 errors += acUrl.ToLower() == exUrl.ToLower() ? "" : $"Expected url: {exUrl}. Actual: {acUrl}";
             });
 
             return errors;
         }
 
-        string GetExUrl(string language, string selector, string url ,bool video = false)
+        string GetExUrl(string language, string url ,bool video = false)
         {
             var testId = TestContext.CurrentContext.Test.Properties.Get("TestCaseId").ToString();
 
@@ -59,8 +59,8 @@ namespace Automation.PagesObjects
 
             if (language == "en")
                 return $"{Base._config.Url.ToLower()}{url}";
-            else
-                return $"{Base._config.Url.ToLower()}/{language}{url}";
+  
+            return $"{Base._config.Url.ToLower()}/{language}{url}";
         }
     }
 }

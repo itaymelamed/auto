@@ -23,7 +23,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 _browser.SwitchToFirstTab();
@@ -50,7 +50,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -78,7 +78,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -105,7 +105,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -133,7 +133,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -165,7 +165,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -200,7 +200,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -233,7 +233,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -267,7 +267,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo); 
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -303,7 +303,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -339,7 +339,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -374,7 +374,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -408,7 +408,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -443,7 +443,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -479,7 +479,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnLogoutButton();
                 loginPage = new Auth0LoginPage(_browser);
@@ -505,7 +505,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex2 = _params["ChannelIndex2"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -550,7 +550,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var langunges = _params["LagnungesList"].AsBsonArray;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnLangnugeFilter();
                 Assert.True(echoPage.ValidateLanguageFilterList(langunges), "The languages in dropdown didn't match the expected result.");
@@ -575,7 +575,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var status = _params["StatusList"].AsBsonArray;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 Assert.True(echoPage.ValidateStatusFilterList(status), "The status in dropdown didn't match the expected result.");
@@ -601,7 +601,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
@@ -636,7 +636,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("Published");
@@ -660,7 +660,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnSatusFilter();
                 echoPage = echoPage.ClickOnStatus("New");

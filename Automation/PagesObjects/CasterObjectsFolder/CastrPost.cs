@@ -83,7 +83,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public bool ValidateTextAreasDissabled()
         {
-            Base.MongoDb.UpdateSteps($"Validating text areas are dissabled.");
+            UpdateStep($"Validating text areas are dissabled.");
             _browserHelper.WaitUntillTrue(() => textAreas.ToList().Count() >= 3, "Not all text areas were loaded.");
 
             return _browserHelper.ValidateElsDissabled(textAreas.ToList());
@@ -91,7 +91,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public bool ValidateInputDissabled()
         {
-            Base.MongoDb.UpdateSteps($"Validating inputs are dissabled.");
+            UpdateStep($"Validating inputs are dissabled.");
             _browserHelper.WaitUntillTrue(() => inputs.ToList().Count() >= 12, "Not all inputs were loaded.");
 
             return _browserHelper.ValidateElsDissabled(inputs.ToList());
@@ -99,7 +99,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public bool ValidateControlsDissabled()
         {
-            Base.MongoDb.UpdateSteps($"Validating buttons are dissabled.");
+            UpdateStep($"Validating buttons are dissabled.");
             _browserHelper.WaitUntillTrue(() => contorls.ToList().Count() >= 5, "Not all buttons were loaded.");
 
             return _browserHelper.ValidateElsDissabled(contorls.ToList().Where(c => c.GetAttribute("class").Contains("archive") || c.GetAttribute("class").Contains("save") || c.GetAttribute("class").Contains("archive")).ToList());
@@ -107,7 +107,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void UncheckPublishToFtb()
         {
-            Base.MongoDb.UpdateSteps($"Unchecking publish to ftb90.");
+            UpdateStep($"Unchecking publish to ftb90.");
             if (!_browserHelper.WaitForElement(() => ftb90CheckBox, nameof(ftb90CheckBox), 10, false))
                 return;
             _browserHelper.WaitUntillTrue(() => 
@@ -124,7 +124,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public string GetPostUrl()
         {
-            Base.MongoDb.UpdateSteps($"Validating post url");
+            UpdateStep($"Validating post url");
             _browserHelper.WaitForElement(() => postUrl, nameof(postUrl));
             _browserHelper.WaitUntillTrue(() => postUrl.GetAttribute("value") != "", "Post url hasn't shown", 60);
             return postUrl.GetAttribute("value");
@@ -132,7 +132,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void CheckLeague(int i)
         {
-            Base.MongoDb.UpdateSteps($"Checking League #{i}.");
+            UpdateStep($"Checking League #{i}.");
 
             _browserHelper.WaitUntillTrue(() =>
             {
@@ -145,7 +145,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void UnCheckLeague(int i)
         {
-            Base.MongoDb.UpdateSteps($"Checking League #{i}.");
+            UpdateStep($"Checking League #{i}.");
             if (!saveForLaterBtn.Enabled)
                 ResetPost();
 
@@ -160,7 +160,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void ArchivePost()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on archive button.");
+            UpdateStep($"Clicking on archive button.");
             _browserHelper.WaitForElement(() => archiveBtn, nameof(archiveBtn));
             if (!archiveBtn.Enabled)
                 ResetPost();
@@ -170,7 +170,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void ResetPost()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on reset button.");
+            UpdateStep($"Clicking on reset button.");
             _browserHelper.WaitForElement(() => resetBtn, nameof(resetBtn));
             _browserHelper.Click(resetBtn, nameof(resetBtn));
             if (_browserHelper.WaitForElement(() => resetConfirmPopUpOkBtn, nameof(resetConfirmPopUpOkBtn), 10, false))
@@ -180,7 +180,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void CheckPublishTo(int i)
         {
-            Base.MongoDb.UpdateSteps($"Checking Publish to check box #{i}.");
+            UpdateStep($"Checking Publish to check box #{i}.");
             _browserHelper.WaitUntillTrue(() => pubishToCheckBox.ToList().Count() > 2);
 
             _browserHelper.WaitUntillTrue(() =>
@@ -194,14 +194,14 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void ClickOnPublishBtn()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Publish button.");
+             UpdateStep($"Clicking on Publish button.");
             _browserHelper.WaitForElement(() => publishBtn, nameof(publishBtn));
             _browserHelper.Click(publishBtn, nameof(publishBtn));
         }
 
         public void ChoosePlatform(Platforms platforms)
         {
-            Base.MongoDb.UpdateSteps($"Checking League page check box #{platforms}.");
+            UpdateStep($"Checking League page check box #{platforms}.");
             _browserHelper.WaitUntillTrue(() =>
             {
                 _browserHelper.WaitForElement(() => leaguePage, nameof(leaguePage));
@@ -215,7 +215,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void SelectPublishToTeam(int team)
         {
-            Base.MongoDb.UpdateSteps($"Selecting publish to team #{team}.");
+            UpdateStep($"Selecting publish to team #{team}.");
             _browserHelper.WaitUntillTrue(() => publisToTeams.ToList().Count() >= 21, "Not all teams were loaded");
             _browserHelper.WaitUntillTrue(() =>
             {
@@ -227,7 +227,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void CheckSmCbx(int socialNet)
         {
-            Base.MongoDb.UpdateSteps($"Checking Social Media CheckBox.");
+            UpdateStep($"Checking Social Media CheckBox.");
             _browserHelper.WaitUntillTrue(() => socialMediaCbx.ToList().Count() >= 2, "Social media check boxes were not loaded.");
             var cbx = _browserHelper.ExecutUntillTrue(() => socialMediaCbx.ToList().Where(c => c.Displayed).ToList()[socialNet]);
             _browserHelper.ClickJavaScript(cbx);
@@ -235,7 +235,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void ClickOnSmArrow()
         {
-            Base.MongoDb.UpdateSteps($"Selecting arsenal social network arrow.");
+            UpdateStep($"Selecting arsenal social network arrow.");
             _browserHelper.WaitUntillTrue(() => socialNetworksArrows.ToList().Count() >= 20);
             var cb =_browserHelper.ExecutUntillTrue(() => socialNetworksArrows.ToList().Where(c => c.Displayed).FirstOrDefault());
             _browserHelper.ClickJavaScript(cb);
@@ -290,7 +290,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public virtual void PublishPost(int league = 0)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on publish button.");
+            UpdateStep($"Clicking on publish button.");
             _browserHelper.WaitForElement(() => publishBtn, nameof(publishBtn));
             if (!saveForLaterBtn.Enabled)
                 ResetPost();
@@ -304,7 +304,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public virtual void PublishPostToFeed(Platforms leaguePage, int league)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on publish button.");
+            UpdateStep($"Clicking on publish button.");
             _browserHelper.WaitForElement(() => publishBtn, nameof(publishBtn));
             if (!saveForLaterBtn.Enabled)
                 ResetPost();
@@ -318,37 +318,37 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void SendPn(Platforms platform, int league)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on publish button.");
+            UpdateStep($"Clicking on publish button.");
             _browserHelper.WaitForElement(() => publishBtn, nameof(publishBtn));
             if (!saveForLaterBtn.Enabled)
                 ResetPost();
             UncheckPublishToFtb();
             ChoosePlatform(platform);
-            Base.MongoDb.UpdateSteps($"Clicking on League.");
+            UpdateStep($"Clicking on League.");
             _browserHelper.Click(leaguePageLink, "");
             Thread.Sleep(4000);
-            Base.MongoDb.UpdateSteps($"Checking PN checkbox.");
+            UpdateStep($"Checking PN checkbox.");
             _browserHelper.WaitForElement(() => pnCheckBox, nameof(pnCheckBox));
             _browserHelper.Click(pnCheckBox, "");
             Thread.Sleep(4000);
-            Base.MongoDb.UpdateSteps($"Confirm alarm.");
+            UpdateStep($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             Thread.Sleep(4000);
             _browserHelper.WaitUntillTrue(() => pnHourCbx.Displayed);
-            Base.MongoDb.UpdateSteps($"Clicking on publish button.");
+            UpdateStep($"Clicking on publish button.");
             _browserHelper.Click(publishBtn, "");
             Thread.Sleep(4000);
-            Base.MongoDb.UpdateSteps($"Confirm alarm.");
+            UpdateStep($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             Thread.Sleep(4000);
-            Base.MongoDb.UpdateSteps($"Confirm alarm.");
+            UpdateStep($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
         }
 
         public bool ValidatePublishAlsoTo()
         {
-            Base.MongoDb.UpdateSteps($"Validating 'Publish Also To'.");
+            UpdateStep($"Validating 'Publish Also To'.");
             _browserHelper.WaitForElement(() => publishAlsoToCb, nameof(publishAlsoToCb));
             _browserHelper.ScrollToEl(publishAlsoToCb);
             return !_browserHelper.WaitUntillTrue(() => publishAlsoToCb.GetAttribute("checked") == "true", "Check box is checked", 5, false);
@@ -356,7 +356,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void ClickOnTeamArrow(int team)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on team arrow #{team}.");
+            UpdateStep($"Clicking on team arrow #{team}.");
             _browserHelper.WaitUntillTrue(() => teamsArrows.ToList().Count() >= 21);
             var cb = _browserHelper.ExecutUntillTrue(() => teamsArrows.Where((x,i) => i == team).ToList().FirstOrDefault());
             _browserHelper.ClickJavaScript(cb);
@@ -364,7 +364,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void SelectPublishTo(List<int> cats)
         {
-            Base.MongoDb.UpdateSteps($"Checking category.");
+            UpdateStep($"Checking category.");
             _browserHelper.WaitUntillTrue(() => publishToCbx.ToList().Count() >= 2);
             var cbxs = publishToCbx.ToList().Where(c => c.Displayed).ToList();
             cats.ForEach(c => _browserHelper.ClickJavaScript(publishToCbx.ToList()[c]));
@@ -372,14 +372,14 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void CheckpublishToCategoryCb()
         {
-            Base.MongoDb.UpdateSteps($"Checking publish to category check box.");
+            UpdateStep($"Checking publish to category check box.");
             _browserHelper.WaitForElement(() => publishToCatgoryCb, nameof(publishToCatgoryCb));
             _browserHelper.ClickJavaScript(publishToCatgoryCb);
         }
 
         public void InsertCategory(string category)
         {
-            Base.MongoDb.UpdateSteps($"Inserting category {category}.");
+            UpdateStep($"Inserting category {category}.");
             _browserHelper.ScrollToTop();
             _browserHelper.WaitForElement(() => categoryTextbox, nameof(categoryTextbox));
             _browserHelper.Click(categoryTextbox, nameof(categoryTextbox));

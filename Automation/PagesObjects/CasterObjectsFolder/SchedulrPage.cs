@@ -36,7 +36,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public string ValidateTime()
         {
-            Base.MongoDb.UpdateSteps("Validating date.");
+            UpdateStep("Validating date.");
             _browserHelper.WaitForElement(() => time, nameof(time));
 
             var dateParsed = time .Text.Split(' ');
@@ -54,7 +54,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public bool ValidateLeagues(BsonArray leaguesBson)
         {
-            Base.MongoDb.UpdateSteps("Validating leagues apear.");
+            UpdateStep("Validating leagues apear.");
             var exLeagues = leaguesBson.Select(l => l.ToString());
             _browserHelper.WaitUntillTrue(() => leaguesList.ToList().Count() == exLeagues.Count());
             var acLeagues = leaguesList.ToList().Select(l => l.Text);
@@ -75,7 +75,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         bool ValidatePost(List<IWebElement> posts, string title, int timeOut = 30, bool ex = true)
         {
-            Base.MongoDb.UpdateSteps($"Validating post {title}.");
+            UpdateStep($"Validating post {title}.");
             var curHour = DateTime.Parse(time.Text.Split(' ')[2]).TimeOfDay.ToString().Split(':');
             Func<List<IWebElement>> postFunc = () => posts.ToList().Where(t => Regex.Replace(t.GetAttribute("title").Split('|').Last().ToLower().Replace('-', ' ').Trim(), @"[\d-]", string.Empty) == title).ToList();
             var postCount = postFunc().Count() == 1;
@@ -87,21 +87,21 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public void SelectDay(int date)
         {
-            Base.MongoDb.UpdateSteps("Selecting Day");
+            UpdateStep("Selecting Day");
             _browserHelper.WaitForElement(() => dayDd, nameof(dayDd));
             _browserHelper.SelectFromDropDown(dayDd, date.ToString());
         }
 
         public void SelectYear(int year)
         {
-            Base.MongoDb.UpdateSteps($"Selecting Year {year}");
+            UpdateStep($"Selecting Year {year}");
             _browserHelper.WaitForElement(() => yearDd, nameof(yearDd));
             _browserHelper.SelectFromDropDown(yearDd, year.ToString());
         }
 
         public SchedulrPage ClickOnGoBtn()
         {
-            Base.MongoDb.UpdateSteps("Clicking on Go button.");
+            UpdateStep("Clicking on Go button.");
             _browserHelper.WaitForElement(() => goBtn, nameof(goBtn));
             _browserHelper.Click(goBtn, nameof(goBtn));
 
@@ -110,7 +110,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
 
         public SchedulrPage SelectLeague(int league)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on League #{league}.");
+            UpdateStep($"Clicking on League #{league}.");
             _browserHelper.WaitUntillTrue(() => leagues.ToList().Count() >= 5);
             _browserHelper.Click(leagues.ToList()[league], $"League {league}");
 

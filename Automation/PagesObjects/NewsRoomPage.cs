@@ -25,19 +25,19 @@ namespace Automation.PagesObjects
             return new EditorPage(_browser);
         }
 
+        public EchoPage ClickOnEchoBtn()
+        {
+            Base.MongoDb.UpdateSteps("Clicking on echo button");
+            _browserHelper.WaitForElement(() => echoBtn, nameof(echoBtn));
+            _browserHelper.Click(echoBtn, nameof(echoBtn));
+            return new EchoPage(_browser);
+        }
+
         public bool ValidateEditorBtn()
         {
             Base.MongoDb.UpdateSteps("Validating editor button.");
             _browserHelper.WaitForElement(() => editorBtn, nameof(editorBtn));
             return editorBtn.Displayed;
-        }
-
-        public EchoPage ClickOnEchoBtn()
-        {
-            Base.MongoDb.UpdateSteps("Clicking on echo button");
-            _browserHelper.WaitForElement(() => echoBtn, nameof(echoBtn));
-            _browserHelper.Click(echoBtn,nameof(echoBtn));
-            return new EchoPage(_browser);
         }
     }
 }

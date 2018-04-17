@@ -21,7 +21,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             public void Auth0_Login_Admin()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 Assert.True(newsRoomPage.ValidateEditorBtn(), "Login failed");
             }
         }
@@ -41,7 +41,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             public void Editor_Article_FullFlow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = newsRoomPage.ClickOnEditorBtn();
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
                 string body = _params["Body"].ToString();
@@ -76,7 +76,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             public void Editor_List_FullFlow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = newsRoomPage.ClickOnEditorBtn();
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
                 BsonArray titles = _params["Titles"].AsBsonArray;
@@ -113,7 +113,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             public void Editor_FullFlow_SlideShow()
             {
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = newsRoomPage.ClickOnEditorBtn();
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
                 BsonArray titles = _params["Titles"].AsBsonArray;

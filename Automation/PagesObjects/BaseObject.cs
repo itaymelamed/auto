@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Automation.BrowserFolder;
+using Automation.TestsFolder;
 using OpenQA.Selenium;
 
 namespace Automation.PagesObjects
@@ -20,6 +21,11 @@ namespace Automation.PagesObjects
         protected List<IWebElement> FindElements(string selector)
         {
             return _browserHelper.FindElements(selector);
+        }
+
+        protected void UpdateStep(string step)
+        {
+            Base.MongoDb.UpdateSteps(step);
         }
     }
 }
