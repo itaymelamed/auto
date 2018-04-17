@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Automation.ConfigurationFoldee.ConfigurationsJsonObject
 {
     public interface IUser
