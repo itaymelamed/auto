@@ -81,8 +81,15 @@ namespace Automation.BrowserFolder
 
         public void OpenNewTab()
         {
-            IWebElement body = Driver.FindElement(By.TagName("body"));
-            body.SendKeys(Keys.Control + 't');
+            try
+            {
+                IWebElement body = Driver.FindElement(By.TagName("body"));
+                body.SendKeys(Keys.Control + 't');
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}.");
+            }
         }
 
         public string GetUrl()
