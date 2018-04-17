@@ -148,7 +148,7 @@ namespace Automation.BrowserFolder
             }
             catch (Exception ex)
             {
-                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}.");
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}. StackTrace: {ex.StackTrace}");
             }
         }
 
