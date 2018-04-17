@@ -29,7 +29,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostTitleInFeedPage(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the more news title text.");
+            UpdateStep("Validating the more news title text.");
             bool result = false;
             _browserHelper.WaitUntillTrue(() => articles.ToList().Count() >= 2);
             _browserHelper.ExecuteUntill(() => result = articles.ToList().Any(t => t.Text == title));

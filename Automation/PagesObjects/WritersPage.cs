@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
 
 namespace Automation.PagesObjects
@@ -9,18 +8,17 @@ namespace Automation.PagesObjects
     {
         IWebElement WriteAnArticleBtn => FindElement(".h2 a");
 
-
         public WritersPage(Browser browser)
             :base(browser)
         {
-
+            
         }
 
-        public EditorPage ClickonWriteAnArticleBtn()
+        public EditorPage ClickOnWriteAnArticleBtn()
         {
             _browser.SwitchToFirstTab();
             Thread.Sleep(1000);
-            Base.MongoDb.UpdateSteps($"Clicking on 'Write an article' button.");
+            UpdateStep($"Clicking on 'Write an article' button.");
             if(_browserHelper.WaitForElement(() => WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
                 _browserHelper.Click(WriteAnArticleBtn, "Write new article button.", 0, false);
 

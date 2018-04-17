@@ -26,13 +26,13 @@ namespace Automation.PagesObjects
         }
 
         public string GetCoverTitle()
-        {   Base.MongoDb.UpdateSteps("Getting the title of the cover post.");
+        {   UpdateStep("Getting the title of the cover post.");
             return Regex.Replace(cover.Text.Replace("-"," "), @"[\d-]", string.Empty).Trim().ToLower();
         }
 
         public List<string> GetTitles()
         {   
-            Base.MongoDb.UpdateSteps("Getting the titles of all posts in partners page.");
+            UpdateStep("Getting the titles of all posts in partners page.");
             List<string> titles = new List<string>();
             titles.Add(GetCoverTitle());
             titles.AddRange(latestStories.Select(t => Regex.Replace(t.Text.Replace("-"," ").ToLower(), @"[\d-]", string.Empty).Trim()).ToList());

@@ -22,14 +22,14 @@ namespace Automation.PagesObjects
 
         public void ChangeLanguage(Languages language)
         {
-            Base.MongoDb.UpdateSteps($"Selecting language {language} in language Drop down list.");
+            UpdateStep($"Selecting language {language} in language Drop down list.");
             _browserHelper.WaitForElement(() => languageDd, nameof(languageDd));
             _browserHelper.SelectFromDropDown(languageDd, language.ToString());
         }
 
         public void ClickOnSaveBtn()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Save button.");
+            UpdateStep($"Clicking on Save button.");
             _browserHelper.WaitForElement(() => saveBtn, nameof(saveBtn));
             _browserHelper.ClickByPoint(saveBtn ,70, 0);
             _browserHelper.WaitForElementDiss(() => loader, 60);
@@ -37,7 +37,7 @@ namespace Automation.PagesObjects
 
         public EditorPage ClickOnWriteAnArticle()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Write an article button.");
+            UpdateStep($"Clicking on Write an article button.");
             _browserHelper.WaitForElement(() => writeAnArticleBtn, nameof(writeAnArticleBtn));
             _browserHelper.Click(writeAnArticleBtn, nameof(writeAnArticleBtn));
 
