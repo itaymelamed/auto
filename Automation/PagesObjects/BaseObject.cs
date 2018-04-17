@@ -15,11 +15,13 @@ namespace Automation.PagesObjects
 
         protected IWebElement FindElement(string selector)
         {
+            UpdateStep($"Finding element by CSS selector: {selector}.");
             return _browserHelper.FindElement(selector);
         }
 
         protected List<IWebElement> FindElements(string selector)
         {
+            UpdateStep($"Finding element by CSS selector: {selector}.");
             return _browserHelper.FindElements(selector);
         }
 
