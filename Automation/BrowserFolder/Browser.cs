@@ -139,9 +139,17 @@ namespace Automation.BrowserFolder
         public void OpenNewTab(string url = "", int timeOut = 60)
         {
             Base.MongoDb.UpdateSteps("Opening new tab.");
-            OpenNewTab();
-            Driver.SwitchTo().Window(Driver.WindowHandles.Last());
-            Driver.Navigate().GoToUrl(url);
+
+            try
+            {
+                OpenNewTab();
+                Driver.SwitchTo().Window(Driver.WindowHandles.Last());
+                Driver.Navigate().GoToUrl(url);
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}.");
+            }
         }
 
         public void SwitchToFirstTab()
