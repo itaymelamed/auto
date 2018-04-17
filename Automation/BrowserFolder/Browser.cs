@@ -138,6 +138,7 @@ namespace Automation.BrowserFolder
 
         public void OpenNewTab(string url = "", int timeOut = 60)
         {
+            Base.MongoDb.UpdateSteps("Opening new tab.");
             Driver.SwitchTo().Window(Driver.WindowHandles[1]);
             Driver.Navigate().GoToUrl(url);
         }
