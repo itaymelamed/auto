@@ -21,9 +21,9 @@ namespace Automation.TestsFolder
         [SetUp]
         public void InitTest()
         {
-            _config = new Lazy<Configurations>().Value;
-            MongoDb = new Lazy<MongoDb>(() => new MongoDb("TestRuns")).Value;
-            _testRun = new Lazy<TestRun>(() => new TestRun(_config)).Value;
+            _config = new Lazy<Configurations>(true).Value;
+            MongoDb = new Lazy<MongoDb>(() => new MongoDb("TestRuns"), true).Value;
+            _testRun = new Lazy<TestRun>(() => new TestRun(_config), true).Value;
             _test = new Test(_config);
             _params = new Params(_test).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);
