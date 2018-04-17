@@ -5,6 +5,7 @@ using Automation.TestsObjects;
 using Automation.MongoDbObject;
 using static Automation.TestsObjects.Result;
 using Automation.TestsObject;
+using System;
 
 namespace Automation.TestsFolder
 {
@@ -20,13 +21,9 @@ namespace Automation.TestsFolder
         [SetUp]
         public void InitTest()
         {
-            lock (_syncObject)
-            {
-                _config = _config ?? new Configurations();
-                MongoDb = MongoDb ?? new MongoDb("TestRuns");
-                _testRun = _testRun ?? new TestRun(_config);
-            }
-
+            _config = new Lazy<Configurations>().Value;
+            MongoDb = new Lazy<MongoDb>(() => new MongoDb("TestRuns")).Value;
+            _testRun = new Lazy<TestRun>(() => new TestRun(_config)).Value;
             _test = new Test(_config);
             _params = new Params(_test).GetParams();
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.SentToHub);

@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Automation.TestsFolder.PostPagesFolder
 {
-    [TestFixture]
     public class PostPageTests
     {
         [TestFixture]
@@ -18,7 +17,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             [Category("Sanity")][Category("Admin")][Category("PostPage")][Category("AllBrands")]
             [Retry(2)]
             public void PostPage_ValidateUiComponentsExistOnPage()
-            {
+            { 
                 var postTitle = "VIDEO:Test post article";
                 BsonArray components = _params["Components"].AsBsonArray;
 
