@@ -4,18 +4,20 @@
     <Files>
       <File FileName="Automation/PagesObjects/Header.cs" Line="102" Column="1" />
       <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="89" Column="65" />
-      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="101" Column="14" />
+      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="101" Column="36" />
       <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="43" Column="1" />
       <File FileName="Automation/BrowserFolder/Browser.cs" Line="33" Column="14" />
       <File FileName="Automation/TestsFolder/Base.cs" Line="1" Column="1" />
       <File FileName="Automation/TestsFolder/BaseUi.cs" Line="14" Column="31" />
       <File FileName="Automation/TestsFolder/NavigationTests/NavigationTests.cs" Line="486" Column="9" />
-      <File FileName="Automation/PagesObjects/Navigation.cs" Line="26" Column="23" />
+      <File FileName="Automation/PagesObjects/Navigation.cs" Line="26" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" relfile="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" line="101" column="14" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />

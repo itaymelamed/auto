@@ -98,7 +98,7 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Pluralist")]
             [Retry(3)]
             public void PerspectivesIcon()
-            {
+            {                      
                 Navigation navigation = new Navigation(_browser);
                 string errors = navigation.ValidateIcon(_params);
 

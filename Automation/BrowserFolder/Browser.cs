@@ -81,8 +81,15 @@ namespace Automation.BrowserFolder
 
         public void OpenNewTab()
         {
-            IWebElement body = Driver.FindElement(By.TagName("body"));
-            body.SendKeys(Keys.Control + 't');
+            try
+            {
+                IWebElement body = Driver.FindElement(By.TagName("body"));
+                body.SendKeys(Keys.Control + 't');
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}.");
+            }
         }
 
         public string GetUrl()
@@ -138,8 +145,18 @@ namespace Automation.BrowserFolder
 
         public void OpenNewTab(string url = "", int timeOut = 60)
         {
-            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
-            Driver.Navigate().GoToUrl(url);
+            Base.MongoDb.UpdateSteps("Opening new tab.");
+
+            try
+            {
+                OpenNewTab();
+                Driver.SwitchTo().Window(Driver.WindowHandles.Last());
+                Driver.Navigate().GoToUrl(url);
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}. StackTrace: {ex.StackTrace}");
+            }
         }
 
         public void SwitchToFirstTab()

@@ -17,7 +17,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         IWebElement SearchTweet(string title)
         {
-            BaseUi.MongoDb.UpdateSteps($"Search Tweet: {title}.");
+            UpdateStep($"Search Tweet: {title}.");
             return _browserHelper
                 .ExecutUntillTrue(() => tweets.ToList().Where(t => t.FindElement(By.XPath(".//p")).Text.Contains(title)).FirstOrDefault());
         }
@@ -29,7 +29,7 @@ namespace Automation.PagesObjects.ExternalPagesobjects
 
         public PostPage ClickOnTweetLink(string title)
         {
-            var link = _browserHelper.ExecutUntillTrue(() => SearchTweet(title).FindElement(By.XPath($".//a[title*='{BaseUi._config.Env.ToString().ToLower()}']")));
+            var link = _browserHelper.ExecutUntillTrue(() => SearchTweet(title).FindElement(By.XPath($".//a[title*='{Base._config.Env.ToString().ToLower()}']")));
             _browserHelper.Click(link, "Twiter Link");
 
             return new PostPage(_browser); 

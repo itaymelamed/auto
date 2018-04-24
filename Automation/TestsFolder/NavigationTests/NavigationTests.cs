@@ -16,6 +16,7 @@ namespace Automation.TestsFolder.NavigateionTests
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
+            [Category("90MinDe")]
             [Retry(3)]
             public void FixturesIcon()
             {
@@ -37,6 +38,7 @@ namespace Automation.TestsFolder.NavigateionTests
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
+            [Category("90MinDe")]
             [Retry(3)]
             public void TransfersIcon()
             {
@@ -80,6 +82,7 @@ namespace Automation.TestsFolder.NavigateionTests
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb9090")]
+            [Category("90MinDe")]
             [Retry(3)]
             public void UEFAIcon()
             {
@@ -101,6 +104,7 @@ namespace Automation.TestsFolder.NavigateionTests
             [Category("90MinIn")]
             [Category("90Min")]
             [Category("Ftb90")]
+            [Category("90MinDe")]
             [Retry(3)]
             public void WorldNewsIcon()
             {
@@ -124,6 +128,7 @@ namespace Automation.TestsFolder.NavigateionTests
             [Category("Ftb90")]
             [Category("12Up")]
             [Category("Floor8")]
+            [Category("90MinDe")]
             [Retry(3)]
             public void ListsIcon()
             {

@@ -58,7 +58,7 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
-            Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            Local = IsLocal();
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
@@ -114,6 +114,11 @@ namespace Automation.ConfigurationFolder
             var hostTxt = "/host/ip.txt";
             string host = File.ReadAllText(hostTxt).Split(';').First();
             return host;
+        }
+
+        bool IsLocal()
+        {
+            return Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
         }
     }
 }

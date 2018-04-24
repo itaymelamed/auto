@@ -48,10 +48,10 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(() => connectBtn, "Connect Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Connect Button.");
+            UpdateStep($"Clicking on Connect Button.");
             _browserHelper.Click(connectBtn, nameof(connectBtn));
 
-            Base.MongoDb.UpdateSteps($"Switching to FaceBook login tab.");
+            UpdateStep($"Switching to FaceBook login tab.");
             _browser.SwitchToLastTab();
 
             return new FaceBookconnectPage(_browser);
@@ -61,7 +61,7 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(() => connectBtn, "Connect Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Connect Button.");
+            UpdateStep($"Clicking on Connect Button.");
             connectBtn.Click();
             ValidateUserProfilePic();
         }
@@ -70,7 +70,7 @@ namespace Automation.PagesObjects
         {
             _browserHelper.WaitForElement(() => writeAnArticleBtn, "Write an article Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Write New Article Button.");
+            UpdateStep($"Clicking on Write New Article Button.");
             _browserHelper.Click(writeAnArticleBtn, nameof(writeAnArticleBtn));
 
             return new EditorPage(_browser);
@@ -84,26 +84,26 @@ namespace Automation.PagesObjects
         public string ValidatemenuBtnTxt()
         {
             _browserHelper.WaitForElement(() => menu, "Menu button");
-            Base.MongoDb.UpdateSteps($"Validating Menu button text.");
+            UpdateStep($"Validating Menu button text.");
             return menu.Text;
         }
 
         public void ValidateUserProfilePic()
         {
-            Base.MongoDb.UpdateSteps($"Validate user's profile pic.");
+            UpdateStep($"Validate user's profile pic.");
             _browserHelper.WaitForElement(() => userProfilePic, nameof(userProfilePic), 180, true);
             Thread.Sleep(1000);
         }
 
         public void HoverOverUserProfilePic()
         {
-            Base.MongoDb.UpdateSteps($"Hovering over user profile picture.");
+            UpdateStep($"Hovering over user profile picture.");
             _browserHelper.Hover(userProfilePic);
         }
 
         public AdminPage ClickOnAdmin()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Admin.");
+            UpdateStep($"Clicking on Admin.");
             _browserHelper.WaitForElement(() => admin, nameof(admin), 30, true);
             _browserHelper.Click(admin, nameof(admin));
 
@@ -112,7 +112,7 @@ namespace Automation.PagesObjects
 
         public SettingsPage ClickOnSettings()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Settings.");
+            UpdateStep($"Clicking on Settings.");
             _browserHelper.WaitForElement(() => settings, nameof(settings), 30, true);
             _browserHelper.Click(settings, nameof(settings));
 
@@ -121,7 +121,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateAdminAppears()
         {
-            Base.MongoDb.UpdateSteps($"Validating Admin Appears.");
+            UpdateStep($"Validating Admin Appears.");
             return _browserHelper.WaitForElement(() => admin, nameof(admin), 2, false);
         }
 
@@ -148,7 +148,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnMenu()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on menu.");
+            UpdateStep($"Clicking on menu.");
             _browserHelper.WaitForElement(() => menu, nameof(menu));
             _browserHelper.Click(menu, nameof(menu));
         }
@@ -164,7 +164,7 @@ namespace Automation.PagesObjects
 
         string GetTopicText()
         {
-            Base.MongoDb.UpdateSteps("Getting the topic title text.");
+            UpdateStep("Getting the topic title text.");
             _browserHelper.WaitForElement(() => topicTitle, nameof(topicTitle));
             string title = topicTitle.Text;
             return title;
@@ -172,7 +172,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateTopicTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the topic title text.");
+            UpdateStep("Validating the topic title text.");
             _browserHelper.RefreshUntill(() => 
             {
                 string coverTitle = GetTopicText();
@@ -184,7 +184,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateTitleApearsInGrid (string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the post appear on the grid");
+            UpdateStep("Validating the post appear on the grid");
             _browserHelper.WaitUntillTrue(() => gridTitels.ToList().Count() > 2);
 
             return gridTitels.ToList().Any(t => t.Text == title);
@@ -192,7 +192,7 @@ namespace Automation.PagesObjects
 
         public string GetCoverText()
         {
-            Base.MongoDb.UpdateSteps("Getting the title text.");
+            UpdateStep("Getting the title text.");
             _browserHelper.WaitForElement(() => coverStoryTitle, nameof(coverStoryTitle));
             string title = coverStoryTitle.Text;
             return title;
@@ -200,7 +200,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateTopStoriesTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the top stories title text.");
+            UpdateStep("Validating the top stories title text.");
             bool result = false;
 
             _browserHelper.RefreshUntill(() =>
@@ -215,7 +215,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateMoreNewsTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the more news title text.");
+            UpdateStep("Validating the more news title text.");
             bool result = false;
             _browserHelper.WaitUntillTrue(() => moreNewsTitles.ToList().Count() >= 2);
             _browserHelper.ExecuteUntill(() => result = moreNewsTitles.ToList().Any(t => t.Text == title));
@@ -225,7 +225,7 @@ namespace Automation.PagesObjects
 
         public PostPage ClickOnCoverStory()
         {
-            Base.MongoDb.UpdateSteps("Clicking on Cover Story Title.");
+            UpdateStep("Clicking on Cover Story Title.");
             _browserHelper.Click(coverStory, nameof(coverStory));
 
             return new PostPage(_browser); 

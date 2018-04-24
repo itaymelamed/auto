@@ -15,7 +15,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnEditorButton()
         {
-            Base.MongoDb.UpdateSteps("Clicking on the editor button");
+            UpdateStep("Clicking on the editor button");
             _browserHelper.WaitForElement(() => EditorButton, nameof(EditorButton));
             _browserHelper.Click(EditorButton, nameof(EditorButton));
         }

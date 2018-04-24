@@ -31,7 +31,7 @@ namespace Automation.PagesObjects
                 DragImage(0);
             }
 
-            Base.MongoDb.UpdateSteps($"Clicking on crop image Ok button.");
+            UpdateStep($"Clicking on crop image Ok button.");
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(okBtn);
             _browserHelper.ClickJavaScript(okBtn);
@@ -41,7 +41,7 @@ namespace Automation.PagesObjects
         public void ClickOnEditokBtn()
         {
             _browserHelper.WaitForElement(() => editOkBtn, "Image edit button");
-            BaseUi.MongoDb.UpdateSteps($"Clicking on edit Ok button.");
+            UpdateStep($"Clicking on edit Ok button.");
             Thread.Sleep(1000);
             _browserHelper.ScrollToEl(editOkBtn);
             _browserHelper.ClickJavaScript(editOkBtn);

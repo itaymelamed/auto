@@ -74,7 +74,7 @@ namespace Automation.PagesObjects
 
         public void WriteTitle(string title)
         {
-            Base.MongoDb.UpdateSteps($"Writing titile {title}.");
+            UpdateStep($"Writing titile {title}.");
 
             _browserHelper.WaitForElement(() => titleTextBox, nameof(titleTextBox));
             Thread.Sleep(1000);
@@ -86,7 +86,7 @@ namespace Automation.PagesObjects
         {
             if (_browserHelper.WaitUntillTrue(() =>
              {
-                 Base.MongoDb.UpdateSteps($"Dragging image number {imageIndex}.");
+                 UpdateStep($"Dragging image number {imageIndex}.");
                  _browserHelper.WaitForElement(() => editorMedia, nameof(editorMedia), 60);
                  _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30);
                 _browserHelper.WaitForElement(() => titleTextBox);
@@ -103,7 +103,7 @@ namespace Automation.PagesObjects
 
         public void WriteDec(string desc)
         {
-            Base.MongoDb.UpdateSteps($"Writing a description.");
+            UpdateStep($"Writing a description.");
 
             _browserHelper.WaitForElement(() => descTxtBox, nameof(descTxtBox));
             descTxtBox.SendKeys(desc);
@@ -113,7 +113,7 @@ namespace Automation.PagesObjects
         {
             _driver.SwitchTo().DefaultContent();
             _browserHelper.WaitForElement(() => previewBtn, nameof(previewBtn));
-            Base.MongoDb.UpdateSteps($"Clicking on Preview Button.");
+            UpdateStep($"Clicking on Preview Button.");
             _browserHelper.ClickJavaScript(previewBtn);
 
             return new PreviewPage(_browser);
@@ -121,24 +121,24 @@ namespace Automation.PagesObjects
 
         public void AddYoutubeVideo(string link, int par)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Youtube icon.");
+            UpdateStep($"Clicking on Youtube icon.");
             _browserHelper.WaitForElement(() => youtubeIcon, nameof(youtubeIcon));
             youtubeIcon.Click();
 
-            Base.MongoDb.UpdateSteps($"Inserting Youtube link: {link}.");
+            UpdateStep($"Inserting Youtube link: {link}.");
             _browserHelper.WaitForElement(() => youtubeLinkTxtBox, nameof(youtubeLinkTxtBox));
             youtubeLinkTxtBox.SendKeys(link);
 
-            Base.MongoDb.UpdateSteps($"Clicking on search button.");
+            UpdateStep($"Clicking on search button.");
             _browserHelper.WaitForElement(() => youtubeSearchBtn, nameof(youtubeSearchBtn));
             youtubeSearchBtn.Click();
 
             _browserHelper.WaitForElement(() => youtubeSearchResult, nameof(youtubeSearchResult));
 
-            Base.MongoDb.UpdateSteps($"Dragging a Youtube video..");
+            UpdateStep($"Dragging a Youtube video..");
             _browserHelper.DragElement(youtubeSearchResult, dropMedia[par]);
 
-            Base.MongoDb.UpdateSteps($"Clicking on save button.");
+            UpdateStep($"Clicking on save button.");
             _browserHelper.WaitForElement(() => youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
             _browserHelper.Click(youtubeVideoSaveBtn, nameof(youtubeVideoSaveBtn));
 
@@ -147,38 +147,38 @@ namespace Automation.PagesObjects
 
         public bool CheckYoutubeVideoInPost()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on save button.");
+            UpdateStep($"Clicking on save button.");
             _driver.SwitchTo().Frame(_driver.FindElement(By.XPath("//iframe[contains(@class, 'Youtube')]")));
             return _browserHelper.WaitForElement(() => youtubeVideoInPost, nameof(youtubeVideoInPost));
         }
 
         public bool ValidateTitle()
         {
-            Base.MongoDb.UpdateSteps("Validating title field.");
+            UpdateStep("Validating title field.");
             return _browserHelper.WaitForElement(() => titleTextBox, nameof(titleTextBox), 60, false);
         }
 
         public bool ValidateEditorMedia()
         {
-            Base.MongoDb.UpdateSteps("Validating editor media field.");
+            UpdateStep("Validating editor media field.");
             return _browserHelper.WaitForElement(() => editorMedia, nameof(editorMedia), 60, false);
         }
 
         public bool ValidateEditorSeo()
         {
-            Base.MongoDb.UpdateSteps("Validating editor media field.");
+            UpdateStep("Validating editor media field.");
             return _browserHelper.WaitForElement(() => editorSeo, nameof(editorSeo), 60, false);
         }
 
         public bool ValidateEditorTags()
         {
-            Base.MongoDb.UpdateSteps("Validating editor media field.");
+            UpdateStep("Validating editor media field.");
             return _browserHelper.WaitForElement(() => editorTags, nameof(editorTags), 60, false);
         }
 
         public bool ValidateEditorWysiWyg()
         {
-            Base.MongoDb.UpdateSteps("Validating editor media field.");
+            UpdateStep("Validating editor media field.");
             return _browserHelper.WaitForElement(() => editorWysiWyg, nameof(editorWysiWyg), 60, false);
         }
 
@@ -197,14 +197,14 @@ namespace Automation.PagesObjects
 
         public string GetTitleValue()
         {
-            Base.MongoDb.UpdateSteps("Getting Title textbox value.");
+            UpdateStep("Getting Title textbox value.");
             _browserHelper.WaitForElement(() => titleTextBox, nameof(titleTextBox), 60, true);
             return titleTextBox.GetAttribute("value");
         }
 
         public string GetBodyValue()
         {
-            Base.MongoDb.UpdateSteps("Getting body text box value.");
+            UpdateStep("Getting body text box value.");
             _browserHelper.WaitForElement(() => descTxtBox, nameof(descTxtBox), 60, true);
             return descTxtBox.Text;
         }
@@ -231,20 +231,20 @@ namespace Automation.PagesObjects
 
         public void WriteShortTags(string shortTag)
         {
-            Base.MongoDb.UpdateSteps("Inserting short Tags in tags text field.");
+            UpdateStep("Inserting short Tags in tags text field.");
             _browserHelper.WaitForElement(() => editorTags, nameof(editorTags), 60, true);
             editorTags.SendKeys(shortTag);
         }
 
         public List<string> GetTagsValue()
         {
-            Base.MongoDb.UpdateSteps("Getting tags value.");
+            UpdateStep("Getting tags value.");
             return tags.ToList().Select(t => t.GetAttribute("innerText")).ToList();
         }
 
         public bool ValidateAutoComplete(string tag)
         {
-            Base.MongoDb.UpdateSteps($"Validating'{tag}' is found on the autocomplet box.");
+            UpdateStep($"Validating'{tag}' is found on the autocomplet box.");
             _browserHelper.WaitForElement(() => autoComplete, nameof(autoComplete));
             Thread.Sleep(1000);
             List<string> tagsList = autoCompleteRows.Select(t => t.Text).ToList();
@@ -254,7 +254,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnMagicStick(int num = 1)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on magic stick button.");
+            UpdateStep($"Clicking on magic stick button.");
             _browserHelper.WaitForElement(() => magicStick, nameof(magicStick));
             for (int i = 0; i < num; i++)
             {
@@ -274,19 +274,19 @@ namespace Automation.PagesObjects
 
         public bool ValidateContainerImage()
         {
-            Base.MongoDb.UpdateSteps($"Validating the cover image container.");
+            UpdateStep($"Validating the cover image container.");
             return _browserHelper.WaitForElement(() => containerImage, nameof(containerImage));
         }
 
         public void HoverOverCoverImage()
         {
-            Base.MongoDb.UpdateSteps($"Hovering over the cover image");
+            UpdateStep($"Hovering over the cover image");
             _browserHelper.Hover(containerImage);
         }
 
         public bool ValidateDeleteButtonCoverimage()
         {
-            Base.MongoDb.UpdateSteps($"Validating the delete button on cover image.");
+            UpdateStep($"Validating the delete button on cover image.");
             return _browserHelper.WaitUntillTrue(() =>
            {
                HoverOverCoverImage();
@@ -296,7 +296,7 @@ namespace Automation.PagesObjects
 
         public void SearchImage(string search)
         {
-            Base.MongoDb.UpdateSteps($"Inserting {search} in image search text box.");
+            UpdateStep($"Inserting {search} in image search text box.");
             _browserHelper.WaitForElement(() => imageSearchBox, nameof(imageSearchBox));
             _browserHelper.ExecuteUntill(() => imageSearchBox.Clear());
             _browserHelper.SetText(imageSearchBox, search);
@@ -306,7 +306,7 @@ namespace Automation.PagesObjects
 
         public int ValidateImageSearchResults(int maxRes)
         {
-            Base.MongoDb.UpdateSteps($"Validating Image Search Results.");
+            UpdateStep($"Validating Image Search Results.");
             _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count == 30, $"There were less than {maxRes} results.", 60, false);
 
             return imagesResults.ToList().Count();
@@ -314,7 +314,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateImageContenet(string search)
         {
-            Base.MongoDb.UpdateSteps($"Validating the Image Search content.");
+            UpdateStep($"Validating the Image Search content.");
 
             _browserHelper.WaitUntillTrue(() =>
             {
@@ -332,28 +332,28 @@ namespace Automation.PagesObjects
 
         public void ClickOnPlayBuzzCBX()
         {
-            Base.MongoDb.UpdateSteps("Clicking on PlayBuzz CheckBox");
+            UpdateStep("Clicking on PlayBuzz CheckBox");
             _browserHelper.WaitForElement(() => playBuzzCheckBox, nameof(playBuzzCheckBox));
             _browserHelper.Click(playBuzzCheckBox, nameof(playBuzzCheckBox));
         }
 
         public bool ValidatePlayBuzzTBXEnabled()
         {
-            Base.MongoDb.UpdateSteps("Validating PlayBuzz TBX Enabled");
+           UpdateStep("Validating PlayBuzz TBX Enabled");
             _browserHelper.WaitForElement(() => playBuzzUrlField, nameof(playBuzzUrlField));
             return playBuzzUrlField.Enabled;
         }
 
         public void SetPlayBuzzURL(string url)
         {
-            Base.MongoDb.UpdateSteps("Inserting Play Buzz URL");
+            UpdateStep("Inserting Play Buzz URL");
             _browserHelper.WaitForElement(() => playBuzzUrlField, nameof(playBuzzUrlField));
             _browserHelper.SetText(playBuzzUrlField, url);
         }
 
         public bool ValidatePlayBuzzImageAppears()
         {
-            Base.MongoDb.UpdateSteps("Validating PlayBuzz Image Appears");
+            UpdateStep("Validating PlayBuzz Image Appears");
             _browserHelper.ExecuteUntill(() => _browserHelper.MoveToIframe("pb_feed_iframe"));
             return _browserHelper.WaitForElement(() => playBuzzImage, nameof(playBuzzImage));
         }
@@ -369,7 +369,7 @@ namespace Automation.PagesObjects
 
         public void FillArticleTemplate()
         {
-            Base.MongoDb.UpdateSteps("Fill the article template");
+            UpdateStep("Fill the article template");
             WriteTitle("EI Full Flow");
             SearchImage("cat");
             CropImagePopUp cropImagePopUp = DragImage(0);

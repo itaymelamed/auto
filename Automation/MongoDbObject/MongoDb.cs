@@ -121,7 +121,7 @@ namespace Automation.MongoDbObject
             var updateStatus = collection.UpdateOne(filter, update);
         }
 
-        public static BsonDocument GetTestParams(string testCaseId, string siteName)
+        public static BsonDocument GetTestParams(string testCaseId)
         {
             lock(_syncObject5) 
             {
