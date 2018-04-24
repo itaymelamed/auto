@@ -1,7 +1,6 @@
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using MongoDB.Bson;
 using System.Linq;
 using System.Collections.Generic;
@@ -40,7 +39,7 @@ namespace Automation.PagesObjects
         {
             UpdateStep("Validate language dropdown");
             bool sum = false;
-            _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
+            _browserHelper.WaitForElement(() => dropdownCurLangauge, nameof(dropdownLangauges));
             var actualCurrentlanguage = dropdownCurLangauge.Text;
             var exCurDropDownList = exCurDropDown.Select(x => x.ToString()).ToList();
             var acDropDown = dropdownLangauges.ToList().Select(e => e.GetAttribute("innerHTML").ToUpper()).ToList();
@@ -75,7 +74,7 @@ namespace Automation.PagesObjects
         {
             bool sum = false;
             UpdateStep("Check if langague dropdown does not appear");
-            sum = _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
+            sum = _browserHelper.WaitForElement(() => dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
             return sum;
         }
 
