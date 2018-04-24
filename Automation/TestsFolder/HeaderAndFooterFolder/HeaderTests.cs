@@ -61,18 +61,17 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
         public class Test4Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "142")]
+            [Property("TestCaseId", "147")]
             [Category("Sanity")]
             [Category("Header")]
-            [Category("AllBrands")]
+            [Category("90Min")]
             [Retry(2)]
-            public void LogoTest()
+            public void LogoAndDropDownTest()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
-                var curDropDown = _params["curDropDown"].AsBsonArray;
-                var url = _params["url"].AsBsonArray;
-                var result = header.SelectAndValidateLogo(href, url);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
                 Assert.True(result);
             }
         }

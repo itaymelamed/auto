@@ -40,22 +40,19 @@ namespace Automation.PagesObjects
             return sum;
         }
 
-        public bool SelectAndValidateLogo(BsonArray href, BsonArray urls)
+        public bool SelectAndValidateLogo(BsonValue headerData)
         {
-            List<string> urlsList = urls.Select(u => u.ToString()).ToList();
-            List<string> hrefList = href.Select(u => u.ToString()).ToList();
+            var url = headerData["url"].ToString();
+            var exDropDown = headerData["curDropDown"].ToString();
+            var acDropDown = dropdownCurLangauge.GetAttribute("innerHTML");
             var sum = true;
-
-            urlsList.ForEach(l =>
-            {
-                _browser.Navigate($"{Base._config.Url}/{l}");
-                var curHref = logo.GetAttribute("href");
-                if(curHref != $"{Base._config.Url}/{l}")
+            var exHref = $"{Base._config.Url}/{url}".ToLower();
+                _browser.Navigate($"{Base._config.Url}/{url}");
+            var curHref = logo.GetAttribute("href").ToLower();
+            if(curHref != exHref || exDropDown != acDropDown)
                 {
                     sum = false;
                 }
-
-            });
             return sum;
         }
     }
