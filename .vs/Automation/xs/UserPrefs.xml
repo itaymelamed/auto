@@ -1,16 +1,16 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs">
+﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
+  <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/FeedPage.cs">
     <Files>
-      <File FileName="Automation/PagesObjects/Header.cs" Line="102" Column="1" />
-      <File FileName="Automation/ConfigurationFoldee/Conigurations.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="101" Column="36" />
-      <File FileName="Automation/BrowserFolder/BrowserHelper.cs" Line="43" Column="1" />
-      <File FileName="Automation/BrowserFolder/Browser.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/Base.cs" Line="1" Column="1" />
-      <File FileName="Automation/TestsFolder/BaseUi.cs" Line="14" Column="31" />
-      <File FileName="Automation/TestsFolder/NavigationTests/NavigationTests.cs" Line="1" Column="1" />
-      <File FileName="Automation/PagesObjects/Navigation.cs" Line="1" Column="1" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="47" Column="31" NotebookId="1" />
     </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="4158" Y="163" Width="995" Height="627">
+        <Files>
+          <File FileName="Automation/PagesObjects/FeedPage.cs" Line="32" Column="13" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

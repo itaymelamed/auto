@@ -10,29 +10,18 @@ using System.Threading;
 
 namespace Automation.PagesObjects
 {
-    public class Header
+    public class Header : BaseObject
     {
-        
-        [FindsBy(How = How.CssSelector, Using = ".edition-component__current")]
-        IWebElement dropdownCurLangauge { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".dropdown-comp__item")]
-        IList<IWebElement> dropdownLangauges { get; set; }
+        IWebElement dropdownCurLangauge => _browserHelper.FindElement(".edition-component__current");
 
-        [FindsBy(How = How.CssSelector, Using = ".logo")]
-        IWebElement logo { get; set; }
+        IList<IWebElement> dropdownLangauges => _browserHelper.FindElements(".dropdown-comp__item");
 
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement logo => _browserHelper.FindElement(".logo");
 
         public Header(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public void HoverLanguage()
@@ -42,14 +31,14 @@ namespace Automation.PagesObjects
 
         public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
         {
-            Base.MongoDb.UpdateSteps("");
+            UpdateStep("");
             var acCurLanguage = dropdownCurLangauge.Text;
             return acCurLanguage == exCurLanguage;
 
         }
         public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
         {
-            Base.MongoDb.UpdateSteps("Validate language dropdown");
+            UpdateStep("Validate language dropdown");
             bool sum = false;
             _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownLangauges));
             var actualCurrentlanguage = dropdownCurLangauge.Text;
@@ -85,7 +74,7 @@ namespace Automation.PagesObjects
         public bool ValidateLangagueDropDownDoesntAppear()
         {
             bool sum = false;
-            Base.MongoDb.UpdateSteps("Check if langague dropdown does not appear");
+            UpdateStep("Check if langague dropdown does not appear");
             sum = _browserHelper.WaitForElement(dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
             return sum;
         }
