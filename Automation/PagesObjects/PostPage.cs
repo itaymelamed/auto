@@ -1,32 +1,15 @@
-﻿
-using Automation.PagesObjects;
-﻿using Automation.BrowserFolder;
+using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using MongoDB.Bson;
-using NUnit.Framework;
-using Automation.PagesObjects.ExternalPagesobjects;
 using System.Linq;
+using System.Collections.Generic;
+using System;
 
-namespace Automation.TestsFolder.PostPagesFolder
+namespace Automation.PagesObjects
 {
-    [TestFixture]
-    public class PostPageTests
+    public class PostPage : HomePage
     {
-        [TestFixture]
-        [Parallelizable]
-        public class Test11Class : BaseNetworkTraffic
-        {
-            [Test]
-            [Property("TestCaseId", "13")]
-            [Category("Sanity")]
-            [Category("Admin")]
-            [Category("PostPage")]
-            [Category("AllBrands")]
-            [Retry(2)]
-            public void PostPage_ValidateUiComponentsExistOnPage()
-        [FindsBy(How = How.CssSelector, Using = ".post-admin-options__label")]
-        IWebElement options { get; set; }
         IWebElement options => FindElement(".post-admin-options__label");
 
         IWebElement openInCaster => FindElement("[href*='/castr']");
@@ -62,7 +45,7 @@ namespace Automation.TestsFolder.PostPagesFolder
         public VideoPlayer VideoPlayer { get; }
 
         public PostPage(Browser browser)
-            :base(browser)
+            : base(browser)
         {
             VideoPlayer = new VideoPlayer(_browser);
         }
@@ -87,7 +70,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             UpdateStep("Validating Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
-            _browser.Navigate(_browser.GetUrl()+"?test=test");
+            _browser.Navigate(_browser.GetUrl() + "?test=test");
             tagsList.ForEach(t => {
                 errors += !_browser.GetSource().Contains(t) ? $"Tag {t} does not exsist on page source. {Environment.NewLine}" : "";
             });
@@ -108,7 +91,7 @@ namespace Automation.TestsFolder.PostPagesFolder
             UpdateStep("Hovering over the 'Options'.");
             _browserHelper.WaitForElement(() => options, nameof(options));
             _browserHelper.Hover(options);
-        } 
+        }
 
         public CastrPage ClickOnOpenInCaster()
         {
@@ -129,7 +112,7 @@ namespace Automation.TestsFolder.PostPagesFolder
         public string GetPostId()
         {
             var postParsedUrl = _browser.GetUrl().Split('/').Last();
-            var postId =new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
+            var postId = new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
 
             return postId;
         }
@@ -149,7 +132,7 @@ namespace Automation.TestsFolder.PostPagesFolder
                 errors = string.Empty;
                 errors = IframesHandeler(adsArray);
                 return string.IsNullOrEmpty(errors);
-            },  "" ,30 ,false);
+            }, "", 30, false);
 
             return errors;
         }
@@ -162,29 +145,6 @@ namespace Automation.TestsFolder.PostPagesFolder
             List<string> adsUi = new List<string>();
             iframes.ToList().ForEach(f =>
             {
-<<<<<<< HEAD
-                var postTitle = "VIDEO:Test post article";
-                BsonArray components = _params["Components"].AsBsonArray;
-
-                _browser.Navigate(_config.Url);
-                HomePage homePage = new HomePage(_browser);
-                FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
-                HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
-                homePageConnected.ValidateUserProfilePic();
-                EditorPage editorPage = homePageConnected.ClickOnAddArticle();
-                ArticleBase articleBase = editorPage.ClickOnArticle();
-                articleBase.ClickOnMagicStick(2);
-                articleBase.WriteTitle(postTitle);
-                PreviewPage previewPage = articleBase.ClickOnPreviewBtn();
-                _browser.ProxyApi.NewHar();
-                PostPage postPage = previewPage.ClickOnPublishBtn();
-                var postId = postPage.GetPostId();
-                var errors = postPage.ValidateComponents(components);
-                Assert.True(string.IsNullOrEmpty(errors), errors);
-
-                var counterRequest = _browser.ProxyApi.GetRequests().Where(r => r.Url.Contains("counter") && r.Url.Contains("reads") && r.Url.Contains(postId));
-                Assert.True(counterRequest.Count() != 0, "A request to counter reads service was not sent.");
-            }
                 _driver.SwitchTo().Frame(f);
                 var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
                 if (curAd != null)
@@ -203,7 +163,7 @@ namespace Automation.TestsFolder.PostPagesFolder
         public string GetAuthorName()
         {
             UpdateStep("Getting the author name from the post.");
-            _browserHelper.WaitForElement(() => authorName,nameof(authorName));
+            _browserHelper.WaitForElement(() => authorName, nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
 
@@ -286,7 +246,6 @@ namespace Automation.TestsFolder.PostPagesFolder
             UpdateStep($"Clicking on Twitter top button");
             _browserHelper.WaitForElement(() => twitterTop, nameof(twitterTop));
             _browserHelper.Click(twitterTop, nameof(twitterTop));
->>>>>>> f0a8ecf68d8dccee29fe9929b251ebf3164d1162
         }
     }
 }
