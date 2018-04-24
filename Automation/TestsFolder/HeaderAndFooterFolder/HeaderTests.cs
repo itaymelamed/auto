@@ -16,7 +16,6 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Test]
             [Property("TestCaseId", "101")]
             [Category("Sanity")]
-            [Category("Admin")]
             [Category("Header")]
             [Category("12up")]
             [Category("90Min")]
@@ -28,15 +27,9 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Retry(2)]
             public void HeaderAndFooter_ValidateLangauageDropdownExistOnPage()
             {
-                //click on lang
-                // new header page
-                // curl lang = en
-                // curl =/ list
-                // curl langs
                 _browser.Navigate(_config.Url);
-                var languages = _params["languageDropDownNames"].AsBsonArray;
                 Header header = new Header(_browser);
-                bool result = header.ValidateLanguageDropDownLangauge(languages);
+                bool result = header.ValidateLangagueDropDownAppears();
                 Assert.True(result);
             }
         }
@@ -48,7 +41,6 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Test]
             [Property("TestCaseId", "139")]
             [Category("Sanity")]
-            [Category("Admin")]
             [Category("Header")]
             [Category("DBLTAP")]
             [Category("Pluralist")]
@@ -71,18 +63,17 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Test]
             [Property("TestCaseId", "142")]
             [Category("Sanity")]
-            [Category("Admin")]
+            [Category("Header")]
             [Category("AllBrands")]
             [Retry(2)]
             public void LogoTest()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
-                var href = _params["href"].AsBsonArray;
-                var urls = _params["urls"].AsBsonArray;
-                var result = header.SelectAndValidateLogo(href, urls);
+                var curDropDown = _params["curDropDown"].AsBsonArray;
+                var url = _params["url"].AsBsonArray;
+                var result = header.SelectAndValidateLogo(href, url);
                 Assert.True(result);
-                //string url = _browser.GetUrl();
             }
         }
 

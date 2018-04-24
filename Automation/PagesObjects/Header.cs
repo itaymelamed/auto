@@ -23,57 +23,19 @@ namespace Automation.PagesObjects
         {
         }
 
-        public void HoverLanguage()
+        public bool ValidateLangagueDropDownAppears()
         {
-            _browserHelper.Hover(dropdownCurLangauge);
-        }
-
-        public bool ValidateCurrentLangaugeDropDown(string exCurLanguage)
-        {
-            UpdateStep("");
-            var acCurLanguage = dropdownCurLangauge.Text;
-            return acCurLanguage == exCurLanguage;
-
-        }
-        public bool ValidateLanguageDropDownLangauge(BsonArray exCurDropDown)
-        {
-            UpdateStep("Validate language dropdown");
+            UpdateStep("Validate language dropdown appear");
             bool sum = false;
-            _browserHelper.WaitForElement(() => dropdownCurLangauge, nameof(dropdownLangauges));
-            var actualCurrentlanguage = dropdownCurLangauge.Text;
-            var exCurDropDownList = exCurDropDown.Select(x => x.ToString()).ToList();
-            var acDropDown = dropdownLangauges.ToList().Select(e => e.GetAttribute("innerHTML").ToUpper()).ToList();
-
-            HoverLanguage();
-            Thread.Sleep(2000);
-            for (int i = 0; i <= exCurDropDownList.Count - 1; i++)
-            {
-                if (actualCurrentlanguage == exCurDropDownList[i])
-                {
-                    exCurDropDownList.RemoveAt(i);
-                    break;
-                }
-            }
-
-            for (int i = 0; i <= exCurDropDownList.Count - 1; i++)
-            {
-                if ((acDropDown.Contains(exCurDropDownList[i])))
-                {
-                    sum = true;
-                }
-                else
-                {
-                    sum = false;
-                    break;
-                }
-            }
+            sum = _browserHelper.WaitForElement(() => dropdownCurLangauge, nameof(dropdownCurLangauge), 0, true);
             return sum;
+
         }
 
         public bool ValidateLangagueDropDownDoesntAppear()
         {
+            UpdateStep("Validate language dropdown doesnt appear");
             bool sum = false;
-            UpdateStep("Check if langague dropdown does not appear");
             sum = _browserHelper.WaitForElement(() => dropdownCurLangauge, nameof(dropdownCurLangauge), 0 ,false);
             return sum;
         }
