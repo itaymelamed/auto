@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 ﻿
 using Automation.PagesObjects;
-=======
 ﻿using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
->>>>>>> f0a8ecf68d8dccee29fe9929b251ebf3164d1162
 using MongoDB.Bson;
 using NUnit.Framework;
 using Automation.PagesObjects.ExternalPagesobjects;
@@ -188,7 +185,6 @@ namespace Automation.TestsFolder.PostPagesFolder
                 var counterRequest = _browser.ProxyApi.GetRequests().Where(r => r.Url.Contains("counter") && r.Url.Contains("reads") && r.Url.Contains(postId));
                 Assert.True(counterRequest.Count() != 0, "A request to counter reads service was not sent.");
             }
-=======
                 _driver.SwitchTo().Frame(f);
                 var curAd = adsNames.Intersect(_driver.FindElements(By.ClassName("primary")).Select(e => e.Text).ToList()).FirstOrDefault();
                 if (curAd != null)
