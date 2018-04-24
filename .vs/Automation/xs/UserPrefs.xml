@@ -1,16 +1,9 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/FeedPage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
     <Files>
-      <File FileName="Automation/PagesObjects/Header.cs" Line="47" Column="31" NotebookId="1" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="23" Column="28" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="4158" Y="163" Width="995" Height="627">
-        <Files>
-          <File FileName="Automation/PagesObjects/FeedPage.cs" Line="32" Column="13" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
