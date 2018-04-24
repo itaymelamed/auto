@@ -58,7 +58,267 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
         public class Test4Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "148")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test5Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "149")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test6Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "150")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "147")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90Min")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test3Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "147")]

@@ -1,17 +1,11 @@
 ﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/PagesObjects/Header.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs">
     <Files>
-      <File FileName="Automation/PagesObjects/Header.cs" Line="51" Column="1" NotebookId="1" />
-      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="242" Column="62" NotebookId="1" />
+      <File FileName="Automation/PagesObjects/Header.cs" Line="56" Column="24" />
+      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="242" Column="62" />
+      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="13" Column="25" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="3840" Y="0" Width="1440" Height="900">
-        <Files>
-          <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="73" Column="67" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
@@ -34,8 +28,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" relfile="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" line="91" column="14" />
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="51" column="1" />
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" relfile="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" line="351" column="14" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
