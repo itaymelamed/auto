@@ -22,7 +22,4 @@
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MultiItemStartupConfigurations />
-  <DisabledProjects>
-    <String>Automation/Automation.csproj</String>
-  </DisabledProjects>
 </Properties>
