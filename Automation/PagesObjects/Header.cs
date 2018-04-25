@@ -40,8 +40,9 @@ namespace Automation.PagesObjects
             return sum;
         }
 
-        public bool SelectAndValidateLogo(BsonValue headerData)
+        public bool LogoAndDropDown(BsonValue headerData)
         {
+            UpdateStep("Validate logo and current drop down with the right local");
             var url = headerData["url"].ToString();
             _browser.Navigate($"{Base._config.Url}/{url}");
             var exDropDown = headerData["curDropDown"].ToString().ToLower();

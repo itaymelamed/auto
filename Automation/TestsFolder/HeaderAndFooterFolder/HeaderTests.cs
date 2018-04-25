@@ -66,12 +66,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -86,12 +86,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEs()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -106,12 +106,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEsLatam()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result,"");
             }
         }
@@ -126,12 +126,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestFr()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -146,12 +146,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestIt()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -166,12 +166,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestTr()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -186,12 +186,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestId()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -206,12 +206,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestTh()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -226,12 +226,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestVn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -246,12 +246,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90Min")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestPtBr()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -266,12 +266,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90MinIn")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -286,12 +286,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("12Up")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -306,12 +306,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("12Up")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEs()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -326,12 +326,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Floor8")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -346,12 +346,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Floor8")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEs()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -365,12 +365,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Ftb90")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestEn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -384,12 +384,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Ftb90")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestId()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -403,12 +403,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Ftb90")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestTh()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -422,12 +422,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("Ftb90")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestVn()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
@@ -442,12 +442,12 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("Header")]
             [Category("90MinIn")]
             [Retry(2)]
-            public void LogoAndDropDownTest()
+            public void LogoAndDropDownTestHi()
             {
                 _browser.Navigate(_config.Url);
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
-                var result = header.SelectAndValidateLogo(headerData);
+                var result = header.LogoAndDropDown(headerData);
                 Assert.True(result);
             }
         }
