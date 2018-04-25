@@ -48,7 +48,7 @@ namespace Automation.PagesObjects
             var exDropDown = headerData["curDropDown"].ToString();
             var acDropDown = dropdownCurLangauge.GetAttribute("innerHTML");
             var sum = true;
-            var exHref = $"{Base._config.Url}/{url}/".ToLower();
+            var exHref = $"{Base._config.Url}/{url}".ToLower();
             var curHref = logo.GetAttribute("href").ToLower();
             if(curHref != exHref || exDropDown != acDropDown)
                 {

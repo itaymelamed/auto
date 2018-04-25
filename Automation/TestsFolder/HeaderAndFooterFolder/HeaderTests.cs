@@ -112,7 +112,7 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 Header header = new Header(_browser);
                 var headerData = _params["headerData"].AsBsonValue;
                 var result = header.SelectAndValidateLogo(headerData);
-                Assert.True(result);
+                Assert.True(result,"");
             }
         }
 
