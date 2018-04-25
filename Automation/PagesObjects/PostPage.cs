@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 using Automation.BrowserFolder;
 using Automation.TestsFolder;
+=======
+﻿using Automation.BrowserFolder;
+>>>>>>> ac4fab33ffdc279c266d778fc89ed55961be8fc8
 using OpenQA.Selenium;
 using MongoDB.Bson;
 using System.Linq;

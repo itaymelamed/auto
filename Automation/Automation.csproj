@@ -68,20 +68,20 @@
     <Reference Include="WebDriver.Support">
       <HintPath>..\packages\Selenium.Support.3.11.2\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\packages\MongoDB.Bson.2.5.1\lib\net45\MongoDB.Bson.dll</HintPath>
-    </Reference>
     <Reference Include="CloudinaryDotNet">
       <HintPath>..\packages\CloudinaryDotNet.1.3.0\lib\net40\CloudinaryDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\CloudinaryDotNet.1.3.0\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.6.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Driver.Core">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.5.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <HintPath>..\packages\MongoDB.Driver.Core.2.6.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\MongoDB.Driver.2.5.1\lib\net45\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\MongoDB.Driver.2.6.0\lib\net45\MongoDB.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +119,6 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
     <Compile Include="ApiFolder\ApiObject.cs" />
-    <Compile Include="LoadBalancerFolder\HubLoadBalancer.cs" />
-    <Compile Include="LoadBalancerFolder\Hub.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\FtbPost.cs" />
     <Compile Include="PagesObjects\SettingsPage.cs" />
     <Compile Include="PagesObjects\TVPage.cs" />
@@ -198,7 +196,6 @@
     <Folder Include="PagesObjects\CasterObjectsFolder\" />
     <Folder Include="PagesObjects\ExternalPagesobjects\" />
     <Folder Include="ApiFolder\" />
-    <Folder Include="LoadBalancerFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
     <Folder Include="ApiFolder\FacebookApi\" />
