@@ -4,14 +4,10 @@
     <Files>
       <File FileName="Automation/PagesObjects/Header.cs" Line="56" Column="24" />
       <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="242" Column="62" />
-      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="124" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" relfile="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" line="351" column="14" />
-    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Automation/PagesObjects/PostPage.cs" line="78" offsetX="1242" offsetY="1617" expression="dropdownLangauge.GetAttribute" liveUpdate="False" />
