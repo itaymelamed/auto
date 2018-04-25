@@ -1,5 +1,4 @@
 ﻿using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
 using MongoDB.Bson;
 using System.Linq;
