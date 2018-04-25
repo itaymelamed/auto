@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{CDAD9B5A-6050-43AC-AB39-756537A99BBA}|Unit Tests">
+  <MonoDevelop.Ide.ItemProperties.Automation PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Source Not Found">
+    <Files>
+      <File FileName="Automation/PagesObjects/Header.cs" Line="58" Column="1" />
+      <File FileName="Automation/PagesObjects/ArticleBase.cs" Line="242" Column="62" />
+      <File FileName="Automation/TestsFolder/HeaderAndFooterFolder/HeaderTests.cs" Line="96" Column="1" />
+      <File FileName="Source Not Found" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Automation" expanded="True">
+            <Node name="Automation" expanded="True">
+              <Node name="Automation" expanded="True">
+                <Node name="HeaderAndFooterFolder" expanded="True">
+                  <Node name="HeaderTests+Test4Class" expanded="True">
+                    <Node name="LogoAndDropDownTest" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/yuvalfriedman/Projects/auto/Automation/PagesObjects/Header.cs" relfile="Automation/PagesObjects/Header.cs" line="44" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
