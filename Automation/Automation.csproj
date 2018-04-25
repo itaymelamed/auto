@@ -119,8 +119,6 @@
     <Compile Include="PagesObjects\ExternalPagesobjects\FaceBookconnectPage.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\TwitterAppPage.cs" />
     <Compile Include="ApiFolder\ApiObject.cs" />
-    <Compile Include="LoadBalancerFolder\HubLoadBalancer.cs" />
-    <Compile Include="LoadBalancerFolder\Hub.cs" />
     <Compile Include="PagesObjects\CasterObjectsFolder\FtbPost.cs" />
     <Compile Include="PagesObjects\SettingsPage.cs" />
     <Compile Include="PagesObjects\TVPage.cs" />
@@ -195,7 +193,6 @@
     <Folder Include="PagesObjects\CasterObjectsFolder\" />
     <Folder Include="PagesObjects\ExternalPagesobjects\" />
     <Folder Include="ApiFolder\" />
-    <Folder Include="LoadBalancerFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\" />
     <Folder Include="ApiFolder\ProxyApiFolder\Har\" />
     <Folder Include="ApiFolder\FacebookApi\" />
