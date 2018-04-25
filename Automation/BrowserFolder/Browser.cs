@@ -253,5 +253,10 @@ namespace Automation.BrowserFolder
                 throw new NUnit.Framework.AssertionException($"Get Cookie oparation has failed.");
             }
         }
-    }
+
+        public void DeleteCookies()
+        {
+            Driver.Manage().Cookies.DeleteAllCookies();
+        }
+	}
 }

@@ -48,7 +48,7 @@ namespace Automation.BrowserFolder
             return true;
         }
 
-        public void WaitForElementDiss(Func<IWebElement> el, int timeOut = 30)
+        public bool WaitForElementDiss(Func<IWebElement> el, int timeOut = 30)
         {
             try
             {
@@ -63,6 +63,8 @@ namespace Automation.BrowserFolder
                         return true;
                     }
                 });
+
+                return true;
             }
             catch
             {
