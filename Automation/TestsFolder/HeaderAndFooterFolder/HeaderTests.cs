@@ -431,6 +431,7 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 Assert.True(result);
             }
         }
+      
         [TestFixture]
         [Parallelizable]
         public class Test22Class : BaseUi
@@ -450,6 +451,5 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 Assert.True(result);
             }
         }
-
     }
 }
