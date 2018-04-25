@@ -42,13 +42,15 @@ namespace Automation.PagesObjects
 
         public bool SelectAndValidateLogo(BsonValue headerData)
         {
-            UpdateStep("Validate logo and curren langaue");
             var url = headerData["url"].ToString();
-            _browser.Navigate($"{Base._config.Url}/{url}");
             var exDropDown = headerData["curDropDown"].ToString();
             var acDropDown = dropdownCurLangauge.GetAttribute("innerHTML");
             var sum = true;
             var exHref = $"{Base._config.Url}/{url}".ToLower();
+<<<<<<< HEAD
+=======
+                _browser.Navigate($"{Base._config.Url}/{url}");
+>>>>>>> ce132eb328e91be0aad057875e270370879d67d1
             var curHref = logo.GetAttribute("href").ToLower();
             if(curHref != exHref || exDropDown != acDropDown)
                 {
