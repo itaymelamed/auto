@@ -165,11 +165,14 @@
     <Compile Include="Helpersobjects\AdsTxtValidator.cs" />
     <Compile Include="PagesObjects\ExternalPagesobjects\AdsTxtValidatorPage.cs" />
     <Compile Include="PagesObjects\EchoFolder\DistributionPage.cs" />
+    <Compile Include="TestsFolder\HeaderAndFooterFolder\HeaderTests.cs" />
     <Compile Include="PagesObjects\Navigation.cs" />
     <Compile Include="Helpersobjects\AdsUnitMailer.cs" />
+    <Compile Include="PagesObjects\Header.cs" />
     <Compile Include="PagesObjects\PartnersPage.cs" />
     <Compile Include="TestsFolder\FeedPageTests\PartnersPageTests.cs" />
     <Compile Include="TestsFolder\NavigationTests\NavigationTests.cs" />
+    <Compile Include="Helpersobjects\CommonFunctions.cs" />
     <Compile Include="TestsFolder\EITestsFolder\EditorTests.cs" />
     <Compile Include="PagesObjects\ManagementPage.cs" />
     <Compile Include="TestsFolder\VideoPlayerTestsFolder\VideoPlayerTests.cs" />
@@ -198,10 +201,12 @@
     <Folder Include="ApiFolder\FacebookApi\" />
     <Folder Include="TestsFolder\DataTrafficTests\" />
     <Folder Include="PagesObjects\EchoFolder\" />
+    <Folder Include="TestsFolder\HeaderAndFooterFolder\" />
     <Folder Include="TestsFolder\FeedPageTests\" />
     <Folder Include="TestsFolder\NavigationTests\" />
     <Folder Include="TestsFolder\EITestsFolder\" />
     <Folder Include="TestsFolder\VideoPlayerTestsFolder\" />
+    <Folder Include="TestsFolder\ApiTessFolder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

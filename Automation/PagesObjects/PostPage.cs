@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+using Automation.BrowserFolder;
+using Automation.TestsFolder;
+=======
 ﻿using Automation.BrowserFolder;
+>>>>>>> ac4fab33ffdc279c266d778fc89ed55961be8fc8
 using OpenQA.Selenium;
 using MongoDB.Bson;
 using System.Linq;
@@ -44,7 +49,7 @@ namespace Automation.PagesObjects
         public VideoPlayer VideoPlayer { get; }
 
         public PostPage(Browser browser)
-            :base(browser)
+            : base(browser)
         {
             VideoPlayer = new VideoPlayer(_browser);
         }
@@ -69,7 +74,7 @@ namespace Automation.PagesObjects
             UpdateStep("Validating Tags On Source Page.");
             string errors = string.Empty;
             List<string> tagsList = tags.AsBsonArray.ToList().Select(t => t.ToString()).ToList();
-            _browser.Navigate(_browser.GetUrl()+"?test=test");
+            _browser.Navigate(_browser.GetUrl() + "?test=test");
             tagsList.ForEach(t => {
                 errors += !_browser.GetSource().Contains(t) ? $"Tag {t} does not exsist on page source. {Environment.NewLine}" : "";
             });
@@ -90,7 +95,7 @@ namespace Automation.PagesObjects
             UpdateStep("Hovering over the 'Options'.");
             _browserHelper.WaitForElement(() => options, nameof(options));
             _browserHelper.Hover(options);
-        } 
+        }
 
         public CastrPage ClickOnOpenInCaster()
         {
@@ -111,7 +116,7 @@ namespace Automation.PagesObjects
         public string GetPostId()
         {
             var postParsedUrl = _browser.GetUrl().Split('/').Last();
-            var postId =new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
+            var postId = new string(postParsedUrl.Where(c => Char.IsDigit(c)).ToArray());
 
             return postId;
         }
@@ -131,7 +136,7 @@ namespace Automation.PagesObjects
                 errors = string.Empty;
                 errors = IframesHandeler(adsArray);
                 return string.IsNullOrEmpty(errors);
-            },  "" ,30 ,false);
+            }, "", 30, false);
 
             return errors;
         }
@@ -162,7 +167,7 @@ namespace Automation.PagesObjects
         public string GetAuthorName()
         {
             UpdateStep("Getting the author name from the post.");
-            _browserHelper.WaitForElement(() => authorName,nameof(authorName));
+            _browserHelper.WaitForElement(() => authorName, nameof(authorName));
             string authorNameText = authorName.Text;
             authorNameText = authorNameText.Replace("By", string.Empty);
 

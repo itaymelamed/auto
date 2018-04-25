@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using MongoDB.Bson;
@@ -87,6 +87,11 @@ namespace Automation.ConfigurationFolder
         static string GetSiteName()
         {
             return TestContext.Parameters.Get("siteName", "90Min");
+        }
+
+        static string GetParams(string param)
+        {
+            return TestContext.Parameters.Get(param, "utest");
         }
 
         BsonValue GetConfigJson(string siteName)
