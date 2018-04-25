@@ -450,47 +450,6 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
                 Assert.True(result);
             }
         }
-       
-
-        [TestFixture]
-        [Parallelizable]
-        public class Test23Class : BaseUi
-        {
-            [Test]
-            [Property("TestCaseId", "131")]
-            [Category("Sanity")]
-            [Category("Header")]
-            [Category("Navigation")]
-            [Category("Pluralist")]
-            [Retry(3)]
-            public void PerspectivesIcon()
-            {                      
-                Navigation navigation = new Navigation(_browser);
-                string errors = navigation.ValidateIcon(_params);
-
-                Assert.True(string.IsNullOrEmpty(errors), errors);
-            }
-        }
-
-        [TestFixture]
-        [Parallelizable]
-        public class Media : BaseUi
-        {
-            [Test]
-            [Property("TestCaseId", "132")]
-            [Category("Sanity")]
-            [Category("Header")]
-            [Category("Navigation")]
-            [Category("Pluralist")]
-            [Retry(3)]
-            public void MediaIcon()
-            {
-                Navigation navigation = new Navigation(_browser);
-                string errors = navigation.ValidateIcon(_params);
-
-                Assert.True(string.IsNullOrEmpty(errors), errors);
-            }
-        }
 
     }
 }
