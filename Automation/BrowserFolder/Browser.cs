@@ -31,9 +31,9 @@ namespace Automation.BrowserFolder
                 SessionId = Driver.SessionId.ToString();
                 BrowserHelper = new BrowserHelper(Driver);
             }
-            catch
+            catch(Exception e)
             {
-                throw new NUnit.Framework.AssertionException($"Init Browser has failed.");
+                throw new NUnit.Framework.AssertionException($"Init Browser has failed. Error: {e.Message}.");
             }
         }
 
@@ -219,7 +219,7 @@ namespace Automation.BrowserFolder
             _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
             var capabilities = (DesiredCapabilities)_options.ToCapabilities();
             capabilities.SetCapability("browser", "chrome");
-            capabilities.SetCapability("version", "65.0");
+            capabilities.SetCapability("version", "66.0");
             if(!proxy)
             {
                 capabilities.SetCapability("enableVNC", true);
