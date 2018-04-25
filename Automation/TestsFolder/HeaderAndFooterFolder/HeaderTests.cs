@@ -138,10 +138,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test7Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "151")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -158,10 +158,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test8Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "152")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -178,10 +178,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test9Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "153")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -198,10 +198,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test10Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "154")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -218,10 +218,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test11Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "155")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -238,10 +238,10 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test12Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "156")]
             [Category("Sanity")]
             [Category("Header")]
             [Category("90Min")]
@@ -258,13 +258,13 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test13Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "157")]
             [Category("Sanity")]
             [Category("Header")]
-            [Category("90Min")]
+            [Category("90MinIn")]
             [Retry(2)]
             public void LogoAndDropDownTest()
             {
@@ -278,13 +278,13 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test14Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "158")]
             [Category("Sanity")]
             [Category("Header")]
-            [Category("90Min")]
+            [Category("12Up")]
             [Retry(2)]
             public void LogoAndDropDownTest()
             {
@@ -298,13 +298,13 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test15Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "159")]
             [Category("Sanity")]
             [Category("Header")]
-            [Category("90Min")]
+            [Category("12Up")]
             [Retry(2)]
             public void LogoAndDropDownTest()
             {
@@ -318,13 +318,13 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test3Class : BaseUi
+        public class Test16Class : BaseUi
         {
             [Test]
-            [Property("TestCaseId", "147")]
+            [Property("TestCaseId", "160")]
             [Category("Sanity")]
             [Category("Header")]
-            [Category("90Min")]
+            [Category("Floor8")]
             [Retry(2)]
             public void LogoAndDropDownTest()
             {
@@ -338,7 +338,123 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
 
         [TestFixture]
         [Parallelizable]
-        public class Test5Class : BaseUi
+        public class Test17Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "161")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "162")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Ftb90")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "163")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Ftb90")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "164")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Ftb90")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "165")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("Ftb90")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+        [TestFixture]
+        [Parallelizable]
+        public class Test22Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "169")]
+            [Category("Sanity")]
+            [Category("Header")]
+            [Category("90MinIn")]
+            [Retry(2)]
+            public void LogoAndDropDownTest()
+            {
+                _browser.Navigate(_config.Url);
+                Header header = new Header(_browser);
+                var headerData = _params["headerData"].AsBsonValue;
+                var result = header.SelectAndValidateLogo(headerData);
+                Assert.True(result);
+            }
+        }
+       
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test23Class : BaseUi
         {
             [Test]
             [Property("TestCaseId", "131")]
