@@ -51,7 +51,7 @@ namespace Automation.PagesObjects
             var curHref = logo.GetAttribute("href").ToLower();
             if (acDropDown == "es-latam")
             {
-                exHref = $"{Base._config.Url}/{url}latam/".ToLower();
+                curHref = $"{Base._config.Url}/{url}".ToLower();
             }
 
             if(curHref != exHref || exDropDown != acDropDown)
