@@ -323,6 +323,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             if (!saveForLaterBtn.Enabled)
                 ResetPost();
             UncheckPublishToFtb();
+            CheckLeague(league);
             ChoosePlatform(platform);
             UpdateStep($"Clicking on League.");
             _browserHelper.Click(leaguePageLink, "");

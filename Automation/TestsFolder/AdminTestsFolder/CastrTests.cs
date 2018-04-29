@@ -496,8 +496,8 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 CastrPage newPosts = castrPage.SelectStatus(Statuses.New);
                 CastrPost post = newPosts.ClickOnPost(postCreator.Title);
 
-                post.SendPn(Platforms.mobile, 0);
-                _browser.Navigate($"{_config.Url}/management/push_notifications?test=test");
+                post.SendPn(Platforms.mobile, 0); 
+                _browser.OpenNewTab($"{_config.Url}/management/push_notifications?test=test");
                 PnDashBoardPage pnDashBoardPage = new PnDashBoardPage(_browser);
                 Assert.True(pnDashBoardPage.ValidatePost(0, postCreator.Title));
 
