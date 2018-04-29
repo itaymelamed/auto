@@ -192,7 +192,6 @@
     <Compile Include="TestsFolder\TagManagementTests.cs" />
     <Compile Include="PagesObjects\Cookies.cs" />
     <Compile Include="TestsFolder\CookiesTest\CookiesTest.cs" />
-    <Compile Include="TestsFolder\ApiTessFolder\EchoApi.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -219,7 +218,6 @@
     <Folder Include="TestsFolder\NavigationTests\" />
     <Folder Include="TestsFolder\EITestsFolder\" />
     <Folder Include="TestsFolder\VideoPlayerTestsFolder\" />
-    <Folder Include="TestsFolder\ApiTessFolder\" />
     <Folder Include="TestsFolder\CookiesTest\" />
   </ItemGroup>
   <ItemGroup>
