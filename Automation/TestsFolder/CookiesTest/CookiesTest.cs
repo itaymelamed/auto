@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Automation.BrowserFolder;
 using Automation.PagesObjects;
 using NUnit.Framework;
 
@@ -8,7 +8,6 @@ namespace Automation.TestsFolder.CookiesTest
     {
         [TestFixture]
         [Parallelizable]
-
         public class ValidateAppears : BaseUi
         {
             [Test]
@@ -16,18 +15,18 @@ namespace Automation.TestsFolder.CookiesTest
             [Category("CookieDissclaimer")]
             public void CookiesDisclaimer_ValidateApears()
             {
+                _browser.Quit();
+                _browser = new Browser(false, false); 
                 _browser.Navigate(_config.Url);
-                HomePage homePage = new HomePage(_browser);
-                //_browser.DeleteCookies();
-                //PostPage postpage = homePage.ClickOnCoverStory();
                 Cookies cookies = new Cookies(_browser);
-                Assert.True(cookies.ValidateCookiesDisclaimerAppears(3), "Cookies disclaimer wasn't found");
+                Assert.True(cookies.ValidateCookiesDisclaimerAppears(30), "Cookies disclaimer wasn't found");
+                //HomePage homePage = new HomePage(_browser);
+                //PostPage postpage = homePage.ClickOnCoverStory();
             }
         }
 
         public class ValidateDisappears : BaseUi
         {
-
             [Test]
             public void CookiesDisclaimer_ValidateDisapears()
             {
@@ -36,7 +35,6 @@ namespace Automation.TestsFolder.CookiesTest
                 PostPage postpage = homePage.ClickOnCoverStory();
                 Cookies cookies = new Cookies(_browser);
                 Assert.True(cookies.ValidateCookiesDisclaimerDisappears(5), "Cookies disclaimer wasn't found");
-
             }
         }
 
@@ -52,10 +50,7 @@ namespace Automation.TestsFolder.CookiesTest
                 Cookies cookies = new Cookies(_browser);
                 cookies.ClickOnX();
                 Assert.True(cookies.ValidateCookiesDisclaimerDisappears(1), "Cookies disclaimer wasn't found");
-
             }
-
         }
-
     }  
 }

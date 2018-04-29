@@ -22,8 +22,6 @@ namespace Automation.TestsFolder.HeaderAndFooterFolder
             [Category("90MinIn")]
             [Category("Ftb90")]
             [Category("Floor8")]
-
-
             [Retry(2)]
             public void HeaderAndFooter_ValidateLangauageDropdownExistOnPage()
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using Automation.PagesObjects;
+﻿using Automation.PagesObjects;
 using MongoDB.Bson;
 using NUnit.Framework;
 

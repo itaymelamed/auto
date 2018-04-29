@@ -21,13 +21,13 @@ namespace Automation.BrowserFolder
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
-        public Browser(bool proxy = false)
+        public Browser(bool proxy = false, bool wait = true)
         {
             try
             {
                 ProxyApi = proxy ? new ProxyApi(Base._config.Host) : null;
                 string url = $"http://{Base._config.Host}:32005/wd/hub";
-                Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions()) : new RemoteWebDriver(new Uri(url), GetCap(proxy), TimeSpan.FromMinutes(30));
+                Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions(wait)) : new RemoteWebDriver(new Uri(url), GetCap(proxy, wait), TimeSpan.FromMinutes(30));
                 SessionId = Driver.SessionId.ToString();
                 BrowserHelper = new BrowserHelper(Driver);
             }
@@ -42,6 +42,7 @@ namespace Automation.BrowserFolder
             Base.MongoDb.UpdateSteps($"Navigating to url: {url}.");
             try
             {
+                var cap = Driver.Capabilities.GetCapability("pageLoadStrategy");
                 Driver.Navigate().GoToUrl(url);
             }
             catch
@@ -193,30 +194,33 @@ namespace Automation.BrowserFolder
             return Driver.PageSource;
         }
 
-        ChromeOptions CreateChromeOptions()
+        ChromeOptions CreateChromeOptions(bool wait)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
             chromeOptions.AcceptInsecureCertificates = true;
 
+            if (!wait)
+                chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+
             return chromeOptions;
         }
 
-        ChromeOptions CreateProxyChromeOptions()
+        ChromeOptions CreateProxyChromeOptions(bool wait)
         {
             ProxyApi = new ProxyApi(Base._config.Host);
-            var options = CreateChromeOptions();
+            var options = CreateChromeOptions(wait);
             var prxoy = ProxyApi.CreateProxy();
             options.Proxy = prxoy;
 
             return options;
         }
 
-        DesiredCapabilities GetCap(bool proxy)
+        DesiredCapabilities GetCap(bool proxy, bool wait)
         {
             var test = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get("Test") as TestsObjects.Test;
-            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
+            _options = !proxy ? CreateChromeOptions(wait) : CreateProxyChromeOptions(wait);
             var capabilities = (DesiredCapabilities)_options.ToCapabilities();
             capabilities.SetCapability("browser", "chrome");
             capabilities.SetCapability("version", "66.0");
