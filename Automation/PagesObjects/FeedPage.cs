@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
 
 namespace Automation.PagesObjects

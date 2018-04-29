@@ -46,7 +46,7 @@ namespace Automation.Helpersobjects
             _browser.Navigate(Base._config.Url + "/" + Base._config.ConfigObject.Language + "/" + "admin");
             AdminPage adminPage = new AdminPage(_browser);
             adminPage.ClickOnCreatePost();
-            var title = adminPage.GetPostTitle().Split('>')[1];
+            var title = adminPage.GetPostTitle().Split('/').Last();
             var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-", " ");
             Title = parsedTitle.Trim();
             return parsedTitle;
