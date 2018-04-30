@@ -508,7 +508,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class Test19Class : BaseUi
