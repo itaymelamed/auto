@@ -80,19 +80,6 @@ namespace Automation.BrowserFolder
             Driver.Navigate().Refresh();
         }
 
-        public void OpenNewTab()
-        {
-            try
-            {
-                IWebElement body = Driver.FindElement(By.TagName("body"));
-                body.SendKeys(Keys.Control + 't');
-            }
-            catch (Exception ex)
-            {
-                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}.");
-            }
-        }
-
         public string GetUrl()
         {
             try
@@ -144,15 +131,15 @@ namespace Automation.BrowserFolder
             return picUrl;
         }
 
-        public void OpenNewTab(string url = "", int timeOut = 60)
+        public void OpenNewTab(string url = "")
         {
             Base.MongoDb.UpdateSteps("Opening new tab.");
 
             try
             {
-                OpenNewTab();
+                IJavaScriptExecutor js = Driver;
+                js.ExecuteScript($"window.open('{url}','_blank');");
                 Driver.SwitchTo().Window(Driver.WindowHandles.Last());
-                Driver.Navigate().GoToUrl(url);
             }
             catch (Exception ex)
             {
