@@ -175,7 +175,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "171")]
-            [Category("TagManagment")]
+            [Category("TagManagement")]
             [Category("Floor8")]
             [Retry(1)]
             public void platform_Tags_SearchforNonExistingTag()
