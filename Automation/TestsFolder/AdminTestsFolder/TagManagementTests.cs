@@ -13,7 +13,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "145")]
-            [Category("TagManagment")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void TagManagment_Login()
             {
@@ -32,7 +32,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "146")]
-            [Category("TagManagment")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void Tags_ValidateLangDropDownList()
             {
@@ -68,7 +68,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "166")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_GetLangList()
             {
@@ -89,7 +89,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "167")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_ValidateDefualtLang()
             {
@@ -109,7 +109,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "168")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_CreateNewTag_ValidateSucMsg()
             {
@@ -139,7 +139,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "170")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_CreateNewTag()
             {
@@ -169,7 +169,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "171")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_SearchforNonExistingTag()
             {
@@ -192,7 +192,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "172")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_EditTag()
             {
@@ -221,7 +221,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "173")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_RemoveTag()
             {
@@ -248,7 +248,7 @@ namespace Automation.TestsFolder
         {
             [Test]
             [Property("TestCaseId", "174")]
-            [Category("platform")]
+            [Category("Tag Managment")]
             [Retry(1)]
             public void platform_Tags_RemoveSynonym()
             {
