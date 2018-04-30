@@ -340,7 +340,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class Test13Class : BaseUi
