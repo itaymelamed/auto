@@ -340,7 +340,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         }
 
-
         [TestFixture]
         [Parallelizable]
         public class Test13Class : BaseUi
@@ -507,7 +506,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 Assert.True(urbanAirShipLoginPage.SearchPost(postCreator.Title));
             }
         }
-
 
         [TestFixture]
         [Parallelizable]

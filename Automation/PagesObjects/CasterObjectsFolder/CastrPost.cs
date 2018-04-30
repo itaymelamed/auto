@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
 
 namespace Automation.PagesObjects.CasterObjectsFolder
@@ -345,6 +344,7 @@ namespace Automation.PagesObjects.CasterObjectsFolder
             UpdateStep($"Confirm alarm.");
             _browserHelper.ConfirmAlarem();
             _browserHelper.WaitUntillTrue(() => sucMsg.Displayed, "Failed to publish post.");
+            Thread.Sleep(4000);
         }
 
         public bool ValidatePublishAlsoTo()
