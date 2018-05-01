@@ -4,7 +4,6 @@ using System.Threading;
 using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.PagesObjects.ExternalPagesobjects;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
 
 namespace Automation.PagesObjects

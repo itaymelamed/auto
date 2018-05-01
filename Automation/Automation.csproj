@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -191,8 +191,10 @@
     <Compile Include="PagesObjects\AdminPage.cs" />
     <Compile Include="PagesObjects\Cookies.cs" />
     <Compile Include="TestsFolder\CookiesTest\CookiesTest.cs" />
-    <Compile Include="PagesObjects\EchoFolder\TagManagementPage.cs" />
-    <Compile Include="TestsFolder\AdminTestsFolder\TagManagementTests.cs" />
+    <Compile Include="PagesObjects\Influencers\LoginPage.cs" />
+    <Compile Include="PagesObjects\Influencers\ReportsPage.cs" />
+    <Compile Include="PagesObjects\Influencers\Header.cs" />
+    <Compile Include="PagesObjects\Influencers\BrowseAffiliatesPage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -220,6 +222,7 @@
     <Folder Include="TestsFolder\EITestsFolder\" />
     <Folder Include="TestsFolder\VideoPlayerTestsFolder\" />
     <Folder Include="TestsFolder\CookiesTest\" />
+    <Folder Include="PagesObjects\Influencers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,6 +18,11 @@ namespace Automation.PagesObjects
             return _browserHelper.FindElement(selector);
         }
 
+        protected IWebElement FindElement(By by)
+        {
+            return _browserHelper.FindElement(by);
+        }
+
         protected List<IWebElement> FindElements(string selector)
         {
             return _browserHelper.FindElements(selector);

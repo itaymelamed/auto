@@ -185,7 +185,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public void Click(IWebElement el, string elName, int timeOut = 30, bool throwex = true)
+        public void Click(IWebElement el, string elName = "", int timeOut = 30, bool throwex = true)
         {
             var error = "";
             try
@@ -267,7 +267,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public IWebElement FindElement(By by, string elName, int timeOut = 30)
+        public IWebElement FindElement(By by, string elName = "", int timeOut = 30)
         {
             IWebElement el = null;
 
