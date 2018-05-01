@@ -41,7 +41,7 @@ namespace Automation.PagesObjects
 
         IWebElement writeAnArticleBtn => _browserHelper.FindElement(".new-article");
 
-        IWebElement feedLink => _browserHelper.FindElement(".nav__item__link");
+        List<IWebElement> feedLinks => _browserHelper.FindElements(".nav__item__link");
 
         public HomePage(Browser browser)
             :base(browser)
@@ -243,8 +243,8 @@ namespace Automation.PagesObjects
 
         public string GetFeedUrl()
         {
-            _browserHelper.WaitForElement(() => feedLink, nameof(feedLink));
-            return feedLink.GetAttribute("href");
+            _browserHelper.WaitUntillTrue(() => feedLinks.Count > 0);
+            return feedLinks.Where(l => l.Displayed).ToList()[1].GetAttribute("href");
         }
     }
 }
