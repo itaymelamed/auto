@@ -45,9 +45,9 @@ namespace Automation.BrowserFolder
                 var cap = Driver.Capabilities.GetCapability("pageLoadStrategy");
                 Driver.Navigate().GoToUrl(url);
             }
-            catch
+            catch(Exception e)
             {
-                throw new NUnit.Framework.AssertionException($"Navigating to {url} was timeout.");
+                throw new NUnit.Framework.AssertionException($"Navigating to {url} was timeout. Error: {e.Message}.");
             }
         }
         

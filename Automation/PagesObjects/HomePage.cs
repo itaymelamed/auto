@@ -35,9 +35,13 @@ namespace Automation.PagesObjects
 
         IWebElement coverStory => _browserHelper.FindElement(".page-topic__cover-element");
 
+        IWebElement coverStoryLink => _browserHelper.FindElement(".page-topic__cover");
+
         IWebElement connectBtn => _browserHelper.FindElement(".sign-in-up__facebook-btn");
 
         IWebElement writeAnArticleBtn => _browserHelper.FindElement(".new-article");
+
+        IWebElement feedLink => _browserHelper.FindElement(".nav__item__link");
 
         public HomePage(Browser browser)
             :base(browser)
@@ -229,6 +233,18 @@ namespace Automation.PagesObjects
             _browserHelper.Click(coverStory, nameof(coverStory));
 
             return new PostPage(_browser); 
+        }
+
+        public string GetCoverStoryUrl()
+        {
+            _browserHelper.WaitForElement(() => coverStoryLink, nameof(coverStoryLink));
+            return coverStoryLink.GetAttribute("href");
+        }
+
+        public string GetFeedUrl()
+        {
+            _browserHelper.WaitForElement(() => feedLink, nameof(feedLink));
+            return feedLink.GetAttribute("href");
         }
     }
 }
