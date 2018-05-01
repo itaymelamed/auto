@@ -20,15 +20,26 @@ namespace Automation.PagesObjects
         {
         }
 
-        void Login(IUser user)
+        public void InsertUserName(string userName)
         {
             UpdateStep("Inserting Username");
             _browserHelper.WaitForElement(() => userNameTextBox, nameof(userNameTextBox));
-            _browserHelper.SetText(userNameTextBox, user.UserName);
+            _browserHelper.SetText(userNameTextBox, userName);
+        }
 
+        public void InsertPassword(string password)
+        {
             UpdateStep("Inserting Password");
             _browserHelper.WaitForElement(() => passwordTextBox, nameof(passwordTextBox));
-            _browserHelper.SetText(passwordTextBox, user.Password);
+            _browserHelper.SetText(passwordTextBox, password);
+        }
+
+
+        void Login(IUser user)
+        {
+            InsertUserName(user.UserName);
+            InsertPassword(user.Password);
+
 
             UpdateStep("Clicking on the login button");
             _browserHelper.WaitForElement(() => loginBtn, nameof(loginBtn));
