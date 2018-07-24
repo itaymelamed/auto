@@ -14,6 +14,7 @@ namespace Automation.BrowserFolder
 {
     public class Browser
     {
+        //test
         public RemoteWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
         public ProxyApi ProxyApi { get; set; }
