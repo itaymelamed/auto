@@ -1,7 +1,15 @@
 pipeline {
-node {
-  stage("test") {
-      eco "hello"
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                echo 'test'
+            }
+        }
     }
-  }
+    post {
+        always {
+            nunit 'TestReults.xml'
+        }
+    }
 }
