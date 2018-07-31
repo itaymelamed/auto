@@ -9,7 +9,7 @@ namespace Automation.PagesObjects
 {
     public class PostPage : HomePage
     {
-        IWebElement options => FindElement(".post-admin-options__label");
+        IWebElement options => FindElement(".fpost-admin-options__label");
 
         IWebElement openInCaster => FindElement("[href*='/castr']");
 
