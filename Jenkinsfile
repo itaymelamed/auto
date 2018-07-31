@@ -1,6 +1,6 @@
 pipeline {
 node {
-  step("test") {
+  stage("test") {
       eco "hello"
     }
   }
