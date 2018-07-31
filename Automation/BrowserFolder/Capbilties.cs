@@ -19,7 +19,7 @@ namespace Automation.BrowserFolder
             Options = chromeOptions;
 
             DesiredCapabilities capabilities = chromeOptions.ToCapabilities() as DesiredCapabilities;
-            capabilities.SetCapability("name", $"Test Name:{test.TestName}, Id: {test.TestNumber}");
+            capabilities.SetCapability("name", $"Test Name:{test.TestName}, I2d: {test.TestNumber}");
             capabilities.SetCapability("videoName", $"{test.TestName}_{test.TestRunId}.mp4");
             //capabilities.SetCapability("webdriver.load.strategy", "none");
             capabilities.SetCapability("enableVNC", true);
