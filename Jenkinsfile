@@ -9,7 +9,7 @@ pipeline {
     }
     post {
         always {
-            junit 'TestReults.xml'
+            junit '/var/jenkins_home/workspace/Nightly/TestResult.xml'
         }
     }
 }
