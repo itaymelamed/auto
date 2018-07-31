@@ -1,12 +1,10 @@
-﻿using System;
-using Automation.Helpersobjects;
+﻿using Automation.Helpersobjects;
 using Automation.PagesObjects;
 using Automation.PagesObjects.EchoFolder;
 using NUnit.Framework;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
-    [TestFixture]
     public class EchoTests
     {
         [TestFixture]
@@ -25,7 +23,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 _browser.SwitchToFirstTab();
@@ -52,7 +50,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -80,7 +78,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -89,7 +87,6 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 EchoPage echoPage = new EchoPage(_browser);
                 Assert.True(echoPage.ValidateDomain($"{_config.SiteName.ToLower()}.com", title), $"The domain for {title} was diffrent than expected."); 
             }
-
         }
 
         [TestFixture]
@@ -108,7 +105,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -136,7 +133,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -168,7 +165,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -178,6 +175,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 DistributionPage distributionPage = echoPage.SelectPost(title);
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
                 echoPage = distributionPage.ClickOnEchoBtn();
                 _browser.OpenNewTab(_config.Url);
                 HomePage homePage = new HomePage(_browser); 
@@ -202,7 +200,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -229,13 +227,13 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Category("Echo")]
             [Category("Pluralist")]
             [Category("Floor8")]
-            [Retry(2)]
+            [Retry(3)]
             public void Echo_FeaturePostToMoreNews()
             {
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -269,7 +267,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo); 
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -305,7 +303,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
 
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -341,7 +339,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -352,14 +350,10 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 distributionPage.SelectChannelByIndex(channelIndex);
                 distributionPage.ClickOnPublishBtn();
                 distributionPage.WaitForPublishedSatatus();
-               // _browser.Navigate(_config.Url);
-               // HomePage homePage = new HomePage(_browser);
-              //  Assert.True(homePage.ValidateTitleApearsInGrid(title), $"Expected {title} was not found");
                 distributionPage.UnpublishPost();
                 _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 Assert.False(homePage.ValidateMoreNewsTitle(title), "The title was not appear on the grid section");
-
             }
         }
 
@@ -380,7 +374,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -414,7 +408,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
@@ -449,23 +443,23 @@ namespace Automation.TestsFolder.AdminTestsFolder
                 var channelIndex = _params["ChannelIndex"].AsInt32;
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
                 string title = postCreatorEcho.CreatePost();
                 PostPage postPage = new PostPage(_browser);
                 _browser.SwitchToFirstTab();
                 _browser.Refresh();
                 EchoPage echoPage = new EchoPage(_browser);
-                echoPage.ClickOnEditButtonInEcho();
+                echoPage.ClickOnEditButtonInEcho(title);
                 _browser.SwitchToTab(2, 3);
                 string url = _browser.GetUrl();
                 var urlSplitted = url.Split('/');
                 var parseTitle = urlSplitted[4].Split('/');
-                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected  was editor but actual is {parseTitle[0]}");
+                Assert.True(parseTitle[0].ToLower() == "editor", $"Expected was editor but actual is {parseTitle[0]}");
 
                 ArticleBase article = new ArticleBase(_browser);
                 var titleEditor = article.GetTitleValue().ToLower();
-                Assert.True(titleEditor == title.ToLower());
+                Assert.True(titleEditor == title.ToLower(), $"Expected title was {title.ToLower()}. Actual: {titleEditor}");
             }  
         }
 
@@ -485,7 +479,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             {
                 _browser.Navigate(_config.ConfigObject.Echo);
                 Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
-                NewsRoomPage newsRoomPage = loginPage.Login(_config.ConfigObject.Users.AdminUser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
                 EchoPage echoPage = new EchoPage(_browser);
                 echoPage.ClickOnLogoutButton();
                 loginPage = new Auth0LoginPage(_browser);
@@ -493,7 +487,185 @@ namespace Automation.TestsFolder.AdminTestsFolder
             }
         } 
 
+        [TestFixture]
+        [Parallelizable]
+        public class Test16Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "127")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_RepublishPostToNewAFeed()
+            {
+                var channelIndex1 = _params["ChannelIndex1"].AsInt32;
+                var channelIndex2 = _params["ChannelIndex2"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                EchoPage echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex1);
+                distributionPage.ClickOnPublishBtn();
+                distributionPage.WaitForPublishedSatatus();
+                _browser.OpenNewTab(_config.Url);
+                HomePage homePage = new HomePage(_browser);
+                Assert.True(homePage.ValidateMoreNewsTitle(title), $"Expected {title} was not found");
 
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                 echoPage = new EchoPage(_browser);
+                distributionPage.ClickOnNewButton();
+                distributionPage.SelectChannelByIndex(channelIndex2);
+                distributionPage.ClickOnPublishBtn();
+                _browser.OpenNewTab($"{_config.Url}/channels/latest");
+                FeedPage feedPage = new FeedPage(_browser);
+                _browser.Refresh();
+                Assert.True(feedPage.ValidatePostTitleInFeedPage(title), $"Expected {title} was not found");
+            }
+        } 
 
+        [TestFixture]
+        [Parallelizable]
+        public class Test17Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "128")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateLanguageFilterList()
+            {
+                var langunges = _params["LagnungesList"].AsBsonArray;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnLangnugeFilter();
+                Assert.True(echoPage.ValidateLanguageFilterList(langunges), "The languages in dropdown didn't match the expected result.");
+              
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test18Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "134")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateStatusFilterList()
+            {
+                var status = _params["StatusList"].AsBsonArray;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                Assert.True(echoPage.ValidateStatusFilterList(status), "The status in dropdown didn't match the expected result.");
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test19Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "135")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateEnglishFilter()
+            {
+                var language = _params["Language"].ToString();
+                var languageChannel = _params["LanguageChannel"].ToString();
+                var channelIndex = _params["ChannelIndex"].AsInt32;
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                PostCreatorEcho postCreatorEcho = new PostCreatorEcho(_browser);
+                string title = postCreatorEcho.CreatePost();
+                PostPage postPage = new PostPage(_browser);
+                _browser.SwitchToFirstTab();
+                _browser.Refresh();
+                echoPage = new EchoPage(_browser);
+                DistributionPage distributionPage = echoPage.SelectPost(title);
+                distributionPage.SelectChannelByIndex(channelIndex);
+                distributionPage.ClickOnPublishBtn();
+                echoPage = echoPage.ClickOnEchoBtn();
+                echoPage.ClickOnLangnugeFilter();
+                echoPage = echoPage.ClickOnLanguage(language);
+                distributionPage = echoPage.SelectPost(title);
+                Assert.True(distributionPage.ValidateChannelLanguage(languageChannel),$"The post {title} was not in {languageChannel}"); 
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test20Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "136")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidatePublishedFilter()
+            {
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                echoPage = echoPage.ClickOnStatus("Published");
+                Assert.True(echoPage.ValidateStatusses("Published"), "The satatus of the post is wrong");
+            }
+        } 
+
+        [TestFixture]
+        [Parallelizable]
+        public class Test21Class : BaseUi
+        {
+            [Test]
+            [Property("TestCaseId", "138")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("Echo")]
+            [Category("Pluralist")]
+            [Category("Floor8")]
+            [Retry(2)]
+            public void Echo_ValidateNewSatatusFilter()
+            {
+                _browser.Navigate(_config.ConfigObject.Echo);
+                Auth0LoginPage loginPage = new Auth0LoginPage(_browser);
+                NewsRoomPage newsRoomPage = loginPage.LoginNewsRoom(_config.ConfigObject.Users.AdminUser);
+                EchoPage echoPage = new EchoPage(_browser);
+                echoPage.ClickOnSatusFilter();
+                echoPage = echoPage.ClickOnStatus("New");
+                Assert.True(echoPage.ValidateStatusses("New"), "The satatus of the post is wrong");
+            }
+        } 
     }
 }

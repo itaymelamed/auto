@@ -4,7 +4,6 @@ using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsFolder
 {
-    [TestFixture]
     public class BaseUi : Base
     {
         protected Browser _browser { get; set; }   
@@ -12,10 +11,10 @@ namespace Automation.TestsFolder
         [SetUp]
         public void InitTestUi()
         {
-            _browser = !_config.Local ? new Browser(new HubLoadBalancer(_config)) : new Browser();
+            _browser = new Browser();
+            _test.UpdateSessionId(_browser.SessionId);
             _test.UpdateTestStatus(TestContext.CurrentContext.Result, TestStatus.Running);
             _browser.Maximize();
-            _browser.Navigate(_config.Url);
         }
 
         [TearDown]

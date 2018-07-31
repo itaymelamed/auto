@@ -4,55 +4,75 @@ using System;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
-using Automation.TestsObjects;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
 using Automation.ApiFolder;
 using System.Linq;
+using NUnit.Framework.Internal;
 
 namespace Automation.BrowserFolder
 {
     public class Browser
     {
-        public IWebDriver Driver { get; }
+        public RemoteWebDriver Driver { get; }
         public BrowserHelper BrowserHelper { get; }
         public ProxyApi ProxyApi { get; set; }
+        public string SessionId { get; }
         static readonly object _syncObject = new object();
         ChromeOptions _options;
 
-        public Browser(HubLoadBalancer loadBalancer, bool proxy = false)
+        public Browser(bool proxy = false, bool wait = true)
         {
-            lock(_syncObject)
+            try
             {
-                _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-                string url = loadBalancer.GetAvailbleHub();
-                Driver = new RemoteWebDriver(new Uri(url), _options.ToCapabilities(), TimeSpan.FromMinutes(30));
+                ProxyApi = proxy ? new ProxyApi(Base._config.Host) : null;
+                string url = $"http://{Base._config.Host}:32005/wd/hub";
+                Driver = Base._config.Local ? new ChromeDriver(CreateProxyChromeOptions(wait)) : new RemoteWebDriver(new Uri(url), GetCap(proxy, wait), TimeSpan.FromMinutes(30));
+                SessionId = Driver.SessionId.ToString();
+                BrowserHelper = new BrowserHelper(Driver);
             }
-
-            BrowserHelper = new BrowserHelper(Driver);
-        }
-
-        public Browser(bool proxy = false)
-        {
-            _options = !proxy ? CreateChromeOptions() : CreateProxyChromeOptions();
-            Driver = new ChromeDriver(_options);
-            BrowserHelper = new BrowserHelper(Driver);
+            catch(Exception e)
+            {
+                throw new NUnit.Framework.AssertionException($"Init Browser has failed. Error: {e.Message}.");
+            }
         }
 
         public void Navigate(string url)
         {
-            Base.MongoDb.UpdateSteps($"Navigated to url: {url}");
-            Driver.Navigate().GoToUrl(url);
+            Base.MongoDb.UpdateSteps($"Navigating to url: {url}.");
+            try
+            {
+                var cap = Driver.Capabilities.GetCapability("pageLoadStrategy");
+                Driver.Navigate().GoToUrl(url);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Navigating to {url} was timeout.");
+            }
         }
         
         public void Maximize()
         {
-            Driver.Manage().Window.Maximize();
+            try
+            {
+                Driver.Manage().Window.Maximize();
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Window maximizing has failed.. Error: {ex.Message}.");
+            }
         }
 
         public void Quit()
         {
-            Driver.Quit();
+            try
+            {
+                Driver.Quit();
+            }
+            catch
+            {
+
+            }
         }
 
         public void Refresh()
@@ -60,18 +80,19 @@ namespace Automation.BrowserFolder
             Driver.Navigate().Refresh();
         }
 
-        public void OpenNewTab()
-        {
-            IWebElement body = Driver.FindElement(By.TagName("body"));
-            body.SendKeys(Keys.Control + 't');
-        }
-
         public string GetUrl()
         {
-            return Driver.Url;
+            try
+            {
+                return Driver.Url;
+            }
+            catch
+            {
+                return "";
+            }
         }
 
-        public string GetScreenShot(Test test)
+        public string GetScreenShot(TestsObjects.Test test)
         {
             string path = "";
 
@@ -110,10 +131,20 @@ namespace Automation.BrowserFolder
             return picUrl;
         }
 
-        public void OpenNewTab(string url = "", int timeOut = 60)
+        public void OpenNewTab(string url = "")
         {
-            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
-            Driver.Navigate().GoToUrl(url);
+            Base.MongoDb.UpdateSteps("Opening new tab.");
+
+            try
+            {
+                IJavaScriptExecutor js = Driver;
+                js.ExecuteScript($"window.open('{url}','_blank');");
+                Driver.SwitchTo().Window(Driver.WindowHandles.Last());
+            }
+            catch (Exception ex)
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to open new tab. Error: {ex.Message}. StackTrace: {ex.StackTrace}");
+            }
         }
 
         public void SwitchToFirstTab()
@@ -130,12 +161,11 @@ namespace Automation.BrowserFolder
         internal void SwitchToLastTab()
         {
             Base.MongoDb.UpdateSteps("Swithching to last tab");
-            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
+            Driver.SwitchTo().Window(Driver.WindowHandles.Last());
         }
 
         internal void SwitchToTab(int i, int wait = 0)
         {
-            var xx = Driver.WindowHandles.ToList();
             if (wait > 0)
                 BrowserHelper.WaitUntillTrue(() => GetNumOfTabs() == wait);
             Driver.SwitchTo().Window(Driver.WindowHandles[i]);
@@ -151,29 +181,73 @@ namespace Automation.BrowserFolder
             return Driver.PageSource;
         }
 
-        ChromeOptions CreateChromeOptions()
+        ChromeOptions CreateChromeOptions(bool wait)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
             chromeOptions.AddArgument("disable-infobars");
             chromeOptions.AcceptInsecureCertificates = true;
 
+            if (!wait)
+                chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+
             return chromeOptions;
         }
 
-        ChromeOptions CreateProxyChromeOptions()
+        ChromeOptions CreateProxyChromeOptions(bool wait)
         {
             ProxyApi = new ProxyApi(Base._config.Host);
-            var options = CreateChromeOptions();
+            var options = CreateChromeOptions(wait);
             var prxoy = ProxyApi.CreateProxy();
             options.Proxy = prxoy;
 
             return options;
         }
 
+        DesiredCapabilities GetCap(bool proxy, bool wait)
+        {
+            var test = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get("Test") as TestsObjects.Test;
+            _options = !proxy ? CreateChromeOptions(wait) : CreateProxyChromeOptions(wait);
+            var capabilities = (DesiredCapabilities)_options.ToCapabilities();
+            capabilities.SetCapability("browser", "chrome");
+            capabilities.SetCapability("version", "66.0");
+            if(!proxy)
+            {
+                capabilities.SetCapability("enableVNC", true);
+                capabilities.SetCapability("enableVideo", true);
+            }
+            capabilities.SetCapability("videoName", $"{test.TestRunId}_{test.TestNumber}.mp4");
+            capabilities.SetCapability("name", test.TestName);
+            capabilities.SetCapability("videoFrameRate", 24);
+
+            return capabilities;
+        }
+
         public void AddCookies(string key, string value)
         {
             Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
         }
-    }
+
+        public void SetBrowserSize(int width, int height)
+        {
+            Driver.Manage().Window.Size = new System.Drawing.Size(width, height);
+        }
+
+        public Cookie GetCookie(string cookieName)
+        {
+            try
+            {
+                return Driver.Manage().Cookies.GetCookieNamed(cookieName) == null ? throw new NUnit.Framework.AssertionException($"Cookie {cookieName} is missong.") : Driver.Manage().Cookies.GetCookieNamed(cookieName);
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Get Cookie oparation has failed.");
+            }
+        }
+
+        public void DeleteCookies()
+        {
+            Driver.Manage().Cookies.DeleteAllCookies();
+        }
+	}
 }

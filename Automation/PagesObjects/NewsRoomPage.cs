@@ -2,52 +2,42 @@
 using Automation.PagesObjects.EchoFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class NewsRoomPage
+    public class NewsRoomPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "[href*='editor/new']")]
-        IWebElement editorBtn { get; set; }
+        IWebElement editorBtn => _browserHelper.FindElement("[href*='editor/new']");
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Echo')]")]
-        IWebElement echoBtn { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement echoBtn => _browserHelper.FindElement(By.XPath("//span[contains(text(), 'Echo')]"), "Echo Button", 0);
 
         public NewsRoomPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public EditorPage ClickOnEditorBtn()
         {
-            Base.MongoDb.UpdateSteps("Clicking on editor button");
-            _browserHelper.WaitForElement(editorBtn,nameof(editorBtn));
+            UpdateStep("Clicking on editor button");
+            _browserHelper.WaitForElement(() => editorBtn,nameof(editorBtn));
             _browserHelper.Click(editorBtn, nameof(editorBtn));
             _browser.SwitchToLastTab();
             return new EditorPage(_browser);
         }
 
-        public bool ValidateEditorBtn()
-        {
-            Base.MongoDb.UpdateSteps("Validating editor button.");
-            _browserHelper.WaitForElement(editorBtn, nameof(editorBtn));
-            return editorBtn.Displayed;
-        }
-
         public EchoPage ClickOnEchoBtn()
         {
-            Base.MongoDb.UpdateSteps("Clicking on echo button");
-            _browserHelper.WaitForElement(echoBtn, nameof(echoBtn));
-            _browserHelper.Click(echoBtn,nameof(echoBtn));
+            UpdateStep("Clicking on echo button");
+            _browserHelper.WaitForElement(() => echoBtn, nameof(echoBtn));
+            _browserHelper.Click(echoBtn, nameof(echoBtn));
             return new EchoPage(_browser);
+        }
+
+        public bool ValidateEditorBtn()
+        {
+            UpdateStep("Validating editor button.");
+            _browserHelper.WaitForElement(() => editorBtn, nameof(editorBtn));
+            return editorBtn.Displayed;
         }
     }
 }

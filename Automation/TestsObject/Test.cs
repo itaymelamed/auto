@@ -4,6 +4,7 @@ using System.Linq;
 using Automation.ConfigurationFolder;
 using Automation.TestsFolder;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using static Automation.TestsObjects.Result;
 
 namespace Automation.TestsObjects
@@ -11,6 +12,7 @@ namespace Automation.TestsObjects
     public class Test
     {
         public string TestNumber { get; }
+
         public string TestName { get; }
 
         public List<string> Steps { get; set; }
@@ -23,6 +25,8 @@ namespace Automation.TestsObjects
 
         public string EnvironmentType { get; }
 
+        public string SessionId { get; set; }
+
         public Test(Configurations config)
         {
             Result = new Result(TestContext.CurrentContext.Result, TestStatus.SentToHub);
@@ -33,7 +37,8 @@ namespace Automation.TestsObjects
             Steps = new List<string>();
             EnvironmentType = config.Env.ToString();
             Date = DateTime.Now.ToString("dd/MM/yyyy H:mm");
-            TestContext.CurrentContext.Test.Properties.Set("Test", this);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Set("Test", this);
+            SessionId = string.Empty;
 
             Base.MongoDb.InsertTest(this);
         }
@@ -58,6 +63,12 @@ namespace Automation.TestsObjects
             Steps.Add(step);
 
             Base.MongoDb.UpdateSteps(this);
+        }
+
+        public void UpdateSessionId(string sessionId)
+        {
+            SessionId = sessionId;
+            Base.MongoDb.InsertTest(this);
         }
     }
 }

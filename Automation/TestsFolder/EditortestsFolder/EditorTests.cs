@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace Automation.TestsFolder.EditortestsFolder
 {
-    [TestFixture]
     public class EditorTests
     {
         [TestFixture]
@@ -19,6 +18,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_Article_ValidateInputFields()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -43,6 +43,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             {
                 var titleExValue = _params["titleExValue"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -68,6 +69,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             {
                 var bodyExValue = _params["bodyExValue"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -93,6 +95,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             {
                 BsonArray tagExValue = _params["Tag"].AsBsonArray;
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -122,6 +125,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -151,6 +155,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 string shortTag = _params["ShortTag"].ToString();
                 string tag = _params["Tag"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -176,6 +181,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_Article_DragAndDropAcoverImage()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -187,7 +193,6 @@ namespace Automation.TestsFolder.EditortestsFolder
                 cropImagePopUp.ClickOnEditokBtn();
 
                 Assert.IsTrue(articleBase.ValidateContainerImage(), "Container image was not exsists on image fieled after dragging.");
-                Assert.IsTrue(articleBase.ValidateDeleteButtonCoverimage(), "Delete button on cover image was not exsist.");
             }
         }
 
@@ -207,6 +212,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 int maxResults = _params["MaxResults"].ToInt32();
                 string search = _params["Search"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -234,6 +240,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_Article_PreviewButtonCheckEditButton()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -264,6 +271,8 @@ namespace Automation.TestsFolder.EditortestsFolder
             public void PostPage_Article_PublishButton()
             {
                 var postTitle = "VIDEO:Test post article";
+
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -293,6 +302,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_List_ValidateTtitle()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -318,6 +328,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             public void Editor_List_ValidateTextBoxsBodys()
             {
                 string text = _params["text"].ToString();
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -343,6 +354,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             public void Editor_List_ValidateSubTitelsFields()
             {
                 BsonArray titles = _params["Titles"].AsBsonArray;
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -364,9 +376,10 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Test]
             [Property("TestCaseId", "33")]
             [Category("Sanity")][Category("Admin")][Category("Editor")][Category("AllBrands")]
-            [Retry(2)]
+            [Retry(3)]
             public void Editor_List_ValidateDragImages()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -387,6 +400,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_List_ValidateAscendingOrder()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -409,6 +423,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_List_ValidateDescendingOrder()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -440,6 +455,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 BsonArray titles = _params["Titles"].AsBsonArray;
                 string body = _params["Body"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -470,6 +486,8 @@ namespace Automation.TestsFolder.EditortestsFolder
             {
                 BsonArray tagExValue = _params["Tags"].AsBsonArray;
                 string body = _params["Body"].ToString();
+
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -502,6 +520,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_Article_ValidatePlayBuzzComponenet()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -525,6 +544,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_TV_FullFlow()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -553,6 +573,7 @@ namespace Automation.TestsFolder.EditortestsFolder
             [Retry(2)]
             public void Editor_TV_ValidateEmbedCode()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();
@@ -582,6 +603,7 @@ namespace Automation.TestsFolder.EditortestsFolder
                 BsonArray titles = _params["Titles"].AsBsonArray;
                 string body = _params["Body"].ToString();
 
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 homePage.Login(_config.ConfigObject.Users.AdminUser);
                 EditorPage editorPage = homePage.ClickOnAddArticle();

@@ -3,17 +3,17 @@ using Automation.ApiFolder;
 using Automation.Helpersobjects;
 using Automation.PagesObjects.ExternalPagesobjects;
 using NUnit.Framework;
-using static Automation.ConfigurationFolder.Configurations;
 
-namespace Automation.TestsFolder
+namespace Automation.TestsFolder.DataTrafficTests
 {
-    [TestFixture]
     public class AdsUnitTests
     {
         [TestFixture]
         [Parallelizable]
         public class Test1Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "55")]
             [Category("PostPage")]
@@ -23,21 +23,32 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_Article()
             {
+                retries++;
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons();
+
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
+                {
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "Article Template");
+                    adsUnitMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -46,6 +57,8 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test2Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "59")]
             [Category("PostPage")]
@@ -55,22 +68,33 @@ namespace Automation.TestsFolder
             [Retry(4)]
             public void AdsUnit_PostPage_List()
             {
+                retries++;
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons(ignor);
+
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
+                {
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "List Template");
+                    adsUnitMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -79,31 +103,49 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test3Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "60")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("AllBrands")]
+            [Category("Ftb90")]
+            [Category("90Min")]
+            [Category("90MinIn")]
+            [Category("90MinDe")]
+            [Category("12Up")]
+            [Category("DBLTAP")]
             [Retry(4)]
             public void AdsUnit_PostPage_SlideShow()
             {
+                retries++;
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
                 var ignor = _params["Ignor"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons(ignor);
+
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
+                {
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "Slide Show Template");
+                    adsUnitMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }
@@ -112,30 +154,47 @@ namespace Automation.TestsFolder
         [Parallelizable]
         public class Test4Class : BaseNetworkTraffic
         {
+            static int retries;
+
             [Test]
             [Property("TestCaseId", "61")]
             [Category("PostPage")]
             [Category("Production")]
             [Category("Ads")]
-            [Category("AllBrands")]
+            [Category("Ftb90")]
+            [Category("90Min")]
+            [Category("90MinIn")]
+            [Category("90MinDe")]
+            [Category("12Up")]            
             [Retry(4)]
             public void AdsUnit_PostPage_LineUp()
             {
+                retries++;
+                string email = TestContext.Parameters.Get("Email", "itay.m@minutemedia.com");
                 var postUrl = _params["PostUrl"].AsString;
-                var exJsons = _params["ExJson"];
-                var displyed = _params["Displyed"].AsBsonArray;
-                var notDisplyed = _params["NotDisplyed"].AsBsonArray;
+                var exJsons = _params[_config.BrowserT.ToString()]["ExJson"];
+                var displyed = _params[_config.BrowserT.ToString()]["Displyed"].AsBsonArray;
+                var notDisplyed = _params[_config.BrowserT.ToString()]["NotDisplyed"].AsBsonArray;
 
                 _browser.ProxyApi.NewHar();
                 _browser.Navigate(postUrl);
                 Thread.Sleep(1000);
+                string experimentId = _browser.GetCookie("_ga").Value;
+                experimentId = experimentId.Substring(experimentId.Length - 2);
                 //PostPage postPage = new PostPage(_browser);
                 //string errors = postPage.ValidateAds(displyed);
                 //Assert.True(string.IsNullOrEmpty(errors), errors);
 
                 var requests = _browser.ProxyApi.GetRequests();
-                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed);
+                AdsUnitHelper adsUnithelper = new AdsUnitHelper(requests, exJsons, displyed, notDisplyed, experimentId);
                 string errors = adsUnithelper.ValidateJsons();
+
+                if (!string.IsNullOrEmpty(errors) && retries == 4)
+                {
+                    AdsUnitMailer adsUnitMailer = new AdsUnitMailer(email, "LineUp Template");
+                    adsUnitMailer.SendEmail(errors);
+                }
+
                 Assert.True(string.IsNullOrEmpty(errors), errors);
             }
         }

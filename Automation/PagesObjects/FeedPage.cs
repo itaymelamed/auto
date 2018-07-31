@@ -2,27 +2,17 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class FeedPage
+    public class FeedPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
-        IList<IWebElement> articles { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        List<IWebElement> articles => FindElements(".feedpage-article__title");
 
         public FeedPage(Browser browser)
+            : base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public IWebElement SearchArticle(string title)
@@ -38,7 +28,7 @@ namespace Automation.PagesObjects
 
         public bool ValidatePostTitleInFeedPage(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the more news title text.");
+            UpdateStep("Validating the more news title text.");
             bool result = false;
             _browserHelper.WaitUntillTrue(() => articles.ToList().Count() >= 2);
             _browserHelper.ExecuteUntill(() => result = articles.ToList().Any(t => t.Text == title));

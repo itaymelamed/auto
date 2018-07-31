@@ -21,8 +21,7 @@ namespace Automation.Helpersobjects
         {
             Article = typeof(ArticleBase);
             Lists = typeof(ListsTemplate);
-            Templates = new List<Type>() { Article, Lists };
-            _browser = browser;
+            Templates = new List<Type> { Article, Lists };
             Title = $"VIDEO:{TestContext.CurrentContext.Test.Name}" + new Random().Next(1, 1000);
         }
 
@@ -47,10 +46,22 @@ namespace Automation.Helpersobjects
             _browser.Navigate(Base._config.Url + "/" + Base._config.ConfigObject.Language + "/" + "admin");
             AdminPage adminPage = new AdminPage(_browser);
             adminPage.ClickOnCreatePost();
-            var title = adminPage.GetPostTitle().Split('>')[1];
+            var title = adminPage.GetPostTitle().Split('/').Last();
             var parsedTitle = new string(title.ToCharArray().Where(c => char.IsLetter(c) || c == '-').ToArray()).Replace("posts", "").Replace("-", " ");
             Title = parsedTitle.Trim();
             return parsedTitle;
+        }
+
+        public List<string> Create(int posts)
+        {
+            Base.MongoDb.UpdateSteps("Creating multiple posts.");
+            List<string> titles = new List<string>();
+            for (int i = 0; i < posts; i++)
+            {
+                titles.Add(Create());
+            }
+
+            return titles;
         }
 
         public string CreateToDomain(string domain)

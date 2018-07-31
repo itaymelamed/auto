@@ -4,7 +4,6 @@ using Automation.PagesObjects.ExternalPagesobjects;
 
 namespace Automation.TestsFolder.AdminTestsFolder
 {
-    [TestFixture]
     public class AdminTests
     {
         [TestFixture]
@@ -17,6 +16,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Admin_LoginAsAdmin()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);
@@ -37,6 +37,7 @@ namespace Automation.TestsFolder.AdminTestsFolder
             [Retry(2)]
             public void Admin_TemplatesValidateAdminTemplates()
             {
+                _browser.Navigate(_config.Url);
                 HomePage homePage = new HomePage(_browser);
                 FaceBookconnectPage faceBookconnectPage = homePage.ClickOnConnectBtn();
                 HomePage homePageConnected = faceBookconnectPage.Login(_config.ConfigObject.Users.AdminUser);

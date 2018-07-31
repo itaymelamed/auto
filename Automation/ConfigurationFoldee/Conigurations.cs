@@ -48,6 +48,7 @@ namespace Automation.ConfigurationFolder
         public enum BrowserType
         {
             Desktop,
+            Mobile,
             Chrome,
             FireFox,
             Safari,
@@ -57,13 +58,13 @@ namespace Automation.ConfigurationFolder
 
         public Configurations()
         {
-            Local = Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
+            Local = IsLocal();
             Host = GetHost();
             MongoDbConnectionString = $"mongodb://{Host}:32001";
             _mongoDb = new MongoDb("Configurations");
 			Env = GetEnvType();
             SiteName = GetSiteName();
-            BrowserT = BrowserType.Desktop;
+            BrowserT = GetBrowserType();
             GlobalConfigObject = BsonSerializer.Deserialize<BsonDocument>(GetGlobalConfig() as BsonDocument);
             ConfigObject = BsonSerializer.Deserialize<ConfigObject>(GetConfigJson(SiteName) as BsonDocument);
             ApiConfig = GetConfig<ApiConfig>("ApiConfig");
@@ -71,20 +72,26 @@ namespace Automation.ConfigurationFolder
             Url = $"http://{Env}.{ConfigObject.Url}".Replace("Production", "www");
         }
 
+        static BrowserType GetBrowserType()
+        {
+            string browserT = TestContext.Parameters.Get("browser", BrowserType.Desktop.ToString());
+            return (BrowserType)Enum.Parse(typeof(BrowserType), browserT);
+        }
+
         static Enviroment GetEnvType()
         {
-            string env = TestContext.Parameters.Get("env", Enviroment.Production.ToString());
+            string env = TestContext.Parameters.Get("env", Enviroment.utest.ToString());
             return (Enviroment)Enum.Parse(typeof(Enviroment), env);
         }
 
         static string GetSiteName()
         {
-            return TestContext.Parameters.Get("siteName", "12Up");
+            return TestContext.Parameters.Get("siteName", "Floor8");
         }
 
         static string GetParams(string param)
         {
-            return TestContext.Parameters.Get(param, "Utest");
+            return TestContext.Parameters.Get(param, "utest");
         }
 
         BsonValue GetConfigJson(string siteName)
@@ -107,6 +114,11 @@ namespace Automation.ConfigurationFolder
             var hostTxt = "/host/ip.txt";
             string host = File.ReadAllText(hostTxt).Split(';').First();
             return host;
+        }
+
+        bool IsLocal()
+        {
+            return Environment.MachineName.Replace("-", " ").Replace(".", " ").Contains("local");
         }
     }
 }

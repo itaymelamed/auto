@@ -6,4 +6,4 @@ Automation/obj/
 Logger/obj/
 *.userprefs
 Automation.userprefs
-.vs/
+**/.vs/

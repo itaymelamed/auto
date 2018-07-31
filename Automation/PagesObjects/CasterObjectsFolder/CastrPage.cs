@@ -6,48 +6,37 @@ using Automation.BrowserFolder;
 using Automation.PagesObjects.CasterObjectsFolder;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace Automation.PagesObjects
 {
-    public class CastrPage
+    public class CastrPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "[name='language']")]
-        protected IWebElement languageDd { get; set; }
+        protected IWebElement languageDd => FindElement("[name='language']");
 
-        [FindsBy(How = How.CssSelector, Using = "select[name='status']")]
-        protected IWebElement statusDd { get; set; }
+        protected IWebElement statusDd => FindElement("select[name='status']");
 
-        [FindsBy(How = How.CssSelector, Using = ".fetching")]
-        protected IWebElement fetching { get; set; }
+        protected IWebElement fetching => FindElement(".fetching");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody tr input")]
-        protected IList<IWebElement> resultsInputs { get; set; }
+        protected IWebElement articleCbx => FindElement("[value='article']");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody tr")]
-        protected IList<IWebElement> posts { get; set; }
+        protected IWebElement allCbx => FindElement("[name='types_all']");
 
-        [FindsBy(How = How.CssSelector, Using = "[value='article']")]
-        protected IWebElement articleCbx { get; set; }
+        protected IWebElement sucMsg => FindElement(".alert-success p");
 
-        [FindsBy(How = How.CssSelector, Using = "[name='types_all']")]
-        protected IWebElement allCbx { get; set; }
+        protected IWebElement captionTxtBox => FindElement(".caption textarea");
 
-        [FindsBy(How = How.CssSelector, Using = ".types-list input")]
-        protected IList<IWebElement> types { get; set; }
+        protected IWebElement sucMsgXBtn => FindElement(".close");
 
-        [FindsBy(How = How.CssSelector, Using = ".post-type span")]
-        protected IList<IWebElement> typesIcons { get; set; }
+        protected List<IWebElement> resultsInputs => FindElements("tbody tr input");
 
-        [FindsBy(How = How.CssSelector, Using = ".alert-success p")]
-        protected IWebElement  sucMsg { get; set; }
+        protected List<IWebElement> posts => FindElements("tbody tr");
 
-        [FindsBy(How = How.CssSelector, Using = ".caption textarea")]
-        protected IWebElement captionTxtBox { get; set; }
+        protected List<IWebElement> types => FindElements(".types-list input");
 
-        [FindsBy(How = How.CssSelector, Using = "tbody span[title]")]
-        protected IList<IWebElement> postsTitles { get; set; }
+        protected List<IWebElement> typesIcons => FindElements(".post-type span");
+
+        protected List<IWebElement> postsTitles => FindElements("tbody span[title]");
 
         public enum Languages
         {
@@ -87,43 +76,36 @@ namespace Automation.PagesObjects
             lowQuality
         }
 
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
-
         public CastrPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
-            _browserHelper.WaitForElementDiss(fetching);
+            _browserHelper.WaitForElementDiss(() => fetching);
         }
 
         public bool ValidateCasterPage()
         {
-            Base.MongoDb.UpdateSteps("Validating user is on Castr page.");
+            UpdateStep("Validating user is on Castr page.");
             return _browserHelper.WaitForUrlToChange($"{Base._config.Url}/management/castr");
         }
 
         public void FilterByLanguage(string language)
         {
-            Base.MongoDb.UpdateSteps($"Filtering posts by language: {language}");
-            _browserHelper.WaitForElement(languageDd, nameof(languageDd));
+            UpdateStep($"Filtering posts by language: {language}");
+            _browserHelper.WaitForElement(() => languageDd, nameof(languageDd));
             SelectElement select = new SelectElement(languageDd);
             select.SelectByValue(language);
         }
 
         public string ValidatePostLanguage(CastrPost castrPost, Languages lang)
         {
-            Base.MongoDb.UpdateSteps($"Validating post's language");
+            UpdateStep($"Validating post's language");
             var postUrl = castrPost.GetPostUrl();
             return castrPost.GetPostUrl().ToLower().Contains(lang.ToString()) ? "" : $"{postUrl} is not in {lang}";
         }
 
         public string ValidatePostInEnglish(CastrPost castrPost, Languages lang)
         {
-            Base.MongoDb.UpdateSteps($"Validating post's language");
+            UpdateStep($"Validating post's language");
             var langs = Enum.GetValues(typeof(Languages))
                 .Cast<Languages>()
                 .Select(v => v.ToString())
@@ -151,22 +133,22 @@ namespace Automation.PagesObjects
         public void DeselectAllCheckBoxes()
         {
             SelectAllCheckBoxes();
-            _browserHelper.WaitForElementDiss(fetching);
-            Base.MongoDb.UpdateSteps($"Deselecting all checkboxes.");
+            _browserHelper.WaitForElementDiss(() => fetching);
+            UpdateStep($"Deselecting all checkboxes.");
             SelectAllCheckBoxes();
         }
 
         public void SelectAllCheckBoxes()
         {
-            Base.MongoDb.UpdateSteps($"Selecting all checkboxes.");
-            _browserHelper.WaitForElement(allCbx, nameof(allCbx));
+            UpdateStep($"Selecting all checkboxes.");
+            _browserHelper.WaitForElement(() => allCbx, nameof(allCbx));
             _browserHelper.Click(allCbx, nameof(allCbx));
         }
 
         public CastrPage SelectType(Types type)
         {
-            _browserHelper.WaitForElementDiss(fetching);
-            Base.MongoDb.UpdateSteps($"Selecting {type}.");
+            _browserHelper.WaitForElementDiss(() => fetching);
+            UpdateStep($"Selecting {type}.");
 
             _browserHelper.WaitUntillTrue(() => {
                 var typesCount = types.ToList().Count();
@@ -185,22 +167,22 @@ namespace Automation.PagesObjects
 
         public bool ValidateFilterByType(Types type)
         {
-            Base.MongoDb.UpdateSteps($"Validating {type} icon is next to each post.");
-            _browserHelper.WaitForElementDiss(fetching);
+            UpdateStep($"Validating {type} icon is next to each post.");
+            _browserHelper.WaitForElementDiss(() => fetching);
             return _browserHelper.WaitUntillTrue(() => typesIcons.ToList().All(t => t.GetAttribute("class") == type.ToString()));
         }
 
 
         public bool ValidateSucMsg()
         {
-            Base.MongoDb.UpdateSteps($"Validating action succsses message.");
-            return _browserHelper.WaitForElement(sucMsg, nameof(sucMsg), 60);
+            UpdateStep($"Validating action succsses message.");
+            return _browserHelper.WaitForElement(() => sucMsg, nameof(sucMsg), 60);
         }
 
         public CastrPage SelectStatus(Statuses status)
         {
-            Base.MongoDb.UpdateSteps($"Selecting status {status}.");
-            _browserHelper.WaitForElement(statusDd, nameof(statusDd));
+            UpdateStep($"Selecting status {status}.");
+            _browserHelper.WaitForElement(() => statusDd, nameof(statusDd));
             _browserHelper.SelectFromDropDown(statusDd, status.ToString().ToLower());
 
             return new CastrPage(_browser);
@@ -208,14 +190,15 @@ namespace Automation.PagesObjects
 
         public IWebElement SerachPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
+            UpdateStep($"Searching for post: {title}.");
             _browserHelper.WaitUntillTrue(() => posts.ToList().Count() > 0, "No posts");
-            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList().Where(t => Regex.Replace(t.Text.Replace('-', ' ').ToLower(),@"[\d-]", string.Empty)  == title).FirstOrDefault(), $"Could not find post {title}.", 0);
+            var i = postsTitles.Select(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty)).ToList().FindIndex(t => t.Contains(title) || title.Contains(t));
+            return _browserHelper.ExecutUntillTrue(() => postsTitles.ToList()[i], $"Could not find post {title}.", 0);
         }
 
         public CastrPost ClickOnPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on post: {title}.");
+            UpdateStep($"Clicking on post: {title}.");
             _browserHelper.WaitUntillTrue(() => 
             {
                 _browserHelper.Click(SerachPost(title), $"Post title {title}");
@@ -227,7 +210,7 @@ namespace Automation.PagesObjects
 
         public CastrPost CheckPost(string title)
         {
-            Base.MongoDb.UpdateSteps($"Clicking on post: {title}.");
+           UpdateStep($"Clicking on post: {title}.");
             _browserHelper.ExecuteUntill(() => 
             {
                 var checkBx = postsTitles.IndexOf(SerachPost(title));
@@ -252,8 +235,19 @@ namespace Automation.PagesObjects
 
         public bool SearchPostByTitle(string title)
         {
-            Base.MongoDb.UpdateSteps($"Searching for post: {title}.");
+            UpdateStep($"Searching for post: {title}.");
             return _browserHelper.WaitUntillTrue(() => postsTitles.Any(p => Regex.Replace(p.Text.Replace('-', ' ').ToLower(), @"[\d-]", string.Empty) == title));
+        }
+
+        public void PublishToCategoryMultiple(List<string> titles, string category)
+        {
+            UpdateStep("Publishing multiple posts to category.");
+            titles.ForEach(t => 
+            {
+                CastrPost post = ClickOnPost(t);
+                post.PublishToCategory(category);
+                _browserHelper.Click(sucMsgXBtn, nameof(sucMsgXBtn));
+            });
         }
     }
 }

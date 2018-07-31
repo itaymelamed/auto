@@ -3,46 +3,35 @@ using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects.ExternalPagesobjects
 {
-    public class FaceBookconnectPage
+    public class FaceBookconnectPage : BaseObject
     {
-        [FindsBy(How = How.Id, Using = "email")]
-		IWebElement emailTxtBox { get; set; }
+        IWebElement emailTxtBox => FindElement("#email");
 
-        [FindsBy(How = How.Id, Using = "pass")]
-		IWebElement passwordTxtBox { get; set; }
+        IWebElement passwordTxtBox => FindElement("#pass");
 
-        [FindsBy(How = How.Name, Using = "login")]
-		IWebElement loginBtn { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement loginBtn => FindElement("[name='login']");
 
         public FaceBookconnectPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public HomePage Login(IUser user)
         {
-            _browserHelper.WaitForElement(emailTxtBox, nameof(emailTxtBox));
-            _browserHelper.WaitForElement(passwordTxtBox, nameof(passwordTxtBox));
-            _browserHelper.WaitForElement(loginBtn, nameof(loginBtn));
+            _browserHelper.WaitForElement(() => emailTxtBox, nameof(emailTxtBox));
+            _browserHelper.WaitForElement(() => passwordTxtBox, nameof(passwordTxtBox));
+            _browserHelper.WaitForElement(() => loginBtn, nameof(loginBtn));
 
-            BaseUi.MongoDb.UpdateSteps($"Set email in text box.");
+            UpdateStep($"Set email in text box.");
             _browserHelper.SetText(emailTxtBox, user.UserName);
 
-            BaseUi.MongoDb.UpdateSteps($"Set password in text box.");
+            UpdateStep($"Set password in text box.");
             _browserHelper.SetText(passwordTxtBox, user.Password);
 
-			BaseUi.MongoDb.UpdateSteps($"Click on Login button.");
+			UpdateStep($"Click on Login button.");
 			loginBtn.Click();
 
             Thread.Sleep(1000);

@@ -1,77 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Automation.BrowserFolder;
 using Automation.ConfigurationFoldee.ConfigurationsJsonObject;
 using Automation.PagesObjects.ExternalPagesobjects;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class HomePage
+    public class HomePage : BaseObject
     {
-        [FindsBy(How = How.ClassName, Using = "sign-in-up__facebook-btn")]
-        IWebElement connectBtn { get; set; }
+        protected List<IWebElement> leagues => _browserHelper.FindElements(".items-list");
 
-        [FindsBy(How = How.ClassName, Using = "new-article")]
-        IWebElement writeAnArticleBtn { get; set; }
+        protected List<IWebElement> postsTitlesInFeedPages => _browserHelper.FindElements(".bottom-title-default__header");
 
-        [FindsBy(How = How.CssSelector, Using = ".main-sidenav-toggle__text")]
-        IWebElement menu { get; set; }
+        List<IWebElement> topStoriesTtitles => _browserHelper.FindElements(".bottom-title-default__header");
 
-        [FindsBy(How = How.CssSelector, Using = "[href='/admin']")]
-        IWebElement admin { get; set; }
+        List<IWebElement> moreNewsTitles => _browserHelper.FindElements(".feedpage-article__title");
 
-        [FindsBy(How = How.CssSelector, Using = "[href='/edit_settings']")]
-        IWebElement settings { get; set; }
+        List<IWebElement> gridTitels => _browserHelper.FindElements(".bottom-title-default");
 
-        [FindsBy(How = How.CssSelector, Using = ".user-menu__link img")]
-        IWebElement userProfilePic { get; set; }
+        IWebElement menu => _browserHelper.FindElement(".main-sidenav-toggle__text");
 
-        [FindsBy(How = How.CssSelector, Using = ".items-list")]
-        protected IList<IWebElement> leagues { get; set; }
+        IWebElement admin => _browserHelper.FindElement("[href='/admin']");
 
-        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default__header")]
-        protected IList<IWebElement> postsTitlesInFeedPages { get; set; }
+        IWebElement settings => _browserHelper.FindElement("[href='/edit_settings']");
 
-        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title")]
-        IWebElement topicTitle { get; set; }
+        IWebElement userProfilePic => _browserHelper.FindElement(".user-menu__link img");
 
-        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default")]
-        IList<IWebElement> gridTitels { get; set; }
+        IWebElement topicTitle => _browserHelper.FindElement(".page-topic__single-title");
 
-        [FindsBy(How = How.CssSelector, Using = ".page-topic__single-title-header")]
-        IWebElement coverStoryTitle { get; set; }
+        IWebElement coverStoryTitle => _browserHelper.FindElement(".page-topic__single-title-header");
 
-        [FindsBy(How = How.CssSelector, Using = ".bottom-title-default__header")]
-        IList<IWebElement> topStoriesTtitle { get; set; }
+        IWebElement coverStory => _browserHelper.FindElement(".page-topic__cover-element");
 
-        [FindsBy(How = How.CssSelector, Using = ".feedpage-article__title")]
-        IList<IWebElement> moreNewsTitles { get; set; }
+        IWebElement connectBtn => _browserHelper.FindElement(".sign-in-up__facebook-btn");
 
-        protected Browser _browser;
-        protected IWebDriver _driver;
-        protected BrowserHelper _browserHelper;
+        IWebElement writeAnArticleBtn => _browserHelper.FindElement(".new-article");
 
         public HomePage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
         }
 
         public FaceBookconnectPage ClickOnConnectBtn()
         {
-            _browserHelper.WaitForElement(connectBtn, "Connect Button");
+            _browserHelper.WaitForElement(() => connectBtn, "Connect Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Connect Button.");
-            connectBtn.Click();
+            UpdateStep($"Clicking on Connect Button.");
+            _browserHelper.Click(connectBtn, nameof(connectBtn));
 
-            Base.MongoDb.UpdateSteps($"Switching to FaceBook login tab.");
+            UpdateStep($"Switching to FaceBook login tab.");
             _browser.SwitchToLastTab();
 
             return new FaceBookconnectPage(_browser);
@@ -79,18 +58,18 @@ namespace Automation.PagesObjects
 
         public void ClickOnConnectBtnWithCoockies()
         {
-            _browserHelper.WaitForElement(connectBtn, "Connect Button");
+            _browserHelper.WaitForElement(() => connectBtn, "Connect Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Connect Button.");
+            UpdateStep($"Clicking on Connect Button.");
             connectBtn.Click();
             ValidateUserProfilePic();
         }
 
         public EditorPage ClickOnAddArticle()
         {
-            _browserHelper.WaitForElement(writeAnArticleBtn, "Write an article Button");
+            _browserHelper.WaitForElement(() => writeAnArticleBtn, "Write an article Button");
 
-            Base.MongoDb.UpdateSteps($"Clicking on Write New Article Button.");
+            UpdateStep($"Clicking on Write New Article Button.");
             _browserHelper.Click(writeAnArticleBtn, nameof(writeAnArticleBtn));
 
             return new EditorPage(_browser);
@@ -98,33 +77,33 @@ namespace Automation.PagesObjects
 
         public bool ValidateConnectBtn()
         {
-            return _browserHelper.WaitForElement(connectBtn, nameof(connectBtn), 20, false);
+            return _browserHelper.WaitForElement(() => connectBtn, nameof(connectBtn), 20, false);
         }
 
         public string ValidatemenuBtnTxt()
         {
-            _browserHelper.WaitForElement(menu, "Menu button");
-            Base.MongoDb.UpdateSteps($"Validating Menu button text.");
+            _browserHelper.WaitForElement(() => menu, "Menu button");
+            UpdateStep($"Validating Menu button text.");
             return menu.Text;
         }
 
         public void ValidateUserProfilePic()
         {
-            Base.MongoDb.UpdateSteps($"Validate user's profile pic.");
-            _browserHelper.WaitForElement(userProfilePic, nameof(userProfilePic), 180, true);
+            UpdateStep($"Validate user's profile pic.");
+            _browserHelper.WaitForElement(() => userProfilePic, nameof(userProfilePic), 180, true);
             Thread.Sleep(1000);
         }
 
         public void HoverOverUserProfilePic()
         {
-            Base.MongoDb.UpdateSteps($"Hovering over user profile picture.");
+            UpdateStep($"Hovering over user profile picture.");
             _browserHelper.Hover(userProfilePic);
         }
 
         public AdminPage ClickOnAdmin()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Admin.");
-            _browserHelper.WaitForElement(admin, nameof(admin), 30, true);
+            UpdateStep($"Clicking on Admin.");
+            _browserHelper.WaitForElement(() => admin, nameof(admin), 30, true);
             _browserHelper.Click(admin, nameof(admin));
 
             return new AdminPage(_browser);
@@ -132,8 +111,8 @@ namespace Automation.PagesObjects
 
         public SettingsPage ClickOnSettings()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Settings.");
-            _browserHelper.WaitForElement(settings, nameof(settings), 30, true);
+            UpdateStep($"Clicking on Settings.");
+            _browserHelper.WaitForElement(() => settings, nameof(settings), 30, true);
             _browserHelper.Click(settings, nameof(settings));
 
             return new SettingsPage(_browser);
@@ -141,8 +120,8 @@ namespace Automation.PagesObjects
 
         public bool ValidateAdminAppears()
         {
-            Base.MongoDb.UpdateSteps($"Validating Admin Appears.");
-            return _browserHelper.WaitForElement(admin, nameof(admin), 2, false);
+            UpdateStep($"Validating Admin Appears.");
+            return _browserHelper.WaitForElement(() => admin, nameof(admin), 2, false);
         }
 
         public HomePage Login(IUser user)
@@ -168,8 +147,8 @@ namespace Automation.PagesObjects
 
         public void ClickOnMenu()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on menu.");
-            _browserHelper.WaitForElement(menu, nameof(menu));
+            UpdateStep($"Clicking on menu.");
+            _browserHelper.WaitForElement(() => menu, nameof(menu));
             _browserHelper.Click(menu, nameof(menu));
         }
 
@@ -184,15 +163,15 @@ namespace Automation.PagesObjects
 
         string GetTopicText()
         {
-            Base.MongoDb.UpdateSteps("Getting the topic title text.");
-            _browserHelper.WaitForElement(topicTitle, nameof(topicTitle));
+            UpdateStep("Getting the topic title text.");
+            _browserHelper.WaitForElement(() => topicTitle, nameof(topicTitle));
             string title = topicTitle.Text;
             return title;
         }
 
         public bool ValidateTopicTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the topic title text.");
+            UpdateStep("Validating the topic title text.");
             _browserHelper.RefreshUntill(() => 
             {
                 string coverTitle = GetTopicText();
@@ -204,7 +183,7 @@ namespace Automation.PagesObjects
 
         public bool ValidateTitleApearsInGrid (string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the post appear on the grid");
+            UpdateStep("Validating the post appear on the grid");
             _browserHelper.WaitUntillTrue(() => gridTitels.ToList().Count() > 2);
 
             return gridTitels.ToList().Any(t => t.Text == title);
@@ -212,21 +191,21 @@ namespace Automation.PagesObjects
 
         public string GetCoverText()
         {
-            Base.MongoDb.UpdateSteps("Getting the title text.");
-            _browserHelper.WaitForElement(coverStoryTitle, nameof(coverStoryTitle));
+            UpdateStep("Getting the title text.");
+            _browserHelper.WaitForElement(() => coverStoryTitle, nameof(coverStoryTitle));
             string title = coverStoryTitle.Text;
             return title;
         }
 
         public bool ValidateTopStoriesTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the top stories title text.");
+            UpdateStep("Validating the top stories title text.");
             bool result = false;
 
             _browserHelper.RefreshUntill(() =>
             {
-                _browserHelper.WaitUntillTrue(() => topStoriesTtitle.ToList().Count() >= 2);
-                result = topStoriesTtitle.ToList().Any(t => t.Text == title);
+                _browserHelper.WaitUntillTrue(() => topStoriesTtitles.ToList().Count() >= 2);
+                result = topStoriesTtitles.ToList().Any(t => t.Text == title);
                 return result;
             });
 
@@ -235,12 +214,20 @@ namespace Automation.PagesObjects
 
         public bool ValidateMoreNewsTitle(string title)
         {
-            Base.MongoDb.UpdateSteps("Validating the more news title text.");
+            UpdateStep("Validating the more news title text.");
             bool result = false;
             _browserHelper.WaitUntillTrue(() => moreNewsTitles.ToList().Count() >= 2);
             _browserHelper.ExecuteUntill(() => result = moreNewsTitles.ToList().Any(t => t.Text == title));
 
             return result;
+        }
+
+        public PostPage ClickOnCoverStory()
+        {
+            UpdateStep("Clicking on Cover Story Title.");
+            _browserHelper.Click(coverStory, nameof(coverStory));
+
+            return new PostPage(_browser); 
         }
     }
 }

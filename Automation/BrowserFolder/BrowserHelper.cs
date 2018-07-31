@@ -18,7 +18,37 @@ namespace Automation.BrowserFolder
             _driver = driver;
         }
 
-        public bool WaitForElement(IWebElement el, string elName, int timeOut = 30, bool throwEx = true)
+        public bool WaitForElement(Func<IWebElement> el, string elName = "", int timeOut = 30, bool throwEx = true)
+        {
+            var error = string.Empty;
+
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        var element = el();
+                        MoveToEl(element);
+                        return element.Displayed;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                if (throwEx)
+                    throw new NUnit.Framework.AssertionException($"Could not find element: {elName}. Error: {e.Message}.");
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool WaitForElementDiss(Func<IWebElement> el, int timeOut = 30)
         {
             try
             {
@@ -26,40 +56,20 @@ namespace Automation.BrowserFolder
                 wait.Until(d => {
                     try
                     {
-                        MoveToEl(el);
-                        return el.Displayed;
+                        return !el().Displayed;
                     }
                     catch
                     {
-                        return false;
+                        return true;
                     }
                 });
 
-                MoveToEl(el);
+                return true;
             }
             catch
             {
-                if (throwEx)
-                    throw new NUnit.Framework.AssertionException($"Could not find element: {elName}.");
-                return false;
+                throw new NUnit.Framework.AssertionException($"Element was not dissapeared. timeOut.");
             }
-
-            return true;
-        }
-
-        public void WaitForElementDiss(IWebElement el, int timeOut = 30)
-        {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    return !el.Displayed;
-                }
-                catch
-                {
-                    return true;
-                }
-            });
         }
 
         public void SetText(IWebElement el, string text)
@@ -79,8 +89,8 @@ namespace Automation.BrowserFolder
             WaitUntillTrue(() => {
                 try
                 {
-                    WaitForElement(drag, nameof(drag), 30, false);
-                    WaitForElement(drag, nameof(drop), 30, false);
+                    WaitForElement(() => drag, nameof(drag), 30);
+                    WaitForElement(() => drop, nameof(drop), 30);
                     Actions ac = new Actions(_driver);
                     ac.DragAndDrop(drag, drop);
                     ac.Build().Perform();
@@ -121,6 +131,7 @@ namespace Automation.BrowserFolder
                     }
                     catch(Exception e)
                     {
+                        ex += e.Message; 
                         return false;
                     }
                 });
@@ -174,7 +185,7 @@ namespace Automation.BrowserFolder
             }
         }
 
-        public void Click(IWebElement el, string elName, int timeOut = 30, bool throwex = true)
+        public void Click(IWebElement el, string elName = "", int timeOut = 30, bool throwex = true)
         {
             var error = "";
             try
@@ -213,36 +224,50 @@ namespace Automation.BrowserFolder
 
         public void ExecuteUntill(Action action, int timeOut = 40)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    action();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        action();
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Time Out.");
+            }
         }
 
         public void WaitUntill(List<IWebElement> els, Func<List<IWebElement>, bool> func, int timeOut = 30)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
-            wait.Until(d => {
-                try
-                {
-                    return func(els) == true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeOut));
+                wait.Until(d => {
+                    try
+                    {
+                        return func(els) == true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Time Out.");
+            }
         }
 
-        public IWebElement FindElement(By by, string elName, int timeOut = 30)
+        public IWebElement FindElement(By by, string elName = "", int timeOut = 30)
         {
             IWebElement el = null;
 
@@ -397,6 +422,17 @@ namespace Automation.BrowserFolder
         public void SelectDate(string day)
         {
             Click(_driver.FindElement(By.LinkText(day)), day);
+        }
+
+        public IWebElement FindElement(string locator)
+        {
+            _driver.FindElement(By.CssSelector(locator));
+            return _driver.FindElement(By.CssSelector(locator));
+        }
+
+        public List<IWebElement> FindElements(string locator)
+        {
+            return _driver.FindElements(By.CssSelector(locator)).ToList();
         }
     }
 }

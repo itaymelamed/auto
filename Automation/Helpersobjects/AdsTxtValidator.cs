@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using Automation.ApiFolder;
 
 namespace Automation.Helpersobjects
 {
@@ -35,24 +34,8 @@ namespace Automation.Helpersobjects
         string ValidateDomain()
         {
             var domainErrors = string.Empty;
-            //_domains.ForEach(d => domainErrors += ValidateUrl(d)? "" : $"<div><h3>format of {d} is incorrect</h3></div>");
             _domains.ForEach(d => domainErrors += ValidateDomainFormat(d)? "" : $"<div><h3>format of {d} is incorrect</h3></div>");
             return domainErrors;
-        }
-
-        bool ValidateUrl(string url)
-        {
-            try
-            {
-                WebRequest req = WebRequest.Create($"http://{url}");
-                WebResponse res = req.GetResponse();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
         }
 
         string GetTxtFile(string url)

@@ -6,38 +6,28 @@ using Automation.BrowserFolder;
 using Automation.TestsFolder;
 using MongoDB.Bson;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects
 {
     public class ListsTemplate : ArticleBase
     {
-        [FindsBy(How = How.CssSelector, Using = ".introduction.fragment")]
-        IWebElement introduction { get; set; }
+        IWebElement introduction => FindElement(".introduction.fragment");
 
-        [FindsBy(How = How.CssSelector, Using = ".image-container__image")]
-        IList<IWebElement> images { get; set; }
+        List<IWebElement> images => FindElements(".image-container__image");
 
-        [FindsBy(How = How.CssSelector, Using = ".public-DraftEditor-content")]
-        IList<IWebElement> bodyTextBoxs { get; set; }
+        List<IWebElement> bodyTextBoxs => FindElements(".public-DraftEditor-content");
 
-        [FindsBy(How = How.CssSelector, Using = ".title-wrapper input")]
-        IList<IWebElement> subTitleFields { get; set; }
+        List<IWebElement> subTitleFields => FindElements(".title-wrapper input");
 
-        [FindsBy(How = How.CssSelector, Using = ".image-upload-drop-target")]
-        IList<IWebElement> mediaDropBoxs { get; set; }
+        List<IWebElement> mediaDropBoxs => FindElements(".image-upload-drop-target");
 
-        [FindsBy(How = How.CssSelector, Using = ".ascending")]
-        IWebElement ascendingIcon { get; set; }
+        IWebElement ascendingIcon => FindElement(".ascending");
 
-        [FindsBy(How = How.CssSelector, Using = ".descending")]
-        IWebElement descendingIcon { get; set; }
+        IWebElement descendingIcon => FindElement(".descending");
 
-        [FindsBy(How = How.CssSelector, Using = ".count")]
-        IList<IWebElement> counters { get; set; }
+        List<IWebElement> counters => FindElements(".count");
 
-        [FindsBy(How = How.CssSelector, Using = ".redactor-element.redactor_editor")]
-        IList<IWebElement> bodyTextBoxs2 { get; set; }
+        List<IWebElement> bodyTextBoxs2 => FindElements(".redactor-element.redactor_editor");
 
         public ListsTemplate(Browser browser) :
             base(browser)
@@ -47,51 +37,47 @@ namespace Automation.PagesObjects
 
         public string GetIntroductionValue()
         {
-            BaseUi.MongoDb.UpdateSteps("Getting introduction value");
-            _browserHelper.WaitForElement(introduction, nameof(introduction));
+            UpdateStep("Getting introduction value");
+            _browserHelper.WaitForElement(() => introduction, nameof(introduction));
             return introduction.Text;
         }
 
         public List<string> GetImagesUrl()
         {
             Thread.Sleep(2000);
-            BaseUi.MongoDb.UpdateSteps("Getting images URL.");
+            UpdateStep("Getting images URL.");
             List<string> imagesSrcs = new List<string>();
-            images.ToList().ForEach(p =>
-            {
-                imagesSrcs.Add(p.GetAttribute("src"));
-            });
-
-            return imagesSrcs;
+            _browserHelper.WaitUntillTrue(() => images.Count >= 1);
+            return images.Select(p => p.GetAttribute("src")).ToList();
         }
 
         public void SetBodyTextBoxs(string text)
         {
-            Base.MongoDb.UpdateSteps("Inserting body text boxs");
-            _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() >= 4);
+            UpdateStep("Inserting body text boxs");
+            _browserHelper.WaitUntillTrue(() => bodyTextBoxs.Count() >= 4);
             bodyTextBoxs.ToList().ForEach(x => _browserHelper.SetText(x, text));
         }
 
         public void SetBodyTextBoxsMmNews(string text)
         {
-            Base.MongoDb.UpdateSteps("Inserting body text boxs");
+            UpdateStep("Inserting body text boxs");
             _browserHelper.WaitUntillTrue(() => bodyTextBoxs2.ToList().Count() >= 4);
-            bodyTextBoxs2.ToList().ForEach(x => _browserHelper.SetText(x, text));
+            bodyTextBoxs2.ForEach(x => _browserHelper.SetText(x, text));
         }
 
         public List<string> GetBodyTextBoxesValue()
         {
-            BaseUi.MongoDb.UpdateSteps("Inserting body text boxes value");
+            UpdateStep("Inserting body text boxes value");
             List<string> values = new List<string>();
             _browserHelper.WaitUntillTrue(() => bodyTextBoxs.ToList().Count() == 5);
-            bodyTextBoxs.ToList().ForEach(t => values.Add(t.Text));
+            bodyTextBoxs.ForEach(t => values.Add(t.Text));
 
             return values;
         }
 
         public string ValidateBodyTextBoxes(List<string> acValues, string text)
         {
-            BaseUi.MongoDb.UpdateSteps("Validating body text boxes.");
+            UpdateStep("Validating body text boxes.");
 
             var errors = string.Empty;
             if (acValues.All((v => v == text)))
@@ -104,9 +90,8 @@ namespace Automation.PagesObjects
 
         public void SetSubTitles(BsonArray titles)
         {
-           BaseUi.MongoDb.UpdateSteps("Inserting subtitle values.");
+           UpdateStep("Inserting subtitle values.");
            List<string> titlesList = titles.ToList().Select(t => t.ToString()).ToList();
-           var xxx = subTitleFields.ToList().Count();
            _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
            int i = 0;
            subTitleFields.ToList().ForEach(s =>
@@ -118,27 +103,27 @@ namespace Automation.PagesObjects
 
         public List<string> GetSubTitelsValues()
         {
-            BaseUi.MongoDb.UpdateSteps("Getting subtitle values.");
+            UpdateStep("Getting subtitle values.");
             List<string> values = new List<string>();
             _browserHelper.WaitUntillTrue(() => subTitleFields.ToList().Count() == 3);
-            subTitleFields.ToList().ForEach(t => values.Add(t.GetAttribute("value")));
+            subTitleFields.ForEach(t => values.Add(t.GetAttribute("value")));
 
             return values;
         }
 
         public bool ValidateSubTitlesFields(List<string> acValues, BsonArray exValues)
         {
-            BaseUi.MongoDb.UpdateSteps("Validating subtitles fields.");
-            List<string> titlesList = exValues.ToList().Select(t => t.ToString()).ToList();
+            UpdateStep("Validating subtitles fields.");
+            List<string> titlesList = exValues.Select(t => t.ToString()).ToList();
             return acValues.SequenceEqual(titlesList);
         }
 
         public void DragImages()
         {
-            BaseUi.MongoDb.UpdateSteps("Dragging images to media drop boxes.");
+            UpdateStep("Dragging images to media drop boxes.");
             Thread.Sleep(2000);
-            _browserHelper.WaitUntillTrue(() => mediaDropBoxs.ToList().Count() == 4, "Media boxes failed to load");
-            _browserHelper.WaitUntillTrue(() => imagesResults.ToList().Count() == 30, "There were no 30 results images.");
+            _browserHelper.WaitUntillTrue(() => mediaDropBoxs.Count() == 4, "Media boxes failed to load");
+            _browserHelper.WaitUntillTrue(() => imagesResults.Count() == 30, "There were no 30 results images.");
 
             _browserHelper.WaitUntillTrue(() =>
             {
@@ -156,30 +141,30 @@ namespace Automation.PagesObjects
 
         public void ClickOnAscendingBtn()
         {
-            BaseUi.MongoDb.UpdateSteps("Clicking on Ascending button");
+            UpdateStep("Clicking on Ascending button");
             _browserHelper.ScrollToTop();
-            _browserHelper.WaitForElement(ascendingIcon, nameof(ascendingIcon));
+            _browserHelper.WaitForElement(() => ascendingIcon, nameof(ascendingIcon));
             _browserHelper.Click(ascendingIcon, nameof(ascendingIcon));
         }
 
         public void ClickOnDscBtn()
         {
-            BaseUi.MongoDb.UpdateSteps("Clicking on Descending button");
+            UpdateStep("Clicking on Descending button");
             _browserHelper.ScrollToTop();
-            _browserHelper.WaitForElement(descendingIcon, nameof(descendingIcon));
+            _browserHelper.WaitForElement(() => descendingIcon, nameof(descendingIcon));
             _browserHelper.Click(descendingIcon, nameof(descendingIcon));
         }
 
         public List<string> GetItemsIndex()
         {
-            BaseUi.MongoDb.UpdateSteps("Getting items index");
+            UpdateStep("Getting items index");
             _browserHelper.WaitUntillTrue(() => counters.ToList().Count() == 3);
             return counters.ToList().Select(c => c.Text).ToList();
         }
 
         public bool ValidateAscDesc(List<string> before, List<string> after)
         {
-            BaseUi.MongoDb.UpdateSteps("Validating AscDesc");
+            UpdateStep("Validating AscDesc");
             before.Reverse();
             return before.SequenceEqual(after);
         }

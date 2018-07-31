@@ -22,7 +22,7 @@ namespace Automation.ApiFolder
         {
             _api = new ApiObject();
             _url = url;
-            _baseUrlProxy = $"http://{_url}:32300/proxy";
+            _baseUrlProxy = $"http://{_url}:32006/proxy";
             using (var response = _api.MakeRequest(_baseUrlProxy, "POST"))
             {
                 var responseStream = response.GetResponseStream();
@@ -44,9 +44,9 @@ namespace Automation.ApiFolder
             _proxy = _url.TrimStart('/') + ":" + _port;
         }
 
-        public void NewHar(string reference = null)
+        public void NewHar(string reference = null, string query = "")
         {
-            _api.MakeRequest(String.Format("{0}/{1}/har", _baseUrlProxy, _port), "PUT", reference);
+            _api.MakeRequest(String.Format("{0}/{1}/har" + query, _baseUrlProxy, _port), "PUT", reference);
         }
 
         public void NewHarPost(string reference = null)
@@ -101,7 +101,14 @@ namespace Automation.ApiFolder
 
         public List<Request> GetRequests()
         {
-            return GetHar().Log.Entries.ToList().Select(e => e.Request).ToList();
+            try
+            {
+                return GetHar().Log.Entries.ToList().Select(e => e.Request).ToList();
+            }
+            catch
+            {
+                throw new NUnit.Framework.AssertionException($"Failed to get network datat traffic.");
+            }
         }
     }
 }

@@ -19,10 +19,12 @@ namespace Automation.ApiFolder
 
         string _errors;
 
-        public AdsUnitHelper(List<Request> requests, BsonValue exJsons, BsonArray displyed, BsonArray notDisplyed)
+        public AdsUnitHelper(List<Request> requests, BsonValue exJsons, BsonArray displyed, BsonArray notDisplyed, string experimentId)
         {
             _requests = requests;
             _exJson = JObject.Parse(exJsons.ToString());
+            experimentId = experimentId.First() == '0' ? experimentId.Remove(0) : experimentId;
+            _exJson.Add("experimentId",experimentId);
             _adNames = displyed.Select(x => x.ToString()).ToList();
             _adNames.AddRange(notDisplyed.Select(x => x.ToString()));
             _errors = string.Empty;
@@ -36,12 +38,19 @@ namespace Automation.ApiFolder
                 var ignorList = ignor.Count > 0 ? ignor.Select(i => i.ToString()).ToList() : new List<string>(){""};
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
+                if (acJson == null)
+                {
+                    _errors += $"<div>No request has found for <b>{n}</b></div>"; ;
+                    return;
+                }
+
                 ignorList.ForEach(i =>
                 {
-                    if (acJson.Properties().Select(p => p.Name.ToString()).Contains(i))
+                    if (acJson.Properties().Select(p => p.Name).Contains(i))
                         acJson.Remove(i);
                 });
-                _errors += $"{JsonComparer(_exJson, acJson)}";
+
+                _errors += $"{JsonComparer(_exJson, acJson, n)}";
             });
 
             return _errors;
@@ -54,7 +63,8 @@ namespace Automation.ApiFolder
                 Base.MongoDb.UpdateSteps($"Validate {n} request was sent.");
                 var request = _requests.Where(r => r.Url.Contains(n) && r.Url.Contains(_url)).FirstOrDefault();
                 var acJson = RequestToJobject(request);
-                _errors += $"{JsonComparer(_exJson, acJson)}";
+
+                _errors += acJson == null ? $"<div>No request has found for <b>{n}</b>.</div>" : $"{JsonComparer(_exJson, acJson, n)}";
             });
 
             return _errors;
@@ -72,9 +82,9 @@ namespace Automation.ApiFolder
                 var jsonString = JsonConvert.SerializeObject(paramsDic);
                 return JObject.Parse(jsonString);
             }
-            catch(Exception e)
+            catch
             {
-                return JObject.Parse(@"{'remove' : 'video'}");
+                return null;
             }
         }
     }

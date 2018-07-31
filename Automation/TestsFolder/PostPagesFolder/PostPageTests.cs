@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Automation.TestsFolder.PostPagesFolder
 {
-    [TestFixture]
     public class PostPageTests
     {
         [TestFixture]
@@ -15,7 +14,10 @@ namespace Automation.TestsFolder.PostPagesFolder
         {
             [Test]
             [Property("TestCaseId", "13")]
-            [Category("Sanity")][Category("Admin")][Category("PostPage")][Category("AllBrands")]
+            [Category("Sanity")]
+            [Category("Admin")]
+            [Category("PostPage")]
+            [Category("AllBrands")]
             [Retry(2)]
             public void PostPage_ValidateUiComponentsExistOnPage()
             {

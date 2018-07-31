@@ -1,34 +1,25 @@
 ﻿using System.Threading;
 using Automation.BrowserFolder;
-using Automation.TestsFolder;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Automation.PagesObjects
 {
-    public class WritersPage
+    public class WritersPage : BaseObject
     {
-        [FindsBy(How = How.CssSelector, Using = "h2 a")]
-        IWebElement WriteAnArticleBtn { get; set; }
-
-        Browser _browser;
-        IWebDriver _driver;
-        BrowserHelper _browserHelper;
+        IWebElement WriteAnArticleBtn => FindElement(".h2 a");
 
         public WritersPage(Browser browser)
+            :base(browser)
         {
-            _browser = browser;
-            _driver = browser.Driver;
-            _browserHelper = browser.BrowserHelper;
-            PageFactory.InitElements(_driver, this);
+            
         }
 
-        public EditorPage ClickonWriteAnArticleBtn()
+        public EditorPage ClickOnWriteAnArticleBtn()
         {
             _browser.SwitchToFirstTab();
             Thread.Sleep(1000);
-            BaseUi.MongoDb.UpdateSteps($"Clicking on 'Write an article' button.");
-            if(_browserHelper.WaitForElement(WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
+            UpdateStep($"Clicking on 'Write an article' button.");
+            if(_browserHelper.WaitForElement(() => WriteAnArticleBtn, nameof(WriteAnArticleBtn), 10, false))
                 _browserHelper.Click(WriteAnArticleBtn, "Write new article button.", 0, false);
 
             return new EditorPage(_browser);
