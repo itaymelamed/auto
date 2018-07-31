@@ -252,7 +252,7 @@ namespace Automation.PagesObjects
 
         public void ClickOnFacebookTopBtn()
         {
-            Base.MongoDb.UpdateSteps($"Clicking on Facebook top button");
+            Base.MongoDb.UpdateSteps($"Clicking2 on Facebook top button");
             _browserHelper.WaitForElement(faceBookTop, nameof(faceBookTop));
             _browserHelper.Click(faceBookTop, nameof(faceBookTop));
         }
