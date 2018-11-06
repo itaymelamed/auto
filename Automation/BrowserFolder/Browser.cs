@@ -210,7 +210,7 @@ namespace Automation.BrowserFolder
             _options = !proxy ? CreateChromeOptions(wait) : CreateProxyChromeOptions(wait);
             var capabilities = (DesiredCapabilities)_options.ToCapabilities();
             capabilities.SetCapability("browser", "chrome");
-            capabilities.SetCapability("version", "66.0");
+            capabilities.SetCapability("version", "70.0");
             if(!proxy)
             {
                 capabilities.SetCapability("enableVNC", true);
